@@ -86,8 +86,6 @@ public class Enemy{
     }
     if (y - radius >= yMax) {//if enemy goes out the bottom side
       ded = true; //die
-    } else {
-      ded = false;
     }
   }
   
@@ -139,8 +137,6 @@ public class Enemy{
   //©Nordin El Hadaoui
   void collision() {
     //check if the enemy makes contact with the player
-    
-  
     for(int i = 0; i < b.length; i++){
       
       if (sqrt(((x + xRef - b[i].bPLocationXEnd) * (x + xRef - b[i].bPLocationXEnd)) + ((y + yRef - b[i].bPLocationYEnd) * (y + yRef - b[i].bPLocationYEnd))) <= radius + b[i].bPSize/2) {
