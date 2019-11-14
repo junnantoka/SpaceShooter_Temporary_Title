@@ -49,7 +49,11 @@ void draw(){
   }
   void collision() {
     if (dist(bulletX + xRef, bulletY + yRef, c.xLocation, c.yLocation)< bulletSize/2+c.size/2) {
-      health = health -c.healthLost;
+      health = health - 1;
+      healthBarWidth = healthBarWidth-healthLost;
+      if(healthBarWidth <= healthBarGone) {
+        healthBarWidth = 0;
+      }
       shot = false;
       shotIn = 0;
     }

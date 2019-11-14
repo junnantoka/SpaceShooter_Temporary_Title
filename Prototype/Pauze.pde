@@ -5,10 +5,8 @@ class Pauze{
   float pauzeY;
   int speedX;
   int speedY;
-  int timer;
   final int SPEED = 10;
   void setup(){
-    timer= 0;
     pauzeImg = loadImage("pauzescreen.png");
     pauzeX = random(10,1590);
     pauzeY = random(10, 790);
@@ -28,17 +26,11 @@ class Pauze{
     }
   }
   void pauzeGame(){
-  
-   if ((keysPressed['p']||keysPressed['P']) && pauze == false && timer==0){
-      pauze= true;
-      timer++;
-    }
-     else if ((keyPressed) && pauze == true&& timer==0){
+  if ((keyPressed) && pauze == true){
     pauze= false;
-    timer++;
     }
-    if (!keyPressed){
-      timer=0;
+    if ((keysPressed['p']||keysPressed['P']) && pauze == false){
+      pauze= true;
     }
   if (pauze ==true){
   pauzeX += speedX;

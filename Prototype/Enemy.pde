@@ -1,37 +1,26 @@
 //©Jun Phung 500829487
-public class Enemy{
+public class Enemy {
   //enemy settings
-  float x, y, size, radius, xSpd, ySpd, direction, t, speed, xG, yG, time;
+  float x, y, size, radius, xSpd, ySpd, direction;
   int type;
   boolean ded, down;
-  final float xMin, xMax, yMin, yMax;
   
   Enemy() {
     //basic values
-    xMin = -width * 2;
-    xMax = 2 * width;
-    yMin = -height * 2;
-    yMax = 2 * height;
-    c.healthLost = 1;
     size = 50;
     radius = size/2;
-    x = random(xMin, xMax) + xRef;
-    y = random(yMin, yMax) + yRef;
+    x = random(radius, width-radius);
+    y = random(radius, height/7);
     xSpd = random(-10, 10);
-    ySpd = random(-10, 10);
+    ySpd = random(0, 10);
     direction = random(-2, 2);
     down = false;
     ded = false;
-    type = (int) random(0, 3);
-    speed = random(5000.0f, 3000.0f);
-    xG = random(-10, 10);
-    yG = random(-10, 10);
-    time = 0;
+    type = (int) random(0, 2);
   }
 
   void draw() {
-    //draw the actual enemy(ies)
-    noStroke();
+    //draw the actual enemy
     switch(type){
     case 0:
       fill(#7D45E5);
@@ -40,7 +29,6 @@ public class Enemy{
       fill(#B2882F);
       break;
     case 2:
-      fill(#838282);
       break;
     }
     circle(x + xRef, y + yRef, size);
@@ -48,20 +36,21 @@ public class Enemy{
 
   void update() {
     //cal to method(s)
-    types();
-    respawn();
+    movement();
   }
 
-  void types() {
-    //different enemy types
+  void movement() {
+    //actual movement
     switch(type){
     case 0:
       check0();
-      break;    case 1:
+      fill(#7D45E5);
+      break;
+    case 1:
       check1();
+      fill(#B2882F);
       break;
     case 2:
-      check2();
       break;
     }
   }
@@ -78,81 +67,40 @@ public class Enemy{
     if (xSpd < 0) {//goes left
       xSpd += 0.05;
     }
-    if ((x - radius > xMax || x + radius < xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
+    if ((x + radius > width || x - radius < 0) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
       xSpd = -xSpd;
       down = true;
     }
-    if (y - radius <= yMin){
-      ySpd = -ySpd;
-    }
-    if (y - radius >= yMax) {//if enemy goes out the bottom side
+    if (y + radius >= height || y - radius <= 0) {//if enemy goes out the bottom side
       ded = true; //die
-    } else {
-      ded = false;
     }
-  }
+    }
   
-  void check1(){//enemy type 2 (bouncing ball)
-    //movement
+  
+  void check1(){//enemy type 2 (Darude - Sandstorm)
     x += direction * xSpd;
     y += direction * ySpd;
-    
-    //collision with boundary
-    if(y + radius >= yMax || y - radius <= yMin){
+    if(y + radius >= height || y - radius <= 0){
       ySpd = -ySpd;
     }
-    if(x + radius >= xMax || x - radius <= xMin){
+    if(x + radius >= width || x - radius <= 0){
       xSpd = -xSpd;
-    }
-  }
-  
-  void check2(){//enemy type 3 (Darude - Sandstorm)
-    t = millis()/speed;
-    x = (int)(xRef + (radius * xG) * cos(t));
-    y = (int)(yRef + (radius * yG) * sin(t));
-    if(time <= 60){
-      xG += 0.5;
-      yG += 0.5;
-    }if(time >= 60){
-      xG -= 0.5;
-      yG -= 0.5;
-    }
-  }
-  
-  void respawn() {
-    if (x + xRef < -width) {
-      ded = true;
-    }
-
-    if (x + xRef > 2 * width) {
-      ded = true;
-    }
-
-    if (y + yRef < -height) {
-      ded = true;
-    }
-
-    if (y + yRef > 2 * height) {
-      ded = true;
     }
   }
 
   //©Nordin El Hadaoui
   void collision() {
     //check if the enemy makes contact with the player
-    if (dist(x + xRef, y + yRef, c.xLocation, c.yLocation) <= c.size/2 + radius) {
-      health = health -c.healthLost;
-      ded = true;
-    }
+    
   
     for(int i = 0; i < b.length; i++){
+      
       if (sqrt(((x + xRef - b[i].bPLocationXEnd) * (x + xRef - b[i].bPLocationXEnd)) + ((y + yRef - b[i].bPLocationYEnd) * (y + yRef - b[i].bPLocationYEnd))) <= radius + b[i].bPSize/2) {
         ded = true;
         print("Auchiewauchie ");
         h.score++;
-      } else {
-       // ded = false;
+      }
       }
     }
-  }
+
 }

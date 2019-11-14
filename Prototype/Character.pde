@@ -9,19 +9,17 @@ class Character {
   int xDir=0;
   float ySpeed=0;
   float xSpeed=0;
-  float healthLost;
   boolean yMove, xMove;
   float slowDown = 0.5;
-  
   void construct(){
-    yLocation = height / 2;
-    xLocation = width / 2;
+    yLocation=height/2;
+    xLocation=width/2;
   }
-  
   void displayCh() {
     fill(255);
     circle(xLocation, yLocation, size);
   }
+
 
   void moveCh() {
     yRef -= ySpeed;
@@ -83,34 +81,6 @@ class Character {
     if (yLocation-(size/2)<0) {
       ySpeed=0;
       yLocation++;
-    }
-  }
-  //©Nordin El Hadaoui
-  void playerHealth() { 
-    if (health <= 3) { //start with 3 health, healthbar is full
-      fill(255, 0, 0);
-      stroke(255);
-      rect(250, 50, 300, 25);
-    }
-    if (health <= 2) {
-      fill(0);
-      rect(350, 50, 100, 25);
-    }
-    if (health <= 1) {
-      fill(0);
-      rect(300, 50, 200, 25);
-    }
-    if (health <= 0) { //when health reaches 0, game ends
-      textSize(100);
-      fill(0);
-      rect(250, 50, 300, 25);
-      fill(255);
-      text("GAME OVER", 800, 200);
-      frameRate(0);
-      if (h.score>h.highscoreOnStartup) {
-        h.highscore[0] = h.score;
-        saveStrings("Highscore.txt", str(h.highscore));
-      }
     }
   }
 }
