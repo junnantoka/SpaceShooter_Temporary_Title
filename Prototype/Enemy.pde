@@ -137,14 +137,18 @@ public class Enemy{
   //©Nordin El Hadaoui
   void collision() {
     //check if the enemy makes contact with the player
+    if(!ded ){
     for(int i = 0; i < b.length; i++){
-      
+      if( b[i].ja){
       if (sqrt(((x + xRef - b[i].bPLocationXEnd) * (x + xRef - b[i].bPLocationXEnd)) + ((y + yRef - b[i].bPLocationYEnd) * (y + yRef - b[i].bPLocationYEnd))) <= radius + b[i].bPSize/2) {
         ded = true;
         print("Auchiewauchie ");
         h.score++;
+        b[i].reset();
       }
       }
+      }
+    }
     }
 
 }

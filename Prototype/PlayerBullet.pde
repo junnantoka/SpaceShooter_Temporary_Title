@@ -1,23 +1,18 @@
 
 //stijns deel
 class PlayerBullet {
-  float bPLocationX, bPLocationY, bPSize, chSpeedX, chSpeedY;
+  float bPLocationX, bPLocationY, bPSize, chSpeedX, chSpeedY, bPXRef, bPYRef, bPXRefEnd, bPYRefEnd,bPLocationXEnd, bPLocationYEnd;
   boolean pBLinks, pBRechts, pBOmhoog, pBNaarbeneden, ja;
   int afstand, snelheid;
   final int maxAfstand = 400;
   final int reset=0;
   final int interval = 10;
-  float bPXRef;
-  float bPYRef;
-  float bPXRefEnd;
-  float bPYRefEnd;
-   float bPLocationXEnd, bPLocationYEnd;
   
 
   void construct() {
     //sets starting values
-    bPLocationX = c.xLocation;
-    bPLocationY = c.yLocation;
+     bPLocationX= c.xLocation;
+     bPLocationY= c.yLocation;
     bPSize= 30;
     snelheid= 15;
     
@@ -46,6 +41,9 @@ class PlayerBullet {
         ja = true;
         bPXRef+= xRef;
         bPYRef+= yRef;
+        
+        chSpeedX = c.xSpeed/2;
+        chSpeedY = c.ySpeed/2;
         if (keysPressed[UP]) {
 
           pBOmhoog = true;
@@ -79,9 +77,10 @@ class PlayerBullet {
 
       //moves bullet and returns to begining
       if (ja) {
-        
+        bPLocationY+=chSpeedY;
+        bPLocationX+=chSpeedX;
         if (pBOmhoog == true) {
-          bPLocationY-= snelheid;
+          bPLocationY-= snelheid ;
         }
         if (pBLinks == true) {
           bPLocationX-= snelheid;
@@ -95,18 +94,22 @@ class PlayerBullet {
     
         afstand++;
         if (afstand == maxAfstand) {
+          reset();
+        }
+        
+      } 
+      
+    }
+    void reset(){
+       bPLocationX= c.xLocation;
+        bPLocationY= c.yLocation;
           pBNaarbeneden= false;
           pBOmhoog= false;
           pBRechts = false;
           pBLinks = false;
           afstand = reset;
           ja = false;
-        }
-        
-      } else {
-        bPLocationX= c.xLocation;
-        bPLocationY= c.yLocation;
-      }
+      
     }
   }
   //eind stijns deel
