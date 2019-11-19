@@ -8,6 +8,10 @@ int healthBarWidth = 500;
 int healthLost;
 int healthBarHeight = 30;
 
+int healthBarXLighting = 500;
+int healthBarYLighting = 27;
+
+
 final int healthBarGone = 49;
 
 class Health {
@@ -15,6 +19,7 @@ class Health {
   void setup() {
     health = startingHealth;
     healthLost = healthBarWidth/startingHealth;
+
   }
 
   void draw() {
@@ -24,7 +29,11 @@ class Health {
     fill(255, 0, 0);
     rect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
     
+    fill(255,215,215);
+    rect(healthBarX,healthBarYLighting,healthBarXLighting,5);
+    
     image(healthBar, 300, 30, 515, 55);
+    
   }
 
   void collide() {
@@ -33,8 +42,11 @@ class Health {
         e[i].ded = true;
         health = health - 1;
         healthBarWidth = healthBarWidth-healthLost;
+        healthBarXLighting = healthBarXLighting-healthLost;
+
         if (healthBarWidth <= healthBarGone) {
           healthBarWidth = 0;
+          healthBarXLighting = 0;
         }
       }
     }
@@ -49,6 +61,7 @@ class Health {
   void reset(){
     health = startingHealth;
     
+    healthBarXLighting = 500;
     healthBarWidth = 500;
     healthBarHeight = 30;
     healthBarX = 50;
