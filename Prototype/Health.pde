@@ -23,6 +23,8 @@ class Health {
 
     fill(255, 0, 0);
     rect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
+    
+    image(healthBar, 300, 30, 515, 55);
   }
 
   void collide() {
