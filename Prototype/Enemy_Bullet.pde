@@ -57,4 +57,11 @@ class EnemyBullet {
       shotIn = 0;
     }
   }
+  void reset(){
+    for (int i = 0; i<e.length; i++) {
+      bulletX = e[i].x;
+      bulletY = e[i].x;
+    }
+    
+  }
 }

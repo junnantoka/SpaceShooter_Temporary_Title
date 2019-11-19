@@ -44,4 +44,12 @@ class Health {
      h.highscoreSave();
     }
   }
+  void reset(){
+    health = startingHealth;
+    
+    healthBarWidth = 500;
+    healthBarHeight = 30;
+    healthBarX = 50;
+    healthBarY = 25;
+  }
 }

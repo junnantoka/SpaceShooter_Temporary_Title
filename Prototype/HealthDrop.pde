@@ -56,4 +56,9 @@ class HealthDrop {
       spawnHealth = false;
     }
   }
+  void reset(){
+    
+    spawnHealth = false;
+    
+  }
 }

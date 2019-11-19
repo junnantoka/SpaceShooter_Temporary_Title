@@ -1,6 +1,5 @@
 class End {
   boolean end = false;
-  
   void setup(){
     
     
@@ -16,8 +15,27 @@ class End {
   }
   
   void update(){
-    if(mouseX <900 && mouseX > 700 && mouseY < 500 && mouseY> 400 && mousePressed){
+    if(mouseX <900 && mouseX > 700 && mouseY < 500 && mouseY> 400 && mousePressed && end){
       end = false;
+      reset();
     }
+    
   }
+  void reset(){
+  for(int i = 0; i <e.length; i++){
+  e[i].reset();
+  
+  
+  }
+  for(int i = 0; i < hD.length; i++){ 
+  hD[i].reset();
+  }
+  for(int i = 0; i <eBullet.length; i++){
+  eBullet[i].reset();
+  }
+  a.reset();
+  h.score = 0;
+  yRef = 0;
+  xRef = 0;
+}
 }

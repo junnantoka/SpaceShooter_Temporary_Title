@@ -152,4 +152,21 @@ public class Enemy {
       }
     }
   }
+   void reset(){
+    size = 50;
+    radius = size/2;
+    x = random(xMin, xMax) + xRef;
+    y = random(yMin, yMax) + yRef;
+    xSpd = random(-10, 10);
+    ySpd = random(-10, 10);
+    direction = random(-2, 2);
+    down = false;
+    ded = false;
+    type = (int) random(0, 3);
+    speed = random(5000.0f, 3000.0f);
+    xG = random(-10, 10);
+    yG = random(-10, 10);
+    time = 0;
+    
+  }
 }

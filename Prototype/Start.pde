@@ -14,7 +14,7 @@ class Start {
   }
   
   void update(){
-    if(mouseX <900 && mouseX > 700 && mouseY < 500 && mouseY> 400 && mousePressed){
+    if(mouseX <900 && mouseX > 700 && mouseY < 500 && mouseY> 400 && mousePressed && Start){
       Start = false;
     }
   }
