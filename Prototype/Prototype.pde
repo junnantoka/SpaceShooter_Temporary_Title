@@ -44,6 +44,7 @@ void setup() {
   
   //Load all assets
   loadAssets();
+  imageMode(CENTER);
   
   a.setup();
   pz.setup();

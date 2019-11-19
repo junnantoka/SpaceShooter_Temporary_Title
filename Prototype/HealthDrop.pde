@@ -21,8 +21,7 @@ class HealthDrop {
         healthChance = int(random(1, 5));
       }
       if (healthChance == 4) {
-        fill(255, 198, 198);
-        circle(healthX + xRef, healthY + yRef, healthSize);
+        image(healthDrop, (healthX + xRef), (healthY + yRef));
       } else {
         spawnHealth = false;
       }

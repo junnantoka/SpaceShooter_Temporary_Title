@@ -14,8 +14,7 @@ class EnemyBullet {
 
   void draw() {
     if (shot) {
-      fill(255, 0, 0);
-      circle(xRef + bulletX, yRef+ bulletY, bulletSize);
+      image(enemyBullet, (xRef + bulletX), (yRef+ bulletY));
     }
   }
 

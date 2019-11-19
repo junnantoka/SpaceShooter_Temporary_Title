@@ -25,7 +25,7 @@ class PlayerBullet {
       bPLocationXEnd=bPLocationX -bPXRefEnd; 
       bPLocationYEnd=bPLocationY - bPYRefEnd;
 
-      ellipse(bPLocationXEnd, bPLocationYEnd, bPSize, bPSize);
+      image(playerBullet, bPLocationXEnd, bPLocationYEnd);
     }
   }
   void detectie() {
