@@ -43,4 +43,8 @@ class Highscore {
       }
     }
   }
+  void reset(){
+    highscoreTimer = 0;
+    
+  }
 }

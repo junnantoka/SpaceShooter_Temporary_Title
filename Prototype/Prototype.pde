@@ -112,7 +112,6 @@ void updateGame() {
       eBullet[i].bulletDespawn();
       eBullet[i].bulletSpawn(i);
     }
-    h.scoreDisplay();
 
     for (int i=0; i<hD.length; i++) {
       hD[i].updateHealth(i);
@@ -128,7 +127,8 @@ void drawGame() {
     end.draw();
   }
   //draws stars
-  
+
+
   for (int i = 0; i<s.length; i++) {
     s[i].disp();
   }
@@ -136,6 +136,7 @@ void drawGame() {
   for (int i = 0; i <e.length; i++) {
     eBullet[i].draw();
   }
+     
 if(!start.Start){
   for (int i = 0; i <bullets; i++) {
     b[i].draw();
@@ -155,6 +156,7 @@ a.draw();
   }
   pz.draw();
 }
+   h.scoreDisplay();
 }
 
 void draw() {
