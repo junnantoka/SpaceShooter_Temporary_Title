@@ -20,4 +20,27 @@ class Highscore {
     text(numbers3, 1500, 100);
     text(score, 1200, 100);
   }
+
+  void highscoreSave() {
+    if (health <= 0) {
+      h.  highscoreTimer++;
+      //highscore part
+      if (h.highscoreTimer == 1) {
+        if (h.score>h.numbers1) {
+          h.numbers3 = h.numbers2;
+          h.numbers2 = h.numbers1;
+          h.numbers1 = h.score;
+        } else if (h.score>h.numbers2) {
+          h.numbers3 = h.numbers2;
+          h.numbers2 = h.score;
+        } else if (h.score>h.numbers3) {
+          h.numbers3 = h.score;
+        }
+        h.numbers[0] = str(h.numbers1);
+        h.numbers[1] = str(h.numbers2);
+        h.numbers[2] = str(h.numbers3);
+        saveStrings("./data/highscore.txt", h.numbers);
+      }
+    }
+  }
 }
