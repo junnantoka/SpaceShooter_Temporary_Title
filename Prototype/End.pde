@@ -19,7 +19,5 @@ class End {
     if(mouseX <900 && mouseX > 700 && mouseY < 500 && mouseY> 400 && mousePressed){
       end = false;
     }
-    
   }
-  
 }

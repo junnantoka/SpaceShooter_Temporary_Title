@@ -21,7 +21,6 @@ class Star {
       x = random(-xRef - width, -xRef);
     }
 
-
     if (y + yRef < -height) {
       y = random(-yRef + height, -yRef + 2 * height);
     }

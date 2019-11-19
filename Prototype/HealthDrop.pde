@@ -42,7 +42,6 @@ class HealthDrop {
     healthCollision();
   }
 
-
   void healthCollision() {
     if (dist(healthX + xRef, healthY + yRef, c.xLocation, c.yLocation) <= c.size/2 + healthSize && healthChance == 4) {
 

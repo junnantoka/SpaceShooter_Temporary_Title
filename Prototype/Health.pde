@@ -58,7 +58,7 @@ class Health {
         h.numbers[0] = str(h.numbers1);
         h.numbers[1] = str(h.numbers2);
         h.numbers[2] = str(h.numbers3);
-        saveStrings("Highscore.txt", h.numbers);
+        saveStrings("./data/highscore.txt", h.numbers);
       }
     }
   }

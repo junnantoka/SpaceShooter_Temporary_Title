@@ -1,6 +1,5 @@
 class Pauze {
   boolean pauze = false;
-  PImage pauzeImg;
   float pauzeX;
   float pauzeY;
   int speedX;
@@ -8,7 +7,6 @@ class Pauze {
   int timer = 0;
   final int SPEED = 10;
   void setup() {
-    pauzeImg = loadImage("pauzescreen.png");
     pauzeX = random(10, 1590);
     pauzeY = random(10, 790);
     if (random(1, 2) >= 1.5) {

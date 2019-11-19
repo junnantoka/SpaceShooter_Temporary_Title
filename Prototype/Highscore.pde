@@ -7,7 +7,7 @@ class Highscore {
   int amountofnumbers = 3;
   String[] numbers = new String[amountofnumbers];
   void scoreSetup() {
-    String[] numbers = loadStrings("Highscore.txt");    
+    String[] numbers = loadStrings("./data/highscore.txt");    
     numbers1 = int(numbers[0]);
     numbers2 = int(numbers[1]);
     numbers3 = int(numbers[2]);

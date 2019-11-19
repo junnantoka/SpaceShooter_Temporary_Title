@@ -1,4 +1,3 @@
-
 //stijns deel
 class PlayerBullet {
   float bPLocationX, bPLocationY, bPSize, chSpeedX, chSpeedY, bPXRef, bPYRef, bPXRefEnd, bPYRefEnd, bPLocationXEnd, bPLocationYEnd;
@@ -7,7 +6,6 @@ class PlayerBullet {
   final int maxAfstand = 400;
   final int reset=0;
   final int interval = 10;
-
 
   void construct() {
     //sets starting values
@@ -68,9 +66,6 @@ class PlayerBullet {
     }
   }
   void move() {
-
-
-
     //moves bullet and returns to begining
     if (ja) {
       bPLocationY+=chSpeedY;

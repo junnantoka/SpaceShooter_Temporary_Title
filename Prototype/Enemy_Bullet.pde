@@ -1,6 +1,5 @@
 //Make bullets that target the player when it is spawned and then keeps the same speed
 
-
 class EnemyBullet {
   float bulletX, bulletY, bulletXSpeed, bulletYSpeed, bulletSize;
   int shotIn = 0;

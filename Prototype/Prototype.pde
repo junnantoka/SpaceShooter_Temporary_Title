@@ -23,7 +23,6 @@ Enemy[] e;
 int enemies = 10;
 //jeroens deel
 EnemyBullet[] eBullet;
-//
 
 
 Health a = new Health();
@@ -40,8 +39,12 @@ int pBTimer = 0;
 
 
 void setup() {
-  size(1600, 900, P2D);
-
+  //size(1920, 1080, P2D);
+  fullScreen(P2D);
+  
+  //Load all assets
+  loadAssets();
+  
   a.setup();
   pz.setup();
 
