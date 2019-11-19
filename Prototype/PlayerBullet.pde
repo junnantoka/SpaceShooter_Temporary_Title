@@ -84,7 +84,7 @@ class PlayerBullet {
       }
 
       afstand++;
-      if (afstand == maxAfstand) {
+      if (afstand == maxAfstand|| (bPLocationXEnd <= 0 && bPLocationXEnd >= width && bPLocationYEnd <= 0 && bPLocationYEnd >= height)) {
         reset();
       }
     }
@@ -98,6 +98,12 @@ class PlayerBullet {
     pBLinks = false;
     afstand = reset;
     ja = false;
+    bPSize= 30;
+    snelheid= 15;
+    bPXRefEnd = 0; 
+    bPXRef = 0;
+    bPYRefEnd = 0; 
+    bPYRef = 0;
   }
 }
 //eind stijns deel

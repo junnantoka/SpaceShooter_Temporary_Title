@@ -120,18 +120,14 @@ void updateGame() {
 }
 
 void drawGame() {
-  if(start.Start){
-  start.draw();
+   for (int i = 0; i<s.length; i++) {
+    s[i].disp();
   }
-  if (end.end){
-    end.draw();
-  }
+  
   //draws stars
 
 
-  for (int i = 0; i<s.length; i++) {
-    s[i].disp();
-  }
+ 
   
   for (int i = 0; i <e.length; i++) {
     eBullet[i].draw();
@@ -155,7 +151,14 @@ a.draw();
     hD[i].displayHealth();
   }
   pz.draw();
+  
 }
+if(start.Start){
+  start.draw();
+  }
+  if (end.end){
+    end.draw();
+  }
    h.scoreDisplay();
 }
 

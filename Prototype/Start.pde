@@ -7,14 +7,14 @@ class Start {
   }
   void draw(){
     fill(255);
-    rect(700, 400, 200,100);
+    rect(width / 2 - 100, height/ 2 - 50, 200,100);
     fill(0);
     textSize(20);
-    text("click here to start", 720, 450);
+    text("click here to start", width / 2 - 80, height/ 2 );
   }
   
   void update(){
-    if(mouseX <900 && mouseX > 700 && mouseY < 500 && mouseY> 400 && mousePressed && Start){
+    if(mouseX <width / 2 + 100 && mouseX > width/ 2 -100 && mouseY < height/ 2 + 50 && mouseY> height/ 2 - 50 && mousePressed && Start){
       Start = false;
     }
   }
