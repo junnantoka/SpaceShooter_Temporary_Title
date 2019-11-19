@@ -21,17 +21,20 @@ class Pauze {
     }
   }
   void pauzeGame() {
+    
     if(timer == 0){
     if ((keyPressed) && pauze == true) {
       pauze= false;
       timer++;
+ 
     }
     else if ((keysPressed['p']||keysPressed['P']) && pauze == false) {
       pauze= true;
       timer++;
     }
-    if(!keyPressed)timer = 0;
+   
     }
+     if(!keyPressed)timer = 0;
     if (pauze ==true) {
       pauzeX += speedX;
       pauzeY += speedY;
