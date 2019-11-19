@@ -11,7 +11,7 @@ class Character {
   float xSpeed=0;
   boolean yMove, xMove;
   float slowDown = 0.5;
-  void construct(){
+  void construct() {
     yLocation=height/2;
     xLocation=width/2;
   }
@@ -24,14 +24,15 @@ class Character {
   void moveCh() {
     yRef -= ySpeed;
     xRef -= xSpeed;
-    
+
     if (keysPressed['w']||keysPressed['W']) {
       ySpeed--;
       yDir = 1;
       if (ySpeed < -maxSpeed) {
         ySpeed = -maxSpeed;
       }
-    } else if ((!keysPressed['w']||!keysPressed['W'])&& ySpeed < 0 && yDir == 1) {
+    } 
+    else if ((!keysPressed['w']||!keysPressed['W'])&& ySpeed < 0 && yDir == 1) {
       ySpeed+=slowDown;
     }
 
@@ -41,17 +42,19 @@ class Character {
       if (ySpeed > maxSpeed) {
         ySpeed = maxSpeed;
       }
-    } else if ((!keysPressed['s']||!keysPressed['S'])&& ySpeed > 0 && yDir == 2) {
+    } 
+    else if ((!keysPressed['s']||!keysPressed['S'])&& ySpeed > 0 && yDir == 2) {
       ySpeed-= slowDown;
     }
-    
+
     if (keysPressed['a']||keysPressed['A']) {
       xSpeed--;
       xDir = 1;
       if (xSpeed < -maxSpeed) {
         xSpeed = -maxSpeed;
       }
-    } else if ((!keysPressed['w']||!keysPressed['W'])&& xSpeed < 0 && xDir == 1) {
+    } 
+    else if ((!keysPressed['w']||!keysPressed['W'])&& xSpeed < 0 && xDir == 1) {
       xSpeed+= slowDown;
     }
 
@@ -61,7 +64,8 @@ class Character {
       if (xSpeed > maxSpeed) {
         xSpeed = maxSpeed;
       }
-    } else if ((!keysPressed['d']||!keysPressed['D'])&& xSpeed > 0 && xDir == 2) {
+    } 
+    else if ((!keysPressed['d']||!keysPressed['D'])&& xSpeed > 0 && xDir == 2) {
       xSpeed-= slowDown;
     }
   }

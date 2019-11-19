@@ -13,12 +13,12 @@ class EnemyBullet {
     }
   }
 
-void draw(){
-  if (shot) {
+  void draw() {
+    if (shot) {
       fill(255, 0, 0);
       circle(xRef + bulletX, yRef+ bulletY, bulletSize);
+    }
   }
-}
 
 
   void bulletSpawn(int i) {
@@ -35,7 +35,7 @@ void draw(){
       bulletYSpeed = (c.yLocation-bulletY)/dist(c.xLocation, c.yLocation, e[i].x, e[i].y)*2;
       bulletXSpeed = (c.xLocation-bulletX)/dist(c.xLocation, c.yLocation, e[i].x, e[i].y)*2;
     }
-     if (shot) {
+    if (shot) {
       //bullet movement here!
       bulletX=bulletX + bulletXSpeed;
       bulletY=bulletY + bulletYSpeed;
@@ -51,7 +51,7 @@ void draw(){
     if (dist(bulletX + xRef, bulletY + yRef, c.xLocation, c.yLocation)< bulletSize/2+c.size/2) {
       health = health - 1;
       healthBarWidth = healthBarWidth-healthLost;
-      if(healthBarWidth <= healthBarGone) {
+      if (healthBarWidth <= healthBarGone) {
         healthBarWidth = 0;
       }
       shot = false;

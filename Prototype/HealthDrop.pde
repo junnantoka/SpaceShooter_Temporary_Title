@@ -48,12 +48,12 @@ class HealthDrop {
 
 
       if (health < startingHealth) {
-       // health += healthGet; 
-       health = health + 1;
-       healthBarWidth = healthBarWidth + healthLost;
-       println("darren is de beste");
+        // health += healthGet; 
+        health = health + 1;
+        healthBarWidth = healthBarWidth + healthLost;
+        println("darren is de beste");
       }
-      
+
       spawnHealth = false;
     }
   }

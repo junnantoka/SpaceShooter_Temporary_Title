@@ -1,63 +1,63 @@
-class Pauze{
+class Pauze {
   boolean pauze = false;
   PImage pauzeImg;
   float pauzeX;
   float pauzeY;
   int speedX;
   int speedY;
+  int timer = 0;
   final int SPEED = 10;
-  void setup(){
+  void setup() {
     pauzeImg = loadImage("pauzescreen.png");
-    pauzeX = random(10,1590);
+    pauzeX = random(10, 1590);
     pauzeY = random(10, 790);
-    if (random(1,2) >= 1.5){
+    if (random(1, 2) >= 1.5) {
       speedX = SPEED;
-    }
-    else{
+    } else {
       speedX = -SPEED;
-      
     }
-    if (random(1,2) >= 1.5){
+    if (random(1, 2) >= 1.5) {
       speedY = SPEED;
-    }
-    else{
+    } else {
       speedY = -SPEED;
-      
     }
   }
-  void pauzeGame(){
-  if ((keyPressed) && pauze == true){
-    pauze= false;
+  void pauzeGame() {
+    if(timer == 0){
+    if ((keyPressed) && pauze == true) {
+      pauze= false;
+      timer++;
     }
-    if ((keysPressed['p']||keysPressed['P']) && pauze == false){
+    else if ((keysPressed['p']||keysPressed['P']) && pauze == false) {
       pauze= true;
+      timer++;
     }
-  if (pauze ==true){
-  pauzeX += speedX;
-  pauzeY += speedY;
-  
-  if(pauzeX <=0 ){
-  speedX = SPEED;
+    if(!keyPressed)timer = 0;
+    }
+    if (pauze ==true) {
+      pauzeX += speedX;
+      pauzeY += speedY;
+
+      if (pauzeX <=0 ) {
+        speedX = SPEED;
+      }
+      if (pauzeX + 250 >=1600 ) {
+        speedX = -SPEED;
+      }
+      if (pauzeY <=0 ) {
+        speedY = SPEED;
+      }
+      if (pauzeY + 50 >= 900 ) {
+        speedY = -SPEED;
+      }
+    }
   }
-  if(pauzeX + 250 >=1600 ){
-  speedX = -SPEED;
-  }
-  if(pauzeY <=0 ){
-  speedY = SPEED;
-  }
-  if(pauzeY + 50 >= 900 ){
-  speedY = -SPEED;
-  }
-  
-  }
-  }
-  void draw(){
-    if(pauze== true){
- image(pauzeImg, pauzeX, pauzeY);
- textSize(20);
- fill(#FAE523);
- text("press any key to continue", 725, 610);
- }
-    
+  void draw() {
+    if (pauze== true) {
+      image(pauzeImg, pauzeX, pauzeY);
+      textSize(20);
+      fill(#FAE523);
+      text("press any key to continue", 725, 610);
+    }
   }
 }

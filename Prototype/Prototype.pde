@@ -5,6 +5,8 @@ Character c = new Character();
 float yRef, xRef = 0;
 
 Star[] s;
+Start start = new Start();
+End end= new End();
 int stars = 300;
 
 //Healthdrops
@@ -83,13 +85,14 @@ void setup() {
 void updateGame() {
   background(0);
   a.gameOver();
-  a.collide();
-  
-  
-
+  start.update();
+  if (end.end){
+  end.update();
+  }
   //pauze
   pz.pauzeGame();
-  if (!pz.pauze) {
+  if (!pz.pauze&& !start.Start && !end.end) {
+    a.collide();
     c.moveCh();
     c.chCollision();
     //stijns deel
@@ -114,19 +117,26 @@ void updateGame() {
 }
 
 void drawGame() {
+  if(start.Start){
+  start.draw();
+  }
+  if (end.end){
+    end.draw();
+  }
   //draws stars
-  a.draw();
+  
   for (int i = 0; i<s.length; i++) {
     s[i].disp();
   }
+  
   for (int i = 0; i <e.length; i++) {
     eBullet[i].draw();
   }
-
+if(!start.Start){
   for (int i = 0; i <bullets; i++) {
     b[i].draw();
   }
-
+a.draw();
   c.displayCh();
   for (int i = 0; i<e.length; i++) {
     if (!e[i].ded) {
@@ -140,6 +150,7 @@ void drawGame() {
     hD[i].displayHealth();
   }
   pz.draw();
+}
 }
 
 void draw() {

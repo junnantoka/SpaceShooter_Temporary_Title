@@ -1,11 +1,11 @@
 //©Jun Phung 500829487
-public class Enemy{
+public class Enemy {
   //enemy settings
   float x, y, size, radius, xSpd, ySpd, direction, t, speed, xG, yG, time;
   int type;
   boolean ded, down;
   final float xMin, xMax, yMin, yMax;
-  
+
   Enemy() {
     //basic values
     xMin = -width * 2;
@@ -31,7 +31,7 @@ public class Enemy{
   void draw() {
     //draw the actual enemy(ies)
     noStroke();
-    switch(type){
+    switch(type) {
     case 0:
       fill(#7D45E5);
       break;
@@ -53,10 +53,11 @@ public class Enemy{
 
   void types() {
     //different enemy types
-    switch(type){
+    switch(type) {
     case 0:
       check0();
-      break;    case 1:
+      break;    
+    case 1:
       check1();
       break;
     case 2:
@@ -81,41 +82,42 @@ public class Enemy{
       xSpd = -xSpd;
       down = true;
     }
-    if (y - radius <= yMin){
+    if (y - radius <= yMin) {
       ySpd = -ySpd;
     }
     if (y - radius >= yMax) {//if enemy goes out the bottom side
       ded = true; //die
     }
   }
-  
-  void check1(){//enemy type 2 (bouncing ball)
+
+  void check1() {//enemy type 2 (bouncing ball)
     //movement
     x += direction * xSpd;
     y += direction * ySpd;
-    
+
     //collision with boundary
-    if(y + radius >= yMax || y - radius <= yMin){
+    if (y + radius >= yMax || y - radius <= yMin) {
       ySpd = -ySpd;
     }
-    if(x + radius >= xMax || x - radius <= xMin){
+    if (x + radius >= xMax || x - radius <= xMin) {
       xSpd = -xSpd;
     }
   }
-  
-  void check2(){//enemy type 3 (Darude - Sandstorm)
+
+  void check2() {//enemy type 3 (Darude - Sandstorm)
     t = millis()/speed;
     x = (int)(xRef + (radius * xG) * cos(t));
     y = (int)(yRef + (radius * yG) * sin(t));
-    if(time <= 60){
+    if (time <= 60) {
       xG += 0.5;
       yG += 0.5;
-    }if(time >= 60){
+    }
+    if (time >= 60) {
       xG -= 0.5;
       yG -= 0.5;
     }
   }
-  
+
   void respawn() {
     if (x + xRef < -width) {
       ded = true;
@@ -137,18 +139,17 @@ public class Enemy{
   //©Nordin El Hadaoui
   void collision() {
     //check if the enemy makes contact with the player
-    if(!ded ){
-    for(int i = 0; i < b.length; i++){
-      if( b[i].ja){
-      if (sqrt(((x + xRef - b[i].bPLocationXEnd) * (x + xRef - b[i].bPLocationXEnd)) + ((y + yRef - b[i].bPLocationYEnd) * (y + yRef - b[i].bPLocationYEnd))) <= radius + b[i].bPSize/2) {
-        ded = true;
-        print("Auchiewauchie ");
-        h.score++;
-        b[i].reset();
-      }
-      }
+    if (!ded ) {
+      for (int i = 0; i < b.length; i++) {
+        if ( b[i].ja) {
+          if (sqrt(((x + xRef - b[i].bPLocationXEnd) * (x + xRef - b[i].bPLocationXEnd)) + ((y + yRef - b[i].bPLocationYEnd) * (y + yRef - b[i].bPLocationYEnd))) <= radius + b[i].bPSize/2) {
+            ded = true;
+            print("Auchiewauchie ");
+            h.score++;
+            b[i].reset();
+          }
+        }
       }
     }
-    }
-
+  }
 }

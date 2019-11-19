@@ -1,36 +1,33 @@
 
 //stijns deel
 class PlayerBullet {
-  float bPLocationX, bPLocationY, bPSize, chSpeedX, chSpeedY, bPXRef, bPYRef, bPXRefEnd, bPYRefEnd,bPLocationXEnd, bPLocationYEnd;
+  float bPLocationX, bPLocationY, bPSize, chSpeedX, chSpeedY, bPXRef, bPYRef, bPXRefEnd, bPYRefEnd, bPLocationXEnd, bPLocationYEnd;
   boolean pBLinks, pBRechts, pBOmhoog, pBNaarbeneden, ja;
   int afstand, snelheid;
   final int maxAfstand = 400;
   final int reset=0;
   final int interval = 10;
-  
+
 
   void construct() {
     //sets starting values
-     bPLocationX= c.xLocation;
-     bPLocationY= c.yLocation;
+    bPLocationX= c.xLocation;
+    bPLocationY= c.yLocation;
     bPSize= 30;
     snelheid= 15;
-    
   }
-  
+
   void draw() {
     //draws green balls
     if (ja) {
       fill(#2DFA46);
-       bPXRefEnd= bPXRef - xRef;
+      bPXRefEnd= bPXRef - xRef;
       bPYRefEnd= bPYRef - yRef;
-      
+
       bPLocationXEnd=bPLocationX -bPXRefEnd; 
       bPLocationYEnd=bPLocationY - bPYRefEnd;
-      
-      ellipse(bPLocationXEnd,bPLocationYEnd, bPSize, bPSize);
-      
-     
+
+      ellipse(bPLocationXEnd, bPLocationYEnd, bPSize, bPSize);
     }
   }
   void detectie() {
@@ -41,7 +38,7 @@ class PlayerBullet {
         ja = true;
         bPXRef+= xRef;
         bPYRef+= yRef;
-        
+
         chSpeedX = c.xSpeed/2;
         chSpeedY = c.ySpeed/2;
         if (keysPressed[UP]) {
@@ -59,7 +56,6 @@ class PlayerBullet {
           pBRechts= true;
         } 
         beweging++;
-
       }
 
       if (beweging == bullets-1) {
@@ -71,45 +67,42 @@ class PlayerBullet {
       }
     }
   }
-    void move() {
+  void move() {
 
 
 
-      //moves bullet and returns to begining
-      if (ja) {
-        bPLocationY+=chSpeedY;
-        bPLocationX+=chSpeedX;
-        if (pBOmhoog == true) {
-          bPLocationY-= snelheid ;
-        }
-        if (pBLinks == true) {
-          bPLocationX-= snelheid;
-        }
-        if (pBNaarbeneden == true) {
-          bPLocationY+= snelheid;
-        }
-        if (pBRechts == true) {
-          bPLocationX+= snelheid;
-        }
-    
-        afstand++;
-        if (afstand == maxAfstand) {
-          reset();
-        }
-        
-      } 
-      
-    }
-    void reset(){
-       bPLocationX= c.xLocation;
-        bPLocationY= c.yLocation;
-          pBNaarbeneden= false;
-          pBOmhoog= false;
-          pBRechts = false;
-          pBLinks = false;
-          afstand = reset;
-          ja = false;
-      
+    //moves bullet and returns to begining
+    if (ja) {
+      bPLocationY+=chSpeedY;
+      bPLocationX+=chSpeedX;
+      if (pBOmhoog == true) {
+        bPLocationY-= snelheid ;
+      }
+      if (pBLinks == true) {
+        bPLocationX-= snelheid;
+      }
+      if (pBNaarbeneden == true) {
+        bPLocationY+= snelheid;
+      }
+      if (pBRechts == true) {
+        bPLocationX+= snelheid;
+      }
+
+      afstand++;
+      if (afstand == maxAfstand) {
+        reset();
+      }
     }
   }
-  //eind stijns deel
+  void reset() {
+    bPLocationX= c.xLocation;
+    bPLocationY= c.yLocation;
+    pBNaarbeneden= false;
+    pBOmhoog= false;
+    pBRechts = false;
+    pBLinks = false;
+    afstand = reset;
+    ja = false;
+  }
+}
+//eind stijns deel

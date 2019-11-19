@@ -40,8 +40,8 @@ class Health {
 
   void gameOver() {
     if (health <= 0) {
-      fill(255, 0, 0);
-      text("GAME OVER", 100, 100);
+     end.end = true;
+      
       h.  highscoreTimer++;
       //highscore part
       if (h.highscoreTimer == 1) {
