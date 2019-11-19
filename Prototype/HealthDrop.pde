@@ -49,6 +49,8 @@ class HealthDrop {
         // health += healthGet; 
         health = health + 1;
         healthBarWidth = healthBarWidth + healthLost;
+        healthBarXLighting = healthBarXLighting + healthLost;
+
         println("darren is de beste");
       }
 
