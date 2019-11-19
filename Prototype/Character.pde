@@ -11,13 +11,21 @@ class Character {
   float xSpeed=0;
   boolean yMove, xMove;
   float slowDown = 0.5;
+  
+  float rotateSpeed = 1;
+  
   void construct() {
     yLocation=height/2;
     xLocation=width/2;
   }
   void displayCh() {
     fill(255);
-    circle(xLocation, yLocation, size);
+    //rotate(radians(rotateSpeed));
+    imageMode(CENTER);
+    image(playerShip, xLocation, yLocation);
+    
+    //circle(xLocation, yLocation, size);
+    
   }
 
 
