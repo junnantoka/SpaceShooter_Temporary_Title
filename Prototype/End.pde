@@ -35,6 +35,7 @@ class End {
   }
   a.reset();
   h.score = 0;
+  h.reset();
   yRef = 0;
   xRef = 0;
 }

@@ -6,6 +6,7 @@ class Pauze {
   int speedY;
   int timer = 0;
   final int SPEED = 10;
+  
   void setup() {
     pauzeX = random(10, 1590);
     pauzeY = random(10, 790);
@@ -20,22 +21,24 @@ class Pauze {
       speedY = -SPEED;
     }
   }
+  
   void pauzeGame() {
+    
     if(timer == 0){
-    if ((keyPressed) && pauze == true) {
-      pauze= false;
-      timer++;
+      if ((keyPressed) && pauze == true) {
+        pauze= false;
+        timer++;
+      }else if ((keysPressed['p']||keysPressed['P']) && pauze == false) {
+        pauze= true;
+        timer++;
+      }
     }
-    else if ((keysPressed['p']||keysPressed['P']) && pauze == false) {
-      pauze= true;
-      timer++;
-    }
-    if(!keyPressed)timer = 0;
+    if(!keyPressed){
+      timer = 0;
     }
     if (pauze ==true) {
       pauzeX += speedX;
       pauzeY += speedY;
-
       if (pauzeX <=0 ) {
         speedX = SPEED;
       }
@@ -50,6 +53,7 @@ class Pauze {
       }
     }
   }
+  
   void draw() {
     if (pauze== true) {
       image(pauzeImg, pauzeX, pauzeY);

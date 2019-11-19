@@ -21,8 +21,8 @@ public class Enemy {
     direction = random(-2, 2);
     down = false;
     ded = false;
-    type = (int) random(0, 3);
-    speed = random(5000.0f, 3000.0f);
+    type = round(random(0, 3));
+    speed = random(5000.0f, 1000.0f);
     xG = random(-10, 10);
     yG = random(-10, 10);
     time = 0;
