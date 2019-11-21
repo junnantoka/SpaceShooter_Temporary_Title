@@ -41,5 +41,6 @@ class End {
   for(int i = 0; i <b.length; i++){
   b[i].reset();
   }
+  c.reset();
 }
 }

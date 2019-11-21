@@ -77,6 +77,7 @@ class Character {
       xSpeed-= slowDown;
     }
   }
+  //is de chCollision niet ded codesd
   void chCollision() {
     if (xLocation+(size/2)>width) {
       xSpeed=0;
@@ -94,5 +95,9 @@ class Character {
       ySpeed=0;
       yLocation++;
     }
+  }
+  void reset(){
+    ySpeed = 0;
+    xSpeed = 0;
   }
 }
