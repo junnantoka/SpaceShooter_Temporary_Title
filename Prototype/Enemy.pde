@@ -21,7 +21,7 @@ public class Enemy {
     direction = random(-2, 2);
     down = false;
     ded = false;
-    type = round(random(0, 3));
+    type = (int)random(0, 3);
     speed = random(5000.0f, 1000.0f);
     xG = random(-10, 10);
     yG = random(-10, 10);
@@ -31,16 +31,12 @@ public class Enemy {
   void draw() {
     //draw the actual enemy(ies)
     noStroke();
-    switch(type) {
-    case 0:
+    if(type == 0){
       fill(#7D45E5);
-      break;
-    case 1:
+    }if(type == 1){
       fill(#B2882F);
-      break;
-    case 2:
+    }if(type == 2){
       fill(#838282);
-      break;
     }
     circle(x + xRef, y + yRef, size);
   }
@@ -53,16 +49,12 @@ public class Enemy {
 
   void types() {
     //different enemy types
-    switch(type) {
-    case 0:
+    if(type == 0) {
       check0();
-      break;    
-    case 1:
+    }if(type == 1){
       check1();
-      break;
-    case 2:
+    }if(type == 2){
       check2();
-      break;
     }
   }
 
@@ -155,8 +147,8 @@ public class Enemy {
    void reset(){
     size = 50;
     radius = size/2;
-    x = random(xMin, xMax) + xRef;
-    y = random(yMin, yMax) + yRef;
+    x = random(xMin, xMax) * xRef;
+    y = random(yMin, yMax) * yRef;
     xSpd = random(-10, 10);
     ySpd = random(-10, 10);
     direction = random(-2, 2);
