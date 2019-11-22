@@ -15,10 +15,10 @@ class Highscore {
   void scoreDisplay() {
     fill(255);
     textSize(42);
-    text(numbers1, 1300, 100);
-    text(numbers2, 1400, 100);
-    text(numbers3, 1500, 100);
-    text(score, 1200, 100);
+    text(numbers1, width - 300, 50);
+    text(numbers2, width - 200, 50);
+    text(numbers3, width - 100, 50);
+    text(score, width - 400, 50);
   }
 
   void highscoreSave() {
