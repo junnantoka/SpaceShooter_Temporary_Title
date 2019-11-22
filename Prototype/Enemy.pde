@@ -33,9 +33,9 @@ public class Enemy {
     noStroke();
     if(type == 0){
       fill(#7D45E5);
-    }if(type == 1){
+    }else if(type == 1){
       fill(#B2882F);
-    }if(type == 2){
+    }else if(type == 2){
       fill(#838282);
     }
     circle(x + xRef, y + yRef, size);
