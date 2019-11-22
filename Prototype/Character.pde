@@ -4,7 +4,7 @@ class Character {
   float xLocation;
   float yLocation;
   int size=100;
-  int maxSpeed=10;
+  int maxSpeed=15;
   int yDir=0;
   int xDir=0;
   float ySpeed=0;
@@ -34,7 +34,7 @@ class Character {
     xRef -= xSpeed;
 
     if (keysPressed['w']||keysPressed['W']) {
-      ySpeed--;
+      ySpeed-= 2;
       yDir = 1;
       if (ySpeed < -maxSpeed) {
         ySpeed = -maxSpeed;
@@ -45,7 +45,7 @@ class Character {
     }
 
     if (keysPressed['s']||keysPressed['S']) {
-      ySpeed++;
+      ySpeed+= 2;
       yDir= 2;
       if (ySpeed > maxSpeed) {
         ySpeed = maxSpeed;
@@ -56,7 +56,7 @@ class Character {
     }
 
     if (keysPressed['a']||keysPressed['A']) {
-      xSpeed--;
+      xSpeed-= 2;
       xDir = 1;
       if (xSpeed < -maxSpeed) {
         xSpeed = -maxSpeed;
@@ -67,7 +67,7 @@ class Character {
     }
 
     if (keysPressed['d']||keysPressed['D']) {
-      xSpeed++;
+      xSpeed+= 2;
       xDir= 2;
       if (xSpeed > maxSpeed) {
         xSpeed = maxSpeed;
