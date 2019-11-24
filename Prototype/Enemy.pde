@@ -33,12 +33,14 @@ public class Enemy {
     noStroke();
     if(type == 0){
       fill(#7D45E5);
+      circle(x + xRef, y + yRef, size);
     }else if(type == 1){
       fill(#B2882F);
+      circle(x + xRef, y + yRef, size);
     }else if(type == 2){
       fill(#838282);
+      circle(x + xRef, y + yRef, size);
     }
-    circle(x + xRef, y + yRef, size);
   }
 
   void update() {

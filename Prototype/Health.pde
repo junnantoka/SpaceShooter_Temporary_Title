@@ -1,4 +1,4 @@
-int startingHealth = 3;
+int startingHealth = 200;
 
 float health;
 boolean getsHit = false;

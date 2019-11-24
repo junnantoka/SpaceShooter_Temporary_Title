@@ -5,8 +5,6 @@ Character c = new Character();
 float yRef = height/2;
 float xRef = width/2;
 
-
-
 Star[] s;
 Start start = new Start();
 End end= new End();
@@ -23,7 +21,7 @@ Highscore h = new Highscore();
 Pauze pz = new Pauze();
 
 Enemy[] e;
-int enemies = 10;
+int enemies = 400;
 //jeroens deel
 EnemyBullet[] eBullet;
 
