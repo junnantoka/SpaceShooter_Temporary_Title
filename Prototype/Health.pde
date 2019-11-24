@@ -56,6 +56,10 @@ class Health {
     if (health <= 0) {
      end.end = true;
      h.highscoreSave();
+     if(keyPressed){
+       end.button = true;
+       
+     }
     }
   }
   void reset(){

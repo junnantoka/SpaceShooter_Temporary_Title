@@ -89,12 +89,18 @@ void setup() {
 void updateGame() {
   background(0);
   a.gameOver();
+  
+  if (start.Start){
   start.update();
-  if (end.end){
+  }
+  else if (end.end){
   end.update();
   }
-  //pauze
+  else if (!end.end && !start.Start){
   pz.pauzeGame();
+  }
+  //pauze
+  
   if (!pz.pauze&& !start.Start && !end.end) {
     a.collide();
     c.moveCh();
@@ -118,6 +124,7 @@ void updateGame() {
     }
   }
 }
+
 
 void drawGame() {
    for (int i = 0; i<s.length; i++) {
