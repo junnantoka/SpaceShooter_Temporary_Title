@@ -12,7 +12,7 @@ class PlayerBullet {
     bPLocationX= c.xLocation;
     bPLocationY= c.yLocation;
     bPSize= 30;
-    snelheid= 15;
+    snelheid= 30;
   }
 
   void draw() {

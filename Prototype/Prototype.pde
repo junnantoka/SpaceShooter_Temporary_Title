@@ -2,7 +2,10 @@
 //character movement w a s d
 //bullet shooting up down left right
 Character c = new Character();
-float yRef, xRef = 0;
+float yRef = height/2;
+float xRef = width/2;
+
+
 
 Star[] s;
 Start start = new Start();

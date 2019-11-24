@@ -1,7 +1,9 @@
+Particle[] p;
+int particles = 10;
 class Character {
 
   //character variables
-  float xLocation;
+  float xLocation, acc;
   float yLocation;
   int size=100;
   int maxSpeed=15;
@@ -9,72 +11,104 @@ class Character {
   int xDir=0;
   float ySpeed=0;
   float xSpeed=0;
-  boolean yMove, xMove;
-  float slowDown = 0.5;
-  
+  boolean yMove, xMove, newP;
+  float slowDown = 1.5;
   float rotateSpeed = 1;
-  
+  int pCount, pInterval;
+  int frame;
+
   void construct() {
     yLocation=height/2;
     xLocation=width/2;
+    pInterval = 10;
+    p = new Particle[particles];
+    for (int i = 0; i < p.length; i++) {
+      p[i] = new Particle();
+    }
+    acc = 2;
   }
   void displayCh() {
     fill(255);
+    //translate(1,1);
     //rotate(radians(rotateSpeed));
     imageMode(CENTER);
     image(playerShip, xLocation, yLocation);
-    
-    //circle(xLocation, yLocation, size);
-    
+
+    //particles 
+    //for(int i = 0; i<p.length; i=0){
+    //  p[i].display();
+    //  print(i);
+    //}
   }
 
 
   void moveCh() {
+    ////particles 
+    //for(int i = 0; i<p.length; i=0){
+    //  p[i].move();
+    //}
+    
     yRef -= ySpeed;
     xRef -= xSpeed;
 
     if (keysPressed['w']||keysPressed['W']) {
-      ySpeed-= 2;
+      ySpeed-= acc;
       yDir = 1;
+      newP = true;
       if (ySpeed < -maxSpeed) {
         ySpeed = -maxSpeed;
       }
-    } 
-    else if ((!keysPressed['w']||!keysPressed['W'])&& ySpeed < 0 && yDir == 1) {
+    } else if ((!keysPressed['w']||!keysPressed['W'])&& ySpeed < 0 ) {
       ySpeed+=slowDown;
     }
 
     if (keysPressed['s']||keysPressed['S']) {
-      ySpeed+= 2;
-      yDir= 2;
+      ySpeed+= acc;
+      yDir= 2;      
+      newP = true;
       if (ySpeed > maxSpeed) {
         ySpeed = maxSpeed;
       }
-    } 
-    else if ((!keysPressed['s']||!keysPressed['S'])&& ySpeed > 0 && yDir == 2) {
+    } else if ((!keysPressed['s']||!keysPressed['S'])&& ySpeed > 0) {
       ySpeed-= slowDown;
     }
 
     if (keysPressed['a']||keysPressed['A']) {
-      xSpeed-= 2;
-      xDir = 1;
+      xSpeed-= acc;
+      xDir = 1;      
+      newP = true;
       if (xSpeed < -maxSpeed) {
         xSpeed = -maxSpeed;
       }
-    } 
-    else if ((!keysPressed['w']||!keysPressed['W'])&& xSpeed < 0 && xDir == 1) {
+    } else if ((!keysPressed['w']||!keysPressed['W'])&& xSpeed < 0) {
       xSpeed+= slowDown;
     }
 
     if (keysPressed['d']||keysPressed['D']) {
-      xSpeed+= 2;
-      xDir= 2;
+      xSpeed+= acc;
+      xDir= 2;      
+      newP = true;
       if (xSpeed > maxSpeed) {
         xSpeed = maxSpeed;
       }
-    } 
-    else if ((!keysPressed['d']||!keysPressed['D'])&& xSpeed > 0 && xDir == 2) {
+    } else if ((!keysPressed['d']||!keysPressed['D'])&& xSpeed > 0) {
       xSpeed-= slowDown;
+    }
+
+    if (!keysPressed['w'] && !keysPressed['W'] && !keysPressed['a'] && !keysPressed['A']&&!keysPressed['s']&&!keysPressed['S']&&!keysPressed['d']&&!keysPressed['D']) {
+      newP = false;
+    }
+
+    if (newP) {
+      frame++;
+      if (frame > pInterval) {
+        p[pCount].construct();
+        frame = 0;
+        pCount++;
+      }
+      if (pCount >= p.length) {
+        pCount = 0;
+      }
     }
   }
   //is de chCollision niet ded codesd
@@ -96,7 +130,7 @@ class Character {
       yLocation++;
     }
   }
-  void reset(){
+  void reset() {
     ySpeed = 0;
     xSpeed = 0;
   }
