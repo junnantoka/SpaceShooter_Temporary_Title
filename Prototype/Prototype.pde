@@ -10,6 +10,9 @@ Start start = new Start();
 End end= new End();
 int stars = 300;
 
+//WorldBorder
+World world = new World();
+
 //Healthdrops
 HealthDrop[] healthDrop;
 int healthBalls = 10;
@@ -44,6 +47,8 @@ int pBTimer = 0;
 void setup() {
   //size(1920, 1080, P2D);
   fullScreen(P2D);
+  
+  world.construct();
   
   //Load all assets
   loadAssets();
@@ -93,7 +98,7 @@ void updateGame() {
   background(0);
   health.gameOver();
   
-  
+  world.update();
   
   if (start.Start){
   start.update();
@@ -140,10 +145,8 @@ void drawGame() {
     star[i].disp();
   }
   
-  
+  world.display();
 
-
- 
   
   for (int i = 0; i <enemy.length; i++) {
     eBullet[i].draw();
