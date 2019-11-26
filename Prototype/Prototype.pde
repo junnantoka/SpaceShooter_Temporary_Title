@@ -10,7 +10,7 @@ Star[] star;
 Start start = new Start();
 End end= new End();
 int stars = 300;
-
+int timer = 0;
 //WorldBorder
 World world = new World();
 
@@ -101,14 +101,20 @@ void updateGame() {
   
   world.update();
   
-  if (start.Start){
+  if (start.Start && timer == 0){
   start.update();
   }
-  else if (end.end){
+  else if (end.end && timer == 0){
   end.update();
   }
-  else if (!end.end && !start.Start){
+  else if (!end.end && !start.Start && timer == 0){
   pauze.pauzeGame();
+  }
+  else if (timer == 20){
+    timer= 0;
+  }
+  else if (timer > 0){
+    timer++;
   }
   //pauze
   

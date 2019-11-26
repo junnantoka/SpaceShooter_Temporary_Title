@@ -2,7 +2,7 @@ class Pauze {
   boolean pauze = false;
   float pauzeX, pauzeY;
   int speedX, speedY;
-  int timer = 0;
+  int timerPauze = 0;
   final int SPEED = 10;
   final int MINX = 10;
   final int MAXX = 1590;
@@ -29,17 +29,18 @@ class Pauze {
   
   void pauzeGame() {
     
-    if(timer == 0){
+    if(timerPauze == 0){
       if ((keyPressed) && pauze == true) {
         pauze= false;
+        timerPauze++;
         timer++;
       }else if ((keysPressed['p']||keysPressed['P']) && pauze == false) {
         pauze= true;
-        timer++;
+        timerPauze++;
       }
     }
     if(!keyPressed){
-      timer = 0;
+      timerPauze = 0;
     }
     if (pauze ==true) {
       pauzeX += speedX;

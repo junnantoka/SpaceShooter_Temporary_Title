@@ -19,6 +19,7 @@ class End {
     if(keysPressed['p']||keysPressed['P']){
       end = false;
       reset();
+      timer++;
     }
    
   }

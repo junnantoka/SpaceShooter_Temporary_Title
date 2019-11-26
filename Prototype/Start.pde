@@ -17,6 +17,7 @@ class Start {
   void update(){
     if(keysPressed['P']||keysPressed['p']){
       Start = false;
+      timer++;
     }
   }
 }

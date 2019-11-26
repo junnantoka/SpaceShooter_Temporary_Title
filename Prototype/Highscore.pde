@@ -4,8 +4,8 @@ class Highscore {
   int score;
   int highscoreTimer = 0;
   int numbers1, numbers2, numbers3;
-  int amountofnumbers = 3;
-  String[] numbers = new String[amountofnumbers];
+  int amountOfNumbers = 3;
+  String[] numbers = new String[amountOfNumbers];
   void scoreSetup() {
     String[] numbers = loadStrings("./data/highscore.txt");    
     numbers1 = int(numbers[0]);

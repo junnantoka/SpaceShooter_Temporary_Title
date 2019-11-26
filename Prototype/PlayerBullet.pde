@@ -64,6 +64,12 @@ class PlayerBullet {
         pBTimer= reset;
       }
     }
+    else if (pBTimer> 0){
+      pBTimer++;
+    }
+    if ( pBTimer== interval) {
+        pBTimer= reset;
+      }
   }
   void move() {
     //moves bullet and returns to begining
