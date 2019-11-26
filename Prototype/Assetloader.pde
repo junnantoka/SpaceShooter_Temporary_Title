@@ -1,4 +1,4 @@
-PImage pauzeImg, enemyBullet, healthDropIMG, playerBullet, playerShip, healthBar;
+PImage pauzeImg, enemyBullet, healthDropIMG, playerBullet, playerShip, healthBar, movement;
 
 //SoundFile biem;
 
@@ -11,6 +11,7 @@ public void loadAssets(){
   playerBullet = loadImage("./data/img/playerbullet.png");
   playerShip = loadImage("./data/img/playership.png");
   healthBar = loadImage("./data/img/healthbar.png");
+  movement = loadImage("./data/img/movement.png");
   
   //Load sounds
   //biem = new SoundFile(this, "./data/sounds/biem.wav");
