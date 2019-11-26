@@ -29,7 +29,7 @@ public class Enemy {
   }
 
   void draw() {
-    //draw the actual enemy(ies)
+    //draw the actual enemy(ies) and chooses the enemy type
     noStroke();
     if(type == 0){
       fill(#7D45E5);
@@ -134,13 +134,13 @@ public class Enemy {
   void collision() {
     //check if the enemy makes contact with the player
     if (!ded ) {
-      for (int i = 0; i < b.length; i++) {
-        if ( b[i].ja) {
-          if (sqrt(((x + xRef - b[i].bPLocationXEnd) * (x + xRef - b[i].bPLocationXEnd)) + ((y + yRef - b[i].bPLocationYEnd) * (y + yRef - b[i].bPLocationYEnd))) <= radius + b[i].bPSize/2) {
+      for (int i = 0; i < bulletP.length; i++) {
+        if ( bulletP[i].ja) {
+          if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/2) {
             ded = true;
             print("Auchiewauchie ");
-            h.score++;
-            b[i].reset();
+            highscore.score++;
+            bulletP[i].reset();
           }
         }
       }

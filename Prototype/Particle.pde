@@ -2,7 +2,7 @@ class Particle {
   float x, y, xSpeed, ySpeed, slowdown, size;
   boolean visible;
   void construct() {
-    switch(c.xDir) {
+    switch(character.xDir) {
     case 1:
       xSpeed = random(3, 5);
       break;
@@ -10,7 +10,7 @@ class Particle {
       xSpeed = random(-3, -5);
       break;
     }
-    switch(c.yDir) {
+    switch(character.yDir) {
     case 1:
       ySpeed = random(3, 5);
       break;

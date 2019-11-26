@@ -23,25 +23,25 @@ class End {
    
   }
   void reset(){
-  for(int i = 0; i <e.length; i++){
-  e[i].reset();
+  for(int i = 0; i <enemy.length; i++){
+  enemy[i].reset();
   
   
   }
-  for(int i = 0; i < hD.length; i++){ 
-  hD[i].reset();
+  for(int i = 0; i < healthDrop.length; i++){ 
+  healthDrop[i].reset();
   }
   for(int i = 0; i <eBullet.length; i++){
   eBullet[i].reset();
   }
-  a.reset();
-  h.score = 0;
-  h.reset();
+  health.reset();
+  highscore.score = 0;
+  highscore.reset();
   yRef = 0;
   xRef = 0;
-  for(int i = 0; i <b.length; i++){
-  b[i].reset();
+  for(int i = 0; i <bulletP.length; i++){
+  bulletP[i].reset();
   }
-  c.reset();
+  character.reset();
 }
 }

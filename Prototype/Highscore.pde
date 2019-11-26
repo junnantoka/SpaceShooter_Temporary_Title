@@ -22,24 +22,24 @@ class Highscore {
   }
 
   void highscoreSave() {
-    if (health <= 0) {
-      h.  highscoreTimer++;
+    if (healthAmount <= 0) {
+      highscore.  highscoreTimer++;
       //highscore part
-      if (h.highscoreTimer == 1) {
-        if (h.score>h.numbers1) {
-          h.numbers3 = h.numbers2;
-          h.numbers2 = h.numbers1;
-          h.numbers1 = h.score;
-        } else if (h.score>h.numbers2) {
-          h.numbers3 = h.numbers2;
-          h.numbers2 = h.score;
-        } else if (h.score>h.numbers3) {
-          h.numbers3 = h.score;
+      if (highscore.highscoreTimer == 1) {
+        if (highscore.score>highscore.numbers1) {
+          highscore.numbers3 = highscore.numbers2;
+          highscore.numbers2 = highscore.numbers1;
+          highscore.numbers1 = highscore.score;
+        } else if (highscore.score>highscore.numbers2) {
+          highscore.numbers3 = highscore.numbers2;
+          highscore.numbers2 = highscore.score;
+        } else if (highscore.score>highscore.numbers3) {
+          highscore.numbers3 = highscore.score;
         }
-        h.numbers[0] = str(h.numbers1);
-        h.numbers[1] = str(h.numbers2);
-        h.numbers[2] = str(h.numbers3);
-        saveStrings("./data/highscore.txt", h.numbers);
+        highscore.numbers[0] = str(highscore.numbers1);
+        highscore.numbers[1] = str(highscore.numbers2);
+        highscore.numbers[2] = str(highscore.numbers3);
+        saveStrings("./data/highscore.txt", highscore.numbers);
       }
     }
   }

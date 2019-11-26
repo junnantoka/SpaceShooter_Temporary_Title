@@ -1,4 +1,4 @@
-Particle[] p;
+Particle[] particle;
 int particles = 10;
 class Character {
 
@@ -21,9 +21,9 @@ class Character {
     yLocation=height/2;
     xLocation=width/2;
     pInterval = 10;
-    p = new Particle[particles];
-    for (int i = 0; i < p.length; i++) {
-      p[i] = new Particle();
+    particle = new Particle[particles];
+    for (int i = 0; i < particle.length; i++) {
+      particle[i] = new Particle();
     }
     acc = 2;
   }
@@ -35,17 +35,16 @@ class Character {
     image(playerShip, xLocation, yLocation);
 
     //particles 
-    for(int i = 0; i<p.length; i++){
-     p[i].display();
-      print(i);
+    for(int i = 0; i<particle.length; i++){
+     particle[i].display();
     }
   }
 
 
   void moveCh() {
     //particles 
-    for(int i = 0; i<p.length; i++){
-      p[i].move();
+    for(int i = 0; i<particle.length; i++){
+      particle[i].move();
     }
     
     yRef -= ySpeed;
@@ -102,11 +101,11 @@ class Character {
     if (newP) {
       frame++;
       if (frame > pInterval) {
-        p[pCount].construct();
+        particle[pCount].construct();
         frame = 0;
         pCount++;
       }
-      if (pCount >= p.length) {
+      if (pCount >= particle.length) {
         pCount = 0;
       }
     }

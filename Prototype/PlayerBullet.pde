@@ -9,8 +9,8 @@ class PlayerBullet {
 
   void construct() {
     //sets starting values
-    bPLocationX= c.xLocation;
-    bPLocationY= c.yLocation;
+    bPLocationX= character.xLocation;
+    bPLocationY= character.yLocation;
     bPSize= 30;
     snelheid= 30;
   }
@@ -37,8 +37,8 @@ class PlayerBullet {
         bPXRef+= xRef;
         bPYRef+= yRef;
 
-        chSpeedX = c.xSpeed/2;
-        chSpeedY = c.ySpeed/2;
+        chSpeedX = character.xSpeed/2;
+        chSpeedY = character.ySpeed/2;
         if (keysPressed[UP]) {
 
           pBOmhoog = true;
@@ -90,8 +90,8 @@ class PlayerBullet {
     }
   }
   void reset() {
-    bPLocationX= c.xLocation;
-    bPLocationY= c.yLocation;
+    bPLocationX= character.xLocation;
+    bPLocationY= character.yLocation;
     pBNaarbeneden= false;
     pBOmhoog= false;
     pBRechts = false;

@@ -21,7 +21,7 @@ class HealthDrop {
         healthChance = int(random(1, 5));
       }
       if (healthChance == 4) {
-        image(healthDrop, (healthX + xRef), (healthY + yRef));
+        image(healthDropIMG, (healthX + xRef), (healthY + yRef));
       } else {
         spawnHealth = false;
       }
@@ -29,25 +29,25 @@ class HealthDrop {
   }
 
   void updateHealth(int i) {
-    if (i< e.length) {
-      if (e[i].ded) {
+    if (i< enemy.length) {
+      if (enemy[i].ded) {
         spawnHealth = true;
       }
       if (!spawnHealth) {
-        healthX = e[i].x;
-        healthY = e[i].y;
+        healthX = enemy[i].x;
+        healthY = enemy[i].y;
       }
     }
     healthCollision();
   }
 
   void healthCollision() {
-    if (dist(healthX + xRef, healthY + yRef, c.xLocation, c.yLocation) <= c.size/2 + healthSize && healthChance == 4) {
+    if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize && healthChance == 4) {
 
 
-      if (health < startingHealth) {
+      if (healthAmount < startingHealth) {
         // health += healthGet; 
-        health = health + 1;
+        healthAmount = healthAmount + 1;
         healthBarWidth = healthBarWidth + healthLost;
         healthBarXLighting = healthBarXLighting + healthLost;
 

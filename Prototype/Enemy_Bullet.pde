@@ -6,9 +6,9 @@ class EnemyBullet {
   int distance = 100;
   boolean shot = false;
   void bulletSetup() {
-    for (int i = 0; i<e.length; i++) {
-      bulletX = e[i].x;
-      bulletY = e[i].x;
+    for (int i = 0; i<enemy.length; i++) {
+      bulletX = enemy[i].x;
+      bulletY = enemy[i].x;
     }
   }
 
@@ -22,16 +22,16 @@ class EnemyBullet {
   void bulletSpawn(int i) {
     collision();
 
-    if (dist(c.xLocation, c.yLocation, e[i].x + xRef, e[i].y + yRef)>distance) {
+    if (dist(character.xLocation, character.yLocation, enemy[i].x + xRef, enemy[i].y + yRef)>distance) {
       shot = true;
       shotIn++;
     }
     if (shotIn == 1) {
-      bulletX = e[i].x;
-      bulletY = e[i].y;
+      bulletX = enemy[i].x;
+      bulletY = enemy[i].y;
       bulletSize = 10;
-      bulletYSpeed = (c.yLocation-bulletY)/dist(c.xLocation, c.yLocation, e[i].x, e[i].y)*2;
-      bulletXSpeed = (c.xLocation-bulletX)/dist(c.xLocation, c.yLocation, e[i].x, e[i].y)*2;
+      bulletYSpeed = (character.yLocation-bulletY)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*2;
+      bulletXSpeed = (character.xLocation-bulletX)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*2;
     }
     if (shot) {
       //bullet movement here!
@@ -46,8 +46,8 @@ class EnemyBullet {
     }
   }
   void collision() {
-    if (dist(bulletX + xRef, bulletY + yRef, c.xLocation, c.yLocation)< bulletSize/2+c.size/2) {
-      health = health - 1;
+    if (dist(bulletX + xRef, bulletY + yRef, character.xLocation, character.yLocation)< bulletSize/2+character.size/2) {
+      healthAmount = healthAmount - 1;
       healthBarWidth = healthBarWidth-healthLost;
               healthBarXLighting = healthBarXLighting-healthLost;
 
@@ -59,9 +59,9 @@ class EnemyBullet {
     }
   }
   void reset(){
-    for (int i = 0; i<e.length; i++) {
-      bulletX = e[i].x;
-      bulletY = e[i].x;
+    for (int i = 0; i<enemy.length; i++) {
+      bulletX = enemy[i].x;
+      bulletY = enemy[i].x;
     }
     
   }
