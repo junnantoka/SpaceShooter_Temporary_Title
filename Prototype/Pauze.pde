@@ -1,15 +1,20 @@
 class Pauze {
   boolean pauze = false;
-  float pauzeX;
-  float pauzeY;
-  int speedX;
-  int speedY;
+  float pauzeX, pauzeY;
+  int speedX, speedY;
   int timer = 0;
   final int SPEED = 10;
+  final int MINX = 10;
+  final int MAXX = 1590;
+  final int MINY = 10;
+  final int MAXY = 790;
+  final int TEXTSIZE = 20;
+  final int TEXTX = 725;
+  final int TEXTY = 610;
   
   void setup() {
-    pauzeX = random(10, 1590);
-    pauzeY = random(10, 790);
+    pauzeX = random(MINX, MAXX);
+    pauzeY = random(MINY, MAXY);
     if (random(1, 2) >= 1.5) {
       speedX = SPEED;
     } else {
@@ -42,7 +47,7 @@ class Pauze {
       if (pauzeX <=0 ) {
         speedX = SPEED;
       }
-      if (pauzeX + 250 >=1600 ) {
+      if (pauzeX + 250 >= 1600 ) {
         speedX = -SPEED;
       }
       if (pauzeY <=0 ) {
@@ -55,11 +60,11 @@ class Pauze {
   }
   
   void draw() {
-    if (pauze== true) {
+    if (pauze == true) {
       image(pauzeImg, pauzeX, pauzeY);
-      textSize(20);
+      textSize(TEXTSIZE);
       fill(#FAE523);
-      text("press any key to continue", 725, 610);
+      text("press any key to continue", TEXTX, TEXTY);
     }
   }
 }

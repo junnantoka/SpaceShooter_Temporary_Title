@@ -21,7 +21,7 @@ Highscore highscore = new Highscore();
 Pauze pauze = new Pauze();
 
 Enemy[] enemy;
-int enemies = 400;
+int enemies = 10;
 //jeroens deel
 EnemyBullet[] eBullet;
 
