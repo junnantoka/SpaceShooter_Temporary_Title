@@ -35,18 +35,18 @@ class Character {
     image(playerShip, xLocation, yLocation);
 
     //particles 
-    //for(int i = 0; i<p.length; i=0){
-    //  p[i].display();
-    //  print(i);
-    //}
+    for(int i = 0; i<p.length; i++){
+     p[i].display();
+      print(i);
+    }
   }
 
 
   void moveCh() {
-    ////particles 
-    //for(int i = 0; i<p.length; i=0){
-    //  p[i].move();
-    //}
+    //particles 
+    for(int i = 0; i<p.length; i++){
+      p[i].move();
+    }
     
     yRef -= ySpeed;
     xRef -= xSpeed;
