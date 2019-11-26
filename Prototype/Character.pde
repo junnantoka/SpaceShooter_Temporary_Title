@@ -8,7 +8,7 @@ class Character {
   float xLocation, acc;
   float yLocation;
   int size=100;
-  int maxSpeed=30;
+  int maxSpeed=15;
   int yDir=0;
   int xDir=0;
   float ySpeed=0;
@@ -30,7 +30,7 @@ class Character {
     for (int i = 0; i < particle.length; i++) {
       particle[i] = new Particle();
     }
-    acc = 10;
+    acc = 2;
 
     yRef = height/2;
     xRef = width/2;
