@@ -21,7 +21,6 @@ class Particle {
     size = random(5, 10);
     visible = true;
     slowdown = 0.1;
-    print("A");
   }
   void display() {
     if (visible) {

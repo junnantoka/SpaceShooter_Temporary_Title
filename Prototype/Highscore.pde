@@ -22,7 +22,7 @@ class Highscore {
   }
 
   void highscoreSave() {
-    if (healthAmount <= 0) {
+    if (healthMax <= 0) {
       highscore.  highscoreTimer++;
       //highscore part
       if (highscore.highscoreTimer == 1) {

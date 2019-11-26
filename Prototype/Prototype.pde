@@ -14,6 +14,8 @@ int stars = 300;
 HealthDrop[] healthDrop;
 int healthBalls = 10;
 
+PowerUp powerUp = new PowerUp();
+
 
 // jeroens deel
 Highscore highscore = new Highscore();
@@ -21,7 +23,7 @@ Highscore highscore = new Highscore();
 Pauze pauze = new Pauze();
 
 Enemy[] enemy;
-int enemies = 400;
+int enemies = 10;
 //jeroens deel
 EnemyBullet[] eBullet;
 
@@ -91,6 +93,8 @@ void updateGame() {
   background(0);
   health.gameOver();
   
+  
+  
   if (start.Start){
   start.update();
   }
@@ -112,6 +116,9 @@ void updateGame() {
     }
     bulletP[beweging].detectie();
     //eind stijns deel
+    
+     powerUp.use(); 
+    
     //runs enemy array
     for (int i = 0; i<enemy.length; i++) {
       enemy[i].update();
@@ -128,11 +135,12 @@ void updateGame() {
 
 
 void drawGame() {
+  //draws stars
    for (int i = 0; i<star.length; i++) {
     star[i].disp();
   }
   
-  //draws stars
+  
 
 
  
