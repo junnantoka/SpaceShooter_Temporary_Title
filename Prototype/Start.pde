@@ -6,6 +6,7 @@ class Start {
     
   }
   void draw(){
+    rectMode(0);
     fill(255);
     rect(width / 2 - 100, height/ 2 - 50, 200,100);
     fill(0);
