@@ -1,4 +1,6 @@
 Particle[] particle;
+
+
 int particles = 10;
 class Character {
 
@@ -26,6 +28,8 @@ class Character {
       particle[i] = new Particle();
     }
     acc = 2;
+    yRef = height/2;
+    xRef = width/2;
   }
   void displayCh() {
     fill(255);
@@ -35,18 +39,18 @@ class Character {
     image(playerShip, xLocation, yLocation);
 
     //particles 
-    for(int i = 0; i<particle.length; i++){
-     particle[i].display();
+    for (int i = 0; i<particle.length; i++) {
+      particle[i].display();
     }
   }
 
 
   void moveCh() {
     //particles 
-    for(int i = 0; i<particle.length; i++){
+    for (int i = 0; i<particle.length; i++) {
       particle[i].move();
     }
-    
+
     yRef -= ySpeed;
     xRef -= xSpeed;
 

@@ -19,21 +19,20 @@ class Health {
   void setup() {
     healthMax = startingHealth;
     healthLost = healthBarWidth/startingHealth;
-
   }
 
   void draw() {
+    rectMode(0);
     fill(100);
     rect(healthBarX, healthBarY, 500, healthBarHeight);
 
     fill(255, 0, 0);
     rect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
-    
-    fill(255,215,215);
-    rect(healthBarX,healthBarYLighting,healthBarXLighting,5);
-    
+
+    fill(255, 215, 215);
+    rect(healthBarX, healthBarYLighting, healthBarXLighting, 5);
+
     image(healthBar, 300, 30, 515, 55);
-    
   }
 
   void collide() {
@@ -54,17 +53,16 @@ class Health {
 
   void gameOver() {
     if (healthMax <= 0) {
-     end.end = true;
-     highscore.highscoreSave();
-     if(keyPressed){
-       end.button = true;
-       
-     }
+      end.end = true;
+      highscore.highscoreSave();
+      if (keyPressed) {
+        end.button = true;
+      }
     }
   }
-  void reset(){
+  void reset() {
     healthMax = startingHealth;
-    
+
     healthBarXLighting = 500;
     healthBarWidth = 500;
     healthBarHeight = 30;
