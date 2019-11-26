@@ -31,13 +31,13 @@ public class Enemy {
   void draw() {
     //draw the actual enemy(ies) and chooses the enemy type
     noStroke();
-    if(type == 0){
+    if (type == 0) {
       fill(#7D45E5);
       circle(x + xRef, y + yRef, size);
-    }else if(type == 1){
+    } else if (type == 1) {
       fill(#B2882F);
       circle(x + xRef, y + yRef, size);
-    }else if(type == 2){
+    } else if (type == 2) {
       fill(#838282);
       circle(x + xRef, y + yRef, size);
     }
@@ -51,11 +51,13 @@ public class Enemy {
 
   void types() {
     //different enemy types
-    if(type == 0) {
+    if (type == 0) {
       check0();
-    }if(type == 1){
+    }
+    if (type == 1) {
       check1();
-    }if(type == 2){
+    }
+    if (type == 2) {
       check2();
     }
   }
@@ -140,13 +142,15 @@ public class Enemy {
             ded = true;
             print("Auchiewauchie ");
             highscore.score++;
-            bulletP[i].reset();
+            if (!powerUp.laser) {
+              bulletP[i].reset();
+            }
           }
         }
       }
     }
   }
-   void reset(){
+  void reset() {
     size = 50;
     radius = size/2;
     x = random(xMin, xMax) * xRef;
@@ -161,6 +165,5 @@ public class Enemy {
     xG = random(-10, 10);
     yG = random(-10, 10);
     time = 0;
-    
   }
 }
