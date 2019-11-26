@@ -142,8 +142,11 @@ public class Enemy {
             ded = true;
             print("Auchiewauchie ");
             highscore.score++;
+            
+            //als de powerup aan staat worden de bullets niet gereset
             if (!powerUp.laser) {
               bulletP[i].reset();
+              
             }
           }
         }

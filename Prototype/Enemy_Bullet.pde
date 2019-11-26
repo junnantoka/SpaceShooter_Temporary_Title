@@ -63,6 +63,5 @@ class EnemyBullet {
       bulletX = enemy[i].x;
       bulletY = enemy[i].x;
     }
-    
   }
 }

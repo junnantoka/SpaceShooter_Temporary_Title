@@ -11,7 +11,6 @@ int healthBarHeight = 30;
 int healthBarXLighting = 500;
 int healthBarYLighting = 27;
 
-
 final int healthBarGone = 49;
 
 class Health {

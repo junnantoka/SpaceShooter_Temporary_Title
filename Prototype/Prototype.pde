@@ -11,6 +11,7 @@ Start start = new Start();
 End end= new End();
 int stars = 300;
 int timer = 0;
+
 //WorldBorder
 World world = new World();
 
@@ -37,16 +38,15 @@ Health health = new Health();
 // key detection
 final int KEY_LIMIT = 1024;
 boolean[] keysPressed = new boolean[KEY_LIMIT];
-//stijns deel
+
 int bullets = 1000;
 int beweging = 0;
 PlayerBullet[] bulletP = new PlayerBullet[bullets];
 int pBTimer = 0; 
-//eind stijns deel
+
 
 
 void setup() {
-  //size(1920, 1080, P2D);
   fullScreen(P2D);
   
   world.construct();
@@ -67,25 +67,24 @@ void setup() {
     star[i].construct();
   }
 
-  //stijns deel
   //initializes playerBullets array and sets starting values
   for (int i = 0; i <bullets; i++) {
     bulletP[i] = new PlayerBullet();
     bulletP[i].construct();
   }
-  //eind stijns deel
 
   //initializes enemy array
   enemy = new Enemy[enemies];
   for (int i=0; i<enemy.length; i++) {
     enemy[i] = new Enemy();
   }
-  //Jeroens deel
+  
   eBullet = new EnemyBullet[enemies];
   for (int i =0; i<eBullet.length; i++) {
     eBullet[i] = new EnemyBullet();
     eBullet[i].bulletSetup();
   }
+  
   highscore.scoreSetup();
 
   healthDrop = new HealthDrop[healthBalls];
@@ -122,14 +121,13 @@ void updateGame() {
     health.collide();
     character.moveCh();
     character.chCollision();
-    //stijns deel
+
     for (int i = 0; i <bullets; i++) {
       bulletP[i].move();
     }
     bulletP[beweging].detectie();
-    //eind stijns deel
-    
-     powerUp.use(); 
+
+    powerUp.use(); 
     
     //runs enemy array
     for (int i = 0; i<enemy.length; i++) {
@@ -148,40 +146,39 @@ void updateGame() {
 
 void drawGame() {
   //draws stars
-   for (int i = 0; i<star.length; i++) {
+  for (int i = 0; i<star.length; i++) {
     star[i].disp();
-  }
+   }
   
-  world.display();
-
+   world.display();
   
   for (int i = 0; i <enemy.length; i++) {
     eBullet[i].draw();
   }
      
-if(!start.Start){
-  for (int i = 0; i <bullets; i++) {
-    bulletP[i].draw();
-  }
-health.draw();
-  character.displayCh();
-  for (int i = 0; i<enemy.length; i++) {
-    if (!enemy[i].ded) {
-      enemy[i].draw();
-    } else {
-      enemy[i] = new Enemy();
+  if(!start.Start){
+    for (int i = 0; i <bullets; i++) {
+      bulletP[i].draw();
     }
+    health.draw();
+    character.displayCh();
+    for (int i = 0; i<enemy.length; i++) {
+      if (!enemy[i].ded) {
+        enemy[i].draw();
+      } else {
+        enemy[i] = new Enemy();
+      }
+    }
+
+    for (int i=0; i<healthDrop.length; i++) {
+      healthDrop[i].displayHealth();
+    }
+    pauze.draw();
   }
 
-  for (int i=0; i<healthDrop.length; i++) {
-    healthDrop[i].displayHealth();
-  }
-  pauze.draw();
-  
-}
-if(start.Start){
-  start.draw();
-  }
+  if(start.Start){
+    start.draw();
+    }
   if (end.end){
     end.draw();
   }

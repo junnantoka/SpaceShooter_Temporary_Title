@@ -44,7 +44,6 @@ class HealthDrop {
   void healthCollision() {
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize && healthChance == 4) {
 
-
       if (healthMax < startingHealth) {
         // health += healthGet; 
         healthMax = healthMax + 1;
