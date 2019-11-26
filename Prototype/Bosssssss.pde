@@ -6,10 +6,10 @@ class Boss{
   
    Boss() {
     //basic values
-    xMin = -width * 2;
-    xMax = 2 * width;
-    yMin = -height * 2;
-    yMax = 2 * height;
+    xMin = -width ;
+    xMax =  width;
+    yMin = -height ;
+    yMax =  height;
     size = 300;
     radius = size/2;
     x = random(xMin, xMax) + xRef;
@@ -67,9 +67,9 @@ class Boss{
   void reset(){
     x = random(xMin, xMax) + xRef;
     y = random(yMin, yMax) + yRef;
-    health = round(random(1,30));
+    health = bossTotal*round(random(1,30));
     
-    
+    ded= true;
   }
   
   

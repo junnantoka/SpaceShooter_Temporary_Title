@@ -45,5 +45,12 @@ class End {
       bulletP[i].reset();
     }
     character.reset();
+    bossTotal= 0;
+    enemyCounter= 0;
+    bossSpawn =false;
+    for(int i =0; i < boss.length; i++){
+    boss[i].reset();
+    }
+   
   }
 }

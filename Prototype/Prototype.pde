@@ -11,7 +11,9 @@ Star[] star;
 Start start = new Start();
 End end= new End();
 int stars = 300;
-int timer, enemyCounter, bossTotal = 0;
+int timer, enemyCounter  = 0;
+int bossTotal = 1;
+int enemiesRequired =100;
 boolean bossSpawn = false;
 
 //WorldBorder
@@ -224,19 +226,24 @@ void keyReleased() {
 }
 
 void spawnBoss(){
-     if (enemyCounter == 100){
+     if (enemyCounter == enemiesRequired){
+       if (bossTotal < bosses && bossTotal > 1){
        bossTotal++;
+       }
+       
        enemyCounter= 0;
        bossSpawn = true;
+       enemiesRequired*=2;
      }
     if (bossSpawn == true){
       for(int i = 0; i<bossTotal; i++){
         boss[i].ded= false;
       }
-      
+      bossSpawn = false;
     }
     
     
     
     
   }
+ 
