@@ -20,8 +20,8 @@ class Character {
   int frame;
 
   void construct() {
-    yLocation=height/2;
-    xLocation=width/2;
+    yLocation = height/2;
+    xLocation = width/2;
     pInterval = 10;
     particle = new Particle[particles];
     for (int i = 0; i < particle.length; i++) {
