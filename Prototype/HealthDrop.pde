@@ -45,9 +45,9 @@ class HealthDrop {
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize && healthChance == 4) {
 
 
-      if (healthAmount < startingHealth) {
+      if (healthMax < startingHealth) {
         // health += healthGet; 
-        healthAmount = healthAmount + 1;
+        healthMax = healthMax + 1;
         healthBarWidth = healthBarWidth + healthLost;
         healthBarXLighting = healthBarXLighting + healthLost;
 

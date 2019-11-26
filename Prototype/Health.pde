@@ -1,6 +1,6 @@
-int startingHealth = 200;
+int startingHealth = 10;
 
-float healthAmount;
+float healthMax;
 boolean getsHit = false;
 int healthBarX = 50;
 int healthBarY = 25;
@@ -17,7 +17,7 @@ final int healthBarGone = 49;
 class Health {
 
   void setup() {
-    healthAmount = startingHealth;
+    healthMax = startingHealth;
     healthLost = healthBarWidth/startingHealth;
 
   }
@@ -40,7 +40,7 @@ class Health {
     for (int i = 0; i<enemy.length; i++) {
       if (dist(enemy[i].x + xRef, enemy[i].y + yRef, character.xLocation, character.yLocation) <= character.size/2 + enemy[i].radius) {
         enemy[i].ded = true;
-        healthAmount = healthAmount - 1;
+        healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost;
         healthBarXLighting = healthBarXLighting-healthLost;
 
@@ -53,7 +53,7 @@ class Health {
   }
 
   void gameOver() {
-    if (healthAmount <= 0) {
+    if (healthMax <= 0) {
      end.end = true;
      highscore.highscoreSave();
      if(keyPressed){
@@ -63,7 +63,7 @@ class Health {
     }
   }
   void reset(){
-    healthAmount = startingHealth;
+    healthMax = startingHealth;
     
     healthBarXLighting = 500;
     healthBarWidth = 500;

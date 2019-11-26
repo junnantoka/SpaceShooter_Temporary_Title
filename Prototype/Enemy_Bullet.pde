@@ -47,7 +47,7 @@ class EnemyBullet {
   }
   void collision() {
     if (dist(bulletX + xRef, bulletY + yRef, character.xLocation, character.yLocation)< bulletSize/2+character.size/2) {
-      healthAmount = healthAmount - 1;
+      healthMax = healthMax - 1;
       healthBarWidth = healthBarWidth-healthLost;
               healthBarXLighting = healthBarXLighting-healthLost;
 
