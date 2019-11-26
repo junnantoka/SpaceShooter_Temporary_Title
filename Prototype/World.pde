@@ -1,9 +1,13 @@
 class World {
-  float worldWidth, worldHeight;
+
+  float worldWidth, worldHeight, widthMult, heightMult, bounceMult;
 
   void construct() {
-    worldHeight = height * 3;
-    worldWidth = width * 5;
+    widthMult = 2;
+    heightMult = 2;
+    worldHeight = height * heightMult;
+    worldWidth = width * widthMult;
+    bounceMult = 2;
   }
 
   void update() {
@@ -16,11 +20,18 @@ class World {
   }
 
   void updateBorder() {
-    if (yRef + character.size/2 > worldHeight * 2/3) {
-      character.ySpeed = -character.ySpeed*3;
+    if (yRef + character.size/2 - startY > worldHeight/2 ) {
+      character.ySpeed = -character.ySpeed * bounceMult;
     }
-    if (yRef - character.size/2 < -worldHeight * 1/3) {
-      character.ySpeed = -character.ySpeed*3;
+    if (yRef - character.size/2 - startY < -worldHeight/2 ) {
+      character.ySpeed = -character.ySpeed * bounceMult;
+    }
+    
+    if (xRef + character.size/2 - startX > worldWidth/2 ) {
+      character.xSpeed = -character.xSpeed * bounceMult;
+    }
+    if (xRef - character.size/2 - startX < -worldWidth/2 ) {
+      character.xSpeed = -character.xSpeed * bounceMult;
     }
   }
 
