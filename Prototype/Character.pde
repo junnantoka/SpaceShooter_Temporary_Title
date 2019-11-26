@@ -1,34 +1,37 @@
 Particle[] particle;
 float startX, startY;
 
-int particles = 10;
+int particles = 100;
 class Character {
 
   //character variables
   float xLocation, acc;
   float yLocation;
   int size=100;
-  int maxSpeed=15;
+  int maxSpeed=30;
   int yDir=0;
   int xDir=0;
   float ySpeed=0;
   float xSpeed=0;
   boolean yMove, xMove, newP;
-  float slowDown = 1.5;
+  float slowDown = 1;
   float rotateSpeed = 1;
+
+  //particle vars
   int pCount, pInterval;
   int frame;
 
   void construct() {
     yLocation = height/2;
     xLocation = width/2;
-    pInterval = 10;
+
+    pInterval = 3;
     particle = new Particle[particles];
     for (int i = 0; i < particle.length; i++) {
       particle[i] = new Particle();
     }
-    acc = 2;
-    
+    acc = 10;
+
     yRef = height/2;
     xRef = width/2;
     startX = xRef;
@@ -38,13 +41,14 @@ class Character {
     fill(255);
     //translate(1,1);
     //rotate(radians(rotateSpeed));
-    imageMode(CENTER);
-    image(playerShip, xLocation, yLocation);
+
 
     //particles 
     for (int i = 0; i<particle.length; i++) {
       particle[i].display();
     }
+    imageMode(CENTER);
+    image(playerShip, xLocation, yLocation);
   }
 
 
@@ -100,13 +104,13 @@ class Character {
     } else if ((!keysPressed['d']||!keysPressed['D'])&& xSpeed > 0) {
       xSpeed-= slowDown;
     }
-    if(!keysPressed['w'] && !keysPressed['W'] && !keysPressed['s'] && !keysPressed['S'] && ySpeed > -slowDown && ySpeed < slowDown){
+    if (!keysPressed['w'] && !keysPressed['W'] && !keysPressed['s'] && !keysPressed['S'] && ySpeed > -slowDown && ySpeed < slowDown) {
       ySpeed = 0;
     }
-    if(!keysPressed['a'] && !keysPressed['A'] && !keysPressed['d'] && !keysPressed['D'] && xSpeed > -slowDown && xSpeed < slowDown){
+    if (!keysPressed['a'] && !keysPressed['A'] && !keysPressed['d'] && !keysPressed['D'] && xSpeed > -slowDown && xSpeed < slowDown) {
       xSpeed = 0;
     }
-    
+
 
     if (!keysPressed['w'] && !keysPressed['W'] && !keysPressed['a'] && !keysPressed['A'] && !keysPressed['s']&&!keysPressed['S']&&!keysPressed['d']&&!keysPressed['D']) {
       newP = false;
