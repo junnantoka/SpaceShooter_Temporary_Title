@@ -45,16 +45,16 @@ class Pauze {
     if (pauze ==true) {
       pauzeX += speedX;
       pauzeY += speedY;
-      if (pauzeX <=0 ) {
+      if (pauzeX -125 <=0 ) {
         speedX = SPEED;
       }
-      if (pauzeX + 250 >= 1600 ) {
+      if (pauzeX + 125 >= width ) {
         speedX = -SPEED;
       }
-      if (pauzeY <=0 ) {
+      if (pauzeY - 25<=0 ) {
         speedY = SPEED;
       }
-      if (pauzeY + 50 >= 900 ) {
+      if (pauzeY + 25 >= height ) {
         speedY = -SPEED;
       }
     }
