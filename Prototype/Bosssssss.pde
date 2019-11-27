@@ -1,10 +1,12 @@
-class Boss{
-  float x, y, size, radius, xSpd, ySpd, direction, t, speed, xG, yG, time;
+class Boss {
+  float x, y, size, radius, xSpd, ySpd, direction, t, speed, xG, yG, time, startTime;
   int type, health;
   boolean ded, down;
   final float xMin, xMax, yMin, yMax;
-  
-   Boss() {
+  float oddsX, oddsY, randomX, randomY;
+  int prvsDirectionX, prvsDirectionY;
+  float distXEdge, distXEdgeMin, distYEdge, distYEdgeMin;
+  Boss() {
     //basic values
     xMin = -width ;
     xMax =  width;
@@ -23,41 +25,103 @@ class Boss{
     speed = random(5000.0f, 1000.0f);
     xG = random(-10, 10);
     yG = random(-10, 10);
-    time = 0;
-    health = round(random(1,30));
+    startTime= 240;
+    time = startTime;
+    health = round(random(1, 30));
   }
-  
-  void draw(){
-     if (!ded ) {
-    fill(#8F1BF0);
-    circle(x + xRef,y + yRef,size);
-     }
-    
-    
-    
+
+  void draw() {
+    if (!ded ) {
+      fill(#8F1BF0);
+      circle(x + xRef, y + yRef, size);
+    }
   }
-  
-  void move(){
-    if(!ded){
-    if (x   -world.worldHeight/2 > x  + world.worldHeight/2 ) {
-     println("hoog kaas");
+
+  void move() {
+    if (!ded) {
+      if (yRef + radius + y > world.worldHeight/2 ) {
+        //xSpd=-30;
+        time=0;
+        println('k');
+      }
+      if (yRef - radius + y < -world.worldHeight/2 ) {
+        //xSpd=1;
+         time=0;
+        println('l');
+      }
+
+      if (xRef + radius + x > world.worldWidth/2 ) {
+        //xSpd=-1;
+         time=0;
+        println('m');
+      }
+      if (xRef - radius + x < -world.worldWidth/2 ) {
+        //xSpd=1;
+         time=0;
+        println('n');
+      }
+      if (time == 0) {
+        if (prvsDirectionX ==2) {
+          distXEdge =(x+world.worldWidth/2)*4;
+          distXEdgeMin =(x-world.worldWidth/2);
+        } else if (prvsDirectionX ==2) {
+
+
+          distXEdge =(x+world.worldWidth/2);
+          distXEdgeMin =(x-world.worldWidth/2)*4;
+        } else {
+
+          distXEdge =x+world.worldWidth/2;
+          distXEdgeMin =x-world.worldWidth/2;
+        }
+        oddsX=(distXEdge)-(distXEdgeMin);
+
+
+
+        if (prvsDirectionY ==2) {
+          distYEdge =(y+world.worldHeight/2)*4;
+          distYEdgeMin=(y-world.worldHeight/2);
+        } else if (prvsDirectionY ==2) {
+
+          distYEdge =(y+world.worldHeight/2);
+          distYEdgeMin=(y-world.worldHeight/2)*4;
+        } else {
+          distYEdge =y+world.worldHeight/2;
+          distYEdgeMin=y-world.worldHeight/2;
+        }
+        oddsY=(distYEdge)-(distYEdgeMin);
+
+        randomX = random(oddsX);
+        randomY = random(oddsY);
+        if (randomX>x+world.worldWidth/2) {
+          xSpd=1;
+          prvsDirectionX = 2;
+        } else if (randomX==x+world.worldWidth/2) {
+          xSpd =0;
+          prvsDirectionX = 0;
+        } else {
+          xSpd =-1;
+          prvsDirectionX = -2;
+        }
+        if (randomY>y+world.worldHeight/2) {
+          ySpd = 1;
+          prvsDirectionY = 2;
+        } else if (randomY==y+world.worldHeight/2) {
+          ySpd =0;
+          prvsDirectionY = 0;
+        } else {
+          ySpd =-1;
+          prvsDirectionY = -2;
+        }
+        time = startTime;
+      }
+
+      x+=xSpd;
+      y+=ySpd;
     }
-    else if (x   -world.worldHeight/2 < x  + world.worldHeight/2 ) {
-     println("laag kaas");
-    }
-    
-    if (y -world.worldWidth/2>y+ world.worldWidth/2 ) {
-println("links kaas");
-    }
-    else if (y -world.worldWidth/2< y+world.worldWidth/2 ) {
-println("rechts kaas");
-    }
-    }
-    
-    
   }
-  
-  
+
+
   void collision() {
     //check if the enemy makes contact with the player
     if (!ded ) {
@@ -65,32 +129,27 @@ println("rechts kaas");
         if ( bulletP[i].ja) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/2) {
             health--;
-            if(health == 0){
+            if (health == 0) {
               reset();
-            ded = true;
-            print("Auchiewauchie ");
-            highscore.score++;
+              ded = true;
+              print("Auchiewauchie ");
+              highscore.score++;
             }
             //als de powerup aan staat worden de bullets niet gereset
             if (!powerUp.laser) {
               bulletP[i].reset();
-              
             }
           }
         }
       }
     }
   }
-  
-  void reset(){
+
+  void reset() {
     x = random(xMin, xMax) + xRef;
     y = random(yMin, yMax) + yRef;
-    health = bossTotal*round(random(1,30));
-    
+    health = bossTotal*round(random(1, 30));
+
     ded= true;
   }
-  
-  
-  
-  
 }
