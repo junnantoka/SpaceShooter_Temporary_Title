@@ -25,7 +25,7 @@ class Character {
     yLocation = height/2;
     xLocation = width/2;
 
-    pInterval = 3;
+    pInterval = 1;
     particle = new Particle[particles];
     for (int i = 0; i < particle.length; i++) {
       particle[i] = new Particle();

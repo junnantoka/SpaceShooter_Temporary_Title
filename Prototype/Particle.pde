@@ -7,9 +7,22 @@ class Particle {
   void construct() {
     avgStartSpeed = 15;
     startSpeedVariation = 4;
-    dissapearSpeed = 2;
+    dissapearSpeed = 4;
     fadeSpeed = 6;
-    sideVariation = 3;
+    sideVariation = 10;
+    
+    size = random(20, 30);
+    visible = true;
+    slowdown = 0.1;
+    x = -xRef + startX;
+    y = -yRef + startY;
+
+    r = int(random(200, 255));
+    g = int(random(0, 255));    
+    b = int(random(0));
+    density = 150;
+
+
     switch(character.xDir) {
     case 1:
       if (keysPressed['a'] || keysPressed['A']) {
@@ -46,17 +59,6 @@ class Particle {
       }      
       break;
     }
-    
-    size = random(20, 30);
-    visible = true;
-    slowdown = 0.1;
-    x = -xRef + startX;
-    y = -yRef + startY;
-
-    r = int(random(200,255));
-    g = int(random(200,220));    
-    b = int(random(0));
-    density = 255;
   }
   void display() {
     noStroke();
