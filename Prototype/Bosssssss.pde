@@ -25,7 +25,7 @@ class Boss {
     speed = random(5000.0f, 1000.0f);
     xG = random(-10, 10);
     yG = random(-10, 10);
-    startTime= 240;
+    startTime= 60;
     time = startTime;
     health = round(random(1, 30));
   }
@@ -39,6 +39,7 @@ class Boss {
 
   void move() {
     if (!ded) {
+      //detects if boss gets out of the border
       if (yRef + radius + y > world.worldHeight/2 ) {
         //xSpd=-30;
         time=0;
@@ -60,15 +61,16 @@ class Boss {
          time=0;
         println('n');
       }
+      //changes direction from time to time
       if (time == 0) {
         if (prvsDirectionX ==2) {
-          distXEdge =(x+world.worldWidth/2)*4;
+          distXEdge =(x+world.worldWidth/2)*3;
           distXEdgeMin =(x-world.worldWidth/2);
         } else if (prvsDirectionX ==2) {
 
 
           distXEdge =(x+world.worldWidth/2);
-          distXEdgeMin =(x-world.worldWidth/2)*4;
+          distXEdgeMin =(x-world.worldWidth/2)*3;
         } else {
 
           distXEdge =x+world.worldWidth/2;
@@ -79,12 +81,12 @@ class Boss {
 
 
         if (prvsDirectionY ==2) {
-          distYEdge =(y+world.worldHeight/2)*4;
+          distYEdge =(y+world.worldHeight/2)*3;
           distYEdgeMin=(y-world.worldHeight/2);
         } else if (prvsDirectionY ==2) {
 
           distYEdge =(y+world.worldHeight/2);
-          distYEdgeMin=(y-world.worldHeight/2)*4;
+          distYEdgeMin=(y-world.worldHeight/2)*3;
         } else {
           distYEdge =y+world.worldHeight/2;
           distYEdgeMin=y-world.worldHeight/2;
@@ -93,20 +95,20 @@ class Boss {
 
         randomX = random(oddsX);
         randomY = random(oddsY);
-        if (randomX>x+world.worldWidth/2) {
+        if (randomX>distXEdge) {
           xSpd=1;
           prvsDirectionX = 2;
-        } else if (randomX==x+world.worldWidth/2) {
+        } else if (randomX==distXEdge) {
           xSpd =0;
           prvsDirectionX = 0;
         } else {
           xSpd =-1;
           prvsDirectionX = -2;
         }
-        if (randomY>y+world.worldHeight/2) {
+        if (randomY>y+distYEdge) {
           ySpd = 1;
           prvsDirectionY = 2;
-        } else if (randomY==y+world.worldHeight/2) {
+        } else if (randomY==distYEdge) {
           ySpd =0;
           prvsDirectionY = 0;
         } else {
