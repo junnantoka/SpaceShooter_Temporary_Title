@@ -13,7 +13,8 @@ End end= new End();
 int stars = 300;
 int timer, enemyCounter  = 0;
 int bossTotal = 1;
-int enemiesRequired =100;
+int enemiesRequiredStart = 1;
+int enemiesRequired =enemiesRequiredStart;
 boolean bossSpawn = false;
 
 //WorldBorder
@@ -133,7 +134,9 @@ void updateGame() {
   
   if (!pauze.pauze&& !start.Start && !end.end) {
     for(int i = 0; i <boss.length; i++){
-    boss[i].collision();
+      boss[i].collision();
+      boss[i].move();
+
     }
     health.collide();
     character.moveCh();
@@ -227,7 +230,7 @@ void keyReleased() {
 
 void spawnBoss(){
      if (enemyCounter == enemiesRequired){
-       if (bossTotal < bosses && bossTotal > 1){
+       if (bossTotal < bosses-1 && enemiesRequired> enemiesRequiredStart){
        bossTotal++;
        }
        

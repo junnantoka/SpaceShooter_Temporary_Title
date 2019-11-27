@@ -37,7 +37,25 @@ class Boss{
     
   }
   
-  
+  void move(){
+    if(!ded){
+    if (x   -world.worldHeight/2 > x  + world.worldHeight/2 ) {
+     println("hoog kaas");
+    }
+    else if (x   -world.worldHeight/2 < x  + world.worldHeight/2 ) {
+     println("laag kaas");
+    }
+    
+    if (y -world.worldWidth/2>y+ world.worldWidth/2 ) {
+println("links kaas");
+    }
+    else if (y -world.worldWidth/2< y+world.worldWidth/2 ) {
+println("rechts kaas");
+    }
+    }
+    
+    
+  }
   
   
   void collision() {
