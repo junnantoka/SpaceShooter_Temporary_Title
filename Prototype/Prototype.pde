@@ -228,6 +228,8 @@ void keyReleased() {
   keysPressed[keyCode] = false;
 }
 
+
+//Kan dit niet in de boss class??3
 void spawnBoss(){
      if (enemyCounter == enemiesRequired){
        if (bossTotal < bosses-1 && enemiesRequired> enemiesRequiredStart){
@@ -244,9 +246,5 @@ void spawnBoss(){
       }
       bossSpawn = false;
     }
-    
-    
-    
-    
-  }
+}
  
