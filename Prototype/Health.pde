@@ -22,6 +22,7 @@ class Health {
 
   void draw() {
     rectMode(0);
+    noStroke();
     fill(100);
     rect(healthBarX, healthBarY, 500, healthBarHeight);
 

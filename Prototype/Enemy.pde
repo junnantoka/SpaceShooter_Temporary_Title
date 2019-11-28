@@ -32,14 +32,17 @@ public class Enemy {
     //draw the actual enemy(ies) and chooses the enemy type
     noStroke();
     if (type == 0) {
-      fill(#7D45E5);
-      circle(x + xRef, y + yRef, size);
+      image(crusher,x+ xRef, y + yRef);
+      /*fill(#7D45E5);
+      circle(x + xRef, y + yRef, size);*/
     } else if (type == 1) {
-      fill(#B2882F);
-      circle(x + xRef, y + yRef, size);
+      image(shooter,x + xRef, y + yRef);
+      /*fill(#B2882F);
+      circle(x + xRef, y + yRef, size);*/
     } else if (type == 2) {
-      fill(#838282);
-      circle(x + xRef, y + yRef, size);
+      image(snailgun,x + xRef, y + yRef);
+      /*fill(#838282);
+      circle(x + xRef, y + yRef, size);*/
     }
   }
 
