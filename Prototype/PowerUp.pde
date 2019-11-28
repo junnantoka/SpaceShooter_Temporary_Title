@@ -35,6 +35,7 @@ class PowerUp {
           if(bulletP[i].bPSize >= bulletMaxSize){
             bulletP[i].bPSize = bulletMaxSize;
           }
+          
           println(bulletP[i].bPSize);
         }
       }

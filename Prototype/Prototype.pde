@@ -13,7 +13,7 @@ End end= new End();
 int stars = 300;
 int timer, enemyCounter  = 0;
 int bossTotal = 1;
-int enemiesRequiredStart = 1;
+int enemiesRequiredStart = 100;
 int enemiesRequired =enemiesRequiredStart;
 boolean bossSpawn = false;
 
@@ -228,6 +228,8 @@ void keyReleased() {
   keysPressed[keyCode] = false;
 }
 
+
+//Kan dit niet in de boss class??3
 void spawnBoss(){
      if (enemyCounter == enemiesRequired){
        if (bossTotal < bosses-1 && enemiesRequired> enemiesRequiredStart){
@@ -244,9 +246,5 @@ void spawnBoss(){
       }
       bossSpawn = false;
     }
-    
-    
-    
-    
-  }
+}
  
