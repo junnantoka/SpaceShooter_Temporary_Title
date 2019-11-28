@@ -6,6 +6,7 @@ class Boss {
   float oddsX, oddsY, randomX, randomY;
   int prvsDirectionX, prvsDirectionY;
   float distXEdge, distXEdgeMin, distYEdge, distYEdgeMin;
+  float bossScore = 50;
   Boss() {
     //basic values
     xMin = -width ;
@@ -135,7 +136,7 @@ class Boss {
               reset();
               ded = true;
               print("Auchiewauchie ");
-              highscore.score++;
+              highscore.score += bossScore;
             }
             //als de powerup aan staat worden de bullets niet gereset
             if (!powerUp.laser) {
