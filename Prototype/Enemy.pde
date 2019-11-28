@@ -32,7 +32,7 @@ public class Enemy {
     //draw the actual enemy(ies) and chooses the enemy type
     noStroke();
     if (type == 0) {
-      image(crusher,x+ xRef, y + yRef);
+      image(snailgun,x+ xRef, y + yRef);
       /*fill(#7D45E5);
       circle(x + xRef, y + yRef, size);*/
     } else if (type == 1) {
@@ -40,7 +40,7 @@ public class Enemy {
       /*fill(#B2882F);
       circle(x + xRef, y + yRef, size);*/
     } else if (type == 2) {
-      image(snailgun,x + xRef, y + yRef);
+      image(crusher,x + xRef, y + yRef);
       /*fill(#838282);
       circle(x + xRef, y + yRef, size);*/
     }
