@@ -9,7 +9,8 @@ class Star {
   void disp() {
     fill(255);
     circle(x + xRef, y + yRef, size);
-    text(xRef, width/2, 100);
+    //text(xRef, width/2, 100);
+    //text(yRef, width/2, 300);
     respawn();
   }
   void respawn() {

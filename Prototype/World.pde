@@ -16,7 +16,7 @@ class World {
 
   void display() {
     displayBorder();
-    text(yRef, width/2, 300);
+    
   }
 
   void updateBorder() {
