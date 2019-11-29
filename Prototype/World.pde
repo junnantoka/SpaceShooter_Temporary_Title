@@ -7,7 +7,7 @@ class World {
     heightMult = 2;
     worldHeight = height * heightMult;
     worldWidth = width * widthMult;
-    bounceMult = 2;
+    bounceMult = 1;
   }
 
   void update() {
