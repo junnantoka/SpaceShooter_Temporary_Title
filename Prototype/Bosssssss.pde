@@ -22,7 +22,8 @@ class Boss {
     direction = random(-2, 2);
     down = false;
     ded = true;
-    type = (int)random(0, 3);
+    //type = (int)random(1, 3);
+    type = 2;
     speed = random(5000.0f, 1000.0f);
     xG = random(-10, 10);
     yG = random(-10, 10);
@@ -40,87 +41,101 @@ class Boss {
 
   void move() {
     if (!ded) {
-      //detects if boss gets out of the border
-      if (yRef + radius + y > world.worldHeight/2 ) {
-        //xSpd=-30;
-        time=0;
-        println('k');
-      }
-      if (yRef - radius + y < -world.worldHeight/2 ) {
-        //xSpd=1;
-         time=0;
-        println('l');
-      }
-
-      if (xRef + radius + x > world.worldWidth/2 ) {
-        //xSpd=-1;
-         time=0;
-        println('m');
-      }
-      if (xRef - radius + x < -world.worldWidth/2 ) {
-        //xSpd=1;
-         time=0;
-        println('n');
-      }
-      //changes direction from time to time
-      if (time == 0) {
-        if (prvsDirectionX ==2) {
-          distXEdge =(x+world.worldWidth/2)*3;
-          distXEdgeMin =(x-world.worldWidth/2);
-        } else if (prvsDirectionX ==2) {
-
-
-          distXEdge =(x+world.worldWidth/2);
-          distXEdgeMin =(x-world.worldWidth/2)*3;
-        } else {
-
-          distXEdge =x+world.worldWidth/2;
-          distXEdgeMin =x-world.worldWidth/2;
-        }
-        oddsX=(distXEdge)-(distXEdgeMin);
-
-
-
-        if (prvsDirectionY ==2) {
-          distYEdge =(y+world.worldHeight/2)*3;
-          distYEdgeMin=(y-world.worldHeight/2);
-        } else if (prvsDirectionY ==2) {
-
-          distYEdge =(y+world.worldHeight/2);
-          distYEdgeMin=(y-world.worldHeight/2)*3;
-        } else {
-          distYEdge =y+world.worldHeight/2;
-          distYEdgeMin=y-world.worldHeight/2;
-        }
-        oddsY=(distYEdge)-(distYEdgeMin);
-
-        randomX = random(oddsX);
-        randomY = random(oddsY);
-        if (randomX>distXEdge) {
-          xSpd=1;
-          prvsDirectionX = 2;
-        } else if (randomX==distXEdge) {
-          xSpd =0;
-          prvsDirectionX = 0;
-        } else {
-          xSpd =-1;
-          prvsDirectionX = -2;
-        }
-        if (randomY>y+distYEdge) {
-          ySpd = 1;
-          prvsDirectionY = 2;
-        } else if (randomY==distYEdge) {
-          ySpd =0;
-          prvsDirectionY = 0;
-        } else {
-          ySpd =-1;
-          prvsDirectionY = -2;
-        }
-        time = startTime;
-      }
-
+      if (type ==2) {
+        ySpd = (character.yLocation-y)/dist(character.xLocation, character.yLocation, x, y)*2;
+      xSpd = (character.xLocation-x)/dist(character.xLocation, character.yLocation, x, y)*2;
+      println(xSpd);
+      println(ySpd);
       x+=xSpd;
-      y+=ySpd;
+        y+=ySpd;
+      }
+
+
+
+
+      //detects if boss gets out of the border
+      if (type ==1) {
+        if (yRef + radius + y >= world.worldHeight/2 ) {
+          //xSpd=-30;
+          time=0;
+          println('k');
+        }
+        if (yRef - radius + y <= -world.worldHeight/2.5 ) {
+          //xSpd=1;
+          time=0;
+          println('l');
+        }
+
+        if (xRef + radius + x >= world.worldWidth/2 ) {
+          //xSpd=-1;
+          time=0;
+          println('m');
+        }
+        if (xRef - radius + x <= -world.worldWidth/2 ) {
+          //xSpd=1;
+          time=0;
+          println('n');
+        }
+        //changes direction from time to time
+        if (time == 0) {
+          if (prvsDirectionX ==2) {
+            distXEdge =(x+world.worldWidth/2)*3;
+            distXEdgeMin =(x-world.worldWidth/2);
+          } else if (prvsDirectionX ==2) {
+
+
+            distXEdge =(x+world.worldWidth/2);
+            distXEdgeMin =(x-world.worldWidth/2)*3;
+          } else {
+
+            distXEdge =x+world.worldWidth/2;
+            distXEdgeMin =x-world.worldWidth/2;
+          }
+          oddsX=(distXEdge)-(distXEdgeMin);
+
+
+
+          if (prvsDirectionY ==2) {
+            distYEdge =(y+world.worldHeight/2)*3;
+            distYEdgeMin=(y-world.worldHeight/2.5);
+          } else if (prvsDirectionY ==2) {
+
+            distYEdge =(y+world.worldHeight/2);
+            distYEdgeMin=(y-world.worldHeight/2.5)*3;
+          } else {
+            distYEdge =y+world.worldHeight/2;
+            distYEdgeMin=y-world.worldHeight/2.5;
+          }
+          oddsY=(distYEdge)-(distYEdgeMin);
+
+          randomX = random(oddsX);
+          randomY = random(oddsY);
+          if (randomX>distXEdge) {
+            xSpd=1;
+            prvsDirectionX = 2;
+          } else if (randomX==distXEdge) {
+            xSpd =0;
+            prvsDirectionX = 0;
+          } else {
+            xSpd =-1;
+            prvsDirectionX = -2;
+          }
+          if (randomY>y+distYEdge) {
+            ySpd = 1;
+            prvsDirectionY = 2;
+          } else if (randomY==distYEdge) {
+            ySpd =0;
+            prvsDirectionY = 0;
+          } else {
+            ySpd =-1;
+            prvsDirectionY = -2;
+          }
+          time = startTime;
+        }
+
+        x+=xSpd;
+        y+=ySpd;
+      }
     }
   }
 
