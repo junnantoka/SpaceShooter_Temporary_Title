@@ -9,7 +9,7 @@ float xRef = width/2;
 
 Star[] star;
 Start start = new Start();
-End end= new End();
+End end = new End();
 int stars = 300;
 int timer, enemyCounter  = 0;
 int bossTotal = 1;
@@ -26,17 +26,15 @@ int healthBalls = 10;
 
 PowerUp powerUp = new PowerUp();
 
-
 // jeroens deel
 Highscore highscore = new Highscore();
 
 Pauze pauze = new Pauze();
 
 Enemy[] enemy;
-int enemies = 10;
+int enemies = 5;
 //jeroens deel
 EnemyBullet[] eBullet;
-
 
 Health health = new Health();
 
@@ -48,8 +46,6 @@ int bullets = 1000;
 int beweging = 0;
 PlayerBullet[] bulletP = new PlayerBullet[bullets];
 int pBTimer = 0; 
-
-
 
 void setup() {
   fullScreen(P2D);
@@ -73,15 +69,10 @@ void setup() {
   }
 
    boss= new Boss[bosses];
-    for (int i = 0; i<boss.length; i++) {
-      boss[i] =new Boss();
-    }
-   
-   
-   
-   
-   
-   
+  for (int i = 0; i<boss.length; i++) {
+    boss[i] =new Boss();
+  }
+  
   //initializes playerBullets array and sets starting values
   for (int i = 0; i <bullets; i++) {
     bulletP[i] = new PlayerBullet();

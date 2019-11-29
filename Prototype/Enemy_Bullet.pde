@@ -5,6 +5,7 @@ class EnemyBullet {
   int shotIn = 0;
   int distance = 100;
   boolean shot = false;
+  
   void bulletSetup() {
     for (int i = 0; i<enemy.length; i++) {
       bulletX = enemy[i].x;
@@ -14,7 +15,7 @@ class EnemyBullet {
 
   void draw() {
     if (shot) {
-      image(enemyBullet, (xRef + bulletX), (yRef+ bulletY));
+      image(enemyBullet, (xRef + bulletX), (yRef+ bulletY), bulletSize, bulletSize);
     }
   }
 
@@ -22,16 +23,16 @@ class EnemyBullet {
   void bulletSpawn(int i) {
     collision();
 
-    if (dist(character.xLocation, character.yLocation, enemy[i].x + xRef, enemy[i].y + yRef)>distance) {
+    if (dist(character.xLocation, character.yLocation, enemy[i].x + xRef, enemy[i].y + yRef) > distance) {
       shot = true;
       shotIn++;
     }
     if (shotIn == 1) {
       bulletX = enemy[i].x;
       bulletY = enemy[i].y;
-      bulletSize = 10;
-      bulletYSpeed = (character.yLocation-bulletY)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*2;
-      bulletXSpeed = (character.xLocation-bulletX)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*2;
+      bulletSize = 100;
+      bulletYSpeed = (character.yLocation-bulletY)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*6;
+      bulletXSpeed = (character.xLocation-bulletX)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*6;
     }
     if (shot) {
       //bullet movement here!
@@ -40,7 +41,7 @@ class EnemyBullet {
     }
   }
   void bulletDespawn() {
-    if ((bulletX<0||bulletX>width)||(bulletY<0||bulletY>height)) {
+    if ((bulletX < -world.worldWidth/2 || bulletX > world.worldWidth) || (bulletY < -world.worldHeight/2 || bulletY > world.worldHeight)) {
       shot = false;
       shotIn = 0;
     }

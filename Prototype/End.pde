@@ -50,8 +50,7 @@ class End {
     enemiesRequired =enemiesRequiredStart;
     bossSpawn =false;
     for(int i =0; i < boss.length; i++){
-    boss[i].reset();
+      boss[i].reset();
     }
-   
   }
 }

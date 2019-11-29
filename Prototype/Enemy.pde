@@ -1,7 +1,7 @@
 //©Jun Phung 500829487
 public class Enemy {
   //enemy settings
-  float x, y, size, radius, xSpd, ySpd, direction, t, speed, xG, yG, time;
+  float x, y, size, radius, xSpd, ySpd, direction, t, speed, circle;
   int type;
   boolean ded, down;
   final float xMin, xMax, yMin, yMax;
@@ -10,7 +10,7 @@ public class Enemy {
     //basic values
     xMin = -width * 2;
     xMax = 2 * width;
-    yMin = -height * 2;
+    yMin = -height;
     yMax = 2 * height;
     size = 50;
     radius = size/2;
@@ -22,10 +22,8 @@ public class Enemy {
     down = false;
     ded = false;
     type = (int)random(0, 3);
-    speed = random(5000.0f, 1000.0f);
-    xG = random(-10, 10);
-    yG = random(-10, 10);
-    time = 0;
+    speed = random(2000.0f, 1500.0f);
+    circle = random(-1500, 1500);
   }
 
   void draw() {
@@ -33,16 +31,10 @@ public class Enemy {
     noStroke();
     if (type == 0) {
       image(snailgun,x+ xRef, y + yRef);
-      /*fill(#7D45E5);
-      circle(x + xRef, y + yRef, size);*/
     } else if (type == 1) {
       image(shooter,x + xRef, y + yRef);
-      /*fill(#B2882F);
-      circle(x + xRef, y + yRef, size);*/
     } else if (type == 2) {
       image(crusher,x + xRef, y + yRef);
-      /*fill(#838282);
-      circle(x + xRef, y + yRef, size);*/
     }
   }
 
@@ -80,9 +72,12 @@ public class Enemy {
     if ((x - radius > xMax || x + radius < xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
       xSpd = -xSpd;
       down = true;
+    }else{
+      xSpd = -xSpd;
+      down = false;
     }
     if (y - radius <= yMin) {
-      ySpd = -ySpd;
+      ded = true;
     }
     if (y - radius >= yMax) {//if enemy goes out the bottom side
       ded = true; //die
@@ -105,16 +100,8 @@ public class Enemy {
 
   void check2() {//enemy type 3 (Darude - Sandstorm)
     t = millis()/speed;
-    x = (int)(xRef + (radius * xG) * cos(t));
-    y = (int)(yRef + (radius * yG) * sin(t));
-    if (time <= 60) {
-      xG += 0.5;
-      yG += 0.5;
-    }
-    if (time >= 60) {
-      xG -= 0.5;
-      yG -= 0.5;
-    }
+    x = (int)xRef + circle * xSpd * cos(t);
+    y = (int)yRef + circle * ySpd * sin(t);
   }
 
   void respawn() {
@@ -149,7 +136,6 @@ public class Enemy {
             //als de powerup aan staat worden de bullets niet gereset
             if (!powerUp.laser) {
               bulletP[i].reset();
-              
             }
           }
         }
@@ -167,9 +153,6 @@ public class Enemy {
     down = false;
     ded = false;
     type = (int) random(0, 3);
-    speed = random(5000.0f, 3000.0f);
-    xG = random(-10, 10);
-    yG = random(-10, 10);
-    time = 0;
+    speed = random(3000.0f, 1500.0f);
   }
 }
