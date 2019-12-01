@@ -1,9 +1,9 @@
-PImage pauzeImg, enemyBullet, healthDropIMG, playerBullet, playerShip, healthBar, movement, shooting, crusher, shooter,snailgun;
+PImage pauzeImg, enemyBullet, healthDropIMG, playerBullet, playerShip, healthBar, movement, shooting, crusher, shooter, snailgun, startImg;
 
 //SoundFile biem;
 
-public void loadAssets(){
-  
+public void loadAssets() {
+
   //Load assets
   pauzeImg = loadImage("./data/img/pauzescreen.png");
   enemyBullet = loadImage("./data/img/enemybullet.png");
@@ -16,6 +16,7 @@ public void loadAssets(){
   crusher = loadImage("./data/img/crusher.png");
   shooter = loadImage("./data/img/shooter.png");
   snailgun = loadImage("./data/img/snailgun.png");
+  startImg = loadImage("./data/img/startImg.png");
   //Load sounds
   //biem = new SoundFile(this, "./data/sounds/biem.wav");
 }
