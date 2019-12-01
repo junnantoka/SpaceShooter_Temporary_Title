@@ -36,6 +36,7 @@ class Character {
     xRef = width/2;
     startX = xRef;
     startY = yRef;
+
   }
   void displayCh() {
     fill(255);

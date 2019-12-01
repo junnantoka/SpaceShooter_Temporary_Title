@@ -27,10 +27,12 @@ public class Enemy {
   }
 
   void draw() {
+    
+    
     //draw the actual enemy(ies) and chooses the enemy type
     noStroke();
     if (type == 0) {
-      image(snailgun,x+ xRef, y + yRef);
+      image(snailgun,x + xRef, y + yRef);
     } else if (type == 1) {
       image(shooter,x + xRef, y + yRef);
     } else if (type == 2) {
@@ -121,8 +123,6 @@ public class Enemy {
       ded = true;
     }
   }
-
-  //©Nordin El Hadaoui
   void collision() {
     //check if the enemy makes contact with the player
     if (!ded ) {

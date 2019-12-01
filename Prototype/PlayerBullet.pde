@@ -96,8 +96,8 @@ class PlayerBullet {
     }
   }
   void reset() {
-    bPLocationX= character.xLocation;
-    bPLocationY= character.yLocation;
+    bPLocationX = character.xLocation;
+    bPLocationY = character.yLocation;
     pBNaarbeneden= false;
     pBOmhoog= false;
     pBRechts = false;

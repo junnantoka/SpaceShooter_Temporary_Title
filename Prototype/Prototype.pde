@@ -28,11 +28,13 @@ PowerUp powerUp = new PowerUp();
 
 // jeroens deel
 Highscore highscore = new Highscore();
+Minimap minimap = new Minimap();
+
 
 Pauze pauze = new Pauze();
 
 Enemy[] enemy;
-int enemies = 5;
+int enemies = 10;
 //jeroens deel
 EnemyBullet[] eBullet;
 
@@ -57,6 +59,7 @@ void setup() {
   imageMode(CENTER);
   
   health.setup();
+  minimap.setup();
   pauze.setup();
 
   character.construct();
@@ -173,7 +176,6 @@ void drawGame() {
   }
      
      
-     
   if(!start.Start){
     for (int i = 0; i <bullets; i++) {
       bulletP[i].draw();
@@ -191,6 +193,7 @@ void drawGame() {
     for (int i=0; i<healthDrop.length; i++) {
       healthDrop[i].displayHealth();
     }
+    minimap.draw();
     pauze.draw();
   }
 
@@ -201,6 +204,7 @@ void drawGame() {
     end.draw();
   }
    highscore.scoreDisplay();
+
 }
 
 void draw() {
