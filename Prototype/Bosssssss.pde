@@ -30,6 +30,7 @@ class Boss {
     startTime= 60;
     time = startTime;
     health = round(random(1, 30));
+    speed = 1;
   }
 
   void draw() {
@@ -42,11 +43,15 @@ class Boss {
   void move() {
     if (!ded) {
       if (type ==2) {
-        ySpd = (character.yLocation-y)/dist(character.xLocation, character.yLocation, x, y)*2;
-      xSpd = (character.xLocation-x)/dist(character.xLocation, character.yLocation, x, y)*2;
+     /*   ySpd = (character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
+      xSpd = (character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;*/
+      direction =(character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2+(character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
+      ySpd= (speed /direction)*((character.yLocation-y+yRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);
+      xSpd= (speed /direction)*((character.xLocation-x+xRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);
+      
       println(xSpd);
       println(ySpd);
-      x+=xSpd;
+        x+=xSpd;
         y+=ySpd;
       }
 
