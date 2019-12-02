@@ -5,6 +5,9 @@ public class Enemy {
   int type;
   boolean ded, down;
   final float xMax, yMax, size;
+  float xSpeed, ySpeed, chargeDist;
+  int spawnLocation, frame, roamTime, chargeWait, chargeFrame, chargeTime, chargeSpeed;
+  boolean aggro = false;
 
   Enemy() {
     //basic values
@@ -19,22 +22,25 @@ public class Enemy {
     direction = random(-2, 2);
     down = false;
     ded = false;
-    type = (int)random(0, 3);
+    type = (int)random(0, 4);
     speed = random(3000.0f, 1500.0f);
     circle = random(-20000, 20000);
+    roamTime = 100;//throwaway roamTime value
+    chargeDist = 400;//aggro distance
+    chargeWait = 30;//amount of time the enemy waits before charging
+    chargeTime = 120;//duration of the charge
+    chargeSpeed = 20;//velocity of the charge
   }
 
   void draw() {
-    
-    
     //draw the actual enemy(ies) and chooses the enemy type
     noStroke();
     if (type == 0) {
-      image(snailgun,x + xRef, y + yRef);
+      image(snailgun, x + xRef, y + yRef);
     } else if (type == 1) {
-      image(shooter,x + xRef, y + yRef);
+      image(shooter, x + xRef, y + yRef);
     } else if (type == 2) {
-      image(crusher,x + xRef, y + yRef);
+      image(crusher, x + xRef, y + yRef);
     }
   }
 
@@ -54,8 +60,38 @@ public class Enemy {
     if (type == 2) {
       check2();
     }
+    if (type == 3) {
+      check3();
+    }
   }
 
+  void check3() {
+    charge();
+  }
+  
+  void charge() {
+
+    if (dist(x + xRef, y + yRef, character.xLocation, character.yLocation) < chargeDist) {
+      aggro = true;
+    }
+    if (aggro) {
+      chargeFrame++;
+      //if(){}
+      text(chargeFrame, width/2, 200);
+    }
+    if (chargeFrame == 1) {//preparing the charge
+      xSpeed = 0;
+      ySpeed = 0;
+    }
+    if (chargeFrame == chargeWait + 1) { //start of the charge
+
+      xSpeed = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * chargeSpeed;
+      ySpeed = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * chargeSpeed;
+
+      //print(dist(c.x, c.y, x, y)+ " ");
+    }
+  }
+  
   void check0() {//enemy type 1 (suicide bomber)
     x += direction * xSpd;
     if (down) {
@@ -71,7 +107,7 @@ public class Enemy {
     if ((x - radius > xMax || x + radius < 0) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
       xSpd = -xSpd;
       down = true;
-    }else{
+    } else {
       xSpd = -xSpd;
       down = false;
     }
@@ -102,7 +138,7 @@ public class Enemy {
     x = (int) xRef + circle * xSpd * cos(t);
     y = (int) yRef + circle * ySpd * sin(t);
   }
-  
+
   void collision() {
     //check if the enemy makes contact with the player
     if (!ded) {
@@ -122,7 +158,7 @@ public class Enemy {
       }
     }
   }
-  
+
   void reset() {
     x = random(0, xMax) + xRef;
     y = random(0, yMax) + yRef;
