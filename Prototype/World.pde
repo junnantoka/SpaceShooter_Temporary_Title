@@ -16,7 +16,6 @@ class World {
 
   void display() {
     displayBorder();
-    
   }
 
   void updateBorder() {
