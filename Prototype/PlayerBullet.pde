@@ -9,28 +9,28 @@ class PlayerBullet {
 
   void construct() {
     //sets starting values
-    bPLocationX= character.xLocation;
-    bPLocationY= character.yLocation;
-    bPSize= 150;
-    snelheid= 30;
+    bPLocationX = character.xLocation;
+    bPLocationY = character.yLocation;
+    bPSize = 150;
+    snelheid = 30;
   }
 
   void draw() {
     //draws green balls
     if (ja) {
       fill(#2DFA46);
-      bPXRefEnd= bPXRef - xRef;
-      bPYRefEnd= bPYRef - yRef;
+      bPXRefEnd = bPXRef - xRef;
+      bPYRefEnd = bPYRef - yRef;
 
-      bPLocationXEnd=bPLocationX -bPXRefEnd; 
-      bPLocationYEnd=bPLocationY - bPYRefEnd;
+      bPLocationXEnd = bPLocationX - bPXRefEnd; 
+      bPLocationYEnd = bPLocationY - bPYRefEnd;
 
       image(playerBullet, bPLocationXEnd, bPLocationYEnd, bPSize, bPSize);
     }
   }
   void detectie() {
     //checks if a key is pressed and gives direction to the balls movement
-    if (keysPressed[UP]||keysPressed[DOWN]||keysPressed[LEFT]||keysPressed[RIGHT]) {
+    if (keysPressed[UP] || keysPressed[DOWN] || keysPressed[LEFT] || keysPressed[RIGHT]) {
       pBTimer++;
       if (pBTimer==1) {
         ja = true;

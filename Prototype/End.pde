@@ -7,13 +7,10 @@ class End {
   
   void draw() {
     fill(255, 0, 0);
-
-    text("GAME OVER", 100, 100);
+    textSize(100);
+    text("GAME OVER", 100, 150);
     fill(255);
-    rect(width / 2 - 100, height/ 2 - 50, 200, 100);
-    fill(0);
-    textSize(20);
-    text("press p to restart", width / 2 - 80, height/ 2);
+    image(startImg, width / 2, height/ 2, 375,250);
   }
 
   void update() {
