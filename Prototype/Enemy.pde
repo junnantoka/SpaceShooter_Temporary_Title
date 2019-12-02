@@ -41,6 +41,8 @@ public class Enemy {
       image(shooter, x + xRef, y + yRef);
     } else if (type == 2) {
       image(crusher, x + xRef, y + yRef);
+    } else if ( type == 3) {
+      circle(x+xRef, y+yRef, size);
     }
   }
 
@@ -66,9 +68,24 @@ public class Enemy {
   }
 
   void check3() {
+    roam();
     charge();
   }
-  
+  void roam() {
+
+    if (frame == 1) {
+      roamTime = int(random(20, 200));
+      xSpeed = random(-5, 5);
+      ySpeed = random(-5, 5);
+    }
+
+    if (!aggro) {
+      frame++;
+      if (frame>roamTime) {
+        frame = 0;
+      }
+    }
+  }
   void charge() {
 
     if (dist(x + xRef, y + yRef, character.xLocation, character.yLocation) < chargeDist) {
@@ -91,7 +108,7 @@ public class Enemy {
       //print(dist(c.x, c.y, x, y)+ " ");
     }
   }
-  
+
   void check0() {//enemy type 1 (suicide bomber)
     x += direction * xSpd;
     if (down) {
