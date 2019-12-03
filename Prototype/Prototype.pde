@@ -15,7 +15,7 @@ End end = new End();
 int stars = 300;
 int timer, enemyCounter = 0;
 int bossTotal = 1;
-int enemiesRequiredStart = 20;
+int enemiesRequiredStart = 1;
 int enemiesRequired = enemiesRequiredStart;
 boolean bossSpawn = false;
 
@@ -46,7 +46,7 @@ Health health = new Health();
 final int KEY_LIMIT = 1024;
 boolean[] keysPressed = new boolean[KEY_LIMIT];
 
-int bullets = 10;
+int bullets = 1000;
 int beweging = 0;
 PlayerBullet[] bulletP = new PlayerBullet[bullets];
 int pBTimer = 0; 
