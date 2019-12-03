@@ -1,5 +1,7 @@
 Particle[] particle;
 float startX, startY;
+float angleMove, jitterMove, anglePlayer, jitterPlayer;
+boolean moving = false;
 
 int particles = 100;
 class Character {
@@ -22,6 +24,7 @@ class Character {
   int frame;
 
   void construct() {
+
     yLocation = height/2;
     xLocation = width/2;
 
@@ -36,20 +39,35 @@ class Character {
     xRef = width/2;
     startX = xRef;
     startY = yRef;
-
   }
   void displayCh() {
     fill(255);
-    //translate(1,1);
-    //rotate(radians(rotateSpeed));
-
 
     //particles 
     for (int i = 0; i<particle.length; i++) {
       particle[i].display();
     }
+
+
+    angleMove = angleMove + jitterMove;
+    float playerMoveRotation = angleMove;
+    translate(xLocation, yLocation);
+
+    if (moving) {
+      jitterMove =  0.07;
+      rotate(playerMoveRotation);
+    }
+
     imageMode(CENTER);
-    image(playerShip, xLocation, yLocation);
+    
+
+    if (!start.Start) {
+      jitterPlayer =  0.05;
+    anglePlayer = anglePlayer + jitterPlayer;
+    float playerRotation = anglePlayer;
+    rotate(playerRotation);
+      image(playerShip, 0, 0);
+    }
   }
 
 
@@ -63,6 +81,7 @@ class Character {
     xRef -= xSpeed;
 
     if (keysPressed['w']||keysPressed['W']) {
+      moving = true;
       ySpeed-= acc;
       yDir = 1;
       newP = true;
@@ -70,10 +89,12 @@ class Character {
         ySpeed = -maxSpeed;
       }
     } else if ((!keysPressed['w'] || !keysPressed['W'])&& ySpeed < 0 ) {
+      moving = false;
       ySpeed+=slowDown;
     }
 
     if (keysPressed['s'] || keysPressed['S']) {
+      moving = true;
       ySpeed+= acc;
       yDir= 2;      
       newP = true;
@@ -81,10 +102,12 @@ class Character {
         ySpeed = maxSpeed;
       }
     } else if ((!keysPressed['s'] || !keysPressed['S']) && ySpeed > 0) {
+      moving = false;
       ySpeed-= slowDown;
     }
 
     if (keysPressed['a']||keysPressed['A']) {
+      moving = true;
       xSpeed-= acc;
       xDir = 1;      
       newP = true;
@@ -92,10 +115,12 @@ class Character {
         xSpeed = -maxSpeed;
       }
     } else if ((!keysPressed['w'] || !keysPressed['W']) && xSpeed < 0) {
+      moving = false;
       xSpeed+= slowDown;
     }
 
     if (keysPressed['d']||keysPressed['D']) {
+      moving = true;
       xSpeed+= acc;
       xDir= 2;      
       newP = true;
@@ -103,6 +128,7 @@ class Character {
         xSpeed = maxSpeed;
       }
     } else if ((!keysPressed['d']||!keysPressed['D'])&& xSpeed > 0) {
+      moving = false;
       xSpeed-= slowDown;
     }
     if (!keysPressed['w'] && !keysPressed['W'] && !keysPressed['s'] && !keysPressed['S'] && ySpeed > -slowDown && ySpeed < slowDown) {
