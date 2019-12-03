@@ -40,9 +40,11 @@ public class Enemy {
     }if (type == 1) {
       image(shooter, x + xRef, y + yRef);
     }if (type == 2) {
-      image(crusher, x + xRef, y + yRef);
-    }if (type == 3) {
+      fill(255);
+      noStroke();
       circle(x + xRef, y + yRef, size);
+    }if (type == 3) {
+      image(crusher, x + xRef, y + yRef);
     }
   }
 

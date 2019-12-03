@@ -224,20 +224,19 @@ void keyReleased() {
 
 //Kan dit niet in de boss class??3
 void spawnBoss(){
-     if (enemyCounter == enemiesRequired){
-       if (bossTotal < bosses-1 && enemiesRequired> enemiesRequiredStart){
-       bossTotal++;
-       }
-       
-       enemyCounter= 0;
-       bossSpawn = true;
-       enemiesRequired*=2;
-     }
-    if (bossSpawn == true){
-      for(int i = 0; i<bossTotal; i++){
-        boss[i].ded = false;
-      }
-      bossSpawn = false;
+  if (enemyCounter == enemiesRequired){
+    if (bossTotal < bosses-1 && enemiesRequired> enemiesRequiredStart){
+      bossTotal++;
+    } 
+    enemyCounter = 0;
+    bossSpawn = true;
+    enemiesRequired *= 2;
+  }
+  if (bossSpawn == true){
+    for(int i = 0; i<bossTotal; i++){
+      boss[i].ded = false;
     }
+    bossSpawn = false;
+  }
 }
  
