@@ -3,8 +3,8 @@ class World {
   float worldWidth, worldHeight, widthMult, heightMult, bounceMult;
 
   void construct() {
-    widthMult = 3;
-    heightMult = 3;
+    widthMult = 2;
+    heightMult = 2;
     worldHeight = height * heightMult;
     worldWidth = width * widthMult;
     bounceMult = 1;
