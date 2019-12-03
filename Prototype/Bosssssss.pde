@@ -41,6 +41,7 @@ class Boss {
   }
 
   void move() {
+    //werkt niet goed
     if (!ded) {
       if (type ==2) {
      /*   ySpd = (character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
@@ -58,7 +59,7 @@ class Boss {
 
 
 
-      //detects if boss gets out of the border
+      //detects if boss gets out of the border maybe
       if (type ==1) {
         if (yRef + radius + y >= world.worldHeight/2 ) {
           //xSpd=-30;
@@ -146,7 +147,7 @@ class Boss {
 
 
   void collision() {
-    //check if the enemy makes contact with the player
+    //check if the enemy makes contact with the player bullet
     if (!ded ) {
       for (int i = 0; i < bulletP.length; i++) {
         if ( bulletP[i].ja) {
@@ -169,6 +170,7 @@ class Boss {
   }
 
   void reset() {
+    //reset alle stats die terug gezet moeten worden
     x = random(xMin, xMax) + xRef;
     y = random(yMin, yMax) + yRef;
     health = bossTotal*round(random(1, 30));
