@@ -2,11 +2,9 @@
 
 class EnemyBullet {
   float bulletX, bulletY, bulletXSpeed, bulletYSpeed, bulletSize;
-  int shotIn = 0;
-  int distance = 100;
-  int timer;
+  int spawningDistance = 100;
   boolean shot = false;
-
+  
   void bulletSetup() {
     for (int i = 0; i<enemy.length; i++) {
       bulletX = enemy[i].x;
@@ -15,34 +13,28 @@ class EnemyBullet {
   }
 
   void draw() {
-    if (shot) {
-      image(enemyBullet, (xRef + bulletX), (yRef+ bulletY), bulletSize, bulletSize);
-    }
-  }
-
-
-  void bulletSpawn(int i) {
-    collision();
     bulletX=bulletX + bulletXSpeed;
     bulletY=bulletY + bulletYSpeed;
-    if (dist(character.xLocation, character.yLocation, enemy[i].x + xRef, enemy[i].y + yRef) > distance) {
-        shot = true;
-        shotIn++;
-        }
-      
-    
-    if (shotIn == 1) {
-      bulletX = enemy[i].x;
-      bulletY = enemy[i].y;
-      bulletSize = 100;
-      bulletYSpeed = (character.yLocation-bulletY)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*6;
-      bulletXSpeed = (character.xLocation-bulletX)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*6;
+    collision();
+  }
+  void idk(int i) {
+    if (dist(character.xLocation, character.yLocation, enemy[i].x + xRef, enemy[i].y + yRef) > spawningDistance) {
+      bulletSpawn(i);
     }
   }
+
+  void bulletSpawn(int i) {
+    image(enemyBullet, (xRef + bulletX), (yRef+ bulletY), bulletSize, bulletSize);
+    bulletX = enemy[i].x;
+    bulletY = enemy[i].y;
+    bulletSize = 100;
+    bulletYSpeed = (character.yLocation-bulletY)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*6;
+    bulletXSpeed = (character.xLocation-bulletX)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*6;
+  }
+
   void bulletDespawn() {
     if ((bulletX < -world.worldWidth/2 || bulletX > world.worldWidth) || (bulletY < -world.worldHeight/2 || bulletY > world.worldHeight)) {
       shot = false;
-      shotIn = 0;
     }
   }
   void collision() {
@@ -55,7 +47,6 @@ class EnemyBullet {
         healthBarWidth = 0;
       }
       shot = false;
-      shotIn = 0;
     }
   }
   void reset() {
