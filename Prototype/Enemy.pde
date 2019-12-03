@@ -11,20 +11,20 @@ public class Enemy {
 
   Enemy() {
     //basic values
-    xMax = world.worldWidth;
-    yMax = world.worldHeight;
+    xMax = width/2;
+    yMax = height/2;
     size = 50;
     radius = size/2;
-    x = random(0, xMax) + xRef;
-    y = random(0, yMax) + yRef;
+    x = random(0, xMax);
+    y = random(0, yMax);
     xSpd = random(-10, 10);
     ySpd = random(-10, 10);
     direction = random(-2, 2);
     down = false;
     ded = false;
     type = (int)random(0, 4);
-    speed = random(3000.0f, 1500.0f);
-    circle = random(-20000, 20000);
+    speed = random(1000.0f, 100.0f);
+    circle = random(-20, 20);
     roamTime = 100;//throwaway roamTime value
     chargeDist = 400;//aggro distance
     chargeWait = 30;//amount of time the enemy waits before charging
@@ -37,12 +37,12 @@ public class Enemy {
     noStroke();
     if (type == 0) {
       image(snailgun, x + xRef, y + yRef);
-    } else if (type == 1) {
+    }if (type == 1) {
       image(shooter, x + xRef, y + yRef);
-    } else if (type == 2) {
+    }if (type == 2) {
       image(crusher, x + xRef, y + yRef);
-    } else if ( type == 3) {
-      circle(x+xRef, y+yRef, size);
+    }if (type == 3) {
+      circle(x + xRef, y + yRef, size);
     }
   }
 
@@ -71,6 +71,7 @@ public class Enemy {
     roam();
     charge();
   }
+  
   void roam() {
 
     if (frame == 1) {
@@ -94,18 +95,15 @@ public class Enemy {
     if (aggro) {
       chargeFrame++;
       //if(){}
-      text(chargeFrame, width/2, 200);
+      //text(chargeFrame, width/2, 200);
     }
     if (chargeFrame == 1) {//preparing the charge
       xSpeed = 0;
       ySpeed = 0;
     }
     if (chargeFrame == chargeWait + 1) { //start of the charge
-
       xSpeed = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * chargeSpeed;
       ySpeed = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * chargeSpeed;
-
-      //print(dist(c.x, c.y, x, y)+ " ");
     }
   }
 
