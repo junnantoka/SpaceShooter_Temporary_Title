@@ -14,6 +14,7 @@ class End {
   }
 
   void update() {
+    //detect of het spel verder mag van de speler
     if (keysPressed['p']||keysPressed['P']) {
       end = false;
       reset();

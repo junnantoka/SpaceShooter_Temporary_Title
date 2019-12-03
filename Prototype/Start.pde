@@ -18,6 +18,7 @@ class Start {
   }
   
   void update(){
+    //detect of het spel verder mag van de speler
     if(keysPressed['P']||keysPressed['p']){
       Start = false;
       timer++;
