@@ -8,7 +8,7 @@ class End {
   void draw() {
     fill(255, 0, 0);
     textSize(100);
-    text("GAME OVER", 100, 150);
+    text("GAME OVER", width/2, height/3);
     fill(255);
     image(startImg, width / 2, height/ 2, 450,300);
   }
@@ -38,7 +38,7 @@ class End {
     yRef = 0;
     xRef = 0;
     
-    for (int i = 0; i <bulletP.length; i++) {
+    for (int i = 0; i < bulletP.length; i++) {
       bulletP[i].reset();
     }
     character.reset();

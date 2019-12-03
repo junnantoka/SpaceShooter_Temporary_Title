@@ -109,7 +109,7 @@ class PlayerBullet {
     afstand = reset;
     ja = false;
     bPSize= 150;
-    snelheid= 15;
+    snelheid= 30;
     bPXRefEnd = 0; 
     bPXRef = 0;
     bPYRefEnd = 0; 
