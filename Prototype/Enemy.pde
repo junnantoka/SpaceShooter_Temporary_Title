@@ -11,10 +11,10 @@ public class Enemy {
 
   Enemy() {
     //basic values
-    xMin = -world.worldWidth / 2 + startX;
-    xMax = world.worldWidth / 2 + startX;
-    yMin = -world.worldHeight / 2 + startY;
-    yMax = world.worldHeight / 2 + startY;
+    xMin = -world.worldWidth / 2 + radius;
+    xMax = world.worldWidth / 2 - radius;
+    yMin = -world.worldHeight / 2 + radius;
+    yMax = world.worldHeight / 2 - radius;
     size = 50;
     radius = size/2;
     x = random(xMin, xMax);
