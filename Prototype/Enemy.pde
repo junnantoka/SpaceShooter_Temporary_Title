@@ -1,8 +1,8 @@
 //©Jun Phung 500829487
 public class Enemy {
   //enemy settings
-  float x, y, radius, xSpd, ySpd, direction, t, speed, circle, chance;
-  int type;
+  float x, y, radius, xSpd, ySpd, direction, t, speed, circle;
+  int type, amount, cMin, cMax;
   boolean ded, down;
   final float xMin, xMax, yMin, yMax, size;
   float xSpeed, ySpeed, chargeDist;
@@ -11,28 +11,29 @@ public class Enemy {
 
   Enemy() {
     //basic values
-    xMin = -world.worldWidth / 2 + radius;
-    xMax = world.worldWidth / 2 - radius;
-    yMin = -world.worldHeight / 2 + radius;
-    yMax = world.worldHeight / 2 - radius;
+    xMin = (-world.worldWidth / 2) + radius;
+    xMax = (world.worldWidth / 2) - radius;
+    yMin = (-world.worldHeight / 2) + radius;
+    yMax = (world.worldHeight / 2) - radius;
+    cMin = -100;
+    cMax = 100;
     size = 50;
     radius = size/2;
     x = random(xMin, xMax);
     y = random(yMin, yMax);
-    xSpd = random(-25, 25);
-    ySpd = random(-25, 25);
+    xSpd = random(1, 25);
+    ySpd = random(1, 25);
     direction = random(-2, 2);
     down = false;
     ded = false;
     type = (int)random(0, 4);
     speed = random(500.0f, 100.0f);
-    circle = random(-200, 200);
+    circle = random(cMin, cMax);
     roamTime = 100;//throwaway roamTime value
     chargeDist = 400;//aggro distance
     chargeWait = 30;//amount of time the enemy waits before charging
-    chargeTime = 120;//duration of the charge
+    chargeTime = 60;//duration of the charge
     chargeSpeed = 20;//velocity of the charge
-    chance = random(0, 1);
   }
 
   void draw() {
@@ -42,9 +43,8 @@ public class Enemy {
       image(snailgun, x + xRef, y + yRef);
     }if (type == 1) {
       image(shooter, x + xRef, y + yRef);
-    }if (type == 2 && chance > 0.05 && chance < 0.06) {
-      fill(255);
-      circle(x + xRef, y + yRef, size);
+    }if (type == 2){
+      image(shooter, x + xRef, y + yRef);
     }if (type == 3) {
       image(crusher, x + xRef, y + yRef);
     }
@@ -63,7 +63,7 @@ public class Enemy {
     if (type == 1) {
       check1();
     }
-    if (type == 2 && chance > 0.05 && chance < 0.06) {
+    if (type == 2) {
       check2();
     }
     if (type == 3) {
@@ -71,6 +71,56 @@ public class Enemy {
     }
   }
 
+  void check0() {//enemy type 1 (suicide bomber)
+    //movement
+    x += direction * xSpd;
+    if (down) {
+      direction = 1;
+      y += direction * ySpd;
+    }
+    if (xSpd > 0) {//goes right
+      xSpd -= 0.05;
+    }
+    if (xSpd < 0) {//goes left
+      xSpd += 0.05;
+    }
+    if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.5 && xSpd >= -0.5)) {//if movement stops or hits the wall(s), go down
+      xSpd = -xSpd;
+      down = true;
+    }
+    if (y - radius <= yMin) {//if enemy goes out the top side
+      ded = true;
+    }
+    if (y + radius >= yMax) {//if enemy goes out the bottom side
+      ded = true;
+    }
+  }
+
+  void check1() {//enemy type 2 (bouncing ball)
+    //movement
+    x += direction * xSpd;
+    y += direction * ySpd;
+
+    //collision with boundary
+    if (y + radius >= yMax || y - radius <= yMin) {
+      ySpd = -ySpd;
+    }
+    if (x + radius >= xMax || x - radius <= xMin) {
+      xSpd = -xSpd;
+    }
+  }
+
+  void check2() {//enemy type 3 (Darude - Sandstorm)
+    t = millis()/speed;
+    if(circle < cMin / 5 || circle > cMax / 5){
+      circle = random(cMin, cMax);
+    }
+    
+    //movement
+    x = (int) circle * xSpd * cos(t);
+    y = (int) circle * ySpd * sin(t);
+  }
+  
   void check3() {
     roam();
     charge();
@@ -111,53 +161,10 @@ public class Enemy {
       xSpeed = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * chargeSpeed;
       ySpeed = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * chargeSpeed;
     }
-  }
-
-  void check0() {//enemy type 1 (suicide bomber)
-    x += direction * xSpd;
-    if (down) {
-      direction = 1;
-      y += direction * ySpd;
+    if(chargeFrame > chargeWait+chargeTime){
+      aggro = false;
+      chargeFrame = 0;
     }
-    if (xSpd > 0) {//goes right
-      xSpd -= 0.05;
-    }
-    if (xSpd < 0) {//goes left
-      xSpd += 0.05;
-    }
-    if ((x - radius > xMax || x + radius < xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
-      xSpd = -xSpd;
-      down = true;
-    } else {
-      xSpd = -xSpd;
-      down = false;
-    }
-    if (y - radius <= yMin) {
-      ded = true;
-    }
-    if (y + radius >= yMax) {//if enemy goes out the bottom side
-      ded = true; //die
-    }
-  }
-
-  void check1() {//enemy type 2 (bouncing ball)
-    //movement
-    x += direction * xSpd;
-    y += direction * ySpd;
-
-    //collision with boundary
-    if (y + radius >= yMax || y - radius <= yMin) {
-      ySpd = -ySpd;
-    }
-    if (x + radius >= xMax || x - radius <= xMin) {
-      xSpd = -xSpd;
-    }
-  }
-
-  void check2() {//enemy type 3 (Darude - Sandstorm)
-    t = millis()/speed;
-    x = (int) circle * xSpd * cos(t);
-    y = (int) circle * ySpd * sin(t);
   }
 
   void collision() {
@@ -177,6 +184,25 @@ public class Enemy {
           }
         }
       }
+    }
+  }
+  
+  void respawn() {
+    //checks if the stars spawn outside the playarea and if they do ranspawn them back in
+    if (x + xRef < -xMin) {
+      x = random(-xRef + width, -xRef + 2 * width);
+    }
+
+    if (x + xRef > xMax) {
+      x = random(-xRef - width, -xRef);
+    }
+
+    if (y + yRef < -height) {
+      y = random(-yRef + height, -yRef + 2 * height);
+    }
+
+    if (y + yRef > xMax) {
+      y = random(-yRef - height, -yRef);
     }
   }
 
