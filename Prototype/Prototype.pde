@@ -46,7 +46,7 @@ Health health = new Health();
 final int KEY_LIMIT = 1024;
 boolean[] keysPressed = new boolean[KEY_LIMIT];
 
-int bullets = 1000;
+int bullets = 10;
 int beweging = 0;
 PlayerBullet[] bulletP = new PlayerBullet[bullets];
 int pBTimer = 0; 
