@@ -165,6 +165,14 @@ public class Enemy {
       aggro = false;
       chargeFrame = 0;
     }
+    
+    if (y + radius > world.worldHeight/2 || y - radius< -world.worldHeight/2) {
+      ySpeed = -ySpeed;
+    }
+    
+    if (x + radius > world.worldWidth/2 || x - radius < -world.worldWidth/2) {
+      xSpeed = -xSpeed;
+    }
   }
 
   void collision() {
