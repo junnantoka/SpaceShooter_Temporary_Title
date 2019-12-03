@@ -84,7 +84,7 @@ public class Enemy {
     if (xSpd < 0) {//goes left
       xSpd += 0.05;
     }
-    if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.5 && xSpd >= -0.5)) {//if movement stops or hits the wall(s), go down
+    if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
       xSpd = -xSpd;
       down = true;
     }
