@@ -14,6 +14,7 @@ Start start = new Start();
 End end = new End();
 int stars = 300;
 int timer, enemyCounter = 0;
+int timerBullet;
 int bossTotal = 1;
 int enemiesRequiredStart = 20;
 int enemiesRequired = enemiesRequiredStart;
@@ -53,13 +54,13 @@ int pBTimer = 0;
 
 void setup() {
   fullScreen(P2D);
-  
+
   world.construct();
-  
+
   //Load all assets
   loadAssets();
   imageMode(CENTER);
-  
+
   health.setup();
   minimap.setup();
   pauze.setup();
@@ -73,11 +74,11 @@ void setup() {
     star[i].construct();
   }
 
-   boss= new Boss[bosses];
+  boss= new Boss[bosses];
   for (int i = 0; i < boss.length; i++) {
     boss[i] = new Boss();
   }
-  
+
   //initializes playerBullets array and sets starting values
   for (int i = 0; i < bullets; i++) {
     bulletP[i] = new PlayerBullet();
@@ -90,12 +91,12 @@ void setup() {
     enemy[i] = new Enemy();
   }
   
-  eBullet = new EnemyBullet[enemies];
+  eBullet = new EnemyBullet[3*enemies];
   for (int i = 0; i < eBullet.length; i++) {
     eBullet[i] = new EnemyBullet();
-    eBullet[i].bulletSetup();
   }
-  
+ 
+
   highscore.scoreSetup();
 
   healthDrop = new HealthDrop[healthBalls];
@@ -108,33 +109,28 @@ void setup() {
 void updateGame() {
   background(0);
   health.gameOver();
-  
+
   world.update();
-  
+
   wave.update();
-  
-  if (start.start && timer == 0){
-  start.update();
-  }
-  else if (end.end && timer == 0){
-  end.update();
-  }
-  else if (!end.end && !start.start && timer == 0){
-  pauze.pauzeGame();
-  }
-  else if (timer == 20){
+
+  if (start.start && timer == 0) {
+    start.update();
+  } else if (end.end && timer == 0) {
+    end.update();
+  } else if (!end.end && !start.start && timer == 0) {
+    pauze.pauzeGame();
+  } else if (timer == 20) {
     timer= 0;
-  }
-  else if (timer > 0){
+  } else if (timer > 0) {
     timer++;
   }
   //pauze
-  
+
   if (!pauze.pauze&& !start.start && !end.end) {
-    for(int i = 0; i < boss.length; i++){
+    for (int i = 0; i < boss.length; i++) {
       boss[i].collision();
       boss[i].move();
-
     }
     health.collide();
     character.moveCh();
@@ -146,14 +142,28 @@ void updateGame() {
     bulletP[beweging].detectie();
 
     powerUp.use(); 
-    
+
     //runs enemy array
-    for (int i = 0; i < enemy.length; i++) {
-      enemy[i].update();
-      enemy[i].collision();
-      eBullet[i].bulletDespawn();
+     timerBullet++;
+  for (int i = 0; i < enemy.length; i++) {
+    enemy[i].update();
+    enemy[i].collision();
+    
+    if (timerBullet==120) {
       eBullet[i].bulletSpawn(i);
     }
+    if (timerBullet == 240) {
+      eBullet[i+enemies].bulletSpawn(i);
+    }
+    if (timerBullet == 360) {
+      eBullet[i+enemies*2].bulletSpawn(i);
+      timerBullet = 0;
+    }
+  }
+  for (int i =0; i<eBullet.length; i++) {
+    eBullet[i].move(i);
+    eBullet[i].bulletDespawn(i);
+  }
 
     for (int i = 0; i < healthDrop.length; i++) {
       healthDrop[i].updateHealth(i);
@@ -167,19 +177,19 @@ void drawGame() {
   //draws stars
   for (int i = 0; i < star.length; i++) {
     star[i].disp();
-   }
-  
-   world.display();
-  
+  }
+
+  world.display();
+
   for (int i = 0; i < enemy.length; i++) {
     eBullet[i].draw();
   }
-     
-  for(int i = 0; i < boss.length; i++){
+
+  for (int i = 0; i < boss.length; i++) {
     boss[i].draw();
   }
-     
-  if(!start.start){
+
+  if (!start.start) {
     for (int i = 0; i < bullets; i++) {
       bulletP[i].draw();
     }
@@ -200,10 +210,10 @@ void drawGame() {
     pauze.draw();
   }
 
-  if(start.start){
+  if (start.start) {
     start.draw();
-    }
-  if (end.end){
+  }
+  if (end.end) {
     end.draw();
   }
   highscore.scoreDisplay();
@@ -227,20 +237,19 @@ void keyReleased() {
 
 
 //Kan dit niet in de boss class??3
-void spawnBoss(){
-  if (enemyCounter == enemiesRequired){
-    if (bossTotal < bosses-1 && enemiesRequired> enemiesRequiredStart){
+void spawnBoss() {
+  if (enemyCounter == enemiesRequired) {
+    if (bossTotal < bosses-1 && enemiesRequired> enemiesRequiredStart) {
       bossTotal++;
     } 
     enemyCounter = 0;
     bossSpawn = true;
     enemiesRequired *= 2;
   }
-  if (bossSpawn == true){
-    for(int i = 0; i<bossTotal; i++){
+  if (bossSpawn == true) {
+    for (int i = 0; i<bossTotal; i++) {
       boss[i].ded = false;
     }
     bossSpawn = false;
   }
 }
- 
