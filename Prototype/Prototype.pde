@@ -64,7 +64,7 @@ void setup() {
   minimap.setup();
   pauze.setup();
 
-  character.construct();
+  
 
   //construct  stars
   star = new Star[stars]; 
@@ -102,11 +102,13 @@ void setup() {
   for (int i = 0; i < healthDrop.length; i++) {
     healthDrop[i] = new HealthDrop();
     healthDrop[i].healthSetup();
+    character.construct();
   }
 }
 
 void updateGame() {
   background(0);
+  
   health.gameOver();
   
   world.update();
@@ -136,8 +138,9 @@ void updateGame() {
       boss[i].move();
 
     }
+    
     health.collide();
-    character.moveCh();
+    
     character.chCollision();
 
     for (int i = 0; i < bullets; i++) {
@@ -159,6 +162,7 @@ void updateGame() {
       healthDrop[i].updateHealth(i);
     }
     spawnBoss();
+    character.moveCh();
   }
 }
 
@@ -184,7 +188,7 @@ void drawGame() {
       bulletP[i].draw();
     }
     health.draw();
-    character.displayCh();
+    
     for (int i = 0; i < enemy.length; i++) {
       if (!enemy[i].ded) {
         enemy[i].draw();
@@ -207,6 +211,8 @@ void drawGame() {
     end.draw();
   }
   highscore.scoreDisplay();
+  character.displayCh();
+  
 }
 
 void draw() {

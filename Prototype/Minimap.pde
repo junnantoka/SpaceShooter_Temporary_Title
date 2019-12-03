@@ -1,23 +1,27 @@
-int minimapXLoc = 75;
-int minimapYLoc = 720;
-int minimapSize = 7; //Standard is 7
+int minimapXLoc = 75; //The X value of the location of the minimap
+int minimapYLoc = 720; //The Y value of the location of the minimap
+int minimapSize = 7; //Standard is 7. The size of the minimap is the same size as the playable area, divided by seven.
 int minimapXLocMax = 623;
-int minimapYLocMax = 1028;
+int minimapYLocMax = 1028; //1028
 
-int minimapX = 350;
-int minimapY = 875;
+int minimapX = 350; //@@@@@@@@@@@@@@@Kijk even wat dit is
+int minimapY = 875; //Height of the minimap
 int minimapPlayerSize = 20;
-int minimapBulletSize = 10;
+int minimapBulletSize = 5;
 int minimapEnemySize = 15;
 int minimapHealthdropSize = 10;
+int minimapBossSize = 25;
+
+//These final ints give the minimap its colors
 
 final int minimapBackgroundColor = color(50);
 final int minimapStrokeColor = color(255);
 final int minimapPlayerColor = color(255, 200, 30);
 final int minimapPlayerBulletColor = color(0, 0, 200);
 final int minimapEnemyBulletColor = color(200, 0, 0);
-final int minimapEnemyColor = color(160,10,230);
+final int minimapEnemyColor = color(160, 10, 230);
 final int minimapHealthdropColor = color(255);
+final int minimapBossColor = color(0,255,0);
 
 
 class Minimap {
@@ -49,12 +53,19 @@ class Minimap {
       }
     }
 
+    for (int i = 0; i < boss.length; i++) {
+      fill(minimapBossColor);
+      if (!boss[i].ded){
+      circle((boss[i].x)/minimapSize + minimapX, (boss[i].y)/minimapSize + minimapY, minimapBossSize);
+    }
+  }
+
     //Enemy bullet on the minimap
     fill(minimapEnemyBulletColor);
     for (int i =0; i<eBullet.length; i++) {
       circle((eBullet[i].bulletX)/minimapSize + minimapX, (eBullet[i].bulletY)/minimapSize + minimapY, minimapBulletSize);
 
-      if ((eBullet[i].bulletX)/minimapSize + minimapX >= 623 || (eBullet[i].bulletY)/minimapSize + minimapY >= 1028) {
+      if ((eBullet[i].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
         eBullet[i].shot = false;
         eBullet[i].shotIn = 0;
       }
@@ -62,22 +73,22 @@ class Minimap {
         eBullet[i].shot = false;
       }
     }
-    
+
     //Enemy on the minimap
-  fill(minimapEnemyColor);
-  for (int i=0; i<currentEnemyAmount; i++) {
-    circle((enemy[i].x)/minimapSize + minimapX, (enemy[i].y)/minimapSize + minimapY, minimapEnemySize);
-    
-    /*
-    if((enemy[i].x)/minimapSize + minimapX <= minimapXLoc || (enemy[i].y)/minimapSize + minimapY <= minimapYLoc) {
-     enemy[i].ded = true; 
+    fill(minimapEnemyColor);
+    for (int i=0; i<enemy.length; i++) {
+      circle((enemy[i].x)/minimapSize + minimapX, (enemy[i].y)/minimapSize + minimapY, minimapEnemySize);
+
+
+      if ((enemy[i].x)/minimapSize + minimapX <= minimapXLoc || (enemy[i].y)/minimapSize + minimapY <= minimapYLoc) {
+        enemy[i].ded = true;
+      }
+      if ((enemy[i].x)/minimapSize + minimapX >= minimapXLocMax || (enemy[i].y)/minimapSize + minimapY >= minimapYLocMax) {
+        enemy[i].ded = true;
+      } 
+      //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+      //Dit despawnt enemies als ze buiten de playable area gaan, maar gecombineerd met hoe spawning nu werkt wordt het buggy.
     }
-    if((enemy[i].x)/minimapSize + minimapX >= minimapXLocMax || (enemy[i].y)/minimapSize + minimapY >= minimapYLocMax) {
-     enemy[i].ded = true; 
-    }*/ 
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
-    //Dit despawnt enemies als ze buiten de playable area gaan, maar gecombineerd met hoe spawning nu werkt wordt het buggy.
-  }
 
     //Healthdrop on the minimap
     fill(minimapHealthdropColor);
