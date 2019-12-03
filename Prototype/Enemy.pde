@@ -1,24 +1,26 @@
 //©Jun Phung 500829487
 public class Enemy {
   //enemy settings
-  float x, y, radius, xSpd, ySpd, direction, t, speed, circle;
+  float x, y, radius, xSpd, ySpd, direction, t, speed, circle, chance;
   int type;
   boolean ded, down;
-  final float xMax, yMax, size;
+  final float xMin, xMax, yMin, yMax, size;
   float xSpeed, ySpeed, chargeDist;
   int spawnLocation, frame, roamTime, chargeWait, chargeFrame, chargeTime, chargeSpeed;
   boolean aggro = false;
 
   Enemy() {
     //basic values
-    xMax = width/2;
-    yMax = height/2;
+    xMin = -world.worldWidth / 2 + startX;
+    xMax = world.worldWidth / 2 + startX;
+    yMin = -world.worldHeight / 2 + startY;
+    yMax = world.worldHeight / 2 + startY;
     size = 50;
     radius = size/2;
-    x = random(0, xMax);
-    y = random(0, yMax);
-    xSpd = random(-10, 10);
-    ySpd = random(-10, 10);
+    x = random(xMin, xMax);
+    y = random(yMin, yMax);
+    xSpd = random(-25, 25);
+    ySpd = random(-25, 25);
     direction = random(-2, 2);
     down = false;
     ded = false;
@@ -30,6 +32,7 @@ public class Enemy {
     chargeWait = 30;//amount of time the enemy waits before charging
     chargeTime = 120;//duration of the charge
     chargeSpeed = 20;//velocity of the charge
+    chance = random(0, 1);
   }
 
   void draw() {
@@ -39,7 +42,7 @@ public class Enemy {
       image(snailgun, x + xRef, y + yRef);
     }if (type == 1) {
       image(shooter, x + xRef, y + yRef);
-    }if (type == 2) {
+    }if (type == 2 && chance == 1/100) {
       fill(255);
       noStroke();
       circle(x + xRef, y + yRef, size);
@@ -61,7 +64,7 @@ public class Enemy {
     if (type == 1) {
       check1();
     }
-    if (type == 2) {
+    if (type == 2 && chance == 1/100) {
       check2();
     }
     if (type == 3) {
@@ -121,14 +124,14 @@ public class Enemy {
     if (xSpd < 0) {//goes left
       xSpd += 0.05;
     }
-    if ((x - radius > xMax || x + radius < 0) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
+    if ((x - radius > xMax || x + radius < xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
       xSpd = -xSpd;
       down = true;
     } else {
       xSpd = -xSpd;
       down = false;
     }
-    if (y - radius <= 0) {
+    if (y - radius <= yMin) {
       ded = true;
     }
     if (y - radius >= yMax) {//if enemy goes out the bottom side
@@ -142,10 +145,10 @@ public class Enemy {
     y += direction * ySpd;
 
     //collision with boundary
-    if (y + radius >= yMax || y - radius <= 0) {
+    if (y + radius >= yMax || y - radius <= yMin) {
       ySpd = -ySpd;
     }
-    if (x + radius >= xMax || x - radius <= 0) {
+    if (x + radius >= xMax || x - radius <= xMin) {
       xSpd = -xSpd;
     }
   }
@@ -179,11 +182,11 @@ public class Enemy {
   void reset() {
     x = random(0, xMax) + xRef;
     y = random(0, yMax) + yRef;
-    xSpd = random(-10, 10);
-    ySpd = random(-10, 10);
+    xSpd = random(-25, 25);
+    ySpd = random(-25, 25);
     direction = random(-2, 2);
     down = false;
     ded = false;
-    speed = random(3000.0f, 1500.0f);
+    speed = random(500.0f, 100.0f);
   }
 }
