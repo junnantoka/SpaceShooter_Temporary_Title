@@ -37,6 +37,7 @@ class Pauze {
       }else if ((keysPressed['p']||keysPressed['P']) && pauze == false) {
         pauze= true;
         timerPauze++;
+        timer++;
       }
     }
     if(!keyPressed){
