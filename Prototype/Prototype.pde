@@ -11,10 +11,10 @@ Star[] star;
 Start start = new Start();
 End end = new End();
 int stars = 300;
-int timer, enemyCounter  = 0;
+int timer, enemyCounter = 0;
 int bossTotal = 1;
 int enemiesRequiredStart = 100;
-int enemiesRequired =enemiesRequiredStart;
+int enemiesRequired = enemiesRequiredStart;
 boolean bossSpawn = false;
 
 //WorldBorder
@@ -66,30 +66,30 @@ void setup() {
 
   //construct  stars
   star = new Star[stars]; 
-  for (int i = 0; i<star.length; i++) {
+  for (int i = 0; i < star.length; i++) {
     star[i] = new Star();
     star[i].construct();
   }
 
    boss= new Boss[bosses];
-  for (int i = 0; i<boss.length; i++) {
-    boss[i] =new Boss();
+  for (int i = 0; i < boss.length; i++) {
+    boss[i] = new Boss();
   }
   
   //initializes playerBullets array and sets starting values
-  for (int i = 0; i <bullets; i++) {
+  for (int i = 0; i < bullets; i++) {
     bulletP[i] = new PlayerBullet();
     bulletP[i].construct();
   }
 
   //initializes enemy array
   enemy = new Enemy[enemies];
-  for (int i=0; i<enemy.length; i++) {
+  for (int i = 0; i < enemy.length; i++) {
     enemy[i] = new Enemy();
   }
   
   eBullet = new EnemyBullet[enemies];
-  for (int i =0; i<eBullet.length; i++) {
+  for (int i = 0; i < eBullet.length; i++) {
     eBullet[i] = new EnemyBullet();
     eBullet[i].bulletSetup();
   }
@@ -97,7 +97,7 @@ void setup() {
   highscore.scoreSetup();
 
   healthDrop = new HealthDrop[healthBalls];
-  for (int i=0; i<healthDrop.length; i++) {
+  for (int i = 0; i < healthDrop.length; i++) {
     healthDrop[i] = new HealthDrop();
     healthDrop[i].healthSetup();
   }
@@ -127,7 +127,7 @@ void updateGame() {
   //pauze
   
   if (!pauze.pauze&& !start.Start && !end.end) {
-    for(int i = 0; i <boss.length; i++){
+    for(int i = 0; i < boss.length; i++){
       boss[i].collision();
       boss[i].move();
 
@@ -136,7 +136,7 @@ void updateGame() {
     character.moveCh();
     character.chCollision();
 
-    for (int i = 0; i <bullets; i++) {
+    for (int i = 0; i < bullets; i++) {
       bulletP[i].move();
     }
     bulletP[beweging].detectie();
@@ -144,14 +144,14 @@ void updateGame() {
     powerUp.use(); 
     
     //runs enemy array
-    for (int i = 0; i<enemy.length; i++) {
+    for (int i = 0; i < enemy.length; i++) {
       enemy[i].update();
       enemy[i].collision();
       eBullet[i].bulletDespawn();
       eBullet[i].bulletSpawn(i);
     }
 
-    for (int i=0; i<healthDrop.length; i++) {
+    for (int i = 0; i < healthDrop.length; i++) {
       healthDrop[i].updateHealth(i);
     }
     spawnBoss();
@@ -161,36 +161,35 @@ void updateGame() {
 
 void drawGame() {
   //draws stars
-  for (int i = 0; i<star.length; i++) {
+  for (int i = 0; i < star.length; i++) {
     star[i].disp();
    }
   
    world.display();
   
-  for (int i = 0; i <enemy.length; i++) {
+  for (int i = 0; i < enemy.length; i++) {
     eBullet[i].draw();
   }
      
-  for(int i = 0; i<boss.length; i++){
+  for(int i = 0; i < boss.length; i++){
     boss[i].draw();
   }
      
-     
   if(!start.Start){
-    for (int i = 0; i <bullets; i++) {
+    for (int i = 0; i < bullets; i++) {
       bulletP[i].draw();
     }
     health.draw();
     character.displayCh();
-    for (int i = 0; i<enemy.length; i++) {
+    for (int i = 0; i < enemy.length; i++) {
       if (!enemy[i].ded) {
         enemy[i].draw();
       } else {
-        enemy[i] = new Enemy();
+        enemy[i].reset();
       }
     }
 
-    for (int i=0; i<healthDrop.length; i++) {
+    for (int i = 0; i < healthDrop.length; i++) {
       healthDrop[i].displayHealth();
     }
     minimap.draw();
@@ -203,8 +202,7 @@ void drawGame() {
   if (end.end){
     end.draw();
   }
-   highscore.scoreDisplay();
-
+  highscore.scoreDisplay();
 }
 
 void draw() {
@@ -237,7 +235,7 @@ void spawnBoss(){
      }
     if (bossSpawn == true){
       for(int i = 0; i<bossTotal; i++){
-        boss[i].ded= false;
+        boss[i].ded = false;
       }
       bossSpawn = false;
     }
