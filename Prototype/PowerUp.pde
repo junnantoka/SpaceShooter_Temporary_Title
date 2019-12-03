@@ -17,7 +17,7 @@ class PowerUp {
       if (powerUpTimer == 1) {
         startingHealth+= healthExtra;
         healthLost = healthBarWidth/startingHealth;
-        println(startingHealth);
+        //println(startingHealth);
       }
     }
     

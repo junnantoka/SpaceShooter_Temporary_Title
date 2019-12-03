@@ -51,8 +51,8 @@ class Boss {
       xSpd= (speed /direction)*((character.xLocation-x+xRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);*/
       xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
       ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
-      println(xSpd);
-      println(ySpd);
+     // println(xSpd);
+      //println(ySpd);
         x+=xSpd;
         y+=ySpd;
       }
