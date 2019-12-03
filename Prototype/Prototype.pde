@@ -189,7 +189,7 @@ void drawGame() {
       if (!enemy[i].ded) {
         enemy[i].draw();
       } else {
-        enemy[i].reset();
+        enemy[i] = new Enemy();
       }
     }
 

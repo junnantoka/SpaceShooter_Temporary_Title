@@ -26,16 +26,11 @@ class EnemyBullet {
     bulletX=bulletX + bulletXSpeed;
     bulletY=bulletY + bulletYSpeed;
     if (dist(character.xLocation, character.yLocation, enemy[i].x + xRef, enemy[i].y + yRef) > distance) {
-      timer++;
-      if (timer>30) {
         shot = true;
         shotIn++;
-        if (timer>90){
-          shot = false;
-          timer = 0;
         }
-      }
-    }
+      
+    
     if (shotIn == 1) {
       bulletX = enemy[i].x;
       bulletY = enemy[i].y;
