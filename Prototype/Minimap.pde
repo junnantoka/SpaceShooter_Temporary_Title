@@ -46,10 +46,10 @@ class Minimap {
         circle((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX, (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY, minimapBulletSize);
       }
       if ((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX <= minimapXLoc || (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY <= minimapYLoc) {
-        bulletP[i].ja = false;
+        bulletP[i].reset();
       }
       if ((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX >= minimapXLocMax || (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY >= minimapYLocMax) {
-        bulletP[i].ja = false;
+        bulletP[i].reset();
       }
     }
 

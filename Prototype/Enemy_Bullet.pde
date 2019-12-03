@@ -6,6 +6,7 @@ class EnemyBullet {
   int distance = 100;
   int timer;
   boolean shot = false;
+  boolean timerActive = false;
 
   void bulletSetup() {
     for (int i = 0; i<enemy.length; i++) {
@@ -20,37 +21,43 @@ class EnemyBullet {
     }
   }
 
+  void move(int i) {
+    println(bulletYSpeed);
+    bulletX+= bulletXSpeed;
+    bulletY+= bulletYSpeed;
+    collision(i);
+    if (timerActive) {
+      timer++;
+    }
+    if (timer == 360) {
+
+      reset();
+    }
+  }
 
   void bulletSpawn(int i) {
-    collision();
-    bulletX=bulletX + bulletXSpeed;
-    bulletY=bulletY + bulletYSpeed;
     if (dist(character.xLocation, character.yLocation, enemy[i].x + xRef, enemy[i].y + yRef) > distance) {
-      timer++;
-      if (timer>30) {
-        shot = true;
-        shotIn++;
-        if (timer>90){
-          shot = false;
-          timer = 0;
-        }
-      }
+      shot = true;
+      shotIn++;
     }
+
+
     if (shotIn == 1) {
+      println("gay shit");
       bulletX = enemy[i].x;
       bulletY = enemy[i].y;
       bulletSize = 100;
-      bulletYSpeed = (character.yLocation-bulletY)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*6;
-      bulletXSpeed = (character.xLocation-bulletX)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*6;
+      bulletYSpeed = (character.yLocation-(bulletY+yRef))/dist(character.xLocation, character.yLocation, enemy[i].x+xRef, enemy[i].y+yRef)*7;
+      bulletXSpeed = (character.xLocation-(bulletX+xRef))/dist(character.xLocation, character.yLocation, enemy[i].x+xRef, enemy[i].y+yRef)*7;
+      /* xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
+       ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed; */
+      timerActive =true;
     }
+    
   }
-  void bulletDespawn() {
-    if ((bulletX < -world.worldWidth/2 || bulletX > world.worldWidth) || (bulletY < -world.worldHeight/2 || bulletY > world.worldHeight)) {
-      shot = false;
-      shotIn = 0;
-    }
+  void bulletDespawn(int i) {
   }
-  void collision() {
+  void collision(int i) {
     if (dist(bulletX + xRef, bulletY + yRef, character.xLocation, character.yLocation)< bulletSize/2+character.size/2) {
       healthMax = healthMax - 1;
       healthBarWidth = healthBarWidth-healthLost;
@@ -59,14 +66,19 @@ class EnemyBullet {
       if (healthBarWidth <= healthBarGone) {
         healthBarWidth = 0;
       }
-      shot = false;
-      shotIn = 0;
+      reset();
     }
   }
   void reset() {
-    for (int i = 0; i<enemy.length; i++) {
+for(int i =0; i<enemy.length;i++){
       bulletX = enemy[i].x;
-      bulletY = enemy[i].x;
-    }
+      bulletY = enemy[i].y;
+}
+    timerActive= false;
+    timer =0;
+    shot = false;
+    shotIn=0;
+    bulletYSpeed = 0;
+    bulletXSpeed = 0;
   }
 }

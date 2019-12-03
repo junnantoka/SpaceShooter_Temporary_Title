@@ -7,6 +7,8 @@ class Boss {
   int prvsDirectionX, prvsDirectionY;
   float distXEdge, distXEdgeMin, distYEdge, distYEdgeMin;
   float bossScore = 50;
+  boolean reverse = false;
+  int reverseTimer = 0;
   Boss() {
     //basic values
     xMin = -width ;
@@ -49,10 +51,19 @@ class Boss {
       direction =(character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2+(character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
       ySpd= (speed /direction)*((character.yLocation-y+yRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);
       xSpd= (speed /direction)*((character.xLocation-x+xRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);*/
+      if (!reverse){
       xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
       ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
-      println(xSpd);
-      println(ySpd);
+      }
+      if (reverse){
+        reverseTimer++;
+      }
+      if (reverseTimer ==10){
+        reverse=false;
+        reverseTimer = 0;
+      }
+      // println(xSpd);
+      //println(ySpd);
         x+=xSpd;
         y+=ySpd;
       }
@@ -166,6 +177,19 @@ class Boss {
             }
           }
         }
+      }
+      
+      
+      
+      
+      
+      if(dist(x +xRef, y +yRef, character.xLocation, character.yLocation) < size/2+ character.size){
+        healthMax = healthMax - 1;
+        healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
+        healthBarXLighting = healthBarXLighting-healthLost;
+        xSpd = -((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*4;
+        ySpd = -((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*4;
+        reverse =true;
       }
     }
   }
