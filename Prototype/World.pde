@@ -20,17 +20,21 @@ class World {
 
   void updateBorder() {
     if (yRef + character.size/2 - startY > worldHeight/2 ) {
-      character.ySpeed = -character.ySpeed * bounceMult;
+      yRef = (worldHeight/2) - (character.size/2) + startY;
+      character.ySpeed = 0;
     }
     if (yRef - character.size/2 - startY < -worldHeight/2 ) {
-      character.ySpeed = -character.ySpeed * bounceMult;
+      yRef = -(worldHeight/2) + (character.size/2) + startY;
+      character.ySpeed = 0;
     }
     
     if (xRef + character.size/2 - startX > worldWidth/2 ) {
-      character.xSpeed = -character.xSpeed * bounceMult;
+      xRef = (worldWidth/2) - (character.size/2) + startX;
+      character.xSpeed = 0;
     }
     if (xRef - character.size/2 - startX < -worldWidth/2 ) {
-      character.xSpeed = -character.xSpeed * bounceMult;
+      xRef = -(worldWidth/2) + (character.size/2) + startX;
+      character.xSpeed = 0;
     }
   }
 

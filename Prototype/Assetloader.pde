@@ -17,6 +17,7 @@ public void loadAssets() {
   shooter = loadImage("./data/img/shooter.png");
   snailgun = loadImage("./data/img/snailgun.png");
   startImg = loadImage("./data/img/startImg.png");
+  
   //Load sounds
   //biem = new SoundFile(this, "./data/sounds/biem.wav");
 }
