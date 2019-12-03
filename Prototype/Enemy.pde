@@ -15,8 +15,8 @@ public class Enemy {
     xMax = (world.worldWidth / 2) - radius;
     yMin = (-world.worldHeight / 2) + radius;
     yMax = (world.worldHeight / 2) - radius;
-    cMin = -100;
-    cMax = 100;
+    cMin = -200;
+    cMax = 200;
     size = 50;
     radius = size/2;
     x = random(xMin, xMax);
@@ -112,7 +112,7 @@ public class Enemy {
 
   void check2() {//enemy type 3 (Darude - Sandstorm)
     t = millis()/speed;
-    if(circle < cMin / 5 || circle > cMax / 5){
+    if(circle < cMin / 2 || circle > cMax / 2){
       circle = random(cMin, cMax);
     }
     
