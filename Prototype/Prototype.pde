@@ -111,13 +111,15 @@ void updateGame() {
   
   world.update();
   
-  if (start.Start && timer == 0){
+  wave.update();
+  
+  if (start.start && timer == 0){
   start.update();
   }
   else if (end.end && timer == 0){
   end.update();
   }
-  else if (!end.end && !start.Start && timer == 0){
+  else if (!end.end && !start.start && timer == 0){
   pauze.pauzeGame();
   }
   else if (timer == 20){
@@ -128,7 +130,7 @@ void updateGame() {
   }
   //pauze
   
-  if (!pauze.pauze&& !start.Start && !end.end) {
+  if (!pauze.pauze&& !start.start && !end.end) {
     for(int i = 0; i < boss.length; i++){
       boss[i].collision();
       boss[i].move();
@@ -177,7 +179,7 @@ void drawGame() {
     boss[i].draw();
   }
      
-  if(!start.Start){
+  if(!start.start){
     for (int i = 0; i < bullets; i++) {
       bulletP[i].draw();
     }
@@ -198,7 +200,7 @@ void drawGame() {
     pauze.draw();
   }
 
-  if(start.Start){
+  if(start.start){
     start.draw();
     }
   if (end.end){

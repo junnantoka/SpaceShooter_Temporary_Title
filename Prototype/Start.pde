@@ -1,5 +1,5 @@
 class Start {
-  boolean Start = true;
+  boolean start = true;
   
   void setup(){
     
@@ -20,7 +20,7 @@ class Start {
   void update(){
     //detect of het spel verder mag van de speler
     if(keysPressed['P']||keysPressed['p']){
-      Start = false;
+      start = false;
       timer++;
     }
   }
