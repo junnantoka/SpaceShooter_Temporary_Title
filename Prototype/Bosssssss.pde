@@ -30,7 +30,7 @@ class Boss {
     startTime= 60;
     time = startTime;
     health = round(random(1, 30));
-    speed = 1;
+    speed = 10;
   }
 
   void draw() {
@@ -41,15 +41,16 @@ class Boss {
   }
 
   void move() {
-    //werkt niet goed
+    //werkt niet goed hoort de player te volgen
     if (!ded) {
       if (type ==2) {
      /*   ySpd = (character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
-      xSpd = (character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;*/
+      xSpd = (character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
       direction =(character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2+(character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
       ySpd= (speed /direction)*((character.yLocation-y+yRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);
-      xSpd= (speed /direction)*((character.xLocation-x+xRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);
-      
+      xSpd= (speed /direction)*((character.xLocation-x+xRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);*/
+      xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
+      ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
       println(xSpd);
       println(ySpd);
         x+=xSpd;

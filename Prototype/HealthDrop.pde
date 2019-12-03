@@ -50,7 +50,7 @@ class HealthDrop {
         healthBarWidth = healthBarWidth + healthLost;
         healthBarXLighting = healthBarXLighting + healthLost;
 
-        println("darren is de beste");
+       //println("darren is de beste");
       }
 
       spawnHealth = false;
