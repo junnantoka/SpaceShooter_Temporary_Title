@@ -7,6 +7,8 @@ Boss[] boss;
 float yRef = height/2;
 float xRef = width/2;
 
+Wave wave = new Wave();
+
 Star[] star;
 Start start = new Start();
 End end = new End();
