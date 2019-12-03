@@ -23,8 +23,8 @@ public class Enemy {
     down = false;
     ded = false;
     type = (int)random(0, 4);
-    speed = random(1000.0f, 100.0f);
-    circle = random(-20, 20);
+    speed = random(500.0f, 100.0f);
+    circle = random(-200, 200);
     roamTime = 100;//throwaway roamTime value
     chargeDist = 400;//aggro distance
     chargeWait = 30;//amount of time the enemy waits before charging
@@ -152,8 +152,8 @@ public class Enemy {
 
   void check2() {//enemy type 3 (Darude - Sandstorm)
     t = millis()/speed;
-    x = (int) xRef + circle * xSpd * cos(t);
-    y = (int) yRef + circle * ySpd * sin(t);
+    x = (int) circle * xSpd * cos(t);
+    y = (int) circle * ySpd * sin(t);
   }
 
   void collision() {
