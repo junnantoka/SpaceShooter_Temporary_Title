@@ -42,9 +42,8 @@ public class Enemy {
       image(snailgun, x + xRef, y + yRef);
     }if (type == 1) {
       image(shooter, x + xRef, y + yRef);
-    }if (type == 2 && chance == 1/100) {
+    }if (type == 2 && chance > 0.05 && chance < 0.06) {
       fill(255);
-      noStroke();
       circle(x + xRef, y + yRef, size);
     }if (type == 3) {
       image(crusher, x + xRef, y + yRef);
@@ -64,7 +63,7 @@ public class Enemy {
     if (type == 1) {
       check1();
     }
-    if (type == 2 && chance == 1/100) {
+    if (type == 2 && chance > 0.05 && chance < 0.06) {
       check2();
     }
     if (type == 3) {
@@ -75,6 +74,8 @@ public class Enemy {
   void check3() {
     roam();
     charge();
+    x += xSpeed;
+    y += ySpeed;
   }
   
   void roam() {
@@ -134,7 +135,7 @@ public class Enemy {
     if (y - radius <= yMin) {
       ded = true;
     }
-    if (y - radius >= yMax) {//if enemy goes out the bottom side
+    if (y + radius >= yMax) {//if enemy goes out the bottom side
       ded = true; //die
     }
   }
@@ -180,8 +181,8 @@ public class Enemy {
   }
 
   void reset() {
-    x = random(0, xMax) + xRef;
-    y = random(0, yMax) + yRef;
+    x = random(xMin, xMax) + xRef;
+    y = random(yMin, yMax) + yRef;
     xSpd = random(-25, 25);
     ySpd = random(-25, 25);
     direction = random(-2, 2);
