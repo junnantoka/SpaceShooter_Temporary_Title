@@ -32,11 +32,13 @@ class PlayerBullet {
     //checks if a key is pressed and gives direction to the balls movement
     if (keysPressed[UP] || keysPressed[DOWN] || keysPressed[LEFT] || keysPressed[RIGHT]) {
       pBTimer++;
+      
       if (pBTimer==1) {
         ja = true;
         bPXRef+= xRef;
         bPYRef+= yRef;
-
+        bPLocationX = character.xLocation;
+        bPLocationY = character.yLocation;
         chSpeedX = character.xSpeed/2;
         chSpeedY = character.ySpeed/2;
         if (keysPressed[UP]) {
@@ -58,6 +60,7 @@ class PlayerBullet {
 
       if (beweging == bullets-1) {
         beweging= reset;
+        
       }
 
       if ((!keysPressed[UP]&&!keysPressed[DOWN]&&!keysPressed[LEFT]&&!keysPressed[RIGHT])|| pBTimer== interval) {
@@ -70,6 +73,7 @@ class PlayerBullet {
     if ( pBTimer== interval) {
         pBTimer= reset;
       }
+      
   }
   void move() {
     //moves bullet and returns to begining
