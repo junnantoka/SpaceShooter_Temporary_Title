@@ -61,7 +61,7 @@ class Character {
     imageMode(CENTER);
     
 
-    if (!start.Start) {
+    if (!start.start) {
       jitterPlayer =  0.05;
     anglePlayer = anglePlayer + jitterPlayer;
     float playerRotation = anglePlayer;
