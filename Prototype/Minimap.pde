@@ -65,7 +65,7 @@ class Minimap {
     
     //Enemy on the minimap
   fill(minimapEnemyColor);
-  for (int i=0; i<currentEnemyAmount; i++) {
+  for (int i=0; i<enemy.length; i++) {
     circle((enemy[i].x)/minimapSize + minimapX, (enemy[i].y)/minimapSize + minimapY, minimapEnemySize);
     
     /*
