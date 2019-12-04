@@ -15,7 +15,7 @@ End end = new End();
 int stars = 300;
 int timer, enemyCounter = 0;
 int bossTotal = 1;
-int enemiesRequiredStart = 1;
+int enemiesRequiredStart = 20;
 int enemiesRequired = enemiesRequiredStart;
 boolean bossSpawn = false;
 
@@ -211,9 +211,8 @@ void drawGame() {
     end.draw();
   }
   highscore.scoreDisplay();
-  if (!pauze.pauze&& !start.start && !end.end) {
   character.displayCh();
-  }
+  
 }
 
 void draw() {
