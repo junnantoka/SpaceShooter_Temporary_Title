@@ -32,7 +32,7 @@ class Boss {
     startTime= 60;
     time = startTime;
     health = round(random(1, 30));
-    speed = 10;
+    speed = 8;
   }
 
   void draw() {
@@ -76,23 +76,22 @@ class Boss {
         if (yRef + radius + y >= world.worldHeight/2 ) {
           //xSpd=-30;
           time=0;
-          println('k');
+
         }
         if (yRef - radius + y <= -world.worldHeight/2.5 ) {
           //xSpd=1;
           time=0;
-          println('l');
+
         }
 
         if (xRef + radius + x >= world.worldWidth/2 ) {
           //xSpd=-1;
           time=0;
-          println('m');
+
         }
         if (xRef - radius + x <= -world.worldWidth/2 ) {
           //xSpd=1;
           time=0;
-          println('n');
         }
         //changes direction from time to time
         if (time == 0) {
@@ -189,6 +188,8 @@ class Boss {
         healthBarXLighting = healthBarXLighting-healthLost;
         xSpd = -((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*4;
         ySpd = -((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*4;
+        character.xSpeed = -((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*4;
+        character.ySpeed = -((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*4;
         reverse =true;
       }
     }
