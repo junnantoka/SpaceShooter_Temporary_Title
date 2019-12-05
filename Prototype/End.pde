@@ -48,6 +48,7 @@ class End {
     for (int i = 0; i < bulletP.length; i++) {
       bulletP[i].reset();
     }
+    wave.construct();
     character.reset();
     bossTotal= 1;
     enemyCounter= 0;
