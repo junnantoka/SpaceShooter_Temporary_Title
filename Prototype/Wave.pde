@@ -1,3 +1,4 @@
+int currentEnemyAmount;
 class Wave {
   int waveNR, waveFrame, waveAmount;
 
@@ -26,6 +27,6 @@ class Wave {
   }
 
   void newWave(int waveAmount) {
-    print(waveAmount + " ");
+    
   }
 }
