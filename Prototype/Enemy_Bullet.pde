@@ -69,8 +69,7 @@ void move() {
       if (healthBarWidth <= healthBarGone) {
         healthBarWidth = 0;
       }
-      shot = false;
-      shotIn = 0;
+      reset();
     }
   }
   void reset() {
