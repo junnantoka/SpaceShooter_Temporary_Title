@@ -36,7 +36,7 @@ class PowerUp {
             bulletP[i].bPSize = bulletMaxSize;
           }
           
-          println(bulletP[i].bPSize);
+          //println(bulletP[i].bPSize);
         }
       }
     }

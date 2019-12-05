@@ -35,9 +35,11 @@ class End {
     for (int i = 0; i < healthDrop.length; i++) { 
       healthDrop[i].reset();
     }
-    for (int i = 0; i <eBullet.length; i++) {
-      eBullet[i].reset();
-    }
+    for (int i = 0; i < enemy.length; i++) {
+  eBullet[i].reset(i);
+  eBullet[i+enemy.length].reset(i);
+  eBullet[i+(enemy.length*2)].reset(i);
+  }
 
     health.reset();
     highscore.score = 0;

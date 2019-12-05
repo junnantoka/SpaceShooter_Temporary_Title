@@ -8,11 +8,11 @@ class EnemyBullet {
   boolean shot = false;
   boolean timerActive = false;
 
-  void bulletSetup() {
-    for (int i = 0; i<enemy.length; i++) {
+  void bulletSetup(int i) {
+
       bulletX = enemy[i].x;
       bulletY = enemy[i].y;
-    }
+   
   }
 
   void draw() {
@@ -20,18 +20,18 @@ class EnemyBullet {
       image(enemyBullet, (xRef + bulletX), (yRef+ bulletY), bulletSize, bulletSize);
     }
   }
-  void move() {
+  void move(int i) {
     if (shot) {
       // println(bulletYSpeed);
       bulletX+= bulletXSpeed;
       bulletY+= bulletYSpeed;
-      collision();
+      collision(i);
       if (timerActive) {
         timer++;
       }
       if (timer == 500) {
 
-        reset();
+        reset(i);
       }
     }
   }
@@ -56,14 +56,15 @@ class EnemyBullet {
       timerActive =true;
     }
   }
-  void bulletDespawn() {
-    if ((bulletX < -world.worldWidth/2 || bulletX > world.worldWidth) || (bulletY < -world.worldHeight/2 || bulletY > world.worldHeight)) {
+  void bulletDespawn(int i) {
+    //if ((bulletX < -world.worldWidth/2 || bulletX > world.worldWidth) || (bulletY < -world.worldHeight/2 || bulletY > world.worldHeight)) {
 
-      reset();
-    }
+    //  reset(i);
+    //}
   }
-  void collision() {
+  void collision(int i) {
     if (shot) {
+
       if (dist(bulletX + xRef, bulletY + yRef, character.xLocation, character.yLocation)< bulletSize/2+character.size/2) {
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost;
@@ -72,15 +73,14 @@ class EnemyBullet {
         if (healthBarWidth <= healthBarGone) {
           healthBarWidth = 0;
         }
-        reset();
+        reset(i);
       }
     }
   }
-  void reset() {
-    for (int i = 0; i<enemy.length; i++) {
+  void reset(int i) {
       bulletX = enemy[i].x;
       bulletY = enemy[i].y;
-    }
+   
     timerActive= false;
     timer =0;
     shot = false;

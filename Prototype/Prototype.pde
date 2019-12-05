@@ -97,9 +97,13 @@ void setup() {
   eBullet = new EnemyBullet[3*enemies];
   for (int i = 0; i < eBullet.length; i++) {
     eBullet[i] = new EnemyBullet();
-    eBullet[i].bulletSetup();
+    
   }
-
+  for (int i = 0; i < enemy.length; i++) {
+  eBullet[i].bulletSetup(i);
+  eBullet[i+enemy.length].bulletSetup(i);
+  eBullet[i+(enemy.length*2)].bulletSetup(i);
+  }
   highscore.scoreSetup();
 
   healthDrop = new HealthDrop[healthBalls];
@@ -155,22 +159,27 @@ void updateGame() {
       enemy[i].update();
       enemy[i].collision();
 
-      if (timerBullet==120) {
+      if (timerBullet==120 && !enemy[i].down) {
         eBullet[i].bulletSpawn(i);
       }
-      if (timerBullet == 240) {
+      if (timerBullet == 240&& !enemy[i].down) {
         eBullet[i+enemies].bulletSpawn(i);
       }
-      if (timerBullet == 360) {
+      if (timerBullet == 360&& !enemy[i].down) {
         eBullet[i+enemies*2].bulletSpawn(i);
         timerBullet = 0;
       }
     }
 
     for (int i =0; i<eBullet.length; i++) {
-      eBullet[i].move();
-      eBullet[i].bulletDespawn();
+      
+      eBullet[i].bulletDespawn(i);
     }
+    for (int i = 0; i < enemy.length; i++) {
+  eBullet[i].move(i);
+  eBullet[i+enemy.length].move(i);
+  eBullet[i+(enemy.length*2)].move(i);
+  }
 
     for (int i = 0; i < healthDrop.length; i++) {
       healthDrop[i].updateHealth(i);

@@ -21,7 +21,7 @@ final int minimapPlayerBulletColor = color(0, 0, 200);
 final int minimapEnemyBulletColor = color(200, 0, 0);
 final int minimapEnemyColor = color(160, 10, 230);
 final int minimapHealthdropColor = color(255);
-final int minimapBossColor = color(0,255,0);
+final int minimapBossColor = color(0, 255, 0);
 
 
 class Minimap {
@@ -55,21 +55,45 @@ class Minimap {
 
     for (int i = 0; i < boss.length; i++) {
       fill(minimapBossColor);
-      if (!boss[i].ded){
-      circle((boss[i].x)/minimapSize + minimapX, (boss[i].y)/minimapSize + minimapY, minimapBossSize);
+      if (!boss[i].ded) {
+        circle((boss[i].x)/minimapSize + minimapX, (boss[i].y)/minimapSize + minimapY, minimapBossSize);
+      }
     }
-  }
 
     //Enemy bullet on the minimap
     fill(minimapEnemyBulletColor);
     for (int i =0; i<eBullet.length; i++) {
-      //circle((eBullet[i].bulletX)/minimapSize + minimapX, (eBullet[i].bulletY)/minimapSize + minimapY, minimapBulletSize);
+      //if (eBullet[i].shot) {
+      //  circle((eBullet[i].bulletX)/minimapSize + minimapX, (eBullet[i].bulletY)/minimapSize + minimapY, minimapBulletSize);
+      //}
+    }
 
+    for (int i = 0; i<enemy.length; i++) {
       if ((eBullet[i].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
-        eBullet[i].reset();
+        eBullet[i].reset(i);
       }
       if ((eBullet[i].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i].bulletY)/minimapSize + minimapY <= minimapYLoc) {
-        eBullet[i].reset();
+        eBullet[i].reset(i);
+      }
+
+
+      if ((eBullet[i+enemy.length].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i+enemy.length].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
+
+        eBullet[i+enemy.length].reset(i);
+      }
+      if ((eBullet[i+enemy.length].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i+enemy.length].bulletY)/minimapSize + minimapY <= minimapYLoc) {
+
+        eBullet[i+enemy.length].reset(i);
+      }
+
+
+      if ((eBullet[i+enemy.length*2].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i+enemy.length*2].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
+
+        eBullet[i+enemy.length*2].reset(i);
+      }
+      if ((eBullet[i+enemy.length*2].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i+enemy.length*2].bulletY)/minimapSize + minimapY <= minimapYLoc) {
+
+        eBullet[i+enemy.length*2].reset(i);
       }
     }
 
