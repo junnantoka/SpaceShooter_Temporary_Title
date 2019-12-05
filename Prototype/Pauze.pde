@@ -11,7 +11,7 @@ class Pauze {
   final int TEXTSIZE = 20;
   final int TEXTX = 725;
   final int TEXTY = 610;
-  
+
   void setup() {
     pauzeX = random(MINX, MAXX);
     pauzeY = random(MINY, MAXY);
@@ -26,21 +26,31 @@ class Pauze {
       speedY = -SPEED;
     }
   }
-  
+
   void pauzeGame() {
-    
-    if(timerPauze == 0){
+
+    if (timerPauze == 0) {
       if ((keyPressed) && pauze == true) {
         pauze= false;
         timerPauze++;
         timer++;
-      }else if ((keysPressed['p']||keysPressed['P']) && pauze == false) {
+        if (random(0, 1) >=0.5) {
+          clickA.play();
+        } else {
+          clickB.play();
+        }
+      } else if ((keysPressed['p']||keysPressed['P']) && pauze == false) {
         pauze= true;
         timerPauze++;
         timer++;
+        if (random(0, 1) >=0.5) {
+          clickA.play();
+        } else {
+          clickB.play();
+        }
       }
     }
-    if(!keyPressed){
+    if (!keyPressed) {
       timerPauze = 0;
     }
     if (pauze ==true) {
@@ -60,7 +70,7 @@ class Pauze {
       }
     }
   }
-  
+
   void draw() {
     if (pauze == true) {
       image(pauzeImg, pauzeX, pauzeY);
