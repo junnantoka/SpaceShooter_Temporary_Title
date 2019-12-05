@@ -63,7 +63,7 @@ class Minimap {
     //Enemy bullet on the minimap
     fill(minimapEnemyBulletColor);
     for (int i =0; i<eBullet.length; i++) {
-      //circle((eBullet[i].bulletX)/minimapSize + minimapX, (eBullet[i].bulletY)/minimapSize + minimapY, minimapBulletSize);
+      circle((eBullet[i].bulletX)/minimapSize + minimapX, (eBullet[i].bulletY)/minimapSize + minimapY, minimapBulletSize);
 
       if ((eBullet[i].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
         eBullet[i].reset();

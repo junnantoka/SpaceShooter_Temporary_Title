@@ -194,7 +194,7 @@ void drawGame() {
 
   world.display();
 
-  for (int i = 0; i < enemy.length; i++) {
+  for (int i = 0; i < eBullet.length; i++) {
     eBullet[i].draw();
   }
 

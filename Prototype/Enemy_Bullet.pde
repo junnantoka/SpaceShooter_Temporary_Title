@@ -21,6 +21,7 @@ class EnemyBullet {
     }
   }
 void move() {
+   if (shot) {
    // println(bulletYSpeed);
     bulletX+= bulletXSpeed;
     bulletY+= bulletYSpeed;
@@ -32,6 +33,7 @@ void move() {
 
       reset();
     }
+   }
   }
 
   void bulletSpawn(int i) {
@@ -61,6 +63,7 @@ void move() {
     }
   }
   void collision() {
+     if (shot) {
     if (dist(bulletX + xRef, bulletY + yRef, character.xLocation, character.yLocation)< bulletSize/2+character.size/2) {
       healthMax = healthMax - 1;
       healthBarWidth = healthBarWidth-healthLost;
@@ -71,6 +74,7 @@ void move() {
       }
       reset();
     }
+     }
   }
   void reset() {
     for (int i = 0; i<enemy.length; i++) {
