@@ -200,7 +200,6 @@ void drawGame() {
     for (int i = 0; i < bullets; i++) {
       bulletP[i].draw();
     }
-    health.draw();
 
     for (int i = 0; i < currentEnemyAmount; i++) {
       if (!enemy[i].ded) {
@@ -209,7 +208,7 @@ void drawGame() {
         enemy[i] = new Enemy();
       }
     }
-
+    health.draw();
     for (int i = 0; i < healthDrop.length; i++) {
       healthDrop[i].displayHealth();
     }
