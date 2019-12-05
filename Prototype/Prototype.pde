@@ -62,6 +62,7 @@ void setup() {
 
   //Load all assets
   loadAssets();
+  titlescreen.loop();
   imageMode(CENTER);
 
   health.setup();
@@ -191,11 +192,7 @@ void updateGame() {
 
 
 void drawGame() {
-  if (kaas >= 220){
-  titlescreen.play();
-  kaas=0;
-  }
-  kaas++;
+  
   //draws stars
   for (int i = 0; i < star.length; i++) {
     star[i].disp();
