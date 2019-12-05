@@ -20,31 +20,31 @@ class EnemyBullet {
       image(enemyBullet, (xRef + bulletX), (yRef+ bulletY), bulletSize, bulletSize);
     }
   }
-void move() {
-   if (shot) {
-   // println(bulletYSpeed);
-    bulletX+= bulletXSpeed;
-    bulletY+= bulletYSpeed;
-    collision();
-    if (timerActive) {
-      timer++;
-    }
-    if (timer == 500) {
+  void move() {
+    if (shot) {
+      // println(bulletYSpeed);
+      bulletX+= bulletXSpeed;
+      bulletY+= bulletYSpeed;
+      collision();
+      if (timerActive) {
+        timer++;
+      }
+      if (timer == 500) {
 
-      reset();
+        reset();
+      }
     }
-   }
   }
 
   void bulletSpawn(int i) {
-    
-    
+
+
     if (dist(character.xLocation, character.yLocation, enemy[i].x + xRef, enemy[i].y + yRef) > distance) {
-        shot = true;
-        shotIn++;
-        }
-      
-    
+      shot = true;
+      shotIn++;
+    }
+
+
     if (shotIn == 1) {
       bulletX = enemy[i].x;
       bulletY = enemy[i].y;
@@ -58,23 +58,23 @@ void move() {
   }
   void bulletDespawn() {
     if ((bulletX < -world.worldWidth/2 || bulletX > world.worldWidth) || (bulletY < -world.worldHeight/2 || bulletY > world.worldHeight)) {
-      
+
       reset();
     }
   }
   void collision() {
-     if (shot) {
-    if (dist(bulletX + xRef, bulletY + yRef, character.xLocation, character.yLocation)< bulletSize/2+character.size/2) {
-      healthMax = healthMax - 1;
-      healthBarWidth = healthBarWidth-healthLost;
-      healthBarXLighting = healthBarXLighting-healthLost;
+    if (shot) {
+      if (dist(bulletX + xRef, bulletY + yRef, character.xLocation, character.yLocation)< bulletSize/2+character.size/2) {
+        healthMax = healthMax - 1;
+        healthBarWidth = healthBarWidth-healthLost;
+        healthBarXLighting = healthBarXLighting-healthLost;
 
-      if (healthBarWidth <= healthBarGone) {
-        healthBarWidth = 0;
+        if (healthBarWidth <= healthBarGone) {
+          healthBarWidth = 0;
+        }
+        reset();
       }
-      reset();
     }
-     }
   }
   void reset() {
     for (int i = 0; i<enemy.length; i++) {
