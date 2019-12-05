@@ -46,7 +46,7 @@ void move() {
     if (shotIn == 1) {
       bulletX = enemy[i].x;
       bulletY = enemy[i].y;
-      bulletSize = 65;
+      bulletSize = 65  ;
       bulletYSpeed = (character.yLocation-(bulletY+ yRef))/dist(character.xLocation, character.yLocation, enemy[i].x+ xRef, enemy[i].y+ yRef)*6;
       bulletXSpeed = (character.xLocation-(bulletX+ xRef))/dist(character.xLocation, character.yLocation, enemy[i].x+ xRef, enemy[i].y+ yRef)*6;
       //xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
