@@ -2,8 +2,8 @@
 public class Enemy {
   //enemy settings
   float x, y, radius, xSpd, ySpd, direction, t, speed, circle;
-  int type, amount, cMin, cMax;
-  boolean ded, down;
+  int type, amount, cMin, cMax, behaviour;
+  boolean ded;
   final float xMin, xMax, yMin, yMax, size;
   float xSpeed, ySpeed, chargeDist;
   int spawnLocation, frame, roamTime, chargeWait, chargeFrame, chargeTime, chargeSpeed;
@@ -24,7 +24,7 @@ public class Enemy {
     xSpd = random(5, 25);
     ySpd = random(5, 25);
     direction = random(-2, 2);
-    down = false;
+    behaviour = (int)random(0, 3);
     ded = false;
     type = (int)random(0, 4);
     speed = random(500.0f, 100.0f);
@@ -72,27 +72,35 @@ public class Enemy {
   }
 
   void check0() {//enemy type 1 (suicide bomber)
-    //movement
-    x += direction * xSpd;
-    if (down) {
-      direction = 1;
-      y += direction * ySpd;
-    }
     if (xSpd > 0) {//goes right
       xSpd -= 0.05;
     }
     if (xSpd < 0) {//goes left
       xSpd += 0.05;
     }
+    if (ySpd > 0) {//goes down
+      ySpd -= 0.05;
+    }
+    if (ySpd < 0) {//goes up
+      ySpd += 0.05;
+    }
     if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
       xSpd = -xSpd;
-      down = true;
+      behaviour = (int)random(0, 3);
     }
-    if (y - radius <= yMin) {//if enemy goes out the top side
-      ySpd = random(5, 25);
+    if ((y - radius <= yMax || y + radius >= yMin) || (ySpd <= 0.05 && ySpd >= -0.05)) {//if movement stops or hits the wall(s), go down
+      ySpd = -ySpd;
+      behaviour = (int)random(0, 3);
     }
-    if (y + radius >= yMax) {//if enemy goes out the bottom side
-      ySpd = random(-25, -5);
+    if(behaviour == 0){
+      x += direction * xSpd;
+    }
+    if (behaviour == 1) {
+      direction = random(direction);
+      y += direction * ySpd;
+    }if(behaviour == 2){
+      direction = random(direction);
+      x += direction * xSpd;
     }
   }
 
@@ -220,7 +228,7 @@ public class Enemy {
     xSpd = random(-25, 25);
     ySpd = random(-25, 25);
     direction = random(-2, 2);
-    down = false;
+    behaviour = (int)random(0, 3);
     ded = false;
     speed = random(500.0f, 100.0f);
   }
