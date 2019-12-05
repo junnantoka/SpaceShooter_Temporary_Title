@@ -7,6 +7,7 @@ int particles = 100;
 class Character {
 
   //character variables
+  float playerRotation;
   float xLocation, acc;
   float yLocation;
   int size=100;
@@ -61,13 +62,16 @@ class Character {
     imageMode(CENTER);
     
 
-    if (!start.start) {
+   if (!pauze.pauze) {
       jitterPlayer =  0.05;
     anglePlayer = anglePlayer + jitterPlayer;
-    float playerRotation = anglePlayer;
-    rotate(playerRotation);
-      image(playerShip, 0, 0);
+     playerRotation = anglePlayer;
+    
+    
+      
     }
+    rotate(playerRotation);
+    image(playerShip, 0, 0);
   }
 
 

@@ -229,7 +229,7 @@ void drawGame() {
     end.draw();
   }
   highscore.scoreDisplay();
-  if (!pauze.pauze&& !start.start && !end.end) {
+  if ( !start.start && !end.end) {
     character.displayCh();
   }
 }

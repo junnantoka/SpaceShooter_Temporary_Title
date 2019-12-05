@@ -30,7 +30,7 @@ class Pauze {
   void pauzeGame() {
 
     if (timerPauze == 0) {
-      if ((keyPressed) && pauze == true) {
+      if ((keysPressed['p']||keysPressed['P']) && pauze == true) {
         pauze= false;
         timerPauze++;
         timer++;
@@ -50,7 +50,7 @@ class Pauze {
         }
       }
     }
-    if (!keyPressed) {
+    if ((!keysPressed['p']||!keysPressed['P'])) {
       timerPauze = 0;
     }
     if (pauze ==true) {
