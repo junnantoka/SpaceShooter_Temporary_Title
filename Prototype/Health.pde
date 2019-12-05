@@ -1,4 +1,4 @@
-int startingHealth = 1000; //Deze integer geeft aan hoeveel health je aan het begin hebt.
+int startingHealth = 10; //Deze integer geeft aan hoeveel health je aan het begin hebt.
 
 float healthMax; 
 boolean getsHit = false; //Deze boolean is false, omdat je niet geraakt wordt door een enemy.
