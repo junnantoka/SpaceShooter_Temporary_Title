@@ -1,4 +1,4 @@
-PImage pauzeImg, enemyBullet, healthDropIMG, playerBullet, playerShip, healthBar, movement, shooting, crusher, shooter, snailgun, startImg;
+PImage pauzeImg, enemyBullet, healthDropIMG, playerBullet, playerShip, healthBar, movement, shooting, crusher, shooter, snailgun, startImg, bossone;
 SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew;
 
 //SoundFile biem;
@@ -18,6 +18,7 @@ public void loadAssets() {
   shooter = loadImage("./data/img/shooter.png");
   snailgun = loadImage("./data/img/snailgun.png");
   startImg = loadImage("./data/img/startImg.png");
+  bossone = loadImage("./data/img/boss.png");
   
   //Load sounds
   engineA = new SoundFile(this, "./data/audio/engine_acceleration.wav");

@@ -38,7 +38,7 @@ class Boss {
   void draw() {
     if (!ded ) {
       fill(#8F1BF0);
-      circle(x + xRef, y + yRef, size);
+      image(bossone, x + xRef, y + yRef, size, size);
     }
   }
 
