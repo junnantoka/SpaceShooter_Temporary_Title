@@ -28,7 +28,7 @@ void move() {
     if (timerActive) {
       timer++;
     }
-    if (timer == 360) {
+    if (timer == 500) {
 
       reset();
     }
