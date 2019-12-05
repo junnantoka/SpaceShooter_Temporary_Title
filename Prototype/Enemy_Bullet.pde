@@ -11,7 +11,7 @@ class EnemyBullet {
   void bulletSetup() {
     for (int i = 0; i<enemy.length; i++) {
       bulletX = enemy[i].x;
-      bulletY = enemy[i].x;
+      bulletY = enemy[i].y;
     }
   }
 
