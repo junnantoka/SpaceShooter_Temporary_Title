@@ -9,7 +9,9 @@ class End {
     textSize(100);
     text("GAME OVER", width/2, height/3);
     fill(255);
-    image(startImg, width / 2, height/ 2, 450, 300);
+
+    image(startImg, width / 2, height/ 2, 500,300);
+
   }
 
   void update() {
