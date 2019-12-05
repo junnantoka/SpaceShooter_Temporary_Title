@@ -21,8 +21,8 @@ public class Enemy {
     radius = size/2;
     x = random(xMin, xMax);
     y = random(yMin, yMax);
-    xSpd = random(1, 25);
-    ySpd = random(1, 25);
+    xSpd = random(5, 25);
+    ySpd = random(5, 25);
     direction = random(-2, 2);
     down = false;
     ded = false;
@@ -89,10 +89,10 @@ public class Enemy {
       down = true;
     }
     if (y - radius <= yMin) {//if enemy goes out the top side
-      ded = true;
+      ySpd = random(5, 25);
     }
     if (y + radius >= yMax) {//if enemy goes out the bottom side
-      ded = true;
+      ySpd = random(-25, -5);
     }
   }
 

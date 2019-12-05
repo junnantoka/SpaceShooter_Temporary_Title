@@ -22,10 +22,10 @@ public void loadAssets() {
   //Load sounds
   engineA = new SoundFile(this, "./data/audio/engine_acceleration.wav");
   engineB = new SoundFile(this, "./data/audio/engine_idle.wav");
-  clickA = new SoundFile(this, "./data/audio/ClickA.wav");
-  clickB = new SoundFile(this, "./data/audio/ClickB  .wav");
-  boemA = new SoundFile(this, "./data/audio/boemA.wav");
-  boemB = new SoundFile(this, "./data/audio/boemB.wav");
+  clickA = new SoundFile(this, "./data/audio/ClickA.mp3");
+  clickB = new SoundFile(this, "./data/audio/ClickB.mp3");
+  boemA = new SoundFile(this, "./data/audio/boemA.mp3");
+  boemB = new SoundFile(this, "./data/audio/boemB.mp3");
   titleScreen = new SoundFile(this, "./data/audio/faster_pace_combat.wav");
-  pew = new SoundFile(this, "./data/audio/pewA.wav");
+  pew = new SoundFile(this, "./data/audio/pewA.mp3");
 }
