@@ -8,7 +8,7 @@ int bosses = 20;
 Boss[] boss;
 float yRef = height/2;
 float xRef = width/2;
-int 
+int kaas;
 
 Wave wave = new Wave();
 
