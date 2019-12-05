@@ -7,11 +7,12 @@ class End {
   void draw() {
     fill(255, 0, 0);
     textSize(100);
-    text("GAME OVER", width/2, height/3);
+    text("GAME OVER", width/3+10, height/3);
     fill(255);
 
-    image(startImg, width / 2, height/ 2, 500,300);
-
+    image(startImg, width / 2, height/ 2, 500, 300);
+    image(movement, width/4-75, height/2, 500, 500);
+    image(shooting, width/4*3+75, height/2, 500, 500);
   }
 
   void update() {
@@ -36,10 +37,10 @@ class End {
       healthDrop[i].reset();
     }
     for (int i = 0; i < enemy.length; i++) {
-  eBullet[i].reset(i);
-  eBullet[i+enemy.length].reset(i);
-  eBullet[i+(enemy.length*2)].reset(i);
-  }
+      eBullet[i].reset(i);
+      eBullet[i+enemy.length].reset(i);
+      eBullet[i+(enemy.length*2)].reset(i);
+    }
 
     health.reset();
     highscore.score = 0;
