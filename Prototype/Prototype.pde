@@ -1,3 +1,5 @@
+import processing.sound.*; //importing the Sound library
+
 //prototype bullethell IDIL
 //character movement w a s d
 //bullet shooting up down left right
