@@ -11,7 +11,7 @@ class PlayerBullet {
     //sets starting values
     bPLocationX = character.xLocation;
     bPLocationY = character.yLocation;
-    bPSize = 150;
+    bPSize = 75;
     snelheid = 30;
   }
 
@@ -108,7 +108,7 @@ class PlayerBullet {
     pBLinks = false;
     afstand = reset;
     ja = false;
-    bPSize= 150;
+    bPSize= 75;
     snelheid= 30;
     bPXRefEnd = 0; 
     bPXRef = 0;
