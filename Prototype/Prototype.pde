@@ -8,7 +8,7 @@ int bosses = 20;
 Boss[] boss;
 float yRef = height/2;
 float xRef = width/2;
-int kaas;
+int kaas= 240;
 
 Wave wave = new Wave();
 
@@ -189,7 +189,11 @@ void updateGame() {
 
 void drawGame() {
   //draws stars
+  if (kaas >= 220){
   titlescreen.play();
+  kaas=0;
+  }
+  kaas++;
   for (int i = 0; i < star.length; i++) {
     star[i].disp();
    }
