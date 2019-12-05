@@ -57,7 +57,8 @@ int pBTimer = 0;
 
 void setup() {
   fullScreen(P2D);
-
+  noCursor();
+  
   world.construct();
 
   //Load all assets
