@@ -1,4 +1,5 @@
-int currentEnemyAmount;
+int currentEnemyAmount = 2;
+int newEnemyTimer = 200;
 class Wave {
   int waveNR, waveFrame, waveAmount;
 
@@ -7,10 +8,11 @@ class Wave {
     waveNR = 0;
     waveFrame = 0;
     waveAmount = 1;
+    currentEnemyAmount = 2;
   }
   void update() {
-    if (start.start && !pauze.pauze && !end.end) {
-      if (waveFrame == 0) {
+    if (!start.start && !pauze.pauze) {
+      if (waveFrame == newEnemyTimer) {
         switch(waveNR) {
         case 0:
           waveAmount = 1;
@@ -20,13 +22,16 @@ class Wave {
           break;
         }
         newWave(waveAmount);
+        waveFrame = 0;
       }
-
-      waveFrame++;
     }
+    waveFrame++;
   }
 
   void newWave(int waveAmount) {
-    
+    if (!(currentEnemyAmount == enemies)) {
+      enemy[currentEnemyAmount].reset();
+      currentEnemyAmount++;
+    }
   }
 }
