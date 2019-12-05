@@ -31,7 +31,7 @@ class Boss {
     yG = random(-10, 10);
     startTime= 60;
     time = startTime;
-    health = round(random(1, 30));
+    health = 30;
     speed = 8;
   }
 
