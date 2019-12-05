@@ -8,6 +8,7 @@ int bosses = 20;
 Boss[] boss;
 float yRef = height/2;
 float xRef = width/2;
+int 
 
 Wave wave = new Wave();
 
@@ -188,6 +189,7 @@ void updateGame() {
 
 void drawGame() {
   //draws stars
+  titlescreen.play();
   for (int i = 0; i < star.length; i++) {
     star[i].disp();
    }
@@ -206,7 +208,7 @@ void drawGame() {
     for (int i = 0; i < bullets; i++) {
       bulletP[i].draw();
     }
-    health.draw();
+    
     
     for (int i = 0; i < enemy.length; i++) {
       if (!enemy[i].ded) {
@@ -230,6 +232,7 @@ void drawGame() {
     end.draw();
   }
   highscore.scoreDisplay();
+  health.draw();
   if (!pauze.pauze&& !start.start && !end.end) {
   character.displayCh();
   }
