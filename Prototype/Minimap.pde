@@ -42,9 +42,9 @@ class Minimap {
     //Player bullet on the minimap
     fill(minimapPlayerBulletColor);
     for (int i = 0; i <bullets; i++) {
-      if (bulletP[i].ja) {
-        circle((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX, (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY, minimapBulletSize);
-      }
+      //if (bulletP[i].ja) {
+      //  circle((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX, (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY, minimapBulletSize);
+      //}
       if ((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX <= minimapXLoc || (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY <= minimapYLoc) {
         bulletP[i].reset();
       }
@@ -63,14 +63,13 @@ class Minimap {
     //Enemy bullet on the minimap
     fill(minimapEnemyBulletColor);
     for (int i =0; i<eBullet.length; i++) {
-      circle((eBullet[i].bulletX)/minimapSize + minimapX, (eBullet[i].bulletY)/minimapSize + minimapY, minimapBulletSize);
+      //circle((eBullet[i].bulletX)/minimapSize + minimapX, (eBullet[i].bulletY)/minimapSize + minimapY, minimapBulletSize);
 
       if ((eBullet[i].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
-        eBullet[i].shot = false;
-        eBullet[i].shotIn = 0;
+        eBullet[i].reset();
       }
       if ((eBullet[i].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i].bulletY)/minimapSize + minimapY <= minimapYLoc) {
-        eBullet[i].shot = false;
+        eBullet[i].reset();
       }
     }
 

@@ -6,6 +6,7 @@ class EnemyBullet {
   int distance = 100;
   int timer;
   boolean shot = false;
+  boolean timerActive = false;
 
   void bulletSetup() {
     for (int i = 0; i<enemy.length; i++) {
@@ -19,12 +20,23 @@ class EnemyBullet {
       image(enemyBullet, (xRef + bulletX), (yRef+ bulletY), bulletSize, bulletSize);
     }
   }
+void move() {
+   // println(bulletYSpeed);
+    bulletX+= bulletXSpeed;
+    bulletY+= bulletYSpeed;
+    collision();
+    if (timerActive) {
+      timer++;
+    }
+    if (timer == 360) {
 
+      reset();
+    }
+  }
 
   void bulletSpawn(int i) {
-    collision();
-    bulletX=bulletX + bulletXSpeed;
-    bulletY=bulletY + bulletYSpeed;
+    
+    
     if (dist(character.xLocation, character.yLocation, enemy[i].x + xRef, enemy[i].y + yRef) > distance) {
         shot = true;
         shotIn++;
@@ -35,14 +47,17 @@ class EnemyBullet {
       bulletX = enemy[i].x;
       bulletY = enemy[i].y;
       bulletSize = 100;
-      bulletYSpeed = (character.yLocation-bulletY)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*6;
-      bulletXSpeed = (character.xLocation-bulletX)/dist(character.xLocation, character.yLocation, enemy[i].x, enemy[i].y)*6;
+      bulletYSpeed = (character.yLocation-(bulletY+ yRef))/dist(character.xLocation, character.yLocation, enemy[i].x+ xRef, enemy[i].y+ yRef)*6;
+      bulletXSpeed = (character.xLocation-(bulletX+ xRef))/dist(character.xLocation, character.yLocation, enemy[i].x+ xRef, enemy[i].y+ yRef)*6;
+      //xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
+      //ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
+      timerActive =true;
     }
   }
   void bulletDespawn() {
     if ((bulletX < -world.worldWidth/2 || bulletX > world.worldWidth) || (bulletY < -world.worldHeight/2 || bulletY > world.worldHeight)) {
-      shot = false;
-      shotIn = 0;
+      
+      reset();
     }
   }
   void collision() {
@@ -61,7 +76,13 @@ class EnemyBullet {
   void reset() {
     for (int i = 0; i<enemy.length; i++) {
       bulletX = enemy[i].x;
-      bulletY = enemy[i].x;
+      bulletY = enemy[i].y;
     }
+    timerActive= false;
+    timer =0;
+    shot = false;
+    shotIn=0;
+    bulletYSpeed = 0;
+    bulletXSpeed = 0;
   }
 }
