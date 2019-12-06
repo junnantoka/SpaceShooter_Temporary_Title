@@ -9,7 +9,10 @@ class End {
     textSize(100);
     text("GAME OVER", width/3+10, height/3);
     fill(255);
-
+    
+    textSize(180);
+    text("SpaceShooter T.T", width / 4, height/4 );
+    
     image(startImg, width / 2, height/ 2, 500, 300);
     image(movement, width/4-75, height/2, 500, 500);
     image(shooting, width/4*3+75, height/2, 500, 500);
