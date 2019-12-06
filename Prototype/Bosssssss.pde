@@ -186,7 +186,7 @@ class Boss {
       
       
       
-      if(dist(x +xRef, y +yRef, character.xLocation, character.yLocation) < size/2+ character.size){
+      if(dist(x +xRef, y +yRef, character.xLocation, character.yLocation) < size/2-70+ character.size){
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
         healthBarXLighting = healthBarXLighting-healthLost;
