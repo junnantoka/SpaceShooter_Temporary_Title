@@ -1,4 +1,4 @@
-int currentEnemyAmount = 3;
+int currentEnemyAmount = 30;
 int newEnemyTimer = 250;
 class Wave {
   int waveNR, waveFrame, waveAmount;
@@ -8,7 +8,7 @@ class Wave {
     waveNR = 0;
     waveFrame = 0;
     waveAmount = 1;
-    currentEnemyAmount = 3;
+    currentEnemyAmount = 30;
   }
   void update() {
     if (!start.start && !pauze.pauze) {

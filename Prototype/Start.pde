@@ -16,8 +16,8 @@ class Start {
     /*fill(255);
     rect(width / 2 - 100, height/ 2 - 50, 200,100);
     fill(0);*/
-    textSize(180);
-    text("SpaceShooter T.T", width / 4, height/4 );
+    textSize(150);
+    text("SpaceShooter T.T", width / 5, height/4 );
     image(startImg, width / 2, height/ 2, 500,300);
     image(movement, width/4-75, height/2, 500,500);
     image(shooting, width/4*3+75, height/2, 500,500);
