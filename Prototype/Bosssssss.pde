@@ -167,7 +167,7 @@ class Boss {
             if (health == 0) {
               reset();
               ded = true;
-              print("Auchiewauchie ");
+              //print("Auchiewauchie ");
               highscore.score += bossScore;
             }
             //als de powerup aan staat worden de bullets niet gereset
