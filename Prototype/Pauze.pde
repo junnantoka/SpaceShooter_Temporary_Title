@@ -1,4 +1,5 @@
 class Pauze {
+  int pauzedTime = 0;
   boolean pauze = false;
   float pauzeX, pauzeY;
   int speedX, speedY;
@@ -54,6 +55,7 @@ class Pauze {
       timerPauze = 0;
     }
     if (pauze ==true) {
+      pauzedTime++;
       pauzeX += speedX;
       pauzeY += speedY;
       if (pauzeX -125 <=0 ) {

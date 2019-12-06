@@ -106,7 +106,7 @@ public class Enemy {
   }
 
   void check2() {//enemy type 3 (Darude - Sandstorm)
-    t = millis()/speed;
+    t = (second()-(pauze.pauzedTime/60))/speed;
     if(circle < cMin / 2 || circle > cMax / 2){
       circle = random(cMin, cMax);
     }

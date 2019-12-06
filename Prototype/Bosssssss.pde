@@ -203,4 +203,10 @@ class Boss {
 
     ded= true;
   }
+  
+  void wobble(){
+    character.xLocation += 1;
+    character.yLocation += 2;
+    
+  }
 }
