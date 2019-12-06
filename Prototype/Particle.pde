@@ -64,7 +64,7 @@ class Particle {
     noStroke();
     fill(r, g, b, density);
     if (visible) {
-      circle(x + xRef, y + yRef, size);
+      circle(x + xRef+wobbleX, y + yRef+wobbleY, size);
     }
   }
 

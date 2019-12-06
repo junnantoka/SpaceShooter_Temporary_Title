@@ -1,6 +1,6 @@
 class Boss {
   float x, y, size, radius, xSpd, ySpd, direction, t, speed, xG, yG, time, startTime;
-  int type, health;
+  int type, health, cMin, cMax;
   boolean ded, down;
   final float xMin, xMax, yMin, yMax;
   float oddsX, oddsY, randomX, randomY;
@@ -11,10 +11,12 @@ class Boss {
   int reverseTimer = 0;
   Boss() {
     //basic values
-    xMin = -width ;
-    xMax =  width;
-    yMin = -height ;
-    yMax =  height;
+    xMin = (-world.worldWidth / 2) + radius;
+    xMax = (world.worldWidth / 2) - radius;
+    yMin = (-world.worldHeight / 2) + radius;
+    yMax = (world.worldHeight / 2) - radius;
+    cMin = -200;
+    cMax = 200;
     size = 300;
     radius = size/2;
     x = random(xMin, xMax) + xRef;
@@ -33,12 +35,13 @@ class Boss {
     time = startTime;
     health = 30;
     speed = 8;
+    
   }
 
   void draw() {
     if (!ded ) {
       fill(#8F1BF0);
-      image(bossone, x + xRef, y + yRef, size, size);
+      image(bossone, x + xRef+wobbleX, y + yRef+wobbleY, size, size);
     }
   }
 
@@ -55,10 +58,11 @@ class Boss {
       xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
       ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
       }
+      wobble();
       if (reverse){
         reverseTimer++;
       }
-      if (reverseTimer ==10){
+      if (reverseTimer ==20){
         reverse=false;
         reverseTimer = 0;
       }
@@ -186,12 +190,19 @@ class Boss {
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
         healthBarXLighting = healthBarXLighting-healthLost;
-        xSpd = -((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*4;
-        ySpd = -((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*4;
-        character.xSpeed = ((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*4;
-        character.ySpeed = ((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*4;
+        xSpd = -((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
+        ySpd = -((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
+        character.xSpeed = ((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
+        character.ySpeed = ((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
         reverse =true;
+        
       }
+      if (y + radius >= yMax || y - radius <= yMin) {
+      ySpd = 0;
+    }
+    if (x + radius >= xMax || x - radius <= xMin) {
+      xSpd = 0;
+    }
     }
   }
 
@@ -199,14 +210,89 @@ class Boss {
     //reset alle stats die terug gezet moeten worden
     x = random(xMin, xMax) + xRef;
     y = random(yMin, yMax) + yRef;
-    health = bossTotal*round(random(1, 30));
-
+    health = bossTotal*30;
+    reverse = false;
     ded= true;
-  }
+    reverseTimer = 0;
+  } 
   
   void wobble(){
-    character.xLocation += 1;
-    character.yLocation += 2;
+    if (reverseTimer ==1){ 
+    wobbleX = 10; 
+    wobbleY = -10;
+    }
+    if (reverseTimer ==2){ 
+    wobbleX = 10; 
+    wobbleY = 10;
+    }
+    if (reverseTimer ==3){ 
+    wobbleX = -10; 
+    wobbleY = 10;
+    }
+    if (reverseTimer ==4){ 
+    wobbleX = -10; 
+    wobbleY = -10;
+    }
+    if (reverseTimer ==5){ 
+    wobbleX = 10; 
+    wobbleY = -10;
+    }
+    if (reverseTimer ==6){ 
+    wobbleX = 10; 
+    wobbleY = 10;
+    }
+    if (reverseTimer ==7){ 
+    wobbleX = -10; 
+    wobbleY = 10;
+    }
+    if (reverseTimer ==8){ 
+    wobbleX = -10; 
+    wobbleY = -10;
+    }
+    if (reverseTimer ==9){ 
+    wobbleX = 10; 
+    wobbleY = -10;
+    }
+    if (reverseTimer ==10){ 
+    wobbleX = 10; 
+    wobbleY = 10;
+    }
+    if (reverseTimer ==11){ 
+    wobbleX = -10; 
+    wobbleY = 10;
+    }
+    if (reverseTimer ==12){ 
+    wobbleX = -10; 
+    wobbleY = -10;
+    }
+    if (reverseTimer ==13){ 
+    wobbleX = 10; 
+    wobbleY = -10;
+    }
+    if (reverseTimer ==14){ 
+    wobbleX = 10; 
+    wobbleY = 10;
+    }
+    if (reverseTimer ==15){ 
+    wobbleX = -10; 
+    wobbleY = 10;
+    }
+    if (reverseTimer ==16){ 
+    wobbleX = -10; 
+    wobbleY = -10;
+    }
+    if (reverseTimer ==17){ 
+    wobbleX = 10; 
+    wobbleY = -10;
+    }
+    if (reverseTimer ==18){ 
+    wobbleX = 10; 
+    wobbleY = 10;
+    }
+    if (reverseTimer ==19){ 
+    wobbleX = 0; 
+    wobbleY = 0;
+    }
     
   }
 }

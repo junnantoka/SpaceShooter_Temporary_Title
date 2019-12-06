@@ -27,7 +27,7 @@ class HealthDrop {
       
       //if the correct number is selected it spawns health
       if (healthChance == 4) {
-        image(healthDropIMG, (healthX + xRef), (healthY + yRef));
+        image(healthDropIMG, (healthX + xRef)+wobbleX, (healthY + yRef)+wobbleY);
       } else {
         spawnHealth = false;
       }

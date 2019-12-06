@@ -17,7 +17,7 @@ class EnemyBullet {
 
   void draw() {
     if (shot) {
-      image(enemyBullet, (xRef + bulletX), (yRef+ bulletY), bulletSize, bulletSize);
+      image(enemyBullet, (xRef + bulletX+wobbleX), (yRef+ bulletY+wobbleY), bulletSize, bulletSize);
     }
   }
   void move(int i) {

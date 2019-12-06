@@ -9,6 +9,7 @@ Boss[] boss;
 float yRef = height/2;
 float xRef = width/2;
 int kaas= 240;
+int  wobbleX, wobbleY= 0;
 
 Wave wave = new Wave();
 

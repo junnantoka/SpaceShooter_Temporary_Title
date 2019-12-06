@@ -33,11 +33,11 @@ class Minimap {
     //The minimap outline
     fill(minimapBackgroundColor);
     stroke(minimapStrokeColor);
-    rect(minimapXLoc, minimapYLoc, world.worldWidth/minimapSize, world.worldHeight/minimapSize);
+    rect(minimapXLoc+wobbleX, minimapYLoc+wobbleY, world.worldWidth/minimapSize, world.worldHeight/minimapSize);
 
     //The player on the minimap
     fill(minimapPlayerColor);
-    circle((character.xLocation - xRef)/minimapSize + minimapX, (character.yLocation - yRef)/minimapSize + minimapY, minimapPlayerSize);
+    circle(((character.xLocation - xRef)/minimapSize + minimapX)+wobbleX, ((character.yLocation - yRef)/minimapSize + minimapY)+wobbleY, minimapPlayerSize);
 
     //Player bullet on the minimap
     fill(minimapPlayerBulletColor);
@@ -56,7 +56,7 @@ class Minimap {
     for (int i = 0; i < boss.length; i++) {
       fill(minimapBossColor);
       if (!boss[i].ded) {
-        circle((boss[i].x)/minimapSize + minimapX, (boss[i].y)/minimapSize + minimapY, minimapBossSize);
+        circle(((boss[i].x)/minimapSize + minimapX)+wobbleX, ((boss[i].y)/minimapSize + minimapY)+wobbleY, minimapBossSize);
       }
     }
 
@@ -100,7 +100,7 @@ class Minimap {
     //Enemy on the minimap
     fill(minimapEnemyColor);
     for (int i=0; i<currentEnemyAmount; i++) {
-      circle((enemy[i].x)/minimapSize + minimapX, (enemy[i].y)/minimapSize + minimapY, minimapEnemySize);
+      circle(((enemy[i].x)/minimapSize + minimapX)+wobbleX, ((enemy[i].y)/minimapSize + minimapY)+wobbleY, minimapEnemySize);
 
 
       if ((enemy[i].x)/minimapSize + minimapX <= minimapXLoc || (enemy[i].y)/minimapSize + minimapY <= minimapYLoc) {
@@ -117,7 +117,7 @@ class Minimap {
     fill(minimapHealthdropColor);
     for (int i=0; i<healthDrop.length; i++) {
       if (healthDrop[i].spawnHealth == true) {
-        rect((healthDrop[i].healthX)/minimapSize + minimapX, (healthDrop[i].healthY)/minimapSize + minimapY, minimapHealthdropSize, minimapHealthdropSize);
+        rect(((healthDrop[i].healthX)/minimapSize + minimapX)+wobbleY, ((healthDrop[i].healthY)/minimapSize + minimapY)+wobbleY, minimapHealthdropSize, minimapHealthdropSize);
       }
     }
   }

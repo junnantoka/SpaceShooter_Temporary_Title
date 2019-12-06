@@ -23,12 +23,15 @@ class Character {
   //particle vars
   int pCount, pInterval;
   int frame;
+  float controlX, controlY;
 
   void construct() {
 
     yLocation = height/2;
     xLocation = width/2;
 
+controlX = xLocation;
+    controlY = yLocation;
     pInterval = 1;
     particle = new Particle[particles];
     for (int i = 0; i < particle.length; i++) {
@@ -48,11 +51,17 @@ class Character {
     for (int i = 0; i<particle.length; i++) {
       particle[i].display();
     }
+    
+      
+    controlX = xLocation +wobbleX;
+    controlY = yLocation + wobbleY;
 
-
+      
+      
+    
     angleMove = angleMove + jitterMove;
     float playerMoveRotation = angleMove;
-    translate(xLocation, yLocation);
+    translate(controlX, controlY);
 
     if (moving) {
       jitterMove =  0.07;
