@@ -40,7 +40,7 @@ Minimap minimap = new Minimap();
 Pauze pauze = new Pauze();
 
 Enemy[] enemy;
-int enemies = 10;
+int enemies = 30;
 //jeroens deel
 EnemyBullet[] eBullet;
 
