@@ -36,7 +36,7 @@ class Health {
   }
 
   void collide() { //Hier wordt de collision van de player met de enemy getest. 
-    for (int i = 0; i<enemy.length; i++) {
+    for (int i = 0; i<currentEnemyAmount; i++) {
       if (dist(enemy[i].x + xRef, enemy[i].y + yRef, character.xLocation, character.yLocation) <= character.size/2 + enemy[i].radius) {
         enemy[i].ded = true;
         healthMax = healthMax - 1;
