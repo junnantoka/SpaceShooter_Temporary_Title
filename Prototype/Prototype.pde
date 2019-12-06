@@ -225,7 +225,9 @@ void drawGame() {
     for (int i = 0; i < healthDrop.length; i++) {
       healthDrop[i].displayHealth();
     }
+    if (!end.end) {
     minimap.draw();
+    }
     pauze.draw();
   }
 

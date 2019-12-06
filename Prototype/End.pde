@@ -7,13 +7,12 @@ class End {
   void draw() {
     fill(255, 0, 0);
     textSize(100);
-    text("GAME OVER", width/3+10, height/3);
+    text("GAME OVER", width/3+10, height/2+50);
     fill(255);
     
     textSize(150);
-    text("SpaceShooter T.T", width / 5, height/4 );
-    
-    image(startImg, width / 2, height/ 2, 500, 300);
+    image(titleCard,width / 2, height/4);
+    image(startImg, width / 2, height/ 2 +200, 500,300);
     image(movement, width/4-75, height/2, 500, 500);
     image(shooting, width/4*3+75, height/2, 500, 500);
   }
