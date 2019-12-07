@@ -1,4 +1,4 @@
-int currentEnemyAmount = 30;
+int currentEnemyAmount = 3;
 int newEnemyTimer = 250;
 class Wave {
   int waveNR, waveFrame, waveAmount;
