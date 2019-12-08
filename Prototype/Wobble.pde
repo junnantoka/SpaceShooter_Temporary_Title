@@ -1,6 +1,8 @@
 class Wobble{
   void wobbleMovement(){
-    
+    if (wobbleTimer >19){
+      wobbleTimer =19;
+    }
     if (wobbleTimer ==1){ 
     wobbleX = 0; 
     wobbleY = 0;
@@ -97,8 +99,9 @@ class Wobble{
      
          
     }
+    if (wobbleTimer >0){
           wobbleTimer--;
-
+    }
     
   }
   

@@ -42,7 +42,7 @@ class Health {
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
         healthBarXLighting = healthBarXLighting-healthLost;
-        wobbleTimer =9;
+        wobbleTimer +=9;
         if (healthBarWidth <= healthBarGone) {
           healthBarWidth = 0;
           healthBarXLighting = 0;

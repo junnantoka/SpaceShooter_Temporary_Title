@@ -74,6 +74,7 @@ class EnemyBullet {
           healthBarWidth = 0;
         }
         reset(i);
+        wobbleTimer+= 4;
       }
     }
   }
