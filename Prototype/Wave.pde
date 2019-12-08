@@ -8,7 +8,7 @@ class Wave {
     waveNR = 0;
     waveFrame = 0;
     waveAmount = 1;
-    currentEnemyAmount = 30;
+    currentEnemyAmount = 3;
   }
   void update() {
     if (!start.start && !pauze.pauze) {

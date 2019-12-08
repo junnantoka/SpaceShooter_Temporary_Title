@@ -58,7 +58,7 @@ class Boss {
       xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
       ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
       }
-      wobble();
+      
       if (reverse){
         reverseTimer++;
       }
@@ -173,6 +173,7 @@ class Boss {
               ded = true;
               //print("Auchiewauchie ");
               highscore.score += bossScore;
+              
             }
             //als de powerup aan staat worden de bullets niet gereset
             if (!powerUp.laser) {
@@ -195,7 +196,7 @@ class Boss {
         character.xSpeed = ((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
         character.ySpeed = ((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
         reverse =true;
-        
+        wobbleTimer =19;
       }
       if (y + radius >= yMax || y - radius <= yMin) {
       ySpd = 0;
@@ -216,83 +217,5 @@ class Boss {
     reverseTimer = 0;
   } 
   
-  void wobble(){
-    if (reverseTimer ==1){ 
-    wobbleX = 10; 
-    wobbleY = -10;
-    }
-    if (reverseTimer ==2){ 
-    wobbleX = 10; 
-    wobbleY = 10;
-    }
-    if (reverseTimer ==3){ 
-    wobbleX = -10; 
-    wobbleY = 10;
-    }
-    if (reverseTimer ==4){ 
-    wobbleX = -10; 
-    wobbleY = -10;
-    }
-    if (reverseTimer ==5){ 
-    wobbleX = 10; 
-    wobbleY = -10;
-    }
-    if (reverseTimer ==6){ 
-    wobbleX = 10; 
-    wobbleY = 10;
-    }
-    if (reverseTimer ==7){ 
-    wobbleX = -10; 
-    wobbleY = 10;
-    }
-    if (reverseTimer ==8){ 
-    wobbleX = -10; 
-    wobbleY = -10;
-    }
-    if (reverseTimer ==9){ 
-    wobbleX = 10; 
-    wobbleY = -10;
-    }
-    if (reverseTimer ==10){ 
-    wobbleX = 10; 
-    wobbleY = 10;
-    }
-    if (reverseTimer ==11){ 
-    wobbleX = -10; 
-    wobbleY = 10;
-    }
-    if (reverseTimer ==12){ 
-    wobbleX = -10; 
-    wobbleY = -10;
-    }
-    if (reverseTimer ==13){ 
-    wobbleX = 10; 
-    wobbleY = -10;
-    }
-    if (reverseTimer ==14){ 
-    wobbleX = 10; 
-    wobbleY = 10;
-    }
-    if (reverseTimer ==15){ 
-    wobbleX = -10; 
-    wobbleY = 10;
-    }
-    if (reverseTimer ==16){ 
-    wobbleX = -10; 
-    wobbleY = -10;
-    }
-    if (reverseTimer ==17){ 
-    wobbleX = 10; 
-    wobbleY = -10;
-    }
-    if (reverseTimer ==18){ 
-    wobbleX = 10; 
-    wobbleY = 10;
-    }
-    if (reverseTimer ==19){ 
-    wobbleX = 0; 
-    wobbleY = 0;
-    }
-    
-  }
+  
 }

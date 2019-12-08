@@ -59,8 +59,12 @@ class End {
     enemyCounter= 0;
     enemiesRequired =enemiesRequiredStart;
     bossSpawn =false;
+     wobbleX= 0;
+     wobbleY= 0;
+     wobbleTimer = 0;
     for (int i =0; i < boss.length; i++) {
       boss[i].reset();
     }
   }
+
 }

@@ -10,6 +10,8 @@ float yRef = height/2;
 float xRef = width/2;
 int kaas= 240;
 int  wobbleX, wobbleY= 0;
+int wobbleTimer = 0;
+Wobble wobble = new Wobble();
 
 Wave wave = new Wave();
 
@@ -124,7 +126,7 @@ void updateGame() {
 
   world.update();
 
-  wave.update();
+  
 
   if (start.start && timer == 0) {
     start.update();
@@ -144,7 +146,8 @@ void updateGame() {
       boss[i].collision();
       boss[i].move();
     }
-
+    wave.update();
+  wobble.wobbleMovement();
     health.collide();
 
     character.chCollision();
