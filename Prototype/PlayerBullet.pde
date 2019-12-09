@@ -40,6 +40,7 @@ class PlayerBullet {
         bPLocationY = character.yLocation;
         chSpeedX = character.xSpeed/2;
         chSpeedY = character.ySpeed/2;
+        wobble.wobble(2,3);
         if (keysPressed[UP]) {
 
           pBOmhoog = true;

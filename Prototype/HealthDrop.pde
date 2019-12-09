@@ -15,16 +15,16 @@ class HealthDrop {
   }
 
   void spawnHealth() {
-    
+
     //Checks if health can spawn
     if (spawnHealth) {
       counter++;
       if (counter ==1) {
-        
+
         //A random function to make a 1/4 chance of health to spawn
         healthChance = int(random(1, 5));
       }
-      
+
       //if the correct number is selected it spawns health
       if (healthChance == 4) {
         image(healthDropIMG, (healthX + xRef)+wobbleX, (healthY + yRef)+wobbleY);
@@ -35,13 +35,13 @@ class HealthDrop {
   }
 
   void updateHealth(int i) {
-    
+
     //spawns health if the enemy dies
     if (i< enemy.length) {
       if (enemy[i].ded) {
         spawnHealth = true;
       }
-      
+
       if (!spawnHealth) { 
         //sets the health x and y to the killed enemies' x and y
         healthX = enemy[i].x;
@@ -52,7 +52,23 @@ class HealthDrop {
   }
 
   void healthCollision() {
-    
+    //if (yRef + character.size/2 - startY > world.worldHeight/2) {
+    //  yRef = (world.worldHeight/2) - (character.size/2) + startY;
+    //  character.ySpeed = 0;
+    //}
+    //if (yRef - character.size/2 - startY < -world.worldHeight/2 ) {
+    //  yRef = -(world.worldHeight/2) + (character.size/2) + startY;
+    //  character.ySpeed = 0;
+    //}
+
+    //if (xRef + character.size/2 - startX > world.worldHeight/2 ) {
+    //  xRef = (world.worldWidth/2) - (character.size/2) + startX;
+    //  character.xSpeed = 0;
+    //}
+    //if (xRef - character.size/2 - startX < -world.worldWidth/2 ) {
+    //  xRef = -(world.worldWidth/2) + (character.size/2) + startX;
+    //  character.xSpeed = 0;
+    //}
     //checks if the player collides with the healthdrop
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize && healthChance == 4) {
 
@@ -63,15 +79,14 @@ class HealthDrop {
         healthBarWidth = healthBarWidth + healthLost;
         healthBarXLighting = healthBarXLighting + healthLost;
 
-       //println("darren is de beste");
+        //println("darren is de beste");
       }
 
       spawnHealth = false;
     }
   }
-  void reset(){
-    
+  void reset() {
+
     spawnHealth = false;
-    
   }
 }
