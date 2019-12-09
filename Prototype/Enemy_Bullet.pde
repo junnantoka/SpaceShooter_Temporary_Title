@@ -70,7 +70,6 @@ class EnemyBullet {
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost;
         healthBarXLighting = healthBarXLighting-healthLost;
-        print(bulletWobbleDuration+"  "+ bulletIntensity);
         wobble.wobble(bulletWobbleDuration, bulletIntensity);
         if (healthBarWidth <= healthBarGone) {
           healthBarWidth = 0;
