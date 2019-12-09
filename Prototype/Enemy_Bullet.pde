@@ -7,7 +7,8 @@ class EnemyBullet {
   int timer;
   boolean shot = false;
   boolean timerActive = false;
-
+ int bulletWobbleDuration= 19;
+ int bulletIntensity = 140;
   void bulletSetup(int i) {
 
       bulletX = enemy[i].x;
@@ -69,12 +70,13 @@ class EnemyBullet {
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost;
         healthBarXLighting = healthBarXLighting-healthLost;
-
+        print(bulletWobbleDuration+"  "+ bulletIntensity);
+        wobble.wobble(bulletWobbleDuration, bulletIntensity);
         if (healthBarWidth <= healthBarGone) {
           healthBarWidth = 0;
         }
         reset(i);
-        wobbleTimer+= 4;
+        
       }
     }
   }

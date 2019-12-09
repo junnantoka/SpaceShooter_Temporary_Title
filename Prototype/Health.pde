@@ -10,7 +10,8 @@ int healthBarHeight = 30;
 
 int healthBarXLighting = 500; //Een extra lichtje zodat het er mooi uitziet.
 int healthBarYLighting = 27;
-
+int enemyWobbleDuration = 100;
+float enemyIntensity = 100;
 final int healthBarGone = 49; //Dit voorkomt dat de healthbar een - getal wordt.
 
 class Health {
@@ -24,15 +25,15 @@ class Health {
     rectMode(0);
     noStroke();
     fill(100);
-    rect(healthBarX, healthBarY, 500, healthBarHeight);
+    rect(healthBarX+ wobbleX, healthBarY+ wobbleY, 500, healthBarHeight);
 
     fill(255, 0, 0);
-    rect(healthBarX, healthBarY, healthBarWidth, healthBarHeight);
+    rect(healthBarX+ wobbleX, healthBarY+ wobbleY, healthBarWidth, healthBarHeight);
 
     fill(255, 215, 215);
-    rect(healthBarX, healthBarYLighting, healthBarXLighting, 5);
+    rect(healthBarX+ wobbleX, healthBarYLighting+ wobbleY, healthBarXLighting, 5);
 
-    image(healthBar, 300, 30, 515, 55);
+    image(healthBar, 300+ wobbleX, 30+ wobbleY, 515, 55);
   }
 
   void collide() { //Hier wordt de collision van de player met de enemy getest. 
@@ -42,7 +43,7 @@ class Health {
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
         healthBarXLighting = healthBarXLighting-healthLost;
-        wobbleTimer +=9;
+        wobble.wobble(enemyWobbleDuration, enemyIntensity);
         if (healthBarWidth <= healthBarGone) {
           healthBarWidth = 0;
           healthBarXLighting = 0;

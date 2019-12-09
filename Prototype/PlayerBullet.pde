@@ -32,7 +32,6 @@ class PlayerBullet {
     //checks if a key is pressed and gives direction to the balls movement
     if (keysPressed[UP] || keysPressed[DOWN] || keysPressed[LEFT] || keysPressed[RIGHT]) {
       pBTimer++;
-      
       if (pBTimer==1) {
         ja = true;
         bPXRef+= xRef;

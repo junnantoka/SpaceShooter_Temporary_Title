@@ -9,7 +9,7 @@ Boss[] boss;
 float yRef = height/2;
 float xRef = width/2;
 int kaas= 240;
-int  wobbleX, wobbleY= 0;
+float  wobbleX, wobbleY= 0;
 int wobbleTimer = 0;
 Wobble wobble = new Wobble();
 

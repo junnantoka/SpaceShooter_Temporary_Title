@@ -9,6 +9,7 @@ class Boss {
   float bossScore = 50;
   boolean reverse = false;
   int reverseTimer = 0;
+  int bossWobbleDuration, bossIntensity = 190;
   Boss() {
     //basic values
     xMin = (-world.worldWidth / 2) + radius;
@@ -196,7 +197,7 @@ class Boss {
         character.xSpeed = ((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
         character.ySpeed = ((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
         reverse =true;
-        wobbleTimer =19;
+        wobble.wobble(bossWobbleDuration, bossIntensity);
       }
       if (y + radius >= yMax || y - radius <= yMin) {
       ySpd = 0;

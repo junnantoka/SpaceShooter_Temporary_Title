@@ -1,4 +1,10 @@
+float wobbleIntensity;
 class Wobble{
+  
+  void wobble(int wobbleDuration, float wobbleIntensity2){
+    wobbleTimer = wobbleDuration;
+    wobbleIntensity = wobbleIntensity2;
+  }
   void wobbleMovement(){
     if (wobbleTimer >19){
       wobbleTimer =19;
@@ -9,93 +15,93 @@ class Wobble{
      
     }
     if (wobbleTimer ==2){ 
-    wobbleX = 10; 
-    wobbleY = 10;
+    wobbleX = wobbleIntensity; 
+    wobbleY = wobbleIntensity;
      
     }
     if (wobbleTimer ==3){ 
-    wobbleX = -10; 
-    wobbleY = 10;
+    wobbleX = -wobbleIntensity; 
+    wobbleY = wobbleIntensity;
      
     }
     if (wobbleTimer ==4){ 
-    wobbleX = -10; 
-    wobbleY = -10; 
+    wobbleX = -wobbleIntensity; 
+    wobbleY = -wobbleIntensity; 
     
     }
     if (wobbleTimer ==5){ 
-    wobbleX = 10; 
-    wobbleY = -10;
+    wobbleX = wobbleIntensity; 
+    wobbleY = -wobbleIntensity;
      
     }
     if (wobbleTimer ==6){ 
-    wobbleX = 10; 
-    wobbleY = 10;
+    wobbleX = wobbleIntensity; 
+    wobbleY = wobbleIntensity;
      
     }
     if (wobbleTimer ==7){ 
-    wobbleX = -10; 
-    wobbleY = 10;
+    wobbleX = -wobbleIntensity; 
+    wobbleY = wobbleIntensity;
      
     }
     if (wobbleTimer ==8){ 
-    wobbleX = -10; 
-    wobbleY = -10;
+    wobbleX = -wobbleIntensity; 
+    wobbleY = -wobbleIntensity;
      
     }
     if (wobbleTimer ==9){ 
-    wobbleX = 10; 
-    wobbleY = -10;
+    wobbleX = wobbleIntensity; 
+    wobbleY = -wobbleIntensity;
      
     }
     if (wobbleTimer ==10){ 
-    wobbleX = 10; 
-    wobbleY = 10;
+    wobbleX = wobbleIntensity; 
+    wobbleY = wobbleIntensity;
      
     }
     if (wobbleTimer ==11){ 
-    wobbleX = -10; 
-    wobbleY = 10;
+    wobbleX = -wobbleIntensity; 
+    wobbleY = wobbleIntensity;
      
     }
     if (wobbleTimer ==12){ 
-    wobbleX = -10; 
-    wobbleY = -10;
+    wobbleX = -wobbleIntensity; 
+    wobbleY = -wobbleIntensity;
      
     }
     if (wobbleTimer ==13){ 
-    wobbleX = 10; 
-    wobbleY = -10;
+    wobbleX = wobbleIntensity; 
+    wobbleY = -wobbleIntensity;
      
     }
     if (wobbleTimer ==14){ 
-    wobbleX = 10; 
-    wobbleY = 10;
+    wobbleX = wobbleIntensity; 
+    wobbleY = wobbleIntensity;
      
     }
     if (wobbleTimer ==15){ 
-    wobbleX = -10; 
-    wobbleY = 10;
+    wobbleX = -wobbleIntensity; 
+    wobbleY = wobbleIntensity;
      
     }
     if (wobbleTimer ==16){ 
-    wobbleX = -10; 
-    wobbleY = -10;
+    wobbleX = -wobbleIntensity; 
+    wobbleY = -wobbleIntensity;
      
     }
     if (wobbleTimer ==17){ 
-    wobbleX = 10; 
-    wobbleY = -10;
+    wobbleX = wobbleIntensity; 
+    wobbleY = -wobbleIntensity;
      
     }
     if (wobbleTimer ==18){ 
-    wobbleX = 10; 
-    wobbleY = 10;
+    wobbleX = wobbleIntensity; 
+    wobbleY = wobbleIntensity;
      
     }
     if (wobbleTimer ==19){ 
-    wobbleX = 10; 
-    wobbleY = -10;
+    wobbleX = wobbleIntensity; 
+    wobbleY = -wobbleIntensity;
      
          
     }
