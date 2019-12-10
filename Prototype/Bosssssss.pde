@@ -10,7 +10,7 @@ class Boss {
   boolean reverse = false;
   int reverseTimer = 0;
   int bossWobbleDuration = 19;
- int bossIntensity = 190;
+ int bossIntensity = 20;
   Boss() {
     //basic values
     xMin = (-world.worldWidth / 2) + radius;

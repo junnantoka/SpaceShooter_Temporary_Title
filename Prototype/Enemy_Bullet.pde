@@ -8,7 +8,7 @@ class EnemyBullet {
   boolean shot = false;
   boolean timerActive = false;
  int bulletWobbleDuration= 19;
- int bulletIntensity = 140;
+ int bulletIntensity = 14;
   void bulletSetup(int i) {
 
       bulletX = enemy[i].x;

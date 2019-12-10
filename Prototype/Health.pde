@@ -10,8 +10,8 @@ int healthBarHeight = 30;
 
 int healthBarXLighting = 500; //Een extra lichtje zodat het er mooi uitziet.
 int healthBarYLighting = 27;
-int enemyWobbleDuration = 100;
-float enemyIntensity = 100;
+int enemyWobbleDuration = 10;
+float enemyIntensity = 10;
 final int healthBarGone = 49; //Dit voorkomt dat de healthbar een - getal wordt.
 
 class Health {
