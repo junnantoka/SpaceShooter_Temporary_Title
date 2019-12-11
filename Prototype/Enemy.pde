@@ -86,7 +86,7 @@ public class Enemy {
       xSpd = -xSpd;
       down = true;
     }
-    if (y + radius >= yMax || y - radius <= yMin) {//if movement stops or hits the wall(s), go down
+    if (y + radius >= yMax || y - radius <= yMin) {//if movement stops or hits the wall(s)
       ded = true;
     }
   }
@@ -106,7 +106,7 @@ public class Enemy {
   }
 
   void check2() {//enemy type 3 (Darude - Sandstorm)
-    t = (second()-(pauze.pauzedTime/60))/speed;
+    t = (millis()-(pauze.pauzedTime/60))/speed;
     if(circle < cMin / 2 || circle > cMax / 2){
       circle = random(cMin, cMax);
     }
