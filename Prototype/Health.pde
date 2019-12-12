@@ -41,6 +41,7 @@ class Health {
       Enemy e = enemy.get(i);
       if (dist(e.x + xRef, e.y + yRef, character.xLocation, character.yLocation) <= character.size/2 + e.radius) {
         e.ded = true;
+        enemy.remove(e);
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
         healthBarXLighting = healthBarXLighting-healthLost;
