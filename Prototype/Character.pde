@@ -168,25 +168,7 @@ controlX = xLocation;
       }
     }
   }
-  //is de chCollision niet ded codesd
-  void chCollision() {
-    if (xLocation+(size/2)>width) {
-      xSpeed=0;
-      xLocation--;
-    }
-    if (xLocation-(size/2)<0) {
-      xSpeed=0;
-      xLocation++;
-    }
-    if (yLocation+(size/2)>height) {
-      ySpeed=0;
-      yLocation--;
-    }
-    if (yLocation-(size/2)<0) {
-      ySpeed=0;
-      yLocation++;
-    }
-  }
+  
   void reset() {
     ySpeed = 0;
     xSpeed = 0;

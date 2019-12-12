@@ -52,23 +52,25 @@ class HealthDrop {
   }
 
   void healthCollision() {
-    //if (yRef + character.size/2 - startY > world.worldHeight/2) {
-    //  yRef = (world.worldHeight/2) - (character.size/2) + startY;
-    //  character.ySpeed = 0;
-    //}
-    //if (yRef - character.size/2 - startY < -world.worldHeight/2 ) {
-    //  yRef = -(world.worldHeight/2) + (character.size/2) + startY;
-    //  character.ySpeed = 0;
-    //}
+    //healthX, healthY healthSize
+    if(spawnHealth){
+    if (yRef + healthY + healthSize/2> world.worldHeight/2) {
+      print("1");
+      spawnHealth = false;
+    }
+    if (yRef - healthY  - healthSize/2< -world.worldHeight/2 ) {
+      print("2");
+      spawnHealth = false;
+    }
 
-    //if (xRef + character.size/2 - startX > world.worldHeight/2 ) {
-    //  xRef = (world.worldWidth/2) - (character.size/2) + startX;
-    //  character.xSpeed = 0;
-    //}
-    //if (xRef - character.size/2 - startX < -world.worldWidth/2 ) {
-    //  xRef = -(world.worldWidth/2) + (character.size/2) + startX;
-    //  character.xSpeed = 0;
-    //}
+    if (xRef + healthX  + healthSize/2> world.worldWidth/2 ) {
+      print("3");
+      spawnHealth = false;
+    }
+    if (xRef - healthX - healthSize/2< -world.worldWidth/2 ) {
+      print("4");
+      spawnHealth = false;
+    }}
     //checks if the player collides with the healthdrop
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize && healthChance == 4) {
 

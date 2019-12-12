@@ -150,7 +150,6 @@ void updateGame() {
   wobble.wobbleMovement();
     health.collide();
 
-    character.chCollision();
 
     for (int i = 0; i < bullets; i++) {
       bulletP[i].move();

@@ -178,9 +178,9 @@ class Boss {
               
             }
             //als de powerup aan staat worden de bullets niet gereset
-            if (!powerUp.laser) {
+            //if (!powerUp.laser) {
               bulletP[i].reset();
-            }
+            //}
           }
         }
       }
