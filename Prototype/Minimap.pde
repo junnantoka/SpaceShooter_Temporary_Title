@@ -68,7 +68,7 @@ class Minimap {
       //}
     }
 
-    for (int i = 0; i<enemy.length; i++) {
+    for (int i = 0; i<enemy.size(); i++) {
       if ((eBullet[i].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
         eBullet[i].reset(i);
       }
@@ -77,37 +77,38 @@ class Minimap {
       }
 
 
-      if ((eBullet[i+enemy.length].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i+enemy.length].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
+      if ((eBullet[i+enemy.size()].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i+enemy.size()].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
 
-        eBullet[i+enemy.length].reset(i);
+        eBullet[i+enemy.size()].reset(i);
       }
-      if ((eBullet[i+enemy.length].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i+enemy.length].bulletY)/minimapSize + minimapY <= minimapYLoc) {
+      if ((eBullet[i+enemy.size()].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i+enemy.size()].bulletY)/minimapSize + minimapY <= minimapYLoc) {
 
-        eBullet[i+enemy.length].reset(i);
+        eBullet[i+enemy.size()].reset(i);
       }
 
 
-      if ((eBullet[i+enemy.length*2].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i+enemy.length*2].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
+      if ((eBullet[i+enemy.size()*2].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i+enemy.size()*2].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
 
-        eBullet[i+enemy.length*2].reset(i);
+        eBullet[i+enemy.size()*2].reset(i);
       }
-      if ((eBullet[i+enemy.length*2].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i+enemy.length*2].bulletY)/minimapSize + minimapY <= minimapYLoc) {
+      if ((eBullet[i+enemy.size()*2].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i+enemy.size()*2].bulletY)/minimapSize + minimapY <= minimapYLoc) {
 
-        eBullet[i+enemy.length*2].reset(i);
+        eBullet[i+enemy.size()*2].reset(i);
       }
     }
 
     //Enemy on the minimap
     fill(minimapEnemyColor);
-    for (int i=0; i<currentEnemyAmount; i++) {
-      circle(((enemy[i].x)/minimapSize + minimapX)+wobbleX, ((enemy[i].y)/minimapSize + minimapY)+wobbleY, minimapEnemySize);
+    for (int i=0; i<enemy.size(); i++) {
+      Enemy e = enemy.get(i);
+      circle(((e.x)/minimapSize + minimapX)+wobbleX, ((e.y)/minimapSize + minimapY)+wobbleY, minimapEnemySize);
 
 
-      if ((enemy[i].x)/minimapSize + minimapX <= minimapXLoc || (enemy[i].y)/minimapSize + minimapY <= minimapYLoc) {
-        enemy[i].ded = true;
+      if ((e.x)/minimapSize + minimapX <= minimapXLoc || (e.y)/minimapSize + minimapY <= minimapYLoc) {
+        e.ded = true;
       }
-      if ((enemy[i].x)/minimapSize + minimapX >= minimapXLocMax || (enemy[i].y)/minimapSize + minimapY >= minimapYLocMax) {
-        enemy[i].ded = true;
+      if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
+        e.ded = true;
       } 
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
       //Dit despawnt enemies als ze buiten de playable area gaan, maar gecombineerd met hoe spawning nu werkt wordt het buggy.
@@ -115,9 +116,9 @@ class Minimap {
 
     //Healthdrop on the minimap
     fill(minimapHealthdropColor);
-    for (int i=0; i<healthDrop.length; i++) {
-      if (healthDrop[i].spawnHealth == true) {
-        rect(((healthDrop[i].healthX)/minimapSize + minimapX)+wobbleY, ((healthDrop[i].healthY)/minimapSize + minimapY)+wobbleY, minimapHealthdropSize, minimapHealthdropSize);
+    for (HealthDrop i : healthDrop) {
+      if (i.spawnHealth == true) {
+        rect(((i.healthX)/minimapSize + minimapX)+wobbleY, ((i.healthY)/minimapSize + minimapY)+wobbleY, minimapHealthdropSize, minimapHealthdropSize);
       }
     }
   }

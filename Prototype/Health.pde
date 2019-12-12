@@ -37,9 +37,10 @@ class Health {
   }
 
   void collide() { //Hier wordt de collision van de player met de enemy getest. 
-    for (int i = 0; i<currentEnemyAmount; i++) {
-      if (dist(enemy[i].x + xRef, enemy[i].y + yRef, character.xLocation, character.yLocation) <= character.size/2 + enemy[i].radius) {
-        enemy[i].ded = true;
+    for (int i = 0; i< enemy.size(); i++) {
+      Enemy e = enemy.get(i);
+      if (dist(e.x + xRef, e.y + yRef, character.xLocation, character.yLocation) <= character.size/2 + e.radius) {
+        e.ded = true;
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
         healthBarXLighting = healthBarXLighting-healthLost;

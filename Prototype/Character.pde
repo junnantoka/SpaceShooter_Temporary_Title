@@ -30,7 +30,7 @@ class Character {
     yLocation = height/2;
     xLocation = width/2;
 
-controlX = xLocation;
+    controlX = xLocation;
     controlY = yLocation;
     pInterval = 1;
     particle = new Particle[particles];
@@ -86,7 +86,7 @@ controlX = xLocation;
 
   void moveCh() {
     //particles 
-    for (int i = 0; i<particle.length; i++) {
+    for (int i = 0; i < particle.length; i++) {
       particle[i].move();
     }
 

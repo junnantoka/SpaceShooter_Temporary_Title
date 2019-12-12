@@ -170,16 +170,18 @@ public class Enemy {
     }
   }
 
-  void collision() {
+  void collision(int e) {
     //check if the enemy makes contact with the player
     if (!ded) {
       for (int i = 0; i < bulletP.length; i++) {
         if ( bulletP[i].ja) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
             ded = true;
+            enemy.remove(e);
             //print("Auchiewauchie ");
             highscore.score++;
             enemyCounter++;
+            healthDrop.add(new HealthDrop(x,y));
             //als de powerup aan staat worden de bullets niet gereset
             if (!powerUp.laser) {
               bulletP[i].reset();

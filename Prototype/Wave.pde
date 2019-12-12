@@ -29,9 +29,8 @@ class Wave {
   }
 
   void newWave(int waveAmount) {
-    if (!(currentEnemyAmount == enemies)) {
-      enemy[currentEnemyAmount].reset();
-      currentEnemyAmount++;
+    for(int i = 0; i < waveAmount; i++){
+      enemy.add(new Enemy());
     }
   }
 }

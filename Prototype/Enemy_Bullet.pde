@@ -7,13 +7,13 @@ class EnemyBullet {
   int timer;
   boolean shot = false;
   boolean timerActive = false;
- int bulletWobbleDuration= 19;
- int bulletIntensity = 14;
-  void bulletSetup(int i) {
+  int bulletWobbleDuration= 19;
+  int bulletIntensity = 14;
 
-      bulletX = enemy[i].x;
-      bulletY = enemy[i].y;
-   
+  void bulletSetup(int i) {
+    Enemy e = enemy.get(i);
+    bulletX = e.x;
+    bulletY = e.y;
   }
 
   void draw() {
@@ -38,20 +38,22 @@ class EnemyBullet {
   }
 
   void bulletSpawn(int i) {
+    Enemy e = enemy.get(i);
 
 
-    if (dist(character.xLocation, character.yLocation, enemy[i].x + xRef, enemy[i].y + yRef) > distance) {
+    if (dist(character.xLocation, character.yLocation, e.x + xRef, e.y + yRef) > distance) {
       shot = true;
       shotIn++;
     }
 
 
     if (shotIn == 1) {
-      bulletX = enemy[i].x;
-      bulletY = enemy[i].y;
+      bulletX = e.x;
+      bulletY = e.y;
+
       bulletSize = 65  ;
-      bulletYSpeed = (character.yLocation-(bulletY+ yRef))/dist(character.xLocation, character.yLocation, enemy[i].x+ xRef, enemy[i].y+ yRef)*6;
-      bulletXSpeed = (character.xLocation-(bulletX+ xRef))/dist(character.xLocation, character.yLocation, enemy[i].x+ xRef, enemy[i].y+ yRef)*6;
+      bulletYSpeed = (character.yLocation-(bulletY+ yRef))/dist(character.xLocation, character.yLocation, e.x+ xRef, e.y+ yRef)*6;
+      bulletXSpeed = (character.xLocation-(bulletX+ xRef))/dist(character.xLocation, character.yLocation, e.x+ xRef, e.y+ yRef)*6;
       //xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
       //ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
       timerActive =true;
@@ -75,14 +77,14 @@ class EnemyBullet {
           healthBarWidth = 0;
         }
         reset(i);
-        
       }
     }
   }
   void reset(int i) {
-      bulletX = enemy[i].x;
-      bulletY = enemy[i].y;
-   
+    Enemy e = enemy.get(i);
+    bulletX = e.x;
+    bulletY = e.y;
+
     timerActive= false;
     timer =0;
     shot = false;
