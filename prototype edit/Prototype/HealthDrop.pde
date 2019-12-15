@@ -12,31 +12,25 @@ HealthDrop(float x, float y){
   void healthSetup() {
     healthSize = 20;
     counter =0;
+    healthChance = int(random(1,5));
   }
 
-  void displayHealth() {
-    spawnHealth();
-  }
+ 
 
-  void spawnHealth() {
+  void spawnHealth(int i) {
 
     //Checks if health can spawn
-    if (spawnHealth) {
-      counter++;
-      if (counter ==1) {
-
-        //A random function to make a 1/4 chance of health to spawn
-        healthChance = int(random(1, 5));
-      }
+   
 
       //if the correct number is selected it spawns health
       if (healthChance == 4) {
-        image(healthDropIMG, (healthX + xRef)+wobbleX, (healthY + yRef)+wobbleY);
+        image(healthDropIMG, (healthX + xRef)+wobbleX, (healthY + yRef)+wobbleY, healthSize,healthSize);
+        
       } else {
-        spawnHealth = false;
+        healthDrop.remove(i);
       }
     }
-  }
+  
 
   void updateHealth() {
     //spawns health if the enemy dies
@@ -57,23 +51,23 @@ HealthDrop(float x, float y){
   void healthCollision() {
     //healthX, healthY healthSize
     if (spawnHealth) {
-      if (yRef + healthY + healthSize/2> world.worldHeight/2) {
-        print("1");
-        spawnHealth = false;
-      }
-      if (yRef - healthY  - healthSize/2< -world.worldHeight/2 ) {
-        print("2");
-        spawnHealth = false;
-      }
+      //if (yRef + healthY + healthSize/2> world.worldHeight/2) {
+      //  print("1");
+      //  spawnHealth = false;
+      //}
+      //if (yRef - healthY  - healthSize/2< -world.worldHeight/2 ) {
+      //  print("2");
+      //  spawnHealth = false;
+      //}
 
-      if (xRef + healthX  + healthSize/2> world.worldWidth/2 ) {
-        print("3");
-        spawnHealth = false;
-      }
-      if (xRef - healthX - healthSize/2< -world.worldWidth/2 ) {
-        print("4");
-        spawnHealth = false;
-      }
+      //if (xRef + healthX  + healthSize/2> world.worldWidth/2 ) {
+      //  print("3");
+      //  spawnHealth = false;
+      //}
+      //if (xRef - healthX - healthSize/2< -world.worldWidth/2 ) {
+      //  print("4");
+      //  spawnHealth = false;
+      //}
     }
     //checks if the player collides with the healthdrop
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize && healthChance == 4) {
@@ -92,9 +86,9 @@ HealthDrop(float x, float y){
     }
   }
   void reset() {
-    for(HealthDrop i : healthDrop){
-      //i.remove();
-    }
-    spawnHealth = false;
+  //  for(HealthDrop i : healthDrop){
+  //    //i.remove();
+  //  }
+  //  spawnHealth = false;
   }
 }
