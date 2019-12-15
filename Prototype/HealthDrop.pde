@@ -10,7 +10,7 @@ HealthDrop(float x, float y){
   healthY = y;
 }
   void healthSetup() {
-    healthSize = 20;
+    healthSize = 35;
     counter =0;
   }
 

@@ -118,7 +118,7 @@ class Minimap {
     fill(minimapHealthdropColor);
     for (HealthDrop i : healthDrop) {
       if (i.spawnHealth == true) {
-        rect(((i.healthX)/minimapSize + minimapX)+wobbleY, ((i.healthY)/minimapSize + minimapY)+wobbleY, minimapHealthdropSize, minimapHealthdropSize);
+        image(healthIcon,((i.healthX)/minimapSize + minimapX)+wobbleY, ((i.healthY)/minimapSize + minimapY)+wobbleY, minimapHealthdropSize, minimapHealthdropSize);
       }
     }
   }
