@@ -15,6 +15,8 @@ Wobble wobble = new Wobble();
 
 ArrayList<Explosion> explosion;
 
+ArrayList<PlayerParticle> playerParticle;
+
 Wave wave = new Wave();
 
 Star[] star;
@@ -24,7 +26,7 @@ int stars = 300;
 int timer, enemyCounter = 0;
 int timerBullet;
 int bossTotal = 1;
-int enemiesRequiredStart = 20;
+int enemiesRequiredStart = 5;
 int enemiesRequired = enemiesRequiredStart;
 boolean bossSpawn = false;
 
@@ -106,6 +108,8 @@ void setup() {
   healthDrop = new ArrayList<HealthDrop>();
 
   explosion = new ArrayList<Explosion>();
+  
+  playerParticle = new ArrayList<Particle>();
 }
 
 void updateGame() {
@@ -145,7 +149,6 @@ void updateGame() {
     }
     bulletP[beweging].detectie();
 
-    powerUp.display(); 
 
     //runs enemy array
     timerBullet++;
@@ -182,6 +185,15 @@ void updateGame() {
       Explosion ex = explosion.get(i);
       ex.reset(i);
     }
+    
+    for (PlayerDamageEffect ef : playerParticle) {
+      ef.move();
+    }
+    for (int i = 0; i < playerParticle.size(); i++) {
+      PlayerDamageEffect ef = playerParticle.get(i);
+      ef.reset(i);
+    }
+    
   }
 }
 
@@ -195,6 +207,7 @@ void drawGame() {
 
   world.display();
 
+
   for (Explosion ex : explosion) {
     ex.display();
   }
@@ -203,6 +216,8 @@ void drawGame() {
       i.draw();
     }
   }
+  powerUp.display(); 
+
 
   for (int i = 0; i < boss.length; i++) {
     boss[i].draw();
