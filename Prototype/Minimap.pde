@@ -80,7 +80,7 @@ class Minimap {
 
     //Enemy on the minimap
     fill(minimapEnemyColor);
-    for (int i=enemy.size()-1; i>=0; i--) {
+    for (int i = enemy.size() -1; i >= 0; i--) {
       Enemy e = enemy.get(i);
       circle(((e.x)/minimapSize + minimapX)+wobbleX, ((e.y)/minimapSize + minimapY)+wobbleY, minimapEnemySize);
 
