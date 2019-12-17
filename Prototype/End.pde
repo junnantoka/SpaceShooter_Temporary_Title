@@ -1,20 +1,38 @@
 class End {
 
   boolean end, button = false;
+  int timerEnd= 0;
+  int opacityGameOver, opacityTitleCard,  opacityStarting, opacitycontrols=0;
   void setup() {
   }
 
   void draw() {
-    fill(255, 0, 0);
+    timerEnd++;
+    if ( timerEnd <=50){
+    fill(255, 0, 0, opacityGameOver);
     textSize(100);
-    text("GAME OVER", width/3+10, height/2+50);
-    fill(255);
+    opacityGameOver+= 10;
     
+    text("GAME OVER", width/3+10, height/2+50);
+    }
+    if (timerEnd >=50){
+    fill(255);
+    opacityTitleCard+= 3;
     textSize(150);
+    tint(255, opacityTitleCard);
     image(titleCard,width / 2, height/4);
+    }
+    if (timerEnd >=65){
+      opacityStarting+= 3;
+      tint(255, opacityStarting);
     image(startImg, width / 2, height/ 2 +200, 500,300);
+    }
+    if (timerEnd >=80){
+      opacitycontrols+= 3;
+      tint(255, opacitycontrols);
     image(movement, width/4-75, height/2, 500, 500);
     image(shooting, width/4*3+75, height/2, 500, 500);
+    }
   }
 
   void update() {
@@ -32,6 +50,11 @@ class End {
   }
 
   void reset() {
+    timerEnd= 0;
+    opacityGameOver=0; 
+    opacityTitleCard=0;   
+    opacityStarting =0; 
+    opacitycontrols=0; 
     for(int i = enemy.size()-1; i >=0; i--){
       enemy.remove(i);
     }
