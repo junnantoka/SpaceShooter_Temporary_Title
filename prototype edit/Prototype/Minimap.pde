@@ -62,53 +62,46 @@ class Minimap {
 
     //Enemy bullet on the minimap
     fill(minimapEnemyBulletColor);
-    for (int i =0; i<eBullet.length; i++) {
-      //if (eBullet[i].shot) {
-      //  circle((eBullet[i].bulletX)/minimapSize + minimapX, (eBullet[i].bulletY)/minimapSize + minimapY, minimapBulletSize);
+    for (int i =0; i<eBullet.size(); i++) {
+      //EnemyBullet e =eBullet.get(i);
+      //if (e.shot) {
+      //  circle((e.bulletX)/minimapSize + minimapX, (e.bulletY)/minimapSize + minimapY, minimapBulletSize);
       //}
     }
 
-    for (int i = 0; i<enemy.size(); i++) {
-      if ((eBullet[i].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
-        eBullet[i].reset(i);
-      }
-      if ((eBullet[i].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i].bulletY)/minimapSize + minimapY <= minimapYLoc) {
-        eBullet[i].reset(i);
-      }
+    for (int i =eBullet.size()-1; i>0; i--) {
+      EnemyBullet e =eBullet.get(i);
+      if ((e.bulletX)/minimapSize + minimapX >= minimapXLocMax || (e.bulletY)/minimapSize + minimapY >= minimapYLocMax) {
+        eBullet.remove(i);
+      } else if ((e.bulletX)/minimapSize + minimapX <= minimapXLoc || (e.bulletY)/minimapSize + minimapY <= minimapYLoc) {
+        eBullet.remove(i);
+      } else if ((e.bulletX)/minimapSize + minimapX >= minimapXLocMax || (e.bulletY)/minimapSize + minimapY >= minimapYLocMax) {
 
+        eBullet.remove(i);
+      } else if ((e.bulletX)/minimapSize + minimapX <= minimapXLoc || (e.bulletY)/minimapSize + minimapY <= minimapYLoc) {
 
-      if ((eBullet[i+enemy.size()].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i+enemy.size()].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
+        eBullet.remove(i);
+      } else if ((e.bulletX)/minimapSize + minimapX >= minimapXLocMax || (e.bulletY)/minimapSize + minimapY >= minimapYLocMax) {
 
-        eBullet[i+enemy.size()].reset(i);
-      }
-      if ((eBullet[i+enemy.size()].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i+enemy.size()].bulletY)/minimapSize + minimapY <= minimapYLoc) {
+        eBullet.remove(i);
+      } else if ((e.bulletX)/minimapSize + minimapX <= minimapXLoc || (e.bulletY)/minimapSize + minimapY <= minimapYLoc) {
 
-        eBullet[i+enemy.size()].reset(i);
-      }
-
-
-      if ((eBullet[i+enemy.size()*2].bulletX)/minimapSize + minimapX >= minimapXLocMax || (eBullet[i+enemy.size()*2].bulletY)/minimapSize + minimapY >= minimapYLocMax) {
-
-        eBullet[i+enemy.size()*2].reset(i);
-      }
-      if ((eBullet[i+enemy.size()*2].bulletX)/minimapSize + minimapX <= minimapXLoc || (eBullet[i+enemy.size()*2].bulletY)/minimapSize + minimapY <= minimapYLoc) {
-
-        eBullet[i+enemy.size()*2].reset(i);
+        eBullet.remove(i);
       }
     }
 
     //Enemy on the minimap
     fill(minimapEnemyColor);
-    for (int i=0; i<enemy.size(); i++) {
+    for (int i=enemy.size()-1; i>=0; i--) {
       Enemy e = enemy.get(i);
       circle(((e.x)/minimapSize + minimapX)+wobbleX, ((e.y)/minimapSize + minimapY)+wobbleY, minimapEnemySize);
 
 
       if ((e.x)/minimapSize + minimapX <= minimapXLoc || (e.y)/minimapSize + minimapY <= minimapYLoc) {
-        e.ded = true;
+        enemy.remove(i);
       }
       if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
-        e.ded = true;
+        enemy.remove(i);
       } 
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
       //Dit despawnt enemies als ze buiten de playable area gaan, maar gecombineerd met hoe spawning nu werkt wordt het buggy.
@@ -118,7 +111,7 @@ class Minimap {
     fill(minimapHealthdropColor);
     for (HealthDrop i : healthDrop) {
       if (i.spawnHealth == true) {
-        image(healthIcon,((i.healthX)/minimapSize + minimapX)+wobbleY, ((i.healthY)/minimapSize + minimapY)+wobbleY, minimapHealthdropSize, minimapHealthdropSize);
+        rect(((i.healthX)/minimapSize + minimapX)+wobbleY, ((i.healthY)/minimapSize + minimapY)+wobbleY, minimapHealthdropSize, minimapHealthdropSize);
       }
     }
   }

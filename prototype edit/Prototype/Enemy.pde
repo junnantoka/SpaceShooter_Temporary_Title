@@ -8,6 +8,7 @@ public class Enemy {
   float xSpeed, ySpeed, chargeDist;
   int spawnLocation, frame, roamTime, chargeWait, chargeFrame, chargeTime, chargeSpeed;
   boolean aggro = false;
+  int shootTimer;
 
   Enemy() {
     //basic values
@@ -34,6 +35,7 @@ public class Enemy {
     chargeWait = 30;//amount of time the enemy waits before charging
     chargeTime = 60;//duration of the charge
     chargeSpeed = 20;//velocity of the charge
+    shootTimer =int(random(60,200));
   }
 
   void draw() {
@@ -177,15 +179,19 @@ public class Enemy {
         if ( bulletP[i].ja) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
             ded = true;
-            enemy.remove(e);
+            
             //print("Auchiewauchie ");
             highscore.score++;
             enemyCounter++;
             healthDrop.add(new HealthDrop(x,y));
+            HealthDrop h = healthDrop.get(healthDrop.size()-1);
+            h.healthSetup();
             //als de powerup aan staat worden de bullets niet gereset
             if (!powerUp.laser) {
               bulletP[i].reset();
             }
+            
+            enemy.remove(e);
           }
         }
       }
@@ -220,5 +226,13 @@ public class Enemy {
     down = false;
     ded = false;
     speed = random(500.0f, 100.0f);
+  }
+  void shot(){
+    shootTimer--;
+    if (shootTimer ==0){
+      eBullet.add(new EnemyBullet(x,y));
+      shootTimer = 200;
+    }
+    
   }
 }
