@@ -19,7 +19,7 @@ class Wave {
           waveNR++;
           break;
         case 1:
-          waveAmount = 3;
+          waveAmount = 10;
           waveNR++;
           break;
         case 2:

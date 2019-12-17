@@ -9,6 +9,7 @@ public class Enemy {
   int spawnLocation, frame, roamTime, chargeWait, chargeFrame, chargeTime, chargeSpeed;
   boolean aggro = false;
   int shootTimer;
+  int particles;
 
   Enemy() {
     //basic values
@@ -35,7 +36,10 @@ public class Enemy {
     chargeWait = 30;//amount of time the enemy waits before charging
     chargeTime = 60;//duration of the charge
     chargeSpeed = 20;//velocity of the charge
+
     shootTimer = int(random(60,200));
+    particles = 30;
+
   }
 
   void draw() {
@@ -43,14 +47,17 @@ public class Enemy {
     noStroke();
     if (type == 0) {
       image(snailgun, x + xRef+wobbleX, y + yRef+wobbleY);
-    }if (type == 1) {
+    }
+    if (type == 1) {
       image(shooter, x + xRef+wobbleX, y + yRef+wobbleY);
-    }if (type == 2){
+    }
+    if (type == 2) {
       image(shooter, x + xRef+wobbleX, y + yRef+wobbleY);
-    }if (type == 3) {
+    }
+    if (type == 3) {
       image(crusher, x + xRef+wobbleX, y + yRef+wobbleY);
     }
-    if (type ==4){
+    if (type ==4) {
       print("a");
     }
   }
@@ -113,22 +120,22 @@ public class Enemy {
 
   void check2() {//enemy type 3 (Darude - Sandstorm)
     t = (millis()-(pauze.pauzedTime/60))/speed;
-    if(circle < cMin / 2 || circle > cMax / 2){
+    if (circle < cMin / 2 || circle > cMax / 2) {
       circle = random(cMin, cMax);
     }
-    
+
     //movement
     x = (int) circle * xSpd * cos(t);
     y = (int) circle * ySpd * sin(t);
   }
-  
+
   void check3() {
     roam();
     charge();
     x += xSpeed;
     y += ySpeed;
   }
-  
+
   void roam() {
 
     if (frame == 1) {
@@ -162,15 +169,15 @@ public class Enemy {
       xSpeed = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * chargeSpeed;
       ySpeed = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * chargeSpeed;
     }
-    if(chargeFrame > chargeWait+chargeTime){
+    if (chargeFrame > chargeWait+chargeTime) {
       aggro = false;
       chargeFrame = 0;
     }
-    
+
     if (y + radius > world.worldHeight/2 || y - radius< -world.worldHeight/2) {
       ySpeed = -ySpeed;
     }
-    
+
     if (x + radius > world.worldWidth/2 || x - radius < -world.worldWidth/2) {
       xSpeed = -xSpeed;
     }
@@ -183,25 +190,29 @@ public class Enemy {
         if ( bulletP[i].ja) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
             ded = true;
-            
             //print("Auchiewauchie ");
             highscore.score++;
             enemyCounter++;
-            healthDrop.add(new HealthDrop(x,y));
+            healthDrop.add(new HealthDrop(x, y));
+            
+            for (int in = 0; in < particles; in++) {
+              explosion.add(new Explosion(x, y));
+            }
+            
             HealthDrop h = healthDrop.get(healthDrop.size()-1);
             h.healthSetup();
             //als de powerup aan staat worden de bullets niet gereset
             if (!powerUp.laser) {
               bulletP[i].reset();
             }
-            
+
             enemy.remove(e);
           }
         }
       }
     }
   }
-  
+
   void respawn() {
     //checks if the stars spawn outside the playarea and if they do ranspawn them back in
     if (x + xRef < -xMin) {
@@ -231,12 +242,11 @@ public class Enemy {
     ded = false;
     speed = random(500.0f, 100.0f);
   }
-  void shot(){
+  void shot() {
     shootTimer--;
-    if (shootTimer ==0){
-      eBullet.add(new EnemyBullet(x,y));
+    if (shootTimer ==0) {
+      eBullet.add(new EnemyBullet(x, y));
       shootTimer = 200;
     }
-    
   }
 }
