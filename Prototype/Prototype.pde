@@ -149,7 +149,6 @@ void updateGame() {
     }
     bulletP[beweging].detectie();
 
-
     //runs enemy array
     timerBullet++;
     for (Enemy i : enemy) {
@@ -160,8 +159,6 @@ void updateGame() {
       e.collision(i);
       e.shot();
     }
-
-
 
     for (int i = eBullet.size() -1; i >= 0; i--) {
       EnemyBullet e = eBullet.get(i);
@@ -179,7 +176,6 @@ void updateGame() {
     //explosion van Lennart wanneer enemies sterven
     for (Explosion ex : explosion) {
       ex.move();
-      print(ex);
     }
     for (int i = 0; i < explosion.size(); i++) {
       Explosion ex = explosion.get(i);

@@ -31,7 +31,7 @@ class PlayerBullet {
       pBTimer++;
       if (pBTimer == 1) {
         reset();
-        shoot = true;
+        
         bPXRef += xRef;
         bPYRef += yRef;
         bPLocationX = character.xLocation;
@@ -56,6 +56,7 @@ class PlayerBullet {
           pBRechts = true;
         } 
         beweging++;
+        shoot = true;
       }
 
       if (beweging == bullets-1) {
