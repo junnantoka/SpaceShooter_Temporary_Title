@@ -15,7 +15,7 @@ Wobble wobble = new Wobble();
 
 ArrayList<Explosion> explosion;
 
-ArrayList<PlayerParticle> playerParticle;
+ArrayList<PlayerDamageEffect> playerParticle;
 
 Wave wave = new Wave();
 
@@ -109,7 +109,7 @@ void setup() {
 
   explosion = new ArrayList<Explosion>();
   
-  playerParticle = new ArrayList<Particle>();
+  playerParticle = new ArrayList<PlayerDamageEffect>();
 }
 
 void updateGame() {
@@ -187,11 +187,11 @@ void updateGame() {
     }
     
     for (PlayerDamageEffect ef : playerParticle) {
-      ef.move();
+      //ef.move();
     }
     for (int i = 0; i < playerParticle.size(); i++) {
       PlayerDamageEffect ef = playerParticle.get(i);
-      ef.reset(i);
+      //ef.reset(i);
     }
     
   }
