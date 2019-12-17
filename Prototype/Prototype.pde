@@ -26,7 +26,7 @@ int stars = 300;
 int timer, enemyCounter = 0;
 int timerBullet;
 int bossTotal = 1;
-int enemiesRequiredStart = 5;
+int enemiesRequiredStart = 1;
 int enemiesRequired = enemiesRequiredStart;
 boolean bossSpawn = false;
 
@@ -172,6 +172,7 @@ void updateGame() {
     }
     spawnBoss();
     character.moveCh();
+    powerUp.powerUpDate();
 
     //explosion van Lennart wanneer enemies sterven
     for (Explosion ex : explosion) {
