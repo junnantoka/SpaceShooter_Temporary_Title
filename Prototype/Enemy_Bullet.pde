@@ -2,6 +2,7 @@
 
 class EnemyBullet {
   float bulletX, bulletY, bulletXSpeed, bulletYSpeed, bulletSize;
+  float enemyBulletSpeed;
   int shotIn = 0;
   int distance = 100;
   int timer;
@@ -9,18 +10,25 @@ class EnemyBullet {
   boolean timerActive = true;
   int bulletWobbleDuration= 19;
   int bulletIntensity = 14;
+  
   EnemyBullet(float x, float y) {
+    if(!snailPowerUp.snailActivate) {
+    enemyBulletSpeed = 6;
+    }
+    if(snailPowerUp.snailActivate) {
+    enemyBulletSpeed = 1;
+    }
+    
     bulletX = x;
     bulletY = y;
-    bulletYSpeed = (character.yLocation-(bulletY+ yRef))/dist(character.xLocation, character.yLocation, x+ xRef, y+ yRef)*6;
-    bulletXSpeed = (character.xLocation-(bulletX+ xRef))/dist(character.xLocation, character.yLocation, x+ xRef, y+ yRef)*6;
+    bulletYSpeed = (character.yLocation-(bulletY+ yRef))/dist(character.xLocation, character.yLocation, x+ xRef, y+ yRef)*enemyBulletSpeed;
+    bulletXSpeed = (character.xLocation-(bulletX+ xRef))/dist(character.xLocation, character.yLocation, x+ xRef, y+ yRef)*enemyBulletSpeed;
     bulletSize = 65;
   }
   
 
   void draw() {
     image(enemyBullet, (xRef + bulletX+wobbleX), (yRef+ bulletY+wobbleY), bulletSize, bulletSize);
-    
   }
   void move(int i) {
 

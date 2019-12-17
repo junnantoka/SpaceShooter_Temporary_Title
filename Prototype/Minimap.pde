@@ -61,13 +61,13 @@ class Minimap {
     }
 
     //Enemy bullet on the minimap
-    /*fill(minimapEnemyBulletColor);
+    fill(minimapEnemyBulletColor);
     for (int i =0; i<eBullet.size(); i++) {
-      //EnemyBullet e =eBullet.get(i);
-      //if (e.shot) {
-      //  circle((e.bulletX)/minimapSize + minimapX, (e.bulletY)/minimapSize + minimapY, minimapBulletSize);
-      //}
-    }*/
+      EnemyBullet e =eBullet.get(i);
+      if (e.shot) {
+      circle((e.bulletX)/minimapSize + minimapX, (e.bulletY)/minimapSize + minimapY, minimapBulletSize);
+      }
+    }
 
     for (int i = eBullet.size() -1; i>0; i--) {
       EnemyBullet e =eBullet.get(i);

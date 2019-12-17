@@ -46,7 +46,9 @@ public class Enemy {
     //draw the actual enemy(ies) and chooses the enemy type
     noStroke();
     if (type == 0) {
-      image(snailgun, x + xRef + wobbleX, y + yRef + wobbleY);
+      fill(0,255,0);
+      circle(x + xRef + wobbleX, y + yRef + wobbleY, 50);
+      //image(snailgun, x + xRef + wobbleX, y + yRef + wobbleY);
     }
     if (type == 1) {
       image(shooter, x + xRef + wobbleX, y + yRef + wobbleY);
@@ -63,6 +65,12 @@ public class Enemy {
   }
 
   void update() {
+    if(snailPowerUp.snailActivate) {
+    xSpd = 1;
+    ySpd = 1;
+    chargeSpeed = 3;
+    }
+
     //cal to method(s)
     types();
   }

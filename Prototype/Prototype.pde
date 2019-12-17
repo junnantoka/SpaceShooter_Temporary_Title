@@ -39,6 +39,8 @@ int healthBalls = 10;
 
 PowerUp powerUp = new PowerUp();
 
+SnailPowerUp snailPowerUp = new SnailPowerUp();
+
 
 // jeroens deel
 Highscore highscore = new Highscore();
@@ -176,6 +178,8 @@ void updateGame() {
     spawnBoss();
     character.moveCh();
     powerUp.powerUpDate();
+    snailPowerUp.snailPowerUpDate();
+
 
     //explosion van Lennart wanneer enemies sterven
     for (Explosion ex : explosion) {
@@ -215,6 +219,8 @@ void drawGame() {
     }
   }
   powerUp.display(); 
+  snailPowerUp.display(); 
+
 
 
   for (int i = 0; i < boss.length; i++) {
