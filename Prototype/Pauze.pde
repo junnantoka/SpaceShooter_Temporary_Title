@@ -31,8 +31,8 @@ class Pauze {
   void pauzeGame() {
 
     if (timerPauze == 0) {
-      if ((keysPressed['p'] || keysPressed['P']) && pauze == true) {
-        pauze = false;
+      if ((keysPressed['p']||keysPressed['P']) && pauze == true) {
+        pauze= false;
         timerPauze++;
         timer++;
         if (random(0, 1) >=0.5) {
@@ -40,31 +40,31 @@ class Pauze {
         } else {
           clickB.play();
         }
-      } else if ((keysPressed['p'] || keysPressed['P']) && pauze == false) {
-        pauze = true;
+      } else if ((keysPressed['p']||keysPressed['P']) && pauze == false) {
+        pauze= true;
         timerPauze++;
         timer++;
-        if (random(0, 1) >= 0.5) {
+        if (random(0, 1) >=0.5) {
           clickA.play();
         } else {
           clickB.play();
         }
       }
     }
-    if ((!keysPressed['p'] || !keysPressed['P'])) {
+    if ((!keysPressed['p']||!keysPressed['P'])) {
       timerPauze = 0;
     }
-    if (pauze == true) {
+    if (pauze ==true) {
       pauzedTime++;
       pauzeX += speedX;
       pauzeY += speedY;
-      if (pauzeX -125 <= 0 ) {
+      if (pauzeX -125 <=0 ) {
         speedX = SPEED;
       }
       if (pauzeX + 125 >= width ) {
         speedX = -SPEED;
       }
-      if (pauzeY - 25 <= 0 ) {
+      if (pauzeY - 25<=0 ) {
         speedY = SPEED;
       }
       if (pauzeY + 25 >= height ) {
@@ -75,12 +75,12 @@ class Pauze {
 
   void draw() {
     if (pauze == true) {
-      image(movement, width-175 , height-75, 100, 100);
-      image(shooting, width-75, height-75, 100, 100);
+      //image(movement, width/4-75, height/2, 500,500);
+      //image(shooting, width/4*3+75, height/2, 500,500);
       image(pauzeImg, pauzeX, pauzeY);
       textSize(TEXTSIZE);
       fill(#FAE523);
-      text("Press start to continue", TEXTX, TEXTY);
+      text("press any key to continue", TEXTX, TEXTY);
     }
   }
 }
