@@ -1,4 +1,4 @@
-class HealthDrop {
+``class HealthDrop {
   float healthGet = 3;
   float healthX, healthY, healthSize;
   int healthChance;
@@ -49,7 +49,7 @@ HealthDrop(float x, float y){
     healthCollision();*/
   }
 
-  void healthCollision() {
+  void healthCollision(int i) {
     //healthX, healthY healthSize
     if (spawnHealth) {
       //if (yRef + healthY + healthSize/2> world.worldHeight/2) {
@@ -82,7 +82,7 @@ HealthDrop(float x, float y){
 
         //println("darren is de beste");
       }
-
+      healthDrop.remove(i);
       spawnHealth = false;
     }
   }
