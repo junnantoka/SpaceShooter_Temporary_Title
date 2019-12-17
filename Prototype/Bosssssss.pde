@@ -163,7 +163,7 @@ class Boss {
     //check if the enemy makes contact with the player bullet
     if (!ded ) {
       for (int i = 0; i < bulletP.length; i++) {
-        if ( bulletP[i].ja) {
+        if ( bulletP[i].shoot) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/2) {
             health--;
             if (health == 0) {

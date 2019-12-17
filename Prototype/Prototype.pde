@@ -155,7 +155,7 @@ void updateGame() {
     for (Enemy i : enemy) {
       i.update();
     }
-    for (int i = 0; i < enemy.size(); i++) {
+    for (int i = enemy.size()-1; i >= 0; i--) {
       Enemy e = enemy.get(i);
       e.collision(i);
       e.shot();
