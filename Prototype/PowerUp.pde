@@ -11,6 +11,7 @@ class PowerUp {
 
   boolean laser;
   boolean laserAvailable = true;
+  boolean lasercollision;
 
   float bulletSizeMod = 1.2;
   float bulletMaxSize = 170;
@@ -39,13 +40,18 @@ class PowerUp {
   }
 
   void display() {
+    collision();
     for (int i = 0; i < boss.length; i++) {
       if (boss[i].down) {
         switch(powerUpNumber) {
         case 0:
           if (laserAvailable) {
+            lasercollision = true;
             image(laserPowerUp, powerUpX + xRef + wobbleX, powerUpY + yRef + wobbleY, powerUpSize, powerUpSize);
           }
+          break;
+        case 1:
+          image(healthup, powerUpX + xRef + wobbleX, powerUpY + yRef + wobbleY, powerUpSize, powerUpSize);
         }
 
 
@@ -60,18 +66,21 @@ class PowerUp {
         //      bulletP[i].bPSize *= bulletSizeMod;
         //      if(bulletP[i].bPSize >= bulletMaxSize){
         //        bulletP[i].bPSize = bulletMaxSize;
-
       }
     }
   }
-  
-  //void collision(){
-  //  if (dist(powerUpX + xRef, powerUpY + yRef, character.xLocation, character.yLocation) <= character.size/2 + powerUpSize/2){
-  //    laser = true;
-  //  }
-  //}
-  
-  void effect(){
-    
+
+  void collision() {
+    if (lasercollision) {
+      if (dist(powerUpX + xRef, powerUpY + yRef, character.xLocation, character.yLocation) <= character.size/2 + powerUpSize/2) {
+        laser = true;
+        laserAvailable = false;
+        powerUpNumber++;
+       
+      }
+    }
+  }
+
+  void effect() {
   }
 }
