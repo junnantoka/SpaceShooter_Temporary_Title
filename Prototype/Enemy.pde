@@ -2,9 +2,9 @@
 public class Enemy {
   //enemy settings
   float x, y, radius, xSpd, ySpd, direction, t, speed, circle;
-  int type, amount, cMin, cMax;
+  int type, amount;
   boolean ded, down;
-  final float xMin, xMax, yMin, yMax, size;
+  final float xMin, xMax, yMin, yMax, cMin, cMax, size;
   float xSpeed, ySpeed, chargeDist;
   int spawnLocation, frame, roamTime, chargeWait, chargeFrame, chargeTime, chargeSpeed;
   boolean aggro = false;
@@ -93,7 +93,6 @@ public class Enemy {
       ded = true;
     }
     if (down) {
-      direction = 1;
       y += direction * ySpd;
     }
   }
