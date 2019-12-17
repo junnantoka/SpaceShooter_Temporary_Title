@@ -172,15 +172,15 @@ class Boss {
             health--;
             if (health == 0) {
               reset();
-              ded = true;
               //print("Auchiewauchie ");
               highscore.score += bossScore;
+              down = true;
               
             }
             //als de powerup aan staat worden de bullets niet gereset
-            //if (!powerUp.laser) {
+            if (!powerUp.laser) {
               bulletP[i].reset();
-            //}
+            }
           }
         }
       }
