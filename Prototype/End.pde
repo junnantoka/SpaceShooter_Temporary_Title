@@ -33,6 +33,7 @@ class End {
     image(movement, width/4-75, height/2, 500, 500);
     image(shooting, width/4*3+75, height/2, 500, 500);
     }
+     tint(255, 255);
   }
 
   void update() {
