@@ -26,7 +26,7 @@ int stars = 300;
 int timer, enemyCounter = 0;
 int timerBullet;
 int bossTotal = 1;
-int enemiesRequiredStart = 5;
+int enemiesRequiredStart = 0;
 int enemiesRequired = enemiesRequiredStart;
 boolean bossSpawn = false;
 

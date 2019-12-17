@@ -38,7 +38,7 @@ public class Enemy {
     chargeSpeed = 20;//velocity of the charge
 
     shootTimer = int(random(60,200));
-    particles = 30;
+    particles = 50;
 
   }
 
@@ -196,7 +196,7 @@ public class Enemy {
             healthDrop.add(new HealthDrop(x, y));
             
             for (int in = 0; in < particles; in++) {
-              explosion.add(new Explosion(x, y));
+              explosion.add(new Explosion(x, y, 10, 7));
             }
             
             HealthDrop h = healthDrop.get(healthDrop.size()-1);

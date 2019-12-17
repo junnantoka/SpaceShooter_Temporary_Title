@@ -15,15 +15,15 @@ class Wave {
       if (waveFrame == newEnemyTimer) {
         switch(waveNR) {
         case 0:
-          waveAmount = 1;
+          waveAmount = 0;
           waveNR++;
           break;
         case 1:
-          waveAmount = 10;
+          waveAmount = 5;
           waveNR++;
           break;
         case 2:
-          waveAmount = 4;
+          waveAmount = 6;
           newEnemyTimer = 500;
           break;
         }

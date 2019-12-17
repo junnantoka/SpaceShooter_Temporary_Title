@@ -11,6 +11,7 @@ class Boss {
   int reverseTimer = 0;
   int bossWobbleDuration = 19;
   int bossIntensity = 20;
+  int particles;
   Boss() {
     //basic values
     xMin = (-world.worldWidth / 2) + radius;
@@ -37,6 +38,7 @@ class Boss {
     time = startTime;
     health = 30;
     speed = 8;
+    particles = 70;
   }
 
   void draw() {
@@ -168,10 +170,15 @@ class Boss {
             health--;
             if (health == 0) {
               down = true;
+              for (int in = 0; in < particles; in++) {
+                explosion.add(new Explosion(x, y, 25, 6));
+              }
               powerUp.powerUpInfo(x, y);
               reset();
               //print("Auchiewauchie ");
               highscore.score += bossScore;
+
+              
             }
             //als de powerup aan staat worden de bullets niet gereset
             if (!powerUp.laser) {
