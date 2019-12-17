@@ -26,7 +26,7 @@ int stars = 300;
 int timer, enemyCounter = 0;
 int timerBullet;
 int bossTotal = 1;
-int enemiesRequiredStart = 20;
+int enemiesRequiredStart = 5;
 int enemiesRequired = enemiesRequiredStart;
 boolean bossSpawn = false;
 
@@ -149,7 +149,6 @@ void updateGame() {
     }
     bulletP[beweging].detectie();
 
-    powerUp.display(); 
 
     //runs enemy array
     timerBullet++;
@@ -208,6 +207,7 @@ void drawGame() {
 
   world.display();
 
+
   for (Explosion ex : explosion) {
     ex.display();
   }
@@ -216,6 +216,8 @@ void drawGame() {
       i.draw();
     }
   }
+  powerUp.display(); 
+
 
   for (int i = 0; i < boss.length; i++) {
     boss[i].draw();

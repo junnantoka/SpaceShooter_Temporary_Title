@@ -46,16 +46,16 @@ public class Enemy {
     //draw the actual enemy(ies) and chooses the enemy type
     noStroke();
     if (type == 0) {
-      image(snailgun, x + xRef+wobbleX, y + yRef+wobbleY);
+      image(snailgun, x + xRef + wobbleX, y + yRef + wobbleY);
     }
     if (type == 1) {
-      image(shooter, x + xRef+wobbleX, y + yRef+wobbleY);
+      image(shooter, x + xRef + wobbleX, y + yRef + wobbleY);
     }
     if (type == 2) {
-      image(shooter, x + xRef+wobbleX, y + yRef+wobbleY);
+      image(shooter, x + xRef + wobbleX, y + yRef + wobbleY);
     }
     if (type == 3) {
-      image(crusher, x + xRef+wobbleX, y + yRef+wobbleY);
+      image(crusher, x + xRef + wobbleX, y + yRef + wobbleY);
     }
     if (type ==4) {
       print("a");
