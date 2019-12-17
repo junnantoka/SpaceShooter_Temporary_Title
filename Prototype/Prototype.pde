@@ -146,7 +146,6 @@ void updateGame() {
     wave.update();
     wobble.wobbleMovement();
     health.collide();
-    highscore.updateScore();
 
     for (int i = 0; i < bullets; i++) {
       bulletP[i].move();
@@ -205,7 +204,7 @@ void drawGame() {
 
   world.display();
   
-  highscore.drawScore();
+  
 
   for (Explosion ex : explosion) {
     ex.display();
@@ -244,7 +243,7 @@ void drawGame() {
     }
     pauze.draw();
   }
-
+  highscore.displayScore();
   if (start.start) {
     start.draw();
   }

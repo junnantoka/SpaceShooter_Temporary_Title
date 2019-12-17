@@ -14,24 +14,22 @@ class Highscore {
     numbers4 = int(numbers[3]);
     numbers5 = int(numbers[4]);
   }
-  void drawScore() {
-    if (!pauze.pauze && !start.start) {
+  void displayScore() {
+    if (!start.start) {
       image(yourScore, 1790, 80, 250, 150);
     }
-    textFont(numberFont);
-  }
-  void updateScore() {
-    if (pauze.pauze == true) {
-    fill(250, 250, 250);
-    textSize(36);
-    text(numbers1, 1520, 370);
-    text(numbers2, 1520, 440);
-    text(numbers3, 1520, 510);
-    text(numbers4, 1520, 580);
-    text(numbers5, 1520, 650);
-    text(score, 1520, 800);
+    if (pauze.pauze && !start.start) {
+      image(highscoreTab, 1520, height/2, 500, 680);
+      textFont(numberFont);
+      fill(250, 250, 250);
+      textSize(36);
+      text(numbers1, 1520, 370);
+      text(numbers2, 1520, 440);
+      text(numbers3, 1520, 510);
+      text(numbers4, 1520, 580);
+      text(numbers5, 1520, 650);
+      text(score, 1520, 800);  
     }
-    text(score, 1520, 800);
   }
 
 
