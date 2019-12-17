@@ -75,8 +75,8 @@ class Pauze {
 
   void draw() {
     if (pauze == true) {
-      //image(movement, width/4-75, height/2, 500,500);
-      //image(shooting, width/4*3+75, height/2, 500,500);
+      image(movement, width/2-165, height/4*3, 250,250);
+      image(shooting, width/2+165, height/4*3, 250,250);
       image(pauzeImg, pauzeX, pauzeY);
       textSize(TEXTSIZE);
       fill(#FAE523);
