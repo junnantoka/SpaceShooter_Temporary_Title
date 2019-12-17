@@ -1,4 +1,4 @@
-``class HealthDrop {
+class HealthDrop {
   float healthGet = 3;
   float healthX, healthY, healthSize;
   int healthChance;

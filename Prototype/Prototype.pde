@@ -163,10 +163,10 @@ void updateGame() {
       
     }
 
-    for (int i =healthDrop.Size(); i>=0; i--) {
+    for (int i =healthDrop.size(); i>=0; i--) {
       //i.updateHealth();
-      HealthDrop i = healthDrop.get(i);
-      i.healthCollision(i);
+      HealthDrop e = healthDrop.get(i);
+      e.healthCollision(i);
     }
     spawnBoss();
     character.moveCh();
