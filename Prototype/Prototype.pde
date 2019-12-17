@@ -13,6 +13,8 @@ float  wobbleX, wobbleY= 0;
 int wobbleTimer = 0;
 Wobble wobble = new Wobble();
 
+ArrayList<Explosion> explosion;
+
 Wave wave = new Wave();
 
 Star[] star;
@@ -102,6 +104,8 @@ void setup() {
   highscore.scoreSetup();
 
   healthDrop = new ArrayList<HealthDrop>();
+
+  explosion = new ArrayList<Explosion>();
 }
 
 void updateGame() {
@@ -168,6 +172,16 @@ void updateGame() {
     }
     spawnBoss();
     character.moveCh();
+
+    //explosion van Lennart wanneer enemies sterven
+    for (Explosion ex : explosion) {
+      ex.move();
+      print(ex);
+    }
+    for (int i = 0; i < explosion.size(); i++) {
+      Explosion ex = explosion.get(i);
+      ex.reset(i);
+    }
   }
 }
 
@@ -180,6 +194,10 @@ void drawGame() {
   }
 
   world.display();
+
+  for (Explosion ex : explosion) {
+    ex.display();
+  }
   if (eBullet.size() >0) {
     for (EnemyBullet i : eBullet) {
       i.draw();
