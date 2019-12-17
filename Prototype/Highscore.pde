@@ -13,12 +13,16 @@ class Highscore {
     numbers3 = int(numbers[2]);
   }
   void scoreDisplay() {
-    fill(255);
+    /*fill(255);
     textSize(42);
     text(numbers1, width - 300 + wobbleX, 50+ wobbleY);
     text(numbers2, width - 200+ wobbleX, 50+ wobbleY);
     text(numbers3, width - 100+ wobbleX, 50+ wobbleY);
-    text(score, width - 400+ wobbleX, 50+ wobbleY);
+    text(score, width - 400+ wobbleX, 50+ wobbleY);*/
+    if(pauze.pauze == true){
+      image(highscoreTab,100,100);
+    }
+    
   }
 
   void highscoreSave() {
