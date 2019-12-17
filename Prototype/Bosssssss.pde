@@ -38,7 +38,7 @@ class Boss {
     time = startTime;
     health = 30;
     speed = 8;
-    particles = 70;
+    particles = 150;
   }
 
   void draw() {
@@ -171,7 +171,7 @@ class Boss {
             if (health == 0) {
               down = true;
               for (int in = 0; in < particles; in++) {
-                explosion.add(new Explosion(x, y, 25, 6));
+                explosion.add(new Explosion(x, y, 30, 5));
               }
               powerUp.powerUpInfo(x, y);
               reset();
