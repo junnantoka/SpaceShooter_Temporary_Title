@@ -46,7 +46,7 @@ Pauze pauze = new Pauze();
 ArrayList<Enemy> enemy;
 int enemies = 40;
 //jeroens deel
-ArrayList<EnemyBullet> eBullet;
+EnemyBullet[] eBullet;
 
 Health health = new Health();
 
@@ -97,12 +97,19 @@ void setup() {
   enemy = new ArrayList<Enemy>();
   enemy.add(new Enemy());
 
-  eBullet =new ArrayList<EnemyBullet>();
-  
+
+  eBullet = new EnemyBullet[3*enemies];
+  for (int i = 0; i < eBullet.length; i++) {
+    eBullet[i] = new EnemyBullet();
+  }
+  for (int i = 0; i < enemy.size(); i++) {
+    eBullet[i].bulletSetup(i);
+    eBullet[i+enemy.size()].bulletSetup(i);
+    eBullet[i+(enemy.size()*2)].bulletSetup(i);
+  }
   highscore.scoreSetup();
 
   healthDrop = new ArrayList<HealthDrop>();
-  
 }
 
 void updateGame() {
@@ -152,15 +159,30 @@ void updateGame() {
     for(int i = 0; i < enemy.size(); i++){
       Enemy e = enemy.get(i);
       e.collision(i);
-      e.shot();
     }
 
-    
+    for (int i = 0; i<enemy.size(); i++) {
+      Enemy a = enemy.get(i);
+      if (timerBullet==120 && !a.down) {
+        eBullet[i].bulletSpawn(i);
+      }
+      if (timerBullet == 240&& !a.down) {
+        eBullet[i+enemy.size()].bulletSpawn(i);
+      }
+      if (timerBullet == 360&& !a.down) {
+        eBullet[i+enemy.size()*2].bulletSpawn(i);
+        timerBullet = 0;
+      }
+    }
 
-    for(int i=eBullet.size()-1; i >=0; i--){
-      EnemyBullet e = eBullet.get(i);
-      e.move(i);
-      
+    for (int i =0; i<eBullet.length; i++) {
+
+      eBullet[i].bulletDespawn(i);
+    }
+    for (int i = 0; i < enemy.size(); i++) {
+      eBullet[i].move(i);
+      eBullet[i+enemy.size()].move(i);
+      eBullet[i+(enemy.size()*2)].move(i);
     }
 
     for (int i =healthDrop.Size(); i>=0; i--) {
@@ -182,11 +204,10 @@ void drawGame() {
   }
 
   world.display();
-if(eBullet.size() >0){
-  for (EnemyBullet i : eBullet) {
-    i.draw();
+
+  for (int i = 0; i < eBullet.length; i++) {
+    eBullet[i].draw();
   }
-}
 
   for (int i = 0; i < boss.length; i++) {
     boss[i].draw();
@@ -205,9 +226,8 @@ if(eBullet.size() >0){
       }*/
     }
     health.draw();
-    for (int i = 0; i< healthDrop.size(); i++) {
-      HealthDrop h = healthDrop.get(i);
-      h.spawnHealth(i);
+    for (HealthDrop i : healthDrop) {
+      i.displayHealth();
     }
     if (!end.end) {
       minimap.draw();

@@ -32,14 +32,16 @@ class End {
   }
 
   void reset() {
-    for(int i = enemy.size()-1; i >=0; i--){
-      enemy.remove(i);
+    for (Enemy i : enemy) {
+      i.reset();
     }
     for (HealthDrop i : healthDrop) { 
       i.reset();
     }
-    for(int i = eBullet.size()-1; i >=0; i--){
-      eBullet.remove(i);
+    for (int i = 0; i < enemy.size(); i++) {
+      eBullet[i].reset(i);
+      eBullet[i+enemy.size()].reset(i);
+      eBullet[i+(enemy.size()*2)].reset(i);
     }
 
     health.reset();
