@@ -98,11 +98,10 @@ void setup() {
   enemy.add(new Enemy());
 
   eBullet =new ArrayList<EnemyBullet>();
-  
+
   highscore.scoreSetup();
 
   healthDrop = new ArrayList<HealthDrop>();
-  
 }
 
 void updateGame() {
@@ -149,21 +148,20 @@ void updateGame() {
     for (Enemy i : enemy) {
       i.update();
     }
-    for(int i = 0; i < enemy.size(); i++){
+    for (int i = 0; i < enemy.size(); i++) {
       Enemy e = enemy.get(i);
       e.collision(i);
       e.shot();
     }
 
-    
 
-    for(int i=eBullet.size()-1; i >=0; i--){
+
+    for (int i = eBullet.size() -1; i >= 0; i--) {
       EnemyBullet e = eBullet.get(i);
       e.move(i);
-      
     }
 
-    for (int i =healthDrop.size(); i>=0; i--) {
+    for (int i = healthDrop.size() -1; i >= 0; i--) {
       //i.updateHealth();
       HealthDrop e = healthDrop.get(i);
       e.healthCollision(i);
@@ -182,11 +180,11 @@ void drawGame() {
   }
 
   world.display();
-if(eBullet.size() >0){
-  for (EnemyBullet i : eBullet) {
-    i.draw();
+  if (eBullet.size() >0) {
+    for (EnemyBullet i : eBullet) {
+      i.draw();
+    }
   }
-}
 
   for (int i = 0; i < boss.length; i++) {
     boss[i].draw();
@@ -201,8 +199,8 @@ if(eBullet.size() >0){
       if (!i.ded) {
         i.draw();
       } /*else {
-        i = new Enemy();
-      }*/
+       i = new Enemy();
+       }*/
     }
     health.draw();
     for (int i = 0; i< healthDrop.size(); i++) {
