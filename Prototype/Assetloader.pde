@@ -1,5 +1,5 @@
 
-PImage pauzeImg, enemyBullet, healthDropIMG, playerBullet, playerShip, healthBar, movement, shooting, crusher, shooter, snailgun, startImg, bossone, titleCard, healthIcon, highscoreTab, laserPowerUp;
+PImage pauzeImg, enemyBullet, healthDropIMG, playerBullet, playerShip, healthBar, movement, shooting, crusher, shooter, snailgun, startImg, bossone, titleCard, healthIcon, highscoreTab, laserPowerUp, yourScore;
 
 SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew;
 PFont numberFont;
@@ -26,7 +26,7 @@ public void loadAssets() {
   highscoreTab = loadImage("./data/img/highscoreTab.png"); 
   numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);
   laserPowerUp = loadImage("./data/img/laser_powerup.png");
-
+  yourScore = loadImage("./data/img/yourScore.png");
   
   //Load sounds
   engineA = new SoundFile(this, "./data/audio/engine_acceleration.wav");

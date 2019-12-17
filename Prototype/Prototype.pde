@@ -108,12 +108,16 @@ void setup() {
   healthDrop = new ArrayList<HealthDrop>();
 
   explosion = new ArrayList<Explosion>();
-  
+
   playerParticle = new ArrayList<PlayerDamageEffect>();
 }
 
 void updateGame() {
   background(0);
+
+  for (int i = 0; i < star.length; i++) {
+    star[i].disp();
+  }
 
   health.gameOver();
 
@@ -142,7 +146,7 @@ void updateGame() {
     wave.update();
     wobble.wobbleMovement();
     health.collide();
-
+    highscore.updateScore();
 
     for (int i = 0; i < bullets; i++) {
       bulletP[i].move();
@@ -181,7 +185,7 @@ void updateGame() {
       Explosion ex = explosion.get(i);
       ex.reset(i);
     }
-    
+
     for (PlayerDamageEffect ef : playerParticle) {
       //ef.move();
     }
@@ -189,7 +193,6 @@ void updateGame() {
       PlayerDamageEffect ef = playerParticle.get(i);
       //ef.reset(i);
     }
-    
   }
 }
 
@@ -197,12 +200,11 @@ void updateGame() {
 void drawGame() {
 
   //draws stars
-  for (int i = 0; i < star.length; i++) {
-    star[i].disp();
-  }
+
 
   world.display();
-
+  
+  highscore.drawScore();
 
   for (Explosion ex : explosion) {
     ex.display();
@@ -248,7 +250,6 @@ void drawGame() {
   if (end.end) {
     end.draw();
   }
-  highscore.scoreDisplay();
   if ( !start.start && !end.end) {
     character.displayCh();
   }
