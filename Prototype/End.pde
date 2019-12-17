@@ -59,9 +59,10 @@ class End {
     for(int i = enemy.size()-1; i >=0; i--){
       enemy.remove(i);
     }
-    for (HealthDrop i : healthDrop) { 
-      i.reset();
+    for (int i = healthDrop.size()-1; i >=0 ; i--) { 
+      healthDrop.remove(i);
     }
+    
     for(int i = eBullet.size()-1; i >=0; i--){
       eBullet.remove(i);
     }
@@ -87,6 +88,7 @@ class End {
     for (int i =0; i < boss.length; i++) {
       boss[i].reset();
     }
+    wave.reset();
   }
 
 }

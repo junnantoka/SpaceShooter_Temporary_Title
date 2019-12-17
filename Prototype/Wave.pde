@@ -40,5 +40,6 @@ class Wave {
     }
   }
   void reset() {
+    waveNR = 0;
   }
 }
