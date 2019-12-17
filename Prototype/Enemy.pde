@@ -58,7 +58,7 @@ public class Enemy {
       image(crusher, x + xRef + wobbleX, y + yRef + wobbleY);
     }
     if (type ==4) {
-      print("a");
+      //print("a");
     }
   }
 
