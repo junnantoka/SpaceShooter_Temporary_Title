@@ -12,7 +12,7 @@ HealthDrop(float x, float y){
   void healthSetup() {
     healthSize = 100;
     counter =0;
-    healthChance = int(random(1,5));
+    healthChance = int(random(1,7));
   }
 
  

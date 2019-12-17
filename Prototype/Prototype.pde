@@ -26,7 +26,7 @@ int stars = 300;
 int timer, enemyCounter = 0;
 int timerBullet;
 int bossTotal = 1;
-int enemiesRequiredStart = 0;
+int enemiesRequiredStart = 1;
 int enemiesRequired = enemiesRequiredStart;
 boolean bossSpawn = false;
 
@@ -108,12 +108,16 @@ void setup() {
   healthDrop = new ArrayList<HealthDrop>();
 
   explosion = new ArrayList<Explosion>();
-  
+
   playerParticle = new ArrayList<PlayerDamageEffect>();
 }
 
 void updateGame() {
   background(0);
+
+  for (int i = 0; i < star.length; i++) {
+    star[i].disp();
+  }
 
   health.gameOver();
 
@@ -143,7 +147,6 @@ void updateGame() {
     wobble.wobbleMovement();
     health.collide();
 
-
     for (int i = 0; i < bullets; i++) {
       bulletP[i].move();
     }
@@ -172,6 +175,7 @@ void updateGame() {
     }
     spawnBoss();
     character.moveCh();
+    powerUp.powerUpDate();
 
     //explosion van Lennart wanneer enemies sterven
     for (Explosion ex : explosion) {
@@ -181,7 +185,7 @@ void updateGame() {
       Explosion ex = explosion.get(i);
       ex.reset(i);
     }
-    
+
     for (PlayerDamageEffect ef : playerParticle) {
       //ef.move();
     }
@@ -189,7 +193,6 @@ void updateGame() {
       PlayerDamageEffect ef = playerParticle.get(i);
       //ef.reset(i);
     }
-    
   }
 }
 
@@ -197,12 +200,11 @@ void updateGame() {
 void drawGame() {
 
   //draws stars
-  for (int i = 0; i < star.length; i++) {
-    star[i].disp();
-  }
+
 
   world.display();
-
+  
+  
 
   for (Explosion ex : explosion) {
     ex.display();
@@ -241,14 +243,13 @@ void drawGame() {
     }
     pauze.draw();
   }
-
+  highscore.displayScore();
   if (start.start) {
     start.draw();
   }
   if (end.end) {
     end.draw();
   }
-  highscore.scoreDisplay();
   if ( !start.start && !end.end) {
     character.displayCh();
   }

@@ -14,27 +14,28 @@ class Highscore {
     numbers4 = int(numbers[3]);
     numbers5 = int(numbers[4]);
   }
-  void scoreDisplay() {
-    /*fill(255);
-    textSize(42);
-    text(numbers1, width - 300 + wobbleX, 50+ wobbleY);
-    text(numbers2, width - 200+ wobbleX, 50+ wobbleY);
-    text(numbers3, width - 100+ wobbleX, 50+ wobbleY);
-    text(score, width - 400+ wobbleX, 50+ wobbleY);*/
-    if(pauze.pauze == true){
-      image(highscoreTab,1520,height/2,500,680);
+  void displayScore() {
+    if (!start.start) {
       textFont(numberFont);
-      fill(250,250,250);
+      fill(250, 250, 250);
+      textSize(36);
+      image(yourScore, 1790, 80, 250, 150);
+      text(score, 1770, 130);
+    }
+    if (pauze.pauze && !start.start) {
+      image(highscoreTab, 1520, height/2, 500, 680);
+      textFont(numberFont);
+      fill(250, 250, 250);
       textSize(36);
       text(numbers1, 1520, 370);
       text(numbers2, 1520, 440);
       text(numbers3, 1520, 510);
       text(numbers4, 1520, 580);
       text(numbers5, 1520, 650);
-      text(score, 1520, 800);
+      text(score, 1520, 800);  
     }
-    
   }
+
 
   void highscoreSave() {
     if (healthMax <= 0) {
@@ -71,8 +72,7 @@ class Highscore {
       }
     }
   }
-  void reset(){
+  void reset() {
     highscoreTimer = 0;
-    
   }
 }
