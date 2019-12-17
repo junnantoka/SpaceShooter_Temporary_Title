@@ -26,7 +26,7 @@ int stars = 300;
 int timer, enemyCounter = 0;
 int timerBullet;
 int bossTotal = 1;
-int enemiesRequiredStart = 5;
+int enemiesRequiredStart = 1;
 int enemiesRequired = enemiesRequiredStart;
 boolean bossSpawn = false;
 
@@ -158,7 +158,7 @@ void updateGame() {
     for (Enemy i : enemy) {
       i.update();
     }
-    for (int i = 0; i < enemy.size(); i++) {
+    for (int i = enemy.size()-1; i >= 0; i--) {
       Enemy e = enemy.get(i);
       e.collision(i);
       e.shot();
@@ -176,6 +176,7 @@ void updateGame() {
     }
     spawnBoss();
     character.moveCh();
+    powerUp.powerUpDate();
 
     //explosion van Lennart wanneer enemies sterven
     for (Explosion ex : explosion) {
