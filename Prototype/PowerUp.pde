@@ -17,7 +17,7 @@ class PowerUp {
 
   void PowerUpInfo() {
     float[] powerUpX = new float[boss.length];
-  float[] powerUpY = new float[boss.length];
+    float[] powerUpY = new float[boss.length];
     for (int i = 0; i < boss.length; i++) {
       if (boss[i].down) {
         powerUpX[i] = boss[i].x;
@@ -32,7 +32,7 @@ class PowerUp {
         switch(powerUpNumber) {
         case 0:
           if (laserAvailable) {
-            image(laserPowerUp, powerUpX[i] + wobbleX , powerUpY[i] + wobbleY, powerUpSize, powerUpSize);
+            image(laserPowerUp, powerUpX[i] + wobbleX, powerUpY[i] + wobbleY, powerUpSize, powerUpSize);
           }
         }
 
@@ -76,5 +76,5 @@ class PowerUp {
         }
       }
     }
- 
+  }
 }
