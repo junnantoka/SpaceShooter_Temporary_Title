@@ -141,7 +141,7 @@ void updateGame() {
     }
     bulletP[beweging].detectie();
 
-    powerUp.use(); 
+    powerUp.display(); 
 
     //runs enemy array
     timerBullet++;

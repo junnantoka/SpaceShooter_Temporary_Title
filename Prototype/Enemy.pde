@@ -35,7 +35,7 @@ public class Enemy {
     chargeWait = 30;//amount of time the enemy waits before charging
     chargeTime = 60;//duration of the charge
     chargeSpeed = 20;//velocity of the charge
-    shootTimer =int(random(60,200));
+    shootTimer = int(random(60,200));
   }
 
   void draw() {
