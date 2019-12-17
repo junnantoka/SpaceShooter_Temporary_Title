@@ -21,8 +21,8 @@ public class Enemy {
     radius = size/2;
     x = random(xMin, xMax);
     y = random(yMin, yMax);
-    xSpd = random(5, 25);
-    ySpd = random(5, 25);
+    xSpd = random(5, 15);
+    ySpd = random(5, 15);
     direction = random(-2, 2);
     down = false;
     ded = false;
@@ -72,22 +72,24 @@ public class Enemy {
   }
 
   void check0() {//enemy type 1 (suicide bomber)
-    if (down) {
-      direction = 1;
-      y += direction * ySpd;
-    }
+    //movement
+    x += xSpd;
     if (xSpd > 0) {//goes right
       xSpd -= 0.05;
     }
     if (xSpd < 0) {//goes left
       xSpd += 0.05;
     }
-    if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
+    if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.005 && xSpd >= -0.005)) {//if movement stops or hits the wall(s), go down
       xSpd = -xSpd;
       down = true;
     }
     if (y + radius >= yMax || y - radius <= yMin) {//if movement stops or hits the wall(s)
       ded = true;
+    }
+    if (down) {
+      direction = 1;
+      y += direction * ySpd;
     }
   }
 
