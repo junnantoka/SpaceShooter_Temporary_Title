@@ -71,7 +71,7 @@ HealthDrop(float x, float y){
       //}
     }
     //checks if the player collides with the healthdrop
-    if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize && healthChance == 4) {
+    if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize/2 && healthChance == 4) {
 
       if (healthMax < startingHealth) {
         //gives health when the player collides
