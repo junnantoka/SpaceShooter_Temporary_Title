@@ -16,7 +16,11 @@ class Highscore {
   }
   void displayScore() {
     if (!start.start) {
+      textFont(numberFont);
+      fill(250, 250, 250);
+      textSize(36);
       image(yourScore, 1790, 80, 250, 150);
+      text(score, 1770, 130);
     }
     if (pauze.pauze && !start.start) {
       image(highscoreTab, 1520, height/2, 500, 680);
