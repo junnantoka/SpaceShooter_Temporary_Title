@@ -10,7 +10,7 @@ class Boss {
   boolean reverse = false;
   int reverseTimer = 0;
   int bossWobbleDuration = 19;
- int bossIntensity = 20;
+  int bossIntensity = 20;
   Boss() {
     //basic values
     xMin = (-world.worldWidth / 2) + radius;
@@ -37,7 +37,6 @@ class Boss {
     time = startTime;
     health = 30;
     speed = 8;
-    
   }
 
   void draw() {
@@ -51,25 +50,25 @@ class Boss {
     //werkt niet goed hoort de player te volgen
     if (!ded) {
       if (type ==2) {
-     /*   ySpd = (character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
-      xSpd = (character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
-      direction =(character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2+(character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
-      ySpd= (speed /direction)*((character.yLocation-y+yRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);
-      xSpd= (speed /direction)*((character.xLocation-x+xRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);*/
-      if (!reverse){
-      xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
-      ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
-      }
-      
-      if (reverse){
-        reverseTimer++;
-      }
-      if (reverseTimer ==20){
-        reverse=false;
-        reverseTimer = 0;
-      }
-      // println(xSpd);
-      //println(ySpd);
+        /*   ySpd = (character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
+         xSpd = (character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
+         direction =(character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2+(character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
+         ySpd= (speed /direction)*((character.yLocation-y+yRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);
+         xSpd= (speed /direction)*((character.xLocation-x+xRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);*/
+        if (!reverse) {
+          xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
+          ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
+        }
+
+        if (reverse) {
+          reverseTimer++;
+        }
+        if (reverseTimer ==20) {
+          reverse=false;
+          reverseTimer = 0;
+        }
+        // println(xSpd);
+        //println(ySpd);
         x+=xSpd;
         y+=ySpd;
       }
@@ -82,18 +81,15 @@ class Boss {
         if (yRef + radius + y >= world.worldHeight/2 ) {
           //xSpd=-30;
           time=0;
-
         }
         if (yRef - radius + y <= -world.worldHeight/2.5 ) {
           //xSpd=1;
           time=0;
-
         }
 
         if (xRef + radius + x >= world.worldWidth/2 ) {
           //xSpd=-1;
           time=0;
-
         }
         if (xRef - radius + x <= -world.worldWidth/2 ) {
           //xSpd=1;
@@ -171,25 +167,25 @@ class Boss {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/2) {
             health--;
             if (health == 0) {
+              down = true;
+              powerUp.powerUpInfo(x, y);
               reset();
-              ded = true;
               //print("Auchiewauchie ");
               highscore.score += bossScore;
-              
             }
             //als de powerup aan staat worden de bullets niet gereset
-            //if (!powerUp.laser) {
+            if (!powerUp.laser) {
               bulletP[i].reset();
-            //}
+            }
           }
         }
       }
-      
-      
-      
-      
-      
-      if(dist(x +xRef, y +yRef, character.xLocation, character.yLocation) < size/2-70+ character.size){
+
+
+
+
+
+      if (dist(x +xRef, y +yRef, character.xLocation, character.yLocation) < size/2-70+ character.size) {
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
         healthBarXLighting = healthBarXLighting-healthLost;
@@ -201,11 +197,11 @@ class Boss {
         wobble.wobble(bossWobbleDuration, bossIntensity);
       }
       if (y + radius >= yMax || y - radius <= yMin) {
-      ySpd = 0;
-    }
-    if (x + radius >= xMax || x - radius <= xMin) {
-      xSpd = 0;
-    }
+        ySpd = 0;
+      }
+      if (x + radius >= xMax || x - radius <= xMin) {
+        xSpd = 0;
+      }
     }
   }
 
@@ -217,7 +213,5 @@ class Boss {
     reverse = false;
     ded= true;
     reverseTimer = 0;
-  } 
-  
-  
+  }
 }

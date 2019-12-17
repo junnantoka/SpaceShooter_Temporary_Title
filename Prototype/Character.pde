@@ -8,8 +8,7 @@ class Character {
 
   //character variables
   float playerRotation;
-  float xLocation, acc;
-  float yLocation;
+  float xLocation, yLocation, acc;
   int size=100;
   int maxSpeed=15;
   int yDir=0;

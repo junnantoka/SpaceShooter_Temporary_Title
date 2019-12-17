@@ -37,15 +37,15 @@ class Minimap {
 
     //The player on the minimap
     fill(minimapPlayerColor);
-    circle(((character.xLocation - xRef)/minimapSize + minimapX)+wobbleX, ((character.yLocation - yRef)/minimapSize + minimapY)+wobbleY, minimapPlayerSize);
+    circle(((character.xLocation - xRef)/minimapSize + minimapX) + wobbleX, ((character.yLocation - yRef)/minimapSize + minimapY)+wobbleY, minimapPlayerSize);
 
     //Player bullet on the minimap
     fill(minimapPlayerBulletColor);
     for (int i = 0; i <bullets; i++) {
-      //if (bulletP[i].ja) {
-      //  circle((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX, (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY, minimapBulletSize);
-      //}
-      if ((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX <= minimapXLoc || (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY <= minimapYLoc) {
+      if (bulletP[i].shoot) {
+        circle((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX, (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY, minimapBulletSize);
+      }
+      if ((bulletP[i].bPLocationX - xRef)/minimapSize + minimapX <= minimapXLoc || (bulletP[i].bPLocationY - yRef)/minimapSize + minimapY <= minimapYLoc) {
         bulletP[i].reset();
       }
       if ((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX >= minimapXLocMax || (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY >= minimapYLocMax) {
@@ -61,33 +61,21 @@ class Minimap {
     }
 
     //Enemy bullet on the minimap
-    fill(minimapEnemyBulletColor);
+    /*fill(minimapEnemyBulletColor);
     for (int i =0; i<eBullet.size(); i++) {
       //EnemyBullet e =eBullet.get(i);
       //if (e.shot) {
       //  circle((e.bulletX)/minimapSize + minimapX, (e.bulletY)/minimapSize + minimapY, minimapBulletSize);
       //}
-    }
+    }*/
 
-    for (int i =eBullet.size()-1; i>0; i--) {
+    for (int i = eBullet.size() -1; i>0; i--) {
       EnemyBullet e =eBullet.get(i);
       if ((e.bulletX)/minimapSize + minimapX >= minimapXLocMax || (e.bulletY)/minimapSize + minimapY >= minimapYLocMax) {
         eBullet.remove(i);
       } else if ((e.bulletX)/minimapSize + minimapX <= minimapXLoc || (e.bulletY)/minimapSize + minimapY <= minimapYLoc) {
         eBullet.remove(i);
-      } else if ((e.bulletX)/minimapSize + minimapX >= minimapXLocMax || (e.bulletY)/minimapSize + minimapY >= minimapYLocMax) {
-
-        eBullet.remove(i);
-      } else if ((e.bulletX)/minimapSize + minimapX <= minimapXLoc || (e.bulletY)/minimapSize + minimapY <= minimapYLoc) {
-
-        eBullet.remove(i);
-      } else if ((e.bulletX)/minimapSize + minimapX >= minimapXLocMax || (e.bulletY)/minimapSize + minimapY >= minimapYLocMax) {
-
-        eBullet.remove(i);
-      } else if ((e.bulletX)/minimapSize + minimapX <= minimapXLoc || (e.bulletY)/minimapSize + minimapY <= minimapYLoc) {
-
-        eBullet.remove(i);
-      }
+      } 
     }
 
     //Enemy on the minimap
