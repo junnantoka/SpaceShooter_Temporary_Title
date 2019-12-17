@@ -16,15 +16,9 @@ class Wave {
         switch(waveNR) {
         case 0:
           waveAmount = 1;
-          waveNR++;
           break;
         case 1:
-          waveAmount = 3;
-          waveNR++;
-          break;
-        case 2:
-          waveAmount = 4;
-          newEnemyTimer = 500;
+          waveAmount = 10;
           break;
         }
         newWave(waveAmount);
@@ -35,10 +29,8 @@ class Wave {
   }
 
   void newWave(int waveAmount) {
-    for (int i = 0; i < waveAmount; i++) {
+    for(int i = 0; i < waveAmount; i++){
       enemy.add(new Enemy());
     }
-  }
-  void reset() {
   }
 }
