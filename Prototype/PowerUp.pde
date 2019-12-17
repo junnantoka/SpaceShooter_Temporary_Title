@@ -3,9 +3,9 @@ class PowerUp {
 
   float powerUpTimer;
   int powerUpNumber;
-  float[] powerUpY;
-  float[] powerUpX;
   float powerUpSize = 80;
+  float powerUpX;
+  float powerUpY;
 
   float healthExtra = 2;
 
@@ -15,15 +15,9 @@ class PowerUp {
   float bulletSizeMod = 1.2;
   float bulletMaxSize = 170;
 
-  void PowerUpInfo() {
-    float[] powerUpX = new float[boss.length];
-    float[] powerUpY = new float[boss.length];
-    for (int i = 0; i < boss.length; i++) {
-      if (boss[i].down) {
-        powerUpX[i] = boss[i].x;
-        powerUpY[i] = boss[i].y;
-      }
-    }
+  void powerUpInfo(float x, float y) {
+        powerUpX = x;
+        powerUpY = y;
   }
 
   void display() {
@@ -32,8 +26,16 @@ class PowerUp {
         switch(powerUpNumber) {
         case 0:
           if (laserAvailable) {
-            image(laserPowerUp, powerUpX[i] + wobbleX, powerUpY[i] + wobbleY, powerUpSize, powerUpSize);
+            image(laserPowerUp, powerUpX + xRef + wobbleX, powerUpY + yRef + wobbleY, powerUpSize, powerUpSize);
           }
+          
+          
+          
+         
+         
+         
+         
+     
         }
 
         ////meer max health
