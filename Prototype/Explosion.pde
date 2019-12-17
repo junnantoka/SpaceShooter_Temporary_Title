@@ -6,15 +6,15 @@ class Explosion {
     x = spawnX;
     y = spawnY;
     size = 10;
-    speedVariation = 10;
+    speedVariation = 20;
     xSpeed = random(-speedVariation, speedVariation);
     ySpeed = random(-speedVariation, speedVariation);
     r = random(230,255);
     g = random(200,255);
     b = 50;
-    fadeSpeed = 5;
+    fadeSpeed = random(6,10);
     density = 255;
-    slowdown = 0.2;
+    slowdown = 0.1;
     speedLimit = 1;
   }
 
