@@ -46,10 +46,8 @@ class EnemyBullet {
   }
 
   
-  
   void collision(int i) {
     
-
       if (dist(bulletX + xRef, bulletY + yRef, character.xLocation, character.yLocation)< bulletSize/2+character.size/2) {
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost;
@@ -61,6 +59,4 @@ class EnemyBullet {
         eBullet.remove(i);
       }
     }
-  
-  
 }

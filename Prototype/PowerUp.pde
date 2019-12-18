@@ -75,8 +75,7 @@ class PowerUp {
       if (dist(powerUpX + xRef, powerUpY + yRef, character.xLocation, character.yLocation) <= character.size/2 + powerUpSize/2) {
         laser = true;
         laserAvailable = false;
-        powerUpNumber++;
-       
+        powerUpNumber++;   
       }
     }
   }

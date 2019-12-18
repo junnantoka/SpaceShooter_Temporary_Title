@@ -75,9 +75,6 @@ class Boss {
         y+=ySpd;
       }
 
-
-
-
       //detects if boss gets out of the border maybe
       if (type ==1) {
         if (yRef + radius + y >= world.worldHeight/2 ) {
@@ -113,8 +110,6 @@ class Boss {
             distXEdgeMin =x-world.worldWidth/2;
           }
           oddsX=(distXEdge)-(distXEdgeMin);
-
-
 
           if (prvsDirectionY ==2) {
             distYEdge =(y+world.worldHeight/2)*3;

@@ -15,12 +15,9 @@ HealthDrop(float x, float y){
     healthChance = int(random(1,7));
   }
 
- 
-
   void spawnHealth(int i) {
 
     //Checks if health can spawn
-   
 
       //if the correct number is selected it spawns health
       if (healthChance == 4) {

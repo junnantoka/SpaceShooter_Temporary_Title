@@ -102,8 +102,7 @@ class Wobble{
     if (wobbleTimer ==19){ 
     wobbleX = wobbleIntensity; 
     wobbleY = -wobbleIntensity;
-     
-         
+          
     }
     if (wobbleTimer >0){
           wobbleTimer--;

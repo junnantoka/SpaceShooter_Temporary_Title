@@ -125,8 +125,6 @@ void updateGame() {
 
   world.update();
 
-
-
   if (start.start && timer == 0) {
     start.update();
   } else if (end.end && timer == 0) {
@@ -205,11 +203,8 @@ void drawGame() {
 
   //draws stars
 
-
   world.display();
   
-  
-
   for (Explosion ex : explosion) {
     ex.display();
   }
@@ -220,8 +215,6 @@ void drawGame() {
   }
   powerUp.display(); 
   snailPowerUp.display(); 
-
-
 
   for (int i = 0; i < boss.length; i++) {
     boss[i].draw();

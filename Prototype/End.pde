@@ -94,5 +94,4 @@ class End {
       star[i].construct();
     }
   }
-
 }

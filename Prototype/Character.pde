@@ -55,9 +55,6 @@ class Character {
     controlX = xLocation +wobbleX;
     controlY = yLocation + wobbleY;
 
-      
-      
-    
     angleMove = angleMove + jitterMove;
     float playerMoveRotation = angleMove;
     translate(controlX, controlY);
@@ -75,8 +72,6 @@ class Character {
     anglePlayer = anglePlayer + jitterPlayer;
      playerRotation = anglePlayer;
     
-    
-      
     }
     rotate(playerRotation);
     image(playerShip, 0, 0);
