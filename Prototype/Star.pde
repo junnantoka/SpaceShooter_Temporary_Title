@@ -2,7 +2,6 @@ class Star {
   float x, y, size;
 
   void construct() {
-    
     //chooses a random x, y and size
     x = random(-width, 2*width);
     y = random(-height, 2 * height);

@@ -89,6 +89,10 @@ class End {
       boss[i].reset();
     }
     wave.reset();
+    
+    for(int i = 0; i < star.length; i++){
+      star[i].construct();
+    }
   }
 
 }

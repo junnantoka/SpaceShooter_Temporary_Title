@@ -8,19 +8,20 @@ class Wave {
     waveNR = 0;
     waveFrame = 0;
     waveAmount = 1;
-    currentEnemyAmount = 3;
   }
   void update() {
     if (!start.start && !pauze.pauze) {
       if (waveFrame == newEnemyTimer) {
         switch(waveNR) {
         case 0:
-          waveAmount = 0;
+          waveAmount = 1;
           waveNR++;
+          newEnemyTimer = 250;
           break;
         case 1:
           waveAmount = 5;
           waveNR++;
+          newEnemyTimer = 300;
           break;
         case 2:
           waveAmount = 6;
@@ -40,6 +41,6 @@ class Wave {
     }
   }
   void reset() {
-    waveNR = 0;
+    construct();
   }
 }
