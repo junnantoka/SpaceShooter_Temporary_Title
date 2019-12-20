@@ -33,6 +33,7 @@ class Pauze {
     if (timerPauze == 0) {
       if ((keysPressed['p']||keysPressed['P']) && pauze == true) {
         pauze= false;
+        goSettings =false;
         timerPauze++;
         timer++;
         if (random(0, 1) >=0.5) {

@@ -40,6 +40,7 @@ class End {
     //detect of het spel verder mag van de speler
     if (keysPressed['p']||keysPressed['P']) {
       end = false;
+      goSettings =false;
       reset();
       timer++;
       if (random(0, 1) >=0.5) {
