@@ -40,7 +40,7 @@ class Minimap {
     circle(((character.xLocation - xRef)/minimapSize + minimapX) + wobbleX, ((character.yLocation - yRef)/minimapSize + minimapY)+wobbleY, minimapPlayerSize);
 
     //Player bullet on the minimap
-    fill(minimapPlayerBulletColor);
+    /*fill(minimapPlayerBulletColor);
     for (int i = 0; i <bullets; i++) {
       if (bulletP[i].shoot) {
         circle((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX, (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY, minimapBulletSize);
@@ -51,7 +51,7 @@ class Minimap {
       if ((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX >= minimapXLocMax || (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY >= minimapYLocMax) {
         bulletP[i].reset();
       }
-    }
+    }*/
 
     for (int i = 0; i < boss.length; i++) {
       fill(minimapBossColor);
@@ -61,7 +61,7 @@ class Minimap {
     }
 
     //Enemy bullet on the minimap
-    fill(minimapEnemyBulletColor);
+    /*fill(minimapEnemyBulletColor);
     for (int i =0; i<eBullet.size(); i++) {
       EnemyBullet e =eBullet.get(i);
       if (e.shot) {
@@ -76,7 +76,7 @@ class Minimap {
       } else if ((e.bulletX)/minimapSize + minimapX <= minimapXLoc || (e.bulletY)/minimapSize + minimapY <= minimapYLoc) {
         eBullet.remove(i);
       } 
-    }
+    }*/
 
     //Enemy on the minimap
     fill(minimapEnemyColor);

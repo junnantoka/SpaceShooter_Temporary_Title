@@ -37,16 +37,15 @@ public class Enemy {
     chargeTime = 60;//duration of the charge
     chargeSpeed = 20;//velocity of the charge
 
-    shootTimer = int(random(60,200));
+    shootTimer = int(random(60, 200));
     particles = 50;
-
   }
 
   void draw() {
     //draw the actual enemy(ies) and chooses the enemy type
     noStroke();
     if (type == 0) {
-      fill(0,255,0);
+      fill(0, 255, 0);
       circle(x + xRef + wobbleX, y + yRef + wobbleY, 50);
       //image(snailgun, x + xRef + wobbleX, y + yRef + wobbleY);
     }
@@ -65,10 +64,10 @@ public class Enemy {
   }
 
   void update() {
-    if(snailPowerUp.snailActivate) {
-    xSpd = 1;
-    ySpd = 1;
-    chargeSpeed = 3;
+    if (snailPowerUp.snailActivate) {
+      xSpd = 1;
+      ySpd = 1;
+      chargeSpeed = 3;
     }
 
     //cal to method(s)
@@ -202,11 +201,11 @@ public class Enemy {
             highscore.score++;
             enemyCounter++;
             healthDrop.add(new HealthDrop(x, y));
-            
+
             for (int in = 0; in < particles; in++) {
               explosion.add(new Explosion(x, y, 10, 7));
             }
-            
+
             HealthDrop h = healthDrop.get(healthDrop.size()-1);
             h.healthSetup();
             //als de powerup aan staat worden de bullets niet gereset
@@ -250,6 +249,7 @@ public class Enemy {
     ded = false;
     speed = random(500.0f, 100.0f);
   }
+  
   void shot() {
     shootTimer--;
     if (shootTimer ==0) {
