@@ -1,5 +1,6 @@
 import processing.sound.*; //importing the Sound library
-import de.bezier.data.sql.*;
+
+import de.bezier.data.sql.*;//importing the Sql library
 String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as localhost
 String dbUsername = "dorpl2";
 String dbUserPass = "kjWD660lD6ZRA0+7";
@@ -8,6 +9,7 @@ Settings setting = new Settings();
 MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );
 boolean goSettings =false;
 Sql sql = new Sql();
+
 //prototype bullethell IDIL
 //character movement w a s d
 //bullet shooting up down left right
