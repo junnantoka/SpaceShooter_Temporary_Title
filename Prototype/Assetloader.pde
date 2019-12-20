@@ -24,10 +24,11 @@ public void loadAssets() {
   titleCard =loadImage("./data/img/titlecard.png");
   healthIcon = loadImage("./data/img/healthIcon.png");
   highscoreTab = loadImage("./data/img/highscoreTab.png"); 
-  numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);
   laserPowerUp = loadImage("./data/img/laser_powerup.png");
   yourScore = loadImage("./data/img/yourScore.png");
   healthup = loadImage("./data/img/healthup.png");
+  //Load fonts
+  numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);
   
   //Load sounds
   engineA = new SoundFile(this, "./data/audio/engine_acceleration.wav");

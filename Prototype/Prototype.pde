@@ -1,5 +1,13 @@
 import processing.sound.*; //importing the Sound library
-
+import de.bezier.data.sql.*;
+String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as localhost
+String dbUsername = "dorpl2";
+String dbUserPass = "kjWD660lD6ZRA0+7";
+String dbSchema = "zdorpl2";
+Settings setting = new Settings();
+MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );
+boolean goSettings =false;
+Sql sql = new Sql();
 //prototype bullethell IDIL
 //character movement w a s d
 //bullet shooting up down left right
@@ -66,8 +74,10 @@ PlayerBullet[] bulletP = new PlayerBullet[bullets];
 int pBTimer = 0; 
 
 void setup() {
+  sql.SettingGet();
   fullScreen(P2D);
   noCursor();
+
 
   world.construct();
 
@@ -196,6 +206,10 @@ void updateGame() {
       //ef.reset(i);
     }
   }
+  if (end.end ||start.start||pauze.pauze) {
+    setting.enterSettings();
+    setting.settingUpdate();
+  }
 }
 
 
@@ -204,7 +218,7 @@ void drawGame() {
   //draws stars
 
   world.display();
-  
+
   for (Explosion ex : explosion) {
     ex.display();
   }
@@ -240,14 +254,23 @@ void drawGame() {
     if (!end.end) {
       minimap.draw();
     }
+
+    
+  }
+  
+  if (!goSettings ) {
+    highscore.displayScore();
     pauze.draw();
+    if (start.start) {
+      start.draw();
+    }
+    if (end.end) {
+      end.draw();
+    }
   }
-  highscore.displayScore();
-  if (start.start) {
-    start.draw();
-  }
-  if (end.end) {
-    end.draw();
+
+  if (end.end ||start.start||pauze.pauze) {
+    setting.settingScreen();
   }
   if ( !start.start && !end.end) {
     character.displayCh();
