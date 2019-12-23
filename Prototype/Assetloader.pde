@@ -27,6 +27,7 @@ public void loadAssets() {
   laserPowerUp = loadImage("./data/img/laser_powerup.png");
   yourScore = loadImage("./data/img/yourScore.png");
   healthup = loadImage("./data/img/healthup.png");
+  
   //Load fonts
   numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);
   

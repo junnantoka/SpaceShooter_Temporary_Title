@@ -43,9 +43,8 @@ class Character {
     startX = xRef;
     startY = yRef;
   }
+  
   void displayCh() {
-    fill(255);
-
     //particles 
     for (int i = 0; i<particle.length; i++) {
       particle[i].display();

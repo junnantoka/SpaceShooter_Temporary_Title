@@ -1,25 +1,23 @@
-
-
 class Settings {
   float artX = 800;
   float artY = 250;
   float soundX = 650;
-  float soundY =650;
-  float rectselectSoundGoodX= artX-80;
-  float rectselectArtGoodY=artY+75;
-  float rectselectSoundBadX= artX+300;
-  float rectselectArtBadY=artY+75;
-  float rectselectArtGoodX= artX-80;
-  float rectselectSoundGoodY=soundY+75;
-  float rectselectArtBadX= artX+300;
-  float rectselectSoundBadY=soundY+75;
-  float textBadX =artX+200;
-  float textGoodX =artX-200;
-  float underSoundY =soundY+150;
-  float underArtY =artY+150;
+  float soundY = 650;
+  float rectselectSoundGoodX = artX - 80;
+  float rectselectArtGoodY = artY + 75;
+  float rectselectSoundBadX = artX + 300;
+  float rectselectArtBadY = artY + 75;
+  float rectselectArtGoodX = artX - 80;
+  float rectselectSoundGoodY = soundY + 75;
+  float rectselectArtBadX = artX + 300;
+  float rectselectSoundBadY = soundY + 75;
+  float textBadX = artX + 200;
+  float textGoodX = artX - 200;
+  float underSoundY = soundY + 150;
+  float underArtY = artY + 150;
   float selectX = rectselectSoundGoodX;
-  float selectY= rectselectArtGoodY;
-  int timer =0;
+  float selectY = rectselectArtGoodY;
+  int timer = 0;
 
   void settingScreen() {
     if (goSettings) {
@@ -54,34 +52,33 @@ class Settings {
   void settingUpdate() {
     if (goSettings ) {
       if (keysPressed['a']||keysPressed['A']) {
-        selectX=rectselectSoundGoodX;
+        selectX = rectselectSoundGoodX;
       }
       if (keysPressed['d']||keysPressed['D']) {
-        selectX=rectselectSoundBadX;
+        selectX = rectselectSoundBadX;
       }
       if (keysPressed['w']||keysPressed['W']) {
-
-        selectY=rectselectArtGoodY;
+        selectY = rectselectArtGoodY;
       }
       if (keysPressed['s']||keysPressed['S']) {
-        selectY=rectselectSoundGoodY;
+        selectY = rectselectSoundGoodY;
       }
       if (keysPressed[DOWN]) {
-        if (selectY ==rectselectSoundGoodY) {
-          if (selectX==rectselectSoundGoodX) {
+        if (selectY == rectselectSoundGoodY) {
+          if (selectX == rectselectSoundGoodX) {
             soundSetting = 1;
             sql.updateData();
           }
-          if (selectX==rectselectSoundBadX) {
+          if (selectX == rectselectSoundBadX) {
             soundSetting = 2;
             sql.updateData();
           }
-        } else if (selectY ==rectselectArtGoodY) {
-          if (selectX==rectselectSoundGoodX) {
+        } else if (selectY == rectselectArtGoodY) {
+          if (selectX == rectselectSoundGoodX) {
             artSetting = 1;
             sql.updateData();
           }
-          if (selectX==rectselectSoundBadX) {
+          if (selectX == rectselectSoundBadX) {
             artSetting = 2;
            sql.updateData();
           }
@@ -91,12 +88,9 @@ class Settings {
   }
 
   void enterSettings() {
-
     if (keysPressed[UP]) {
       timer++;
-
       if (timer==1) {
-
         if (!goSettings) {
           goSettings = true;
         } else if (goSettings) {

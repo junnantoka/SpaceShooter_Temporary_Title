@@ -23,10 +23,14 @@ class Sql {
       artSetting = 1;
     }
   }
+
   void updateData() {
     if ( msql.connect() ) {
       msql.query("UPDATE Setting SET sound =" + soundSetting + " WHERE chair_nr = '" + chairNr + "'");
       msql.query("UPDATE Setting SET art =" + artSetting + " WHERE chair_nr = '" + chairNr + "'");
+      
+      //Update total enemies killed in the database
+      //msql.query("UPDATE Testdata SET enemies_killed = " + enemiesKilled + " WHERE chair_nr = '" + chairNr + "'");
     }
   }
 }
