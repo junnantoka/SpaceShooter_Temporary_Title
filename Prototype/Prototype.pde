@@ -46,6 +46,9 @@ World world = new World();
 
 //Healthdrops
 ArrayList<HealthDrop> healthDrop;
+
+ArrayList<HealthDropParticle> healthDropParticles;
+
 int healthBalls = 10;
 
 PowerUp powerUp = new PowerUp();
@@ -123,7 +126,9 @@ void setup() {
   healthDrop = new ArrayList<HealthDrop>();
 
   explosion = new ArrayList<Explosion>();
-
+  
+  healthDropParticles = new ArrayList<HealthDropParticle>();
+  
   playerParticle = new ArrayList<PlayerDamageEffect>();
 }
 
@@ -252,7 +257,7 @@ void drawGame() {
     health.draw();
     for (int i = 0; i< healthDrop.size(); i++) {
       HealthDrop h = healthDrop.get(i);
-      h.spawnHealth(i);
+       h.spawnHealth(i);
     }
     if (!end.end) {
       minimap.draw();

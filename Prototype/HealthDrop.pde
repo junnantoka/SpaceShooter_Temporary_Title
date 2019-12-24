@@ -13,6 +13,9 @@ HealthDrop(float x, float y){
     healthSize = 100;
     counter =0;
     healthChance = int(random(1,7));
+    
+    
+    
   }
 
   void spawnHealth(int i) {
@@ -56,7 +59,7 @@ HealthDrop(float x, float y){
       //  print("2");
       //  spawnHealth = false;
       //}
-
+      
       //if (xRef + healthX  + healthSize/2> world.worldWidth/2 ) {
       //  print("3");
       //  spawnHealth = false;
@@ -68,7 +71,7 @@ HealthDrop(float x, float y){
     }
     //checks if the player collides with the healthdrop
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize/2 && healthChance == 4) {
-
+      healthDropParticles.add(new HealthDropParticle());
       if (healthMax < startingHealth) {
         //gives health when the player collides
         // health += healthGet; 
