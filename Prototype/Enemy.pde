@@ -46,17 +46,17 @@ public class Enemy {
     noStroke();
     if (type == 0) {
       fill(0, 255, 0);
-      circle(x + xRef + wobbleX, y + yRef + wobbleY, 50);
+      circle(x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY, 50);
       //image(snailgun, x + xRef + wobbleX, y + yRef + wobbleY);
     }
     if (type == 1) {
-      image(shooter, x + xRef + wobbleX, y + yRef + wobbleY);
+      image(shooter, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
     }
     if (type == 2) {
-      image(shooter, x + xRef + wobbleX, y + yRef + wobbleY);
+      image(shooter, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
     }
     if (type == 3) {
-      image(crusher, x + xRef + wobbleX, y + yRef + wobbleY);
+      image(crusher, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
     }
     if (type ==4) {
       //print("a");

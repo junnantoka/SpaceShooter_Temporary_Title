@@ -1,4 +1,7 @@
 //stijns deel
+  boolean wobbleShot = false;
+  int wobbleShotTimer = 0;
+  int bulletWobbleX, bulletWobbleY = 0;
 class PlayerBullet {
   float bPLocationX, bPLocationY, bPSize, chSpeedX, chSpeedY, bPXRef, bPYRef, bPXRefEnd, bPYRefEnd, bPLocationXEnd, bPLocationYEnd, sideVariationX, sideVariationY;
   boolean pBLinks, pBRechts, pBOmhoog, pBNaarbeneden, shoot;
@@ -9,8 +12,8 @@ class PlayerBullet {
 
   void construct() {
     //sets starting values
-    bPLocationX = character.xLocation;
-    bPLocationY = character.yLocation;
+    bPLocationX = width/2;
+    bPLocationY = height/2;
     bPSize = 75;
     snelheid = 30;
   }
@@ -20,7 +23,7 @@ class PlayerBullet {
     if (shoot) {
       fill(#2DFA46);
 
-      image(playerBullet, bPLocationXEnd+wobbleX, bPLocationYEnd+wobbleY, bPSize, bPSize);
+      image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
     }
   }
 
@@ -32,13 +35,14 @@ class PlayerBullet {
       if (pBTimer == 1) {
         reset();
         
-        bPXRef += xRef;
-        bPYRef += yRef;
-        bPLocationX = character.xLocation;
-        bPLocationY = character.yLocation; 
+        bPXRef = xRef;
+        bPYRef = yRef;
+        bPLocationX = width/2;
+    bPLocationY = height/2; 
         chSpeedX = character.xSpeed/2;
         chSpeedY = character.ySpeed/2;
-        wobble.wobble(2, 3);
+        wobbleShotTimer = 1;
+        wobbleShot = true;
 
         if (keysPressed[UP]) {
           sideVariationY = random(-10, 10);
@@ -71,6 +75,7 @@ class PlayerBullet {
     if (pBTimer == interval) {
       pBTimer = reset;
     }
+    wobble ();
   }
   void move() {
     //moves bullet and returns to begining
@@ -109,8 +114,8 @@ class PlayerBullet {
     }
   }
   void reset() {
-    bPLocationX = character.xLocation;
-    bPLocationY = character.yLocation;
+    bPLocationX = width/2;
+    bPLocationY = height/2;
     pBNaarbeneden = false;
     pBOmhoog = false;
     pBRechts = false;
@@ -123,6 +128,33 @@ class PlayerBullet {
     bPXRef = 0;
     bPYRefEnd = 0; 
     bPYRef = 0;
+  }
+  void wobble (){
+    if(wobbleShotTimer ==0){
+    bulletWobbleX = 0;
+    bulletWobbleY = 0; 
+    }
+    if (wobbleShotTimer == 1){ 
+      if (keysPressed[UP]){
+   
+    bulletWobbleY = 10;
+      }
+     else if (keysPressed[DOWN]){
+    
+    bulletWobbleY = -10;
+      }
+      if ( keysPressed[LEFT]){
+    bulletWobbleX = 10;
+    
+      }
+      else if ( keysPressed[RIGHT]){
+    bulletWobbleX = -10;
+
+      }
+      wobbleShotTimer--;
+    }
+    
+    
   }
 }
 //eind stijns deel

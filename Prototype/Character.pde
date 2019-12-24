@@ -54,8 +54,8 @@ class Character {
     }
     
     //wobble effect
-    controlX = xLocation + wobbleX;
-    controlY = yLocation + wobbleY;
+    controlX = xLocation + wobbleX +bulletWobbleX;
+    controlY = yLocation + wobbleY +bulletWobbleY;
 
     angleMove = angleMove + jitterMove;
     float playerMoveRotation = angleMove;

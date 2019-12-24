@@ -25,15 +25,15 @@ class Health {
     rectMode(0);
     noStroke();
     fill(100);
-    rect(healthBarX+ wobbleX, healthBarY+ wobbleY, 500, healthBarHeight);
+    rect(healthBarX+ wobbleX+bulletWobbleX, healthBarY+ wobbleY+bulletWobbleY, 500, healthBarHeight);
 
     fill(255, 0, 0);
-    rect(healthBarX+ wobbleX, healthBarY+ wobbleY, healthBarWidth, healthBarHeight);
+    rect(healthBarX+ wobbleX+bulletWobbleX, healthBarY+ wobbleY+bulletWobbleY, healthBarWidth, healthBarHeight);
 
     fill(255, 215, 215);
-    rect(healthBarX+ wobbleX, healthBarYLighting+ wobbleY, healthBarXLighting, 5);
+    rect(healthBarX+ wobbleX+bulletWobbleX, healthBarYLighting+ wobbleY+bulletWobbleY, healthBarXLighting, 5);
 
-    image(healthBar, 300+ wobbleX, 30+ wobbleY, 515, 55);
+    image(healthBar, 300+ wobbleX+bulletWobbleX, 30+ wobbleY+bulletWobbleY, 515, 55);
   }
 
   void collide() { //Hier wordt de collision van de player met de enemy getest. 

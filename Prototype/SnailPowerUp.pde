@@ -60,7 +60,7 @@ class SnailPowerUp {
         case 0:
           if (laserAvailable) {
             lasercollision = true;
-            image(snailgun, snailPowerUpX + xRef + wobbleX, snailPowerUpY + yRef + wobbleY, snailPowerUpXSize, snailPowerUpYSize);
+            image(snailgun, snailPowerUpX + xRef + wobbleX+bulletWobbleX, snailPowerUpY + yRef + wobbleY+bulletWobbleY, snailPowerUpXSize, snailPowerUpYSize);
           }
         }
       }

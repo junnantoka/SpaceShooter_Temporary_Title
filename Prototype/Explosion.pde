@@ -45,6 +45,6 @@ class Explosion {
     fill(r,g,b,density);
     noStroke();
     density -= fadeSpeed;
-    circle(x + xRef + wobbleX, y + yRef + wobbleY, size);
+    circle(x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY, size);
   }
 }

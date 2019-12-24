@@ -44,7 +44,7 @@ class Boss {
   void draw() {
     if (!ded ) {
       fill(#8F1BF0);
-      image(bossone, x + xRef+wobbleX, y + yRef+wobbleY, size, size);
+      image(bossone, x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY, size, size);
     }
   }
 
