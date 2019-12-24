@@ -11,13 +11,13 @@ import processing.sound.*; //importing the Sound library
 
 import de.bezier.data.sql.*;//importing the Sql library
 String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as localhost
-String dbUsername = "dorpl2";
-String dbUserPass = "kjWD660lD6ZRA0+7";
-String dbSchema = "zdorpl2";
+String dbUsername = "dorpl2";  //username
+String dbUserPass = "kjWD660lD6ZRA0+7";  //password
+String dbSchema = "zdorpl2";  //default database schema
 
 Settings setting = new Settings();
-MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );
-boolean goSettings =false;
+MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//create new mysql instance
+boolean goSettings = false;
 Sql sql = new Sql();
 
 //character movement w a s d
