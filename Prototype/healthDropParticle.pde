@@ -7,10 +7,10 @@ class HealthDropParticle {
     healthParticleY = character.yLocation+yRef+(random(-character.size, character.size));
     healthParticleSize = 35;
     Yspeed = random(-7, -3);
-    image(healthParticle, healthParticleX, healthParticleY, healthParticleSize, healthParticleSize);
-    healthParticleY= healthParticleY+Yspeed;
+    
   }
   void healthDropParticleUpdate() {
-    
+    image(healthParticle, healthParticleX, healthParticleY, healthParticleSize, healthParticleSize);
+    healthParticleY= healthParticleY+Yspeed;
   }
 }
