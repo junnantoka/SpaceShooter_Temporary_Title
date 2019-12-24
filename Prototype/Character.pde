@@ -9,12 +9,12 @@ class Character {
   //character variables
   float playerRotation;
   float xLocation, yLocation, acc;
-  int size=100;
-  int maxSpeed=15;
-  int yDir=0;
-  int xDir=0;
-  float ySpeed=0;
-  float xSpeed=0;
+  int size = 100;
+  int maxSpeed = 15;
+  int yDir = 0;
+  int xDir = 0;
+  float ySpeed = 0;
+  float xSpeed = 0;
   boolean yMove, xMove, newP;
   float slowDown = 1;
   float rotateSpeed = 1;
@@ -23,19 +23,22 @@ class Character {
   int pCount, pInterval;
   int frame;
   float controlX, controlY;
-
+  
+  //set standard values
   void construct() {
-
+  
     yLocation = height/2;
     xLocation = width/2;
 
     controlX = xLocation;
     controlY = yLocation;
     pInterval = 1;
+    
     particle = new Particle[particles];
     for (int i = 0; i < particle.length; i++) {
       particle[i] = new Particle();
     }
+    
     acc = 2;
 
     yRef = height/2;
@@ -50,8 +53,8 @@ class Character {
       particle[i].display();
     }
     
-      
-    controlX = xLocation +wobbleX;
+    //wobble effect
+    controlX = xLocation + wobbleX;
     controlY = yLocation + wobbleY;
 
     angleMove = angleMove + jitterMove;
@@ -68,9 +71,8 @@ class Character {
 
    if (!pauze.pauze) {
       jitterPlayer =  0.05;
-    anglePlayer = anglePlayer + jitterPlayer;
-     playerRotation = anglePlayer;
-    
+      anglePlayer = anglePlayer + jitterPlayer;
+      playerRotation = anglePlayer;
     }
     rotate(playerRotation);
     image(playerShip, 0, 0);
@@ -82,10 +84,12 @@ class Character {
     for (int i = 0; i < particle.length; i++) {
       particle[i].move();
     }
-
+    
+    //actual movement
     yRef -= ySpeed;
     xRef -= xSpeed;
-
+    
+    //keypress checks
     if (keysPressed['w']||keysPressed['W']) {
       moving = true;
       ySpeed-= acc;
@@ -162,6 +166,7 @@ class Character {
     }
   }
   
+  //reset method
   void reset() {
     ySpeed = 0;
     xSpeed = 0;
