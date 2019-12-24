@@ -11,7 +11,14 @@ MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );
 boolean goSettings =false;
 Sql sql = new Sql();
 
-//prototype bullethell IDIL
+/*SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
+  Lennart van Dorp, 500797956
+  Nordin El Hadaoui, 500833417
+  Stijn Houdijk, 500825907
+  Jeroen Officier, 500822999
+  Darren de Vré, 500831291
+  Jun Phung, 500829487
+*/
 //character movement w a s d
 //bullet shooting up down left right
 Character character = new Character();
