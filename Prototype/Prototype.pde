@@ -146,7 +146,7 @@ void updateGame() {
   for (int i = 0; i < star.length; i++) {
     star[i].disp();
   }
-
+  health.healthWarning();
   health.gameOver();
 
   world.update();

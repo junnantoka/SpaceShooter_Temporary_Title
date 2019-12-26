@@ -1,10 +1,21 @@
+//Player related images
+PImage playerBullet, playerShip;
+//Powerup related images
+PImage laserPowerUp,  snailgun;
+//health related images
+PImage healthup, healthParticle, healthWarning, healthBar,  healthIcon, healthDropIMG;
+//enemy related images
+PImage crusher, shooter, bossone, enemyBullet;
+//menu related images
+PImage pauzeImg, shooting, movement, startImg, yourScore, highscoreTab, titleCard;
 
-PImage pauzeImg, enemyBullet, healthDropIMG, playerBullet, playerShip, healthBar, movement, shooting, crusher, shooter, snailgun, startImg, bossone, titleCard, healthIcon, 
-highscoreTab, laserPowerUp, yourScore, healthup, healthParticle;
 
-SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew;
-PFont numberFont;
 //SoundFile biem;
+SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew;
+
+
+PFont numberFont;
+
 
 public void loadAssets() {
 
@@ -29,6 +40,7 @@ public void loadAssets() {
   yourScore = loadImage("./data/img/yourScore.png");
   healthup = loadImage("./data/img/healthup.png");
   healthParticle = loadImage("./data/img/healthdropParticle.png");
+  healthWarning = loadImage("./data/img/healthwarning.png");
   
   //Load fonts
   numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);
