@@ -27,7 +27,10 @@ int bosses = 20;
 Boss[] boss;
 float yRef = height/2;
 float xRef = width/2;
+
+//doet dit iets? geen usage
 int kaas= 240;
+
 float  wobbleX, wobbleY= 0;
 int wobbleTimer = 0;
 Wobble wobble = new Wobble();
@@ -168,6 +171,7 @@ void updateGame() {
     for (int i = 0; i < boss.length; i++) {
       boss[i].collision();
       boss[i].move();
+      boss[i].damageWear();
     }
     wave.update();
     wobble.wobbleMovement();

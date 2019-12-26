@@ -1,6 +1,6 @@
 class Boss {
   float x, y, size, radius, xSpd, ySpd, direction, t, speed, xG, yG, time, startTime;
-  int type, health, cMin, cMax;
+  int type, cMin, cMax;
   boolean ded, down;
   final float xMin, xMax, yMin, yMax;
   float oddsX, oddsY, randomX, randomY;
@@ -11,7 +11,15 @@ class Boss {
   int reverseTimer = 0;
   int bossWobbleDuration = 19;
   int bossIntensity = 20;
-  int particles;
+  int deathParticles;
+  int hitParticles;
+
+  float currentHealth;
+  float maxHealth;
+  boolean fullHealth = true;
+  boolean halfHealth = false;
+  boolean quarterHealth = false;
+
   Boss() {
     //basic values
     xMin = (-world.worldWidth / 2) + radius;
@@ -36,15 +44,21 @@ class Boss {
     yG = random(-10, 10);
     startTime= 60;
     time = startTime;
-    health = 30;
     speed = 8;
-    particles = 150;
+    
+    deathParticles = 150;
+    hitParticles = 5;
+    
+    maxHealth = 30;
+    currentHealth = maxHealth;
   }
 
   void draw() {
     if (!ded ) {
       fill(#8F1BF0);
-      image(bossone, x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY, size, size);
+      if (fullHealth) {
+        image(bossone, x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY, size, size);
+      }
     }
   }
 
@@ -162,22 +176,29 @@ class Boss {
       for (int i = 0; i < bulletP.length; i++) {
         if ( bulletP[i].shoot) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/2) {
-            health--;
-            if (health == 0) {
+
+            currentHealth--;
+
+            for (int hit = 0; hit < hitParticles; hit++) {
+              explosion.add(new Explosion(x, y, 30, 5));
+            }
+
+            if (currentHealth == 0) {
+
               down = true;
-              for (int in = 0; in < particles; in++) {
+
+              for (int in = 0; in < deathParticles; in++) {
                 explosion.add(new Explosion(x, y, 30, 5));
               }
+
               powerUp.powerUpInfo(x, y);
               reset();
               //print("Auchiewauchie ");
               highscore.score += bossScore;
-
-              
             }
             //als de powerup aan staat worden de bullets niet gereset
             //if (!powerUp.laser) {
-              bulletP[i].reset();
+            bulletP[i].reset();
             //}
           }
         }
@@ -203,11 +224,24 @@ class Boss {
     }
   }
 
+  void damageWear() {
+   if((currentHealth <= ((maxHealth / 100) * 50)) && (currentHealth >= ((maxHealth / 100) * 25))  ){
+     //println("iudaghjwk");
+     halfHealth = true;
+     //fullHealth = false;
+   }
+   if(currentHealth <= ((maxHealth / 100) * 25)){
+     //println("ajhgtf");
+     halfHealth = false;
+     quarterHealth = true;
+   }
+  }
+
   void reset() {
     //reset alle stats die terug gezet moeten worden
     x = random(xMin, xMax) + xRef;
     y = random(yMin, yMax) + yRef;
-    health = bossTotal*30;
+    currentHealth = bossTotal*30;
     reverse = false;
     ded= true;
     reverseTimer = 0;
