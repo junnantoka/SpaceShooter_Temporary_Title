@@ -85,7 +85,7 @@ Health health = new Health();
 final int KEY_LIMIT = 1024;
 boolean[] keysPressed = new boolean[KEY_LIMIT];
 
-int bullets = 100000;
+int bullets = 1000;
 int beweging = 0;
 PlayerBullet[] bulletP = new PlayerBullet[bullets];
 int pBTimer = 0; 
@@ -186,11 +186,11 @@ void updateGame() {
     timerBullet++;
     for (Enemy i : enemy) {
       i.update();
+      i.shot();
     }
     for (int i = enemy.size()-1; i >= 0; i--) {
       Enemy e = enemy.get(i);
       e.collision(i);
-      e.shot();
     }
 
     for (int i = eBullet.size() -1; i >= 0; i--) {

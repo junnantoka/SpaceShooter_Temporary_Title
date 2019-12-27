@@ -10,6 +10,7 @@ class PlayerBullet {
   final int reset = 0;
   final int interval = 10;
   int makingSound = 0;
+  int visibilityTimer = 0;
 
   void construct() {
     //sets starting values
@@ -22,10 +23,16 @@ class PlayerBullet {
   void draw() {
     //draws bullets
     
-    if (shoot) {
+    
+    if (shoot  ) {
+      if (visibilityTimer <3){
+      visibilityTimer++;
+    }
+    if(visibilityTimer ==3){
       fill(#2DFA46);
 
       image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
+    }
     }
   }
 
@@ -139,6 +146,8 @@ class PlayerBullet {
     bPXRef = 0;
     bPYRefEnd = 0; 
     bPYRef = 0;
+    visibilityTimer=0;
+    makingSound = 0;
   }
   void wobble (){
     if(wobbleShotTimer ==0){
