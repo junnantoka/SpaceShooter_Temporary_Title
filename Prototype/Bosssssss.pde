@@ -184,7 +184,7 @@ class Boss {
             }
 
             if (currentHealth == 0) {
-
+              pew.play();
               down = true;
 
               for (int in = 0; in < deathParticles; in++) {
