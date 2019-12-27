@@ -212,7 +212,7 @@ public class Enemy {
             if (!powerUp.laser) {
               bulletP[i].reset();
             }
-
+            boemA.play();
             enemy.remove(e);
           }
         }
