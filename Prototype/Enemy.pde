@@ -194,7 +194,7 @@ public class Enemy {
     //check if the enemy makes contact with the player
     if (!ded) {
       for (int i = 0; i < bulletP.length; i++) {
-        if ( bulletP[i].shoot) {
+        if ( bulletP[i].shoot && bulletP[i].visibilityTimer ==3) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
             ded = true;
             //print("Auchiewauchie ");
