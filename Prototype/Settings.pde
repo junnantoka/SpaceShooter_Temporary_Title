@@ -88,7 +88,7 @@ class Settings {
   }
 
   void enterSettings() {
-    if (keysPressed[UP]) {
+    if (keysPressed['r']||keysPressed['R']) {
       timer++;
       if (timer==1) {
         if (!goSettings) {
