@@ -9,6 +9,7 @@ class PlayerBullet {
   final int maxAfstand = 400;
   final int reset = 0;
   final int interval = 10;
+  int makingSound = 0;
 
   void construct() {
     //sets starting values
@@ -20,6 +21,7 @@ class PlayerBullet {
 
   void draw() {
     //draws bullets
+    
     if (shoot) {
       fill(#2DFA46);
 
@@ -28,6 +30,15 @@ class PlayerBullet {
   }
 
   void detectie() {
+    
+    //plays sounds
+    if(makingSound < 2){
+      makingSound++;
+    }
+    if(makingSound == 1){
+      pew.play();
+    }
+    
 
     //checks if a key is pressed and gives direction to the balls movement
     if (keysPressed[UP] || keysPressed[DOWN] || keysPressed[LEFT] || keysPressed[RIGHT]) {
