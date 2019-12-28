@@ -26,6 +26,11 @@ class Wave {
         case 2:
           waveAmount = 6;
           newEnemyTimer = 500;
+          waveNR++;
+          break;
+        case 3:
+          waveAmount = 8;
+          newEnemyTimer = enemy.size() * 40;
           break;
         }
         newWave(waveAmount);
