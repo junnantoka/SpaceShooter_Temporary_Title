@@ -1,11 +1,11 @@
 /*SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
-  Lennart van Dorp, 500797956
-  Nordin El Hadaoui, 500833417
-  Stijn Houdijk, 500825907
-  Jeroen Officier, 500822999
-  Darren de Vré, 500831291
-  Jun Phung, 500829487
-*/
+ Lennart van Dorp, 500797956
+ Nordin El Hadaoui, 500833417
+ Stijn Houdijk, 500825907
+ Jeroen Officier, 500822999
+ Darren de Vré, 500831291
+ Jun Phung, 500829487
+ */
 
 import processing.sound.*; //importing the Sound library
 
@@ -137,9 +137,9 @@ void setup() {
   healthDrop = new ArrayList<HealthDrop>();
 
   explosion = new ArrayList<Explosion>();
-  
+
   healthDropParticles = new ArrayList<HealthDropParticle>();
-  
+
   playerParticle = new ArrayList<PlayerDamageEffect>();
 }
 
@@ -230,8 +230,9 @@ void updateGame() {
     setting.enterSettings();
     setting.settingUpdate();
   }
-  
-  HealthDropParticle.updateHealthaParticle();
+  for (int i = 0; i<HealthDropParticle.size(); i++);{
+    HealthDropParticle.updateHealthaParticle(i);
+  }
 }
 
 
@@ -271,15 +272,13 @@ void drawGame() {
     health.draw();
     for (int i = 0; i< healthDrop.size(); i++) {
       HealthDrop h = healthDrop.get(i);
-       h.spawnHealth(i);
+      h.spawnHealth(i);
     }
     if (!end.end) {
       minimap.draw();
     }
-
-    
   }
-  
+
   if (!goSettings ) {
     highscore.displayScore();
     pauze.draw();
