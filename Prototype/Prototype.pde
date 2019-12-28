@@ -1,16 +1,3 @@
-import processing.sound.*; //importing the Sound library
-
-import de.bezier.data.sql.*;//importing the Sql library
-String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as localhost
-String dbUsername = "dorpl2";
-String dbUserPass = "kjWD660lD6ZRA0+7";
-String dbSchema = "zdorpl2";
-
-Settings setting = new Settings();
-MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );
-boolean goSettings =false;
-Sql sql = new Sql();
-
 /*SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
   Lennart van Dorp, 500797956
   Nordin El Hadaoui, 500833417
@@ -19,6 +6,20 @@ Sql sql = new Sql();
   Darren de Vré, 500831291
   Jun Phung, 500829487
 */
+
+import processing.sound.*; //importing the Sound library
+
+import de.bezier.data.sql.*;//importing the Sql library
+String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as localhost
+String dbUsername = "dorpl2";  //username
+String dbUserPass = "kjWD660lD6ZRA0+7";  //password
+String dbSchema = "zdorpl2";  //default database schema
+
+Settings setting = new Settings();
+MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//create new mysql instance
+boolean goSettings = false;
+Sql sql = new Sql();
+
 //character movement w a s d
 //bullet shooting up down left right
 Character character = new Character();
@@ -26,7 +27,10 @@ int bosses = 20;
 Boss[] boss;
 float yRef = height/2;
 float xRef = width/2;
+
+//doet dit iets? geen usage
 int kaas= 240;
+
 float  wobbleX, wobbleY= 0;
 int wobbleTimer = 0;
 Wobble wobble = new Wobble();
@@ -44,7 +48,7 @@ int stars = 300;
 int timer, enemyCounter = 0;
 int timerBullet;
 int bossTotal = 1;
-int enemiesRequiredStart = 1;
+int enemiesRequiredStart = 10;
 int enemiesRequired = enemiesRequiredStart;
 boolean bossSpawn = false;
 
@@ -81,7 +85,7 @@ Health health = new Health();
 final int KEY_LIMIT = 1024;
 boolean[] keysPressed = new boolean[KEY_LIMIT];
 
-int bullets = 100000;
+int bullets = 1000;
 int beweging = 0;
 PlayerBullet[] bulletP = new PlayerBullet[bullets];
 int pBTimer = 0; 
@@ -145,7 +149,7 @@ void updateGame() {
   for (int i = 0; i < star.length; i++) {
     star[i].disp();
   }
-
+  health.healthWarning();
   health.gameOver();
 
   world.update();
@@ -167,6 +171,7 @@ void updateGame() {
     for (int i = 0; i < boss.length; i++) {
       boss[i].collision();
       boss[i].move();
+      boss[i].damageWear();
     }
     wave.update();
     wobble.wobbleMovement();
@@ -181,11 +186,11 @@ void updateGame() {
     timerBullet++;
     for (Enemy i : enemy) {
       i.update();
+      i.shot();
     }
     for (int i = enemy.size()-1; i >= 0; i--) {
       Enemy e = enemy.get(i);
       e.collision(i);
-      e.shot();
     }
 
     for (int i = eBullet.size() -1; i >= 0; i--) {

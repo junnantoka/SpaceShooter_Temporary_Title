@@ -1,39 +1,43 @@
-int startingHealth = 10; //Deze integer geeft aan hoeveel health je aan het begin hebt.
+float startingHealth = 10; //Deze integer geeft aan hoeveel health je aan het begin hebt.
 
 float healthMax; 
 boolean getsHit = false; //Deze boolean is false, omdat je niet geraakt wordt door een enemy.
 int healthBarX = 50; //Coordinaten van de healthbar.
 int healthBarY = 25;
-int healthBarWidth = 500;
-int healthLost;
+float healthBarWidth = 500;
+float healthLost;
 int healthBarHeight = 30;
 
-int healthBarXLighting = 500; //Een extra lichtje zodat het er mooi uitziet.
-int healthBarYLighting = 27;
+float healthBarXLighting = 500; //Een extra lichtje zodat het er mooi uitziet.
+float healthBarYLighting = 27;
 int enemyWobbleDuration = 10;
-float enemyIntensity = 15;
+int enemyIntensity = 15;
 final int healthBarGone = 49; //Dit voorkomt dat de healthbar een - getal wordt.
+
+float healthWarningStart = (startingHealth / 100) * 30;
+int healthWarningTimer;
+
 
 class Health {
 
   void setup() {
     healthMax = startingHealth; //De health kan niet hoger dan de starting health die is ingesteld.
-    healthLost = healthBarWidth/startingHealth;
+    healthLost = healthBarWidth / startingHealth;
   }
 
   void draw() {
     rectMode(0);
     noStroke();
     fill(100);
-    rect(healthBarX+ wobbleX, healthBarY+ wobbleY, 500, healthBarHeight);
+    rect(healthBarX + wobbleX + bulletWobbleX, healthBarY + wobbleY + bulletWobbleY, 500, healthBarHeight);
 
     fill(255, 0, 0);
-    rect(healthBarX+ wobbleX, healthBarY+ wobbleY, healthBarWidth, healthBarHeight);
+    rect(healthBarX + wobbleX + bulletWobbleX, healthBarY + wobbleY + bulletWobbleY, healthBarWidth, healthBarHeight);
 
     fill(255, 215, 215);
-    rect(healthBarX+ wobbleX, healthBarYLighting+ wobbleY, healthBarXLighting, 5);
+    rect(healthBarX + wobbleX + bulletWobbleX, healthBarYLighting + wobbleY + bulletWobbleY, healthBarXLighting, 5);
 
-    image(healthBar, 300+ wobbleX, 30+ wobbleY, 515, 55);
+    image(healthBar, 300 + wobbleX + bulletWobbleX, 30 + wobbleY + bulletWobbleY, 515, 55);
   }
 
   void collide() { //Hier wordt de collision van de player met de enemy getest. 
@@ -71,5 +75,24 @@ class Health {
     healthBarHeight = 30;
     healthBarX = 50;
     healthBarY = 25;
+  }
+
+  void healthWarning() {
+    if ((healthMax <= healthWarningStart) && !end.end) {
+
+      if (healthWarningTimer < 80) {
+        image(enemyBullet, 75 + wobbleX + bulletWobbleX, 120 + wobbleY + bulletWobbleY, 120, 120);
+        image(healthWarning, 75 + wobbleX + bulletWobbleX, 120 + wobbleY + bulletWobbleY, 70, 70);
+        healthWarningTimer++;
+      }
+
+      if (healthWarningTimer < 120) {
+        healthWarningTimer++;
+      }
+
+      if (healthWarningTimer == 120) {
+        healthWarningTimer = 0;
+      }
+    }
   }
 }

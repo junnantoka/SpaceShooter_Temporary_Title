@@ -33,11 +33,11 @@ class Minimap {
     //The minimap outline
     fill(minimapBackgroundColor);
     stroke(minimapStrokeColor);
-    rect(minimapXLoc+wobbleX, minimapYLoc+wobbleY, world.worldWidth/minimapSize, world.worldHeight/minimapSize);
+    rect(minimapXLoc+wobbleX+bulletWobbleX, minimapYLoc+wobbleY+bulletWobbleY, world.worldWidth/minimapSize, world.worldHeight/minimapSize);
 
     //The player on the minimap
     fill(minimapPlayerColor);
-    circle(((character.xLocation - xRef)/minimapSize + minimapX) + wobbleX, ((character.yLocation - yRef)/minimapSize + minimapY)+wobbleY, minimapPlayerSize);
+    circle(((character.xLocation - xRef)/minimapSize + minimapX) + wobbleX+bulletWobbleX, ((character.yLocation - yRef)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapPlayerSize);
 
     //Player bullet on the minimap
     /*fill(minimapPlayerBulletColor);
@@ -56,7 +56,7 @@ class Minimap {
     for (int i = 0; i < boss.length; i++) {
       fill(minimapBossColor);
       if (!boss[i].ded) {
-        circle(((boss[i].x)/minimapSize + minimapX)+wobbleX, ((boss[i].y)/minimapSize + minimapY)+wobbleY, minimapBossSize);
+        circle(((boss[i].x)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((boss[i].y)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapBossSize);
       }
     }
 
@@ -82,7 +82,7 @@ class Minimap {
     fill(minimapEnemyColor);
     for (int i = enemy.size() -1; i >= 0; i--) {
       Enemy e = enemy.get(i);
-      circle(((e.x)/minimapSize + minimapX)+wobbleX, ((e.y)/minimapSize + minimapY)+wobbleY, minimapEnemySize);
+      circle(((e.x)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((e.y)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapEnemySize);
 
 
       if ((e.x)/minimapSize + minimapX <= minimapXLoc || (e.y)/minimapSize + minimapY <= minimapYLoc) {
@@ -99,7 +99,7 @@ class Minimap {
     fill(minimapHealthdropColor);
     for (HealthDrop i : healthDrop) {
       
-        image(healthIcon,((i.healthX)/minimapSize + minimapX)+wobbleY, ((i.healthY)/minimapSize + minimapY)+wobbleY, minimapHealthdropSize, minimapHealthdropSize);
+        image(healthIcon,((i.healthX)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((i.healthY)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapHealthdropSize, minimapHealthdropSize);
       
     }
   }

@@ -24,7 +24,7 @@ HealthDrop(float x, float y){
 
       //if the correct number is selected it spawns health
       if (healthChance == 4) {
-        image(healthDropIMG, (healthX + xRef)+wobbleX, (healthY + yRef)+wobbleY, healthSize,healthSize);
+        image(healthDropIMG, (healthX + xRef)+wobbleX+bulletWobbleX, (healthY + yRef)+wobbleY+bulletWobbleY, healthSize,healthSize);
         
       } else {
         healthDrop.remove(i);

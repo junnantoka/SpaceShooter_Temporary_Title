@@ -47,7 +47,7 @@ class PowerUp {
         case 0:
           if (laserAvailable) {
             lasercollision = true;
-            image(laserPowerUp, powerUpX + xRef + wobbleX, powerUpY + yRef + wobbleY, powerUpSize, powerUpSize);
+            image(laserPowerUp, powerUpX + xRef + wobbleX+bulletWobbleX, powerUpY + yRef + wobbleY+bulletWobbleY, powerUpSize, powerUpSize);
           }
           break;
         case 1:

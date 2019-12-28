@@ -42,6 +42,6 @@ class World {
     rectMode(CENTER);
     stroke(255);
     noFill();
-    rect(xRef+wobbleX, yRef+wobbleY, worldWidth, worldHeight);
+    rect(xRef+wobbleX+bulletWobbleX, yRef+wobbleY+bulletWobbleY, worldWidth, worldHeight);
   }
 }

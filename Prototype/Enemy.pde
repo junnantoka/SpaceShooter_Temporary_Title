@@ -46,17 +46,17 @@ public class Enemy {
     noStroke();
     if (type == 0) {
       fill(0, 255, 0);
-      circle(x + xRef + wobbleX, y + yRef + wobbleY, 50);
+      circle(x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY, 50);
       //image(snailgun, x + xRef + wobbleX, y + yRef + wobbleY);
     }
     if (type == 1) {
-      image(shooter, x + xRef + wobbleX, y + yRef + wobbleY);
+      image(shooter, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
     }
     if (type == 2) {
-      image(shooter, x + xRef + wobbleX, y + yRef + wobbleY);
+      image(shooter, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
     }
     if (type == 3) {
-      image(crusher, x + xRef + wobbleX, y + yRef + wobbleY);
+      image(crusher, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
     }
     if (type ==4) {
       //print("a");
@@ -194,7 +194,7 @@ public class Enemy {
     //check if the enemy makes contact with the player
     if (!ded) {
       for (int i = 0; i < bulletP.length; i++) {
-        if ( bulletP[i].shoot) {
+        if ( bulletP[i].shoot && bulletP[i].visibilityTimer ==3) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
             ded = true;
             //print("Auchiewauchie ");
@@ -212,7 +212,7 @@ public class Enemy {
             if (!powerUp.laser) {
               bulletP[i].reset();
             }
-
+            boemA.play();
             enemy.remove(e);
           }
         }
