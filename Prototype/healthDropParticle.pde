@@ -1,16 +1,18 @@
-//ArrayList<healthDropParticle> healthDropParticles = new ArrayList<healthDropParticle>();
+float healthParticleX, healthParticleY, Yspeed, healthParticleSize;
 class HealthDropParticle {
-  float healthParticleX, healthParticleY, Yspeed, healthParticleSize;
-  boolean particleIsOnScreen = false;
-  void healthDropParticleCreate() {
+  
+  HealthDropParticle() {
     healthParticleX = character.xLocation+xRef+(random(-character.size, character.size));
     healthParticleY = character.yLocation+yRef+(random(-character.size, character.size));
     healthParticleSize = 35;
     Yspeed = random(-7, -3);
-    
   }
-  void healthDropParticleUpdate() {
+  
+  void draw(){
     image(healthParticle, healthParticleX, healthParticleY, healthParticleSize, healthParticleSize);
+  }
+  
+  void updateHealthaParticle(){
     healthParticleY= healthParticleY+Yspeed;
   }
 }

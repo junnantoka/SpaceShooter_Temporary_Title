@@ -225,6 +225,8 @@ void updateGame() {
     setting.enterSettings();
     setting.settingUpdate();
   }
+  
+  HealthDropParticle.updateHealthaParticle();
 }
 
 
