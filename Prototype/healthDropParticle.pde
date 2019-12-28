@@ -12,7 +12,7 @@ class HealthDropParticle {
     image(healthParticle, healthParticleX, healthParticleY, healthParticleSize, healthParticleSize);
   }
   
-  void updateHealthaParticle(){
+  void updateHealthParticle(){
     healthParticleY= healthParticleY+Yspeed;
   }
 }

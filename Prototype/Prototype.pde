@@ -231,8 +231,8 @@ void updateGame() {
     setting.settingUpdate();
   }
   for (HealthDropParticle hdp : healthDropParticles) {
-      hdp.updateHealthaParticle();
-    }
+    hdp.updateHealthParticle();
+  }
 }
 
 
@@ -295,6 +295,9 @@ void drawGame() {
   }
   if ( !start.start && !end.end) {
     character.displayCh();
+  }
+  for (HealthDropParticle hdp : healthDropParticles) {
+    hdp.draw();
   }
 }
 
