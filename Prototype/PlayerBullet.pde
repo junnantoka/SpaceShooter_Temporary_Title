@@ -38,13 +38,13 @@ class PlayerBullet {
 
   void detectie() {
     
-    //plays sounds
+   /* //plays sounds
     if(makingSound < 2){
       makingSound++;
     }
     if(makingSound == 1){
       pew.play();
-    }
+    }*/
     
 
     //checks if a key is pressed and gives direction to the balls movement

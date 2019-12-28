@@ -100,7 +100,8 @@ void setup() {
 
   //Load all assets
   loadAssets();
-  titlescreen.loop();
+  //titlescreen.loop();
+  altSong.loop();
   imageMode(CENTER);
 
   health.setup();

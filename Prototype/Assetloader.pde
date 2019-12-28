@@ -1,9 +1,9 @@
 //Player related images
 PImage playerBullet, playerShip;
 //Powerup related images
-PImage laserPowerUp,  snailgun;
+PImage laserPowerUp, snailgun;
 //health related images
-PImage healthup, healthParticle, healthWarning, healthBar,  healthIcon, healthDropIMG;
+PImage healthup, healthParticle, healthWarning, healthBar, healthIcon, healthDropIMG;
 //enemy related images
 PImage crusher, shooter, bossone, enemyBullet;
 //menu related images
@@ -11,7 +11,7 @@ PImage pauzeImg, shooting, movement, startImg, yourScore, highscoreTab, titleCar
 
 
 //SoundFile biem;
-SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew;
+SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew, altSong;
 
 
 PFont numberFont;
@@ -41,10 +41,10 @@ public void loadAssets() {
   healthup = loadImage("./data/img/healthup.png");
   healthParticle = loadImage("./data/img/healthdropParticle.png");
   healthWarning = loadImage("./data/img/healthwarning.png");
-  
+
   //Load fonts
   numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);
-  
+
   //Load sounds
   engineA = new SoundFile(this, "./data/audio/engine_acceleration.wav");
   engineB = new SoundFile(this, "./data/audio/engine_idle.wav");
@@ -54,4 +54,5 @@ public void loadAssets() {
   boemB = new SoundFile(this, "./data/audio/boemB.mp3");
   titlescreen = new SoundFile(this, "./data/audio/soundtrack.wav");
   pew = new SoundFile(this, "./data/audio/pewA.mp3");
+  altSong = new SoundFile(this, "./data/audio/altSong.wav");
 }
