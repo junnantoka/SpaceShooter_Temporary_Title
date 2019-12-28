@@ -9,6 +9,8 @@
 
 import processing.sound.*; //importing the Sound library
 
+NameScreen nameScreen = new NameScreen();
+
 import de.bezier.data.sql.*;//importing the Sql library
 String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as localhost
 String dbUsername = "dorpl2";  //username
@@ -145,160 +147,170 @@ void setup() {
 }
 
 void updateGame() {
-  background(0);
+    background(0);
 
-  for (int i = 0; i < star.length; i++) {
-    star[i].disp();
+  if (!nameEntered) {
+    nameScreen.update();
   }
-  health.healthWarning();
-  health.gameOver();
 
-  world.update();
+  if (nameEntered) {
+    for (int i = 0; i < star.length; i++) {
+      star[i].disp();
+    }
+    health.healthWarning();
+    health.gameOver();
 
-  if (start.start && timer == 0) {
-    start.update();
-  } else if (end.end && timer == 0) {
-    end.update();
-  } else if (!end.end && !start.start && timer == 0) {
-    pauze.pauzeGame();
-  } else if (timer == 20) {
-    timer= 0;
-  } else if (timer > 0) {
-    timer++;
-  }
-  //pauze
+    world.update();
 
-  if (!pauze.pauze&& !start.start && !end.end) {
-    for (int i = 0; i < boss.length; i++) {
-      boss[i].collision();
-      boss[i].move();
-      boss[i].damageWear();
+    if (start.start && timer == 0) {
+      start.update();
+    } else if (end.end && timer == 0) {
+      end.update();
+    } else if (!end.end && !start.start && timer == 0) {
+      pauze.pauzeGame();
+    } else if (timer == 20) {
+      timer= 0;
+    } else if (timer > 0) {
+      timer++;
     }
-    wave.update();
-    wobble.wobbleMovement();
-    health.collide();
+    //pauze
 
-    for (int i = 0; i < bullets; i++) {
-      bulletP[i].move();
-    }
-    bulletP[beweging].detectie();
+    if (!pauze.pauze&& !start.start && !end.end) {
+      for (int i = 0; i < boss.length; i++) {
+        boss[i].collision();
+        boss[i].move();
+        boss[i].damageWear();
+      }
+      wave.update();
+      wobble.wobbleMovement();
+      health.collide();
 
-    //runs enemy array
-    timerBullet++;
-    for (Enemy i : enemy) {
-      i.update();
-      i.shot();
-    }
-    for (int i = enemy.size()-1; i >= 0; i--) {
-      Enemy e = enemy.get(i);
-      e.collision(i);
-    }
+      for (int i = 0; i < bullets; i++) {
+        bulletP[i].move();
+      }
+      bulletP[beweging].detectie();
 
-    for (int i = eBullet.size() -1; i >= 0; i--) {
-      EnemyBullet e = eBullet.get(i);
-      e.move(i);
-    }
+      //runs enemy array
+      timerBullet++;
+      for (Enemy i : enemy) {
+        i.update();
+        i.shot();
+      }
+      for (int i = enemy.size()-1; i >= 0; i--) {
+        Enemy e = enemy.get(i);
+        e.collision(i);
+      }
 
-    for (int i = healthDrop.size() -1; i >= 0; i--) {
-      //i.updateHealth();
-      HealthDrop e = healthDrop.get(i);
-      e.healthCollision(i);
-    }
-    spawnBoss();
-    character.moveCh();
-    powerUp.powerUpDate();
-    snailPowerUp.snailPowerUpDate();
+      for (int i = eBullet.size() -1; i >= 0; i--) {
+        EnemyBullet e = eBullet.get(i);
+        e.move(i);
+      }
+
+      for (int i = healthDrop.size() -1; i >= 0; i--) {
+        //i.updateHealth();
+        HealthDrop e = healthDrop.get(i);
+        e.healthCollision(i);
+      }
+      spawnBoss();
+      character.moveCh();
+      powerUp.powerUpDate();
+      snailPowerUp.snailPowerUpDate();
 
 
-    //explosion van Lennart wanneer enemies sterven
-    for (Explosion ex : explosion) {
-      ex.move();
-    }
-    for (int i = 0; i < explosion.size(); i++) {
-      Explosion ex = explosion.get(i);
-      ex.reset(i);
-    }
+      //explosion van Lennart wanneer enemies sterven
+      for (Explosion ex : explosion) {
+        ex.move();
+      }
+      for (int i = 0; i < explosion.size(); i++) {
+        Explosion ex = explosion.get(i);
+        ex.reset(i);
+      }
 
-    for (PlayerDamageEffect ef : playerParticle) {
-      //ef.move();
+      for (PlayerDamageEffect ef : playerParticle) {
+        //ef.move();
+      }
+      for (int i = 0; i < playerParticle.size(); i++) {
+        PlayerDamageEffect ef = playerParticle.get(i);
+        //ef.reset(i);
+      }
     }
-    for (int i = 0; i < playerParticle.size(); i++) {
-      PlayerDamageEffect ef = playerParticle.get(i);
-      //ef.reset(i);
+    if (end.end ||start.start||pauze.pauze) {
+      setting.enterSettings();
+      setting.settingUpdate();
     }
-  }
-  if (end.end ||start.start||pauze.pauze) {
-    setting.enterSettings();
-    setting.settingUpdate();
-  }
-  for (HealthDropParticle hdp : healthDropParticles) {
-    hdp.updateHealthParticle();
+    for (HealthDropParticle hdp : healthDropParticles) {
+      hdp.updateHealthParticle();
+    }
   }
 }
 
 
 void drawGame() {
 
-  //draws stars
-
-  world.display();
-
-  for (Explosion ex : explosion) {
-    ex.display();
+  if (!nameEntered) {
+    nameScreen.display();
   }
-  if (eBullet.size() >0) {
-    for (EnemyBullet i : eBullet) {
-      i.draw();
+  if (nameEntered) {
+    //draws stars
+    world.display();
+
+    for (Explosion ex : explosion) {
+      ex.display();
     }
-  }
-  powerUp.display(); 
-  snailPowerUp.display(); 
-
-  for (int i = 0; i < boss.length; i++) {
-    boss[i].draw();
-  }
-
-  if (!start.start) {
-    for (int i = 0; i < bullets; i++) {
-      bulletP[i].draw();
-    }
-
-    for (Enemy i : enemy) {
-      if (!i.ded) {
+    if (eBullet.size() >0) {
+      for (EnemyBullet i : eBullet) {
         i.draw();
-      } /*else {
-       i = new Enemy();
-       }*/
+      }
     }
-    health.draw();
-    for (int i = 0; i< healthDrop.size(); i++) {
-      HealthDrop h = healthDrop.get(i);
-      h.spawnHealth(i);
-    }
-    if (!end.end) {
-      minimap.draw();
-    }
-  }
+    powerUp.display(); 
+    snailPowerUp.display(); 
 
-  if (!goSettings ) {
-    highscore.displayScore();
-    pauze.draw();
-    if (start.start) {
-      start.draw();
+    for (int i = 0; i < boss.length; i++) {
+      boss[i].draw();
     }
-    if (end.end) {
-      end.draw();
-    }
-  }
 
-  if (end.end ||start.start||pauze.pauze) {
-    setting.settingScreen();
-  }
-  if ( !start.start && !end.end) {
-    character.displayCh();
-  }
-  for (HealthDropParticle hdp : healthDropParticles) {
-    hdp.draw();
+    if (!start.start) {
+      for (int i = 0; i < bullets; i++) {
+        bulletP[i].draw();
+      }
+
+      for (Enemy i : enemy) {
+        if (!i.ded) {
+          i.draw();
+        } /*else {
+         i = new Enemy();
+         }*/
+      }
+      health.draw();
+      for (int i = 0; i< healthDrop.size(); i++) {
+        HealthDrop h = healthDrop.get(i);
+        h.spawnHealth(i);
+      }
+      if (!end.end) {
+        minimap.draw();
+      }
+    }
+
+    if (!goSettings ) {
+      highscore.displayScore();
+      pauze.draw();
+      if (start.start) {
+        start.draw();
+      }
+      if (end.end) {
+        end.draw();
+      }
+    }
+
+    if (end.end ||start.start||pauze.pauze) {
+      setting.settingScreen();
+    }
+    if ( !start.start && !end.end) {
+      character.displayCh();
+    }
+    for (HealthDropParticle hdp : healthDropParticles) {
+      hdp.draw();
+    }
   }
 }
 
