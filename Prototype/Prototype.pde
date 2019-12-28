@@ -230,9 +230,9 @@ void updateGame() {
     setting.enterSettings();
     setting.settingUpdate();
   }
-  for (int i = 0; i<HealthDropParticle.size(); i++);{
-    HealthDropParticle.updateHealthaParticle(i);
-  }
+  for (HealthDropParticle hdp : healthDropParticles) {
+      hdp.updateHealthaParticle();
+    }
 }
 
 
