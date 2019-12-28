@@ -230,8 +230,9 @@ void updateGame() {
     setting.enterSettings();
     setting.settingUpdate();
   }
-  
-  HealthDropParticle.updateHealthaParticle();
+  for (HealthDropParticle hdp : healthDropParticles) {
+      hdp.updateHealthaParticle();
+    }
 }
 
 
