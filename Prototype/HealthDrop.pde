@@ -13,9 +13,6 @@ HealthDrop(float x, float y){
     healthSize = 100;
     counter =0;
     healthChance = int(random(1,7));
-    
-    
-    
   }
 
   void spawnHealth(int i) {
