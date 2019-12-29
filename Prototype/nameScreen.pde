@@ -10,6 +10,7 @@ class NameScreen{
 
   void display() {
     textMode(CENTER);
+    rectMode(3);
     textSize(width/6);
     fill(255);
     rect(width / 6, height/2, width/6 * 1.5, width/5);
