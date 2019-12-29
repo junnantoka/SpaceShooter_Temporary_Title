@@ -5,13 +5,13 @@ class HealthDrop {
   boolean spawnHealth;
   int counter;
 
-HealthDrop(float x, float y){
-  healthX = x;
-  healthY = y;
-}
+  HealthDrop(float x, float y){
+    healthX = x;
+    healthY = y;
+  }
   void healthSetup() {
     healthSize = 100;
-    counter =0;
+    counter = 0;
     healthChance = int(random(1,7));
   }
 
@@ -70,8 +70,8 @@ HealthDrop(float x, float y){
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize/2 && healthChance == 4) {
       
       for (int in = 0; in < 2; in++) {
-              healthDropParticles.add(new HealthDropParticle());
-            }
+        healthDropParticles.add(new HealthDropParticle());
+      }
             
       if (healthMax < startingHealth) {
         //gives health when the player collides
