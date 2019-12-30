@@ -10,6 +10,7 @@ class Character {
   float playerRotation;
   float xLocation, yLocation, acc;
   int size = 100;
+  int radius = size/2;
   int maxSpeed = 15;
   int yDir = 0;
   int xDir = 0;
