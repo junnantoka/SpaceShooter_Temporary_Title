@@ -97,7 +97,7 @@ void setup() {
   fullScreen(P2D);
   noCursor();
 
-
+  sql.construct();
   world.construct();
 
   //Load all assets

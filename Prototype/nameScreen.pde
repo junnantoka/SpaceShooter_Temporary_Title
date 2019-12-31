@@ -6,13 +6,17 @@ boolean nameSelected;
 char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
 
-class NameScreen{
+class NameScreen {
 
   void display() {
-    textMode(CENTER);
+
+
     rectMode(3);
-    textSize(width/6);
     fill(255);
+    textSize(40);
+    text("Welcome " + chairNr, width/10, height/4);
+    
+    textSize(width/6);
     rect(width / 6, height/2, width/6 * 1.5, width/5);
     rect(width / 6 * 3, height/2, width/6 * 1.5, width/5);
     rect(width / 6 * 5, height/2, width/6 * 1.5, width/5);
