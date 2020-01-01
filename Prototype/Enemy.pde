@@ -198,6 +198,7 @@ public class Enemy {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
             ded = true;
             //print("Auchiewauchie ");
+            achievement.enemyCounter++;
             highscore.score++;
             enemyCounter++;
             healthDrop.add(new HealthDrop(x, y));

@@ -34,6 +34,7 @@ class Pauze {
       if ((keysPressed['p']||keysPressed['P']) && pauze == true) {
         pauze= false;
         goSettings =false;
+        goAchievement = false;
         timerPauze++;
         timer++;
         if (random(0, 1) >=0.5) {
