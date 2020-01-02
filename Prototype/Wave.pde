@@ -45,6 +45,8 @@ class Wave {
       enemy.add(new Enemy());
     }
   }
+  
+  
   void reset() {
     construct();
   }
