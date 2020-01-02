@@ -53,8 +53,11 @@ class Pauze {
         }
       }
     }
-    if ((!keysPressed['p']||!keysPressed['P'])) {
+    if (timerPauze == 10) {
       timerPauze = 0;
+    }
+    if(timerPauze>0){
+      timerPauze++;
     }
     if (pauze ==true) {
       pauzedTime++;
