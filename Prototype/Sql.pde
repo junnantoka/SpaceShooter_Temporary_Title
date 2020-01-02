@@ -28,6 +28,13 @@ class Sql {
       artSetting = 1;
     }
   }
+  
+   void uploadName(){
+     if(msql.connect()){
+       msql.query("INSERT into User (" +  chairNr + ", " +  name + ");");
+       println("INSERT into User (" + chairNr + ", " +  name + ");");
+     }
+   }
 
   void updateData() {
     if ( msql.connect() ) {

@@ -21,8 +21,7 @@ public class Enemy {
     cMax = 200;
     size = 50;
     radius = size/2;
-    x = random(xMin, xMax);
-    y = random(yMin, yMax);
+    invisibleSpawn();
     xSpd = random(5, 15);
     ySpd = random(5, 15);
     direction = random(-2, 2);
@@ -250,7 +249,15 @@ public class Enemy {
     ded = false;
     speed = random(500.0f, 100.0f);
   }
-  
+  void invisibleSpawn() {
+    while (x < xRef + height/2 && x > xRef - height/2) {
+      x = random(xMin, xMax);
+    }
+    while (y < yRef + height/2 && y > yRef - height/2) {
+      y = random(yMin, yMax);
+    }
+  }
+
   void shot() {
     shootTimer--;
     if (shootTimer ==0) {
