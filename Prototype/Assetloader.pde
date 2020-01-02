@@ -7,7 +7,7 @@ PImage healthup, healthParticle, healthWarning, healthBar, healthIcon, healthDro
 //enemy related images
 PImage crusher, shooter, bossone, enemyBullet;
 //menu related images
-PImage pauzeImg, shooting, movement, startImg, yourScore, highscoreTab, titleCard;
+PImage pauzeImg, shooting, movement, startImg, yourScore, highscoreTab, titleCard, checkmark;
 
 
 //SoundFile biem;
@@ -41,6 +41,7 @@ public void loadAssets() {
   healthup = loadImage("./data/img/healthup.png");
   healthParticle = loadImage("./data/img/healthdropParticle.png");
   healthWarning = loadImage("./data/img/healthwarning.png");
+  checkmark = loadImage("./data/img/checkmark.png");
 
   //Load fonts
   numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);

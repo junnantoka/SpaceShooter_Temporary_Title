@@ -3,6 +3,8 @@ class Achievement {
   int textX = 300;
   int descriptionAdd = 35;
   int checkBoxSize = 40;
+  int checkBoxX = 1000;
+  int achievementDistance = 150;
   
   //All achievement booleans
   boolean dominator;
@@ -40,11 +42,28 @@ class Achievement {
     stroke(255);
     strokeWeight(5);
     for(int i = 0; i < 6; i++){
-      rect(1200, (i + 1) * 150, checkBoxSize, checkBoxSize);
+      rect(checkBoxX, (i + 1) * achievementDistance, checkBoxSize, checkBoxSize);
     }
     noStroke();
     
-    
+    if(firstKill){
+      image(checkmark, checkBoxX, 150);
+    }
+    if(dominator){
+      image(checkmark, checkBoxX, 300);
+    }
+    if(firstDeath){
+      image(checkmark, checkBoxX, 450);
+    }
+    if(graveyard){
+      image(checkmark, checkBoxX, 600);
+    }
+    if(getHealth){
+      image(checkmark, checkBoxX, 750);
+    }
+    if(powerUpObtained){
+      image(checkmark, checkBoxX, 900);
+    }
     
    }
   }
@@ -69,7 +88,6 @@ class Achievement {
     
     if(enemyCounter >= 1){
      firstKill = true; 
-     println("lamo");
     }
     
     if(enemyCounter >= 50){
