@@ -1,5 +1,9 @@
 class Achievement {
 
+  int textX = 300;
+  int descriptionAdd = 35;
+  int checkBoxSize = 40;
+  
   //All achievement booleans
   boolean dominator;
   boolean firstKill;
@@ -15,8 +19,33 @@ class Achievement {
 
   void achievementScreen(){
    if(goAchievement){
-    textSize(28);
-    text("peopkaas", 500, 500);
+    textSize(42);
+    text("Learning the Basics", textX, 150);
+    text("Dominator", textX, 300);
+    text("It's all downhill from here", textX, 450);
+    text("Graveyard", textX, 600);
+    text("Slice of Life", textX, 750);
+    text("POWAAHHHH", textX, 900);
+    
+    textSize(32);
+    fill(206);
+    text("Your first enemy kill", textX, 150 + descriptionAdd);
+    text("Kill 50 enemies", textX, 300 + descriptionAdd);
+    text("Oops, you died", textX, 450 + descriptionAdd);
+    text("Die 15 times", textX, 600 + descriptionAdd);
+    text("Pick up a healthdrop", textX, 750 + descriptionAdd);
+    text("Pick up a powerup", textX, 900 + descriptionAdd);
+    
+    noFill();
+    stroke(255);
+    strokeWeight(5);
+    for(int i = 0; i < 6; i++){
+      rect(1200, (i + 1) * 150, checkBoxSize, checkBoxSize);
+    }
+    noStroke();
+    
+    
+    
    }
   }
 
@@ -67,13 +96,11 @@ class Achievement {
   }
   
   void achievementCounter(){
-    
     for (HealthDrop i : healthDrop) {
       if(i.healthPickedUp){
         healthDropCounter++;
       }
-    }
-    
+    }  
   }
   
 }
