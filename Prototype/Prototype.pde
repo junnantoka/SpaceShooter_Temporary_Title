@@ -20,6 +20,7 @@ String dbSchema = "zdorpl2";  //default database schema
 Settings setting = new Settings();
 MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//create new mysql instance
 boolean goSettings = false;
+boolean goAchievement = false;
 Sql sql = new Sql();
 
 //character movement w a s d
@@ -30,8 +31,6 @@ Boss[] boss;
 float yRef = height/2;
 float xRef = width/2;
 
-//doet dit iets? geen usage
-int kaas= 240;
 
 float  wobbleX, wobbleY= 0;
 int wobbleTimer = 0;
@@ -73,7 +72,7 @@ SnailPowerUp snailPowerUp = new SnailPowerUp();
 Highscore highscore = new Highscore();
 Minimap minimap = new Minimap();
 
-
+Achievement achievement = new Achievement();
 Pauze pauze = new Pauze();
 
 ArrayList<Enemy> enemy;
@@ -237,10 +236,15 @@ void updateGame() {
     if (end.end ||start.start||pauze.pauze) {
       setting.enterSettings();
       setting.settingUpdate();
+      
+      achievement.enterAchievement();
+      achievement.achievementUpdate();
     }
     for (HealthDropParticle hdp : healthDropParticles) {
       hdp.updateHealthParticle();
     }
+    
+    
   }
 }
 
@@ -291,7 +295,7 @@ void drawGame() {
       }
     }
 
-    if (!goSettings ) {
+    if (!goSettings && !goAchievement) {
       highscore.displayScore();
       pauze.draw();
       if (start.start) {
@@ -301,9 +305,12 @@ void drawGame() {
         end.draw();
       }
     }
+    
+
 
     if (end.end ||start.start||pauze.pauze) {
       setting.settingScreen();
+      achievement.achievementScreen();
     }
     if ( !start.start && !end.end) {
       character.displayCh();
