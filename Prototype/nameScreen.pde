@@ -129,20 +129,20 @@ class NameScreen {
         print(name + "  ");
         if (!chairExists) {
           uploadName();
-          nameEntered = true;
-          msql.close();
         }
+        nameEntered = true;
+        msql.close();
       }
     }
   }
 
   void doesChairExist() {
-     if (msql.connect()) {
+    if (msql.connect()) {
       msql.query("SELECT * FROM User;");
       while (msql.next()) {
-      String peop = msql.getString("Chair_nr");
-      println(msql.getString("Chair_nr"));
-       // println(chairNr);
+        String peop = msql.getString("Chair_nr");
+        println(msql.getString("Chair_nr"));
+        // println(chairNr);
 
         if (peop.equals(chairNr)) {
           chairExists = true;
@@ -152,7 +152,7 @@ class NameScreen {
     }
     println("is hij er? " + chairExists);
   }
-  
+
   void uploadName() {
     if (msql.connect()) {
       msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
