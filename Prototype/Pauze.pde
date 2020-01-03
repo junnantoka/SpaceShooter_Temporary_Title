@@ -4,14 +4,14 @@ class Pauze {
   float pauzeX, pauzeY;
   int speedX, speedY;
   int timerPauze = 0;
+  int BLACK = 0;
   final int SPEED = 10;
   final int MINX = 10;
   final int MAXX = 1590;
   final int MINY = 10;
   final int MAXY = 790;
-  final int TEXTSIZE = 20;
-  final int TEXTX = 725;
-  final int TEXTY = 610;
+  final int TEXTSIZE = 26;
+  final int TEXTCOLOR = 250;
 
   void setup() {
     pauzeX = random(MINX, MAXX);
@@ -76,12 +76,15 @@ class Pauze {
 
   void draw() {
     if (pauze == true) {
-      image(movement, width/2-165, height/4*3, 250,250);
-      image(shooting, width/2+165, height/4*3, 250,250);
-      image(pauzeImg, pauzeX, pauzeY);
+      fill(BLACK);
+      rect(-1, -1, width+1, height+1);
+      image(highscoreTab, width/2, height/2, 721, 750);
+      image(movement, width/6, height/2, 350, 350);
+      image(shooting, width/6*5, height/2, 350, 350);
+      //image(pauzeImg, pauzeX, pauzeY);
       textSize(TEXTSIZE);
-      fill(#FAE523);
-      text("press any key to continue", TEXTX, TEXTY);
+      fill(TEXTCOLOR);
+      text("press any key to continue", width/18*7, height/14*11);
     }
   }
 }

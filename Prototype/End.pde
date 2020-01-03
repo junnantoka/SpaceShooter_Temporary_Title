@@ -70,7 +70,7 @@ class End {
 
     health.reset();
     highscore.score = 0;
-    highscore.reset();
+    //highscore.reset();
     yRef = 0;
     xRef = 0;
 
