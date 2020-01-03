@@ -1,5 +1,5 @@
 int soundSetting, artSetting, enemiesKilled;
-String chairNr = "3b";
+
 class Sql {
 
   //void construct() {

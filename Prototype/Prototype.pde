@@ -17,12 +17,15 @@ String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as
 String dbUsername = "dorpl2";  //username
 String dbUserPass = "kjWD660lD6ZRA0+7";  //password
 String dbSchema = "zdorpl2";  //default database schema
+String chairNr = "3b";
+MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//create new mysql instance
+Sql sql = new Sql();
 
 Settings setting = new Settings();
-MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//create new mysql instance
+
 boolean goSettings = false;
 boolean goAchievement = false;
-Sql sql = new Sql();
+
 
 //character movement w a s d
 //bullet shooting up down left right

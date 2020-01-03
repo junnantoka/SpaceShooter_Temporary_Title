@@ -137,14 +137,20 @@ class NameScreen {
   }
 
   void doesChairExist() {
-    if (msql.connect()) {
+     if (msql.connect()) {
       msql.query("SELECT * FROM User;");
       while (msql.next()) {
-        if (msql.getString("Chair_nr") == chairNr) {
+      String peop = msql.getString("Chair_nr");
+      println(msql.getString("Chair_nr"));
+       // println(chairNr);
+
+        if (peop.equals(chairNr)) {
           chairExists = true;
+          println("Yepdaarissie");
         }
       }
     }
+    println("is hij er? " + chairExists);
   }
   
   void uploadName() {
