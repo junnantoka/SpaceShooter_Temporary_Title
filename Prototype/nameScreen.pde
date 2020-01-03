@@ -127,7 +127,7 @@ class NameScreen {
         doesChairExist();
         print(name + "  ");
         if (!chairExists) {
-          sql.uploadName();
+          uploadName();
           nameEntered = true;
           msql.close();
         }
@@ -143,6 +143,13 @@ class NameScreen {
           chairExists = true;
         }
       }
+    }
+  }
+  
+  void uploadName() {
+    if (msql.connect()) {
+      msql.query("INSERT into User (" +  chairNr + ", " +  name + ")");
+      println("INSERT into User (" + chairNr + ", " +  name + ")");
     }
   }
 
