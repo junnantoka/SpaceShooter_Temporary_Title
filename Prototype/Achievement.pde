@@ -24,11 +24,15 @@ class Achievement {
   int graveyardTimer;
   
   int deleteTimer;
+  int updateTimer;
 
   int enemyCounter = 0;
   int healthDropCounter = 0;
   int deathCounter = 0;
   int powerUpCounter = 0;
+  
+  String selectQuery = "SELECT Chair_nr, AchievementID FROM USER" +
+                       "INNER -JOIN User_Has_Achievement ON User.Chair_nr = User_Has_Achievement.Chair_nr";
 
   void achievementScreen() {
     if (goAchievement) {
@@ -146,7 +150,11 @@ class Achievement {
       if (msql.connect()) {
 
         //TODO: obtain achievement data
-
+        if(updateTimer == 0){
+          
+          
+          
+        }
 
 
         //Upload achievement data upon updating the database if the user has said achievement
