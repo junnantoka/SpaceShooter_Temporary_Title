@@ -21,10 +21,13 @@ String chairNr = "3b";
 MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//create new mysql instance
 Sql sql = new Sql();
 
+int input_per_frame; // keeps track of player input(s) per frame
+
 Settings setting = new Settings();
 
 boolean goSettings = false;
 boolean goAchievement = false;
+boolean goChallenge = false;
 
 
 //character movement w a s d
@@ -79,6 +82,7 @@ Highscore highscore = new Highscore();
 Minimap minimap = new Minimap();
 
 Achievement achievement = new Achievement();
+Challenge challenge = new Challenge();
 Pauze pauze = new Pauze();
 
 ArrayList<Enemy> enemy;
@@ -247,6 +251,7 @@ void updateGame() {
         setting.settingUpdate();
       }
       achievement.enterAchievement();
+      challenge.enterChallenge();
       achievement.achievementUpdate();
     }
     for (HealthDropParticle hdp : healthDropParticles) {
@@ -304,7 +309,7 @@ void drawGame() {
       }
     }
 
-    if (!goSettings && !goAchievement) {
+    if (!goSettings && !goAchievement && !goChallenge) {
       highscore.displayScore();
       pauze.draw();
       if (start.start) {
@@ -320,6 +325,7 @@ void drawGame() {
     if (end.end ||start.start||pauze.pauze) {
       setting.settingScreen();
       achievement.achievementScreen();
+      challenge.challengeScreen();
     }
     if ( !start.start && !end.end && !pauze.pauze) {
       character.displayCh();

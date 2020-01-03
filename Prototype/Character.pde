@@ -92,6 +92,7 @@ class Character {
     
     //keypress checks
     if (keysPressed['w']||keysPressed['W']) {
+      input_per_frame += 1;//keep track of input
       moving = true;
       ySpeed-= acc;
       yDir = 1;
@@ -105,6 +106,7 @@ class Character {
     }
 
     if (keysPressed['s'] || keysPressed['S']) {
+      input_per_frame += 1;//keep track of input
       moving = true;
       ySpeed+= acc;
       yDir= 2;      
@@ -118,6 +120,7 @@ class Character {
     }
 
     if (keysPressed['a']||keysPressed['A']) {
+      input_per_frame += 1;//keep track of input
       moving = true;
       xSpeed-= acc;
       xDir = 1;      
@@ -131,6 +134,7 @@ class Character {
     }
 
     if (keysPressed['d']||keysPressed['D']) {
+      input_per_frame += 1;//keep track of input
       moving = true;
       xSpeed+= acc;
       xDir= 2;      

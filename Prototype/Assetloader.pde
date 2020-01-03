@@ -10,10 +10,10 @@ PImage crusher, shooter, bossone, enemyBullet;
 PImage pauzeImg, shooting, movement, startImg, yourScore, highscoreTab, titleCard, checkmark;
 
 
-//SoundFile biem;
+//Soundfile(s)
 SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew, altSong;
 
-
+//Font(s)
 PFont numberFont;
 
 
