@@ -7,6 +7,7 @@ char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'I', 'K', 'L', '
 
 
 class NameScreen {
+  boolean chairExists;
 
   void display() {
 
@@ -119,12 +120,28 @@ class NameScreen {
       entering++;
     } else entering = 0;
 
+
+
     if (entering == 1) {
       if (msql.connect()) {
+        doesChairExist();
         print(name + "  ");
-        sql.uploadName();
-        nameEntered = true;
-        msql.close();
+        if (!chairExists) {
+          sql.uploadName();
+          nameEntered = true;
+          msql.close();
+        }
+      }
+    }
+  }
+
+  void doesChairExist() {
+    if (msql.connect()) {
+      msql.query("SELECT * FROM User;");
+      while (msql.next()) {
+        if (msql.getString("Chair_nr") == chairNr) {
+          chairExists = true;
+        }
       }
     }
   }
