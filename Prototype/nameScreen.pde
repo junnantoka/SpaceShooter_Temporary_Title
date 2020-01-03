@@ -5,8 +5,10 @@ boolean selecting = true;
 boolean nameSelected;
 char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
+String peoep = "7b";
 
 class NameScreen {
+  boolean chairExists;
 
   void display() {
 
@@ -119,13 +121,42 @@ class NameScreen {
       entering++;
     } else entering = 0;
 
+
+
     if (entering == 1) {
       if (msql.connect()) {
+        doesChairExist();
         print(name + "  ");
-        sql.uploadName();
+        if (!chairExists) {
+          uploadName();
+        }
         nameEntered = true;
         msql.close();
       }
+    }
+  }
+
+  void doesChairExist() {
+    if (msql.connect()) {
+      msql.query("SELECT * FROM User;");
+      while (msql.next()) {
+        String peop = msql.getString("Chair_nr");
+        println(msql.getString("Chair_nr"));
+        // println(chairNr);
+
+        if (peop.equals(chairNr)) {
+          chairExists = true;
+          println("Yepdaarissie");
+        }
+      }
+    }
+    println("is hij er? " + chairExists);
+  }
+
+  void uploadName() {
+    if (msql.connect()) {
+      msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
+      println("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
     }
   }
 

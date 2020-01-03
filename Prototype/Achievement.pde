@@ -1,5 +1,7 @@
 class Achievement {
 
+  boolean inAchievement = false;
+
   int textX = 300;
   int descriptionAdd = 35;
   int checkBoxSize = 40;
@@ -15,12 +17,22 @@ class Achievement {
   boolean graveyard;
 
   int firstKillTimer;
+  int dominatorTimer;
+  int getHealthTimer;
+  int firstDeathTimer;
+  int powerUpObtainedTimer;
+  int graveyardTimer;
+  
   int deleteTimer;
+  int updateTimer;
 
   int enemyCounter = 0;
   int healthDropCounter = 0;
   int deathCounter = 0;
   int powerUpCounter = 0;
+  
+  String selectQuery = "SELECT Chair_nr, AchievementID FROM USER" +
+                       "INNER -JOIN User_Has_Achievement ON User.Chair_nr = User_Has_Achievement.Chair_nr";
 
   void achievementScreen() {
     if (goAchievement) {
@@ -51,27 +63,21 @@ class Achievement {
 
       if (firstKill) {
         image(checkmark, checkBoxX, 150);
-        deleteTimer = 0;
       }
       if (dominator) {
         image(checkmark, checkBoxX, 300);
-        deleteTimer = 0;
       }
       if (firstDeath) {
         image(checkmark, checkBoxX, 450);
-        deleteTimer = 0;
       }
       if (graveyard) {
         image(checkmark, checkBoxX, 600);
-        deleteTimer = 0;
       }
       if (getHealth) {
         image(checkmark, checkBoxX, 750);
-        deleteTimer = 0;
       }
       if (powerUpObtained) {
         image(checkmark, checkBoxX, 900);
-        deleteTimer = 0;
       }
 
       text("Press r to delete data", 1400, 900);
@@ -83,9 +89,11 @@ class Achievement {
       timer++;
       if (timer==1) {
         if (!goAchievement) {
+          inAchievement = true;
           goAchievement = true;
         } else if (goAchievement) {
           goAchievement =false;
+          inAchievement = false;
         }
       }
     } else {
@@ -100,26 +108,32 @@ class Achievement {
 
     if (enemyCounter >= 1) {
       firstKill = true;
+      deleteTimer = 0;
     }
 
     if (enemyCounter >= 50) {
       dominator = true;
+      deleteTimer = 0;
     }
 
     if (healthDropCounter >= 1) {
       getHealth = true;
+      deleteTimer = 0;
     }
 
     if (deathCounter >= 1) {
       firstDeath = true;
+      deleteTimer = 0;
     }
 
     if (deathCounter >= 15) {
       graveyard = true;
+      deleteTimer = 0;
     }
 
     if (powerUpCounter >= 1) {
       powerUpObtained = true;
+      deleteTimer = 0;
     }
   }
 
@@ -136,23 +150,60 @@ class Achievement {
       if (msql.connect()) {
 
         //TODO: obtain achievement data
+        if(updateTimer == 0){
+          
+          
+          
+        }
 
 
-
-        //TODO: Upload achievement data
+        //Upload achievement data upon updating the database if the user has said achievement
         if (firstKill) {
           if (firstKillTimer==0) {
-            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('1b', '6')");
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '2')");
             firstKillTimer++;
+          }
+        }
+        if (dominator) {
+          if(dominatorTimer == 0){
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '6')");
+            dominatorTimer++;
+          }
+        }
+        if (firstDeath) {
+          if(firstDeathTimer == 0){
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '4')");
+            firstDeathTimer++;
+          }
+        }
+        if (graveyard) {
+          if(graveyardTimer == 0){
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '5')");
+            graveyardTimer++;
+          }
+        }
+        if (getHealth) {
+          if(getHealthTimer == 0){
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '3')");
+            getHealthTimer++;
+          }
+        }
+        if (powerUpObtained) {
+          if(powerUpObtainedTimer == 0){
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '1')");
+            powerUpObtainedTimer++;
           }
         }
       }
     }
+    //deletion off data
     if (keysPressed['r']||keysPressed['R']) {
-      if (deleteTimer == 0) {
-        reset();
-        msql.query("DELETE FROM User_Has_Achievement WHERE Chair_nr='" + chairNr + "'");
-        deleteTimer++;
+      if (msql.connect()) {
+        if (deleteTimer == 0) {
+          reset();
+          msql.query("DELETE FROM User_has_Achievement WHERE Chair_nr='" + chairNr + "'");
+          deleteTimer++;
+        }
       }
     }
   }
@@ -171,5 +222,11 @@ class Achievement {
     powerUpCounter = 0;
 
     firstKillTimer = 0;
+    dominatorTimer = 0;
+    getHealthTimer = 0;
+    firstDeathTimer = 0;
+    powerUpObtainedTimer = 0;
+    graveyardTimer = 0;
+  
   }
 }

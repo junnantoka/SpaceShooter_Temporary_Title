@@ -1,5 +1,5 @@
 int soundSetting, artSetting, enemiesKilled;
-String chairNr = "1b";
+
 class Sql {
 
   //void construct() {
@@ -29,12 +29,7 @@ class Sql {
     }
   }
   
-   void uploadName(){
-     if(msql.connect()){
-       msql.query("INSERT into User (" +  chairNr + ", " +  name + ")");
-       println("INSERT into User (" + chairNr + ", " +  name + ")");
-     }
-   }
+
 
   void updateData() {
     if ( msql.connect() ) {

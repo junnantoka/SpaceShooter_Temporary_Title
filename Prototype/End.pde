@@ -71,7 +71,7 @@ class End {
 
     health.reset();
     highscore.score = 0;
-    highscore.reset();
+    //highscore.reset();
     yRef = 0;
     xRef = 0;
 
@@ -95,5 +95,27 @@ class End {
     for (int i = 0; i < star.length; i++) {
       star[i].construct();
     }
+  }
+  
+  void updateTestdata(){
+    //TODO: Update total enemies killed in the database
+    msql.query("UPDATE Testdata SET enemies_killed = " + achievement.enemyCounter + " WHERE chair_nr = '" + chairNr + "'");
+  }
+  
+  void getTestdata(){
+    //TODO: Get the data out of the database
+    String userQry = "SELECT u.chair_nr FROM Testdata t INNER JOIN User_has_Testdata ON t.id = User_has_Testdata.Testdata_id INNER JOIN User u ON u.Chair_nr = User_has_Testdata.User_Chair_nr WHERE u.Chair_nr = User_has_Testdata.User_Chair_nr;"; 
+    msql.query(userQry);
+  
+  }
+  
+  void setTestdata(){
+    //TODO: Insert data IF the player hasn't played the game yet
+    msql.query("INSERT INTO Testdata (`inputs_per_frame`, `enemies_killed`, `time_played`) VALUES('" + input_per_frame + "','" + achievement.enemyCounter + "','" + timerEnd + "');");
+    msql.query("INSERT INTO User_has_Testdata (`User_chair_nr`, `Testdata_id`) VALUES('" + chairNr + "', '" + "');'");
+  }
+  
+  void dropTestdata(){
+    //TODO: Drop data IF exists
   }
 }

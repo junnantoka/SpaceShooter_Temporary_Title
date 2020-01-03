@@ -1,4 +1,5 @@
-/*SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
+/*
+SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
  Lennart van Dorp, 500797956
  Nordin El Hadaoui, 500833417
  Stijn Houdijk, 500825907
@@ -16,13 +17,18 @@ String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as
 String dbUsername = "dorpl2";  //username
 String dbUserPass = "kjWD660lD6ZRA0+7";  //password
 String dbSchema = "zdorpl2";  //default database schema
+String chairNr = "3b";
+MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//create new mysql instance
+Sql sql = new Sql();
+
+int input_per_frame; // keeps track of player input(s) per frame
 
 Settings setting = new Settings();
-MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//create new mysql instance
+
 boolean goSettings = false;
 boolean goAchievement = false;
 boolean goChallenge = false;
-Sql sql = new Sql();
+
 
 //character movement w a s d
 //bullet shooting up down left right
@@ -136,8 +142,6 @@ void setup() {
 
   eBullet =new ArrayList<EnemyBullet>();
 
-  highscore.scoreSetup();
-
   healthDrop = new ArrayList<HealthDrop>();
 
   explosion = new ArrayList<Explosion>();
@@ -145,10 +149,12 @@ void setup() {
   healthDropParticles = new ArrayList<HealthDropParticle>();
 
   playerParticle = new ArrayList<PlayerDamageEffect>();
+  
+  highscore.scoreSetup();
 }
 
 void updateGame() {
-    background(0);
+  background(0);
 
   if (!nameEntered) {
     nameScreen.update();
@@ -236,9 +242,10 @@ void updateGame() {
       }
     }
     if (end.end ||start.start||pauze.pauze) {
-      setting.enterSettings();
-      setting.settingUpdate();
-      
+      if(!achievement.inAchievement){
+        setting.enterSettings();
+        setting.settingUpdate();
+      }
       achievement.enterAchievement();
       challenge.enterChallenge();
       achievement.achievementUpdate();
@@ -316,8 +323,11 @@ void drawGame() {
       achievement.achievementScreen();
       challenge.challengeScreen();
     }
-    if ( !start.start && !end.end) {
+    if ( !start.start && !end.end && !pauze.pauze) {
       character.displayCh();
+    }
+    if (!goSettings ) {
+      highscore.displayScore();
     }
     for (HealthDropParticle hdp : healthDropParticles) {
       hdp.draw();
