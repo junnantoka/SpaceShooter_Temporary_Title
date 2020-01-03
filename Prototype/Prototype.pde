@@ -1,4 +1,5 @@
-/*SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
+/*
+SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
  Lennart van Dorp, 500797956
  Nordin El Hadaoui, 500833417
  Stijn Houdijk, 500825907
@@ -234,9 +235,10 @@ void updateGame() {
       }
     }
     if (end.end ||start.start||pauze.pauze) {
-      setting.enterSettings();
-      setting.settingUpdate();
-      
+      if(!achievement.inAchievement){
+        setting.enterSettings();
+        setting.settingUpdate();
+      }
       achievement.enterAchievement();
       achievement.achievementUpdate();
     }
