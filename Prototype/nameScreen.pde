@@ -5,6 +5,7 @@ boolean selecting = true;
 boolean nameSelected;
 char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
+String peoep = "7b";
 
 class NameScreen {
   boolean chairExists;
@@ -148,8 +149,8 @@ class NameScreen {
   
   void uploadName() {
     if (msql.connect()) {
-      msql.query("INSERT into User (" +  chairNr + ", " +  name + ")");
-      println("INSERT into User (" + chairNr + ", " +  name + ")");
+      msql.query("INSERT into User ('" +  peoep + "', '" +  name + "')");
+      println("INSERT into User ('" + peoep + "', '" +  name + "')");
     }
   }
 

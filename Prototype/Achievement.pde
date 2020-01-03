@@ -17,6 +17,12 @@ class Achievement {
   boolean graveyard;
 
   int firstKillTimer;
+  int dominatorTimer;
+  int getHealthTimer;
+  int firstDeathTimer;
+  int powerUpObtainedTimer;
+  int graveyardTimer;
+  
   int deleteTimer;
 
   int enemyCounter = 0;
@@ -143,11 +149,41 @@ class Achievement {
 
 
 
-        //TODO: Upload achievement data
+        //Upload achievement data upon updating the database if the user has said achievement
         if (firstKill) {
           if (firstKillTimer==0) {
             msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '2')");
             firstKillTimer++;
+          }
+        }
+        if (dominator) {
+          if(dominatorTimer == 0){
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '6')");
+            dominatorTimer++;
+          }
+        }
+        if (firstDeath) {
+          if(firstDeathTimer == 0){
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '4')");
+            firstDeathTimer++;
+          }
+        }
+        if (graveyard) {
+          if(graveyardTimer == 0){
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '5')");
+            graveyardTimer++;
+          }
+        }
+        if (getHealth) {
+          if(getHealthTimer == 0){
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '3')");
+            getHealthTimer++;
+          }
+        }
+        if (powerUpObtained) {
+          if(powerUpObtainedTimer == 0){
+            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '1')");
+            powerUpObtainedTimer++;
           }
         }
       }
@@ -178,5 +214,11 @@ class Achievement {
     powerUpCounter = 0;
 
     firstKillTimer = 0;
+    dominatorTimer = 0;
+    getHealthTimer = 0;
+    firstDeathTimer = 0;
+    powerUpObtainedTimer = 0;
+    graveyardTimer = 0;
+  
   }
 }

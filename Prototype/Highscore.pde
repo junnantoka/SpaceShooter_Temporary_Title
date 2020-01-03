@@ -13,7 +13,7 @@ class Highscore {
   void scoreSetup() {
   }
   void displayScore() {
-    sql();
+    //sql();
     if (!start.start && !pauze.pauze) {
       textFont(numberFont);
       fill(250, 250, 250);

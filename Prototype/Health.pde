@@ -58,14 +58,20 @@ class Health {
     }
   }
 
+  int deathCounterTimer = 0;
   void gameOver() {
     if (healthMax <= 0) {
       end.end = true;
-      achievement.deathCounter++;
+      deathCounterTimer++;
+      if(deathCounterTimer == 1){
+        achievement.deathCounter++;
+      }
       highscore.highscoreSave();
       if (keyPressed) {
         end.button = true;
       }
+    } else{
+     deathCounterTimer = 0; 
     }
   }
   void reset() {
