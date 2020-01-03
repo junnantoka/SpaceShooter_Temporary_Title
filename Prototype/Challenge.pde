@@ -5,11 +5,14 @@ class Challenge {
   
   void challengeScreen() {
     if(goChallenge) {
+    
+    cursor();
     fill(255);
     textSize(50);
-    text("Challenge others!", 600, 400);
-    text("SUBMIT SCORE", 650, 500);
-    noStroke();
+    text("Challenge others to beat your score.", 600, 400);
+    text("CHALLENGE!", 650, 500);
+    noFill();
+    rect(600,400,500,100);
     //rect(width/4, height/4, 950,600);
     
     
