@@ -149,8 +149,8 @@ class NameScreen {
   
   void uploadName() {
     if (msql.connect()) {
-      msql.query("INSERT into User ('" +  peoep + "', '" +  name + "')");
-      println("INSERT into User ('" + peoep + "', '" +  name + "')");
+      msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
+      println("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
     }
   }
 
