@@ -21,6 +21,8 @@ String chairNr = "3b";
 MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//create new mysql instance
 Sql sql = new Sql();
 
+int input_per_frame; // keeps track of player input(s) per frame
+
 Settings setting = new Settings();
 
 boolean goSettings = false;
