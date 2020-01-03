@@ -27,6 +27,7 @@ class Start {
     if (keysPressed['P']||keysPressed['p']) {
       start = false;
       goSettings =false;
+      goAchievement = false;
       timer++;
       if (random(0, 1) >=0.5) {
         clickA.play();

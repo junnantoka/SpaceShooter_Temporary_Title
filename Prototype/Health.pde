@@ -61,6 +61,7 @@ class Health {
   void gameOver() {
     if (healthMax <= 0) {
       end.end = true;
+      achievement.deathCounter++;
       highscore.highscoreSave();
       if (keyPressed) {
         end.button = true;

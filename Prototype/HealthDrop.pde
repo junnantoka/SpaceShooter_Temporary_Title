@@ -4,6 +4,7 @@ class HealthDrop {
   int healthChance;
   boolean spawnHealth;
   int counter;
+  boolean healthPickedUp = false;
 
   HealthDrop(float x, float y){
     healthX = x;
@@ -82,6 +83,7 @@ class HealthDrop {
 
         //println("darren is de beste");
       }
+      healthPickedUp = true;
       healthDrop.remove(i);
       spawnHealth = false;
     }
