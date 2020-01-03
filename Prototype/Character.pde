@@ -54,10 +54,10 @@ class Character {
       particle[i].display();
     }
     
-    //sound effect
+    //Sound effect(s)
     if(xSpeed == 0 & ySpeed == 0){
       engineB.loop();
-    }if(xSpeed > 0 || xSpeed < 0 || ySpeed > 0 || ySpeed < 0){
+    }if(xSpeed > 0 || xSpeed < 0 || ySpeed > 0 || ySpeed < 0){//Detects movement
       engineA.loop();
     }else{
       engineA.stop();

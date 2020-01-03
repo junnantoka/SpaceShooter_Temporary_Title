@@ -106,16 +106,19 @@ class End {
     //TODO: Get the data out of the database
     String userQry = "SELECT u.chair_nr FROM Testdata t INNER JOIN User_has_Testdata ON t.id = User_has_Testdata.Testdata_id INNER JOIN User u ON u.Chair_nr = User_has_Testdata.User_Chair_nr WHERE u.Chair_nr = User_has_Testdata.User_Chair_nr;"; 
     msql.query(userQry);
-  
   }
   
   void setTestdata(){
     //TODO: Insert data IF the player hasn't played the game yet
-    msql.query("INSERT INTO Testdata (`inputs_per_frame`, `enemies_killed`, `time_played`) VALUES('" + input_per_frame + "','" + achievement.enemyCounter + "','" + timerEnd + "');");
-    msql.query("INSERT INTO User_has_Testdata (`User_chair_nr`, `Testdata_id`) VALUES('" + chairNr + "', '" + "');'");
+    String insertQry = "INSERT INTO Testdata (`inputs_per_frame`, `enemies_killed`, `time_played`) VALUES('" + input_per_frame + "','" + achievement.enemyCounter + "','" + timerEnd + "');";
+    String insertQryTT = "INSERT INTO User_has_Testdata (`User_chair_nr`, `Testdata_id`) VALUES('" + chairNr + "', '" + "');'";
+    msql.query(insertQry);
+    msql.query(insertQryTT);
   }
   
   void dropTestdata(){
     //TODO: Drop data IF exists
+    String dropQuery = "DELETE FROM Testdata WHERE Testdata.id = User_has_Testdata.Testdata_id";
+    msql.query(dropQuery);
   }
 }

@@ -17,33 +17,30 @@ String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as
 String dbUsername = "dorpl2";  //username
 String dbUserPass = "kjWD660lD6ZRA0+7";  //password
 String dbSchema = "zdorpl2";  //default database schema
-String chairNr = "3b";
-MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//create new mysql instance
-Sql sql = new Sql();
+String chairNr = "3b"; 
+MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//Create new mysql instance
+Sql sql = new Sql();//New instance of "Sql" class
 
-int input_per_frame; // keeps track of player input(s) per frame
+int input_per_frame; // Keeps track of player input(s) per frame
 
-Settings setting = new Settings();
+Settings setting = new Settings(); //New instance of "Settings"
 
+//Booleans
 boolean goSettings = false;
 boolean goAchievement = false;
 boolean goChallenge = false;
 
+Character character = new Character(); //New instance of "Character" 
+int bosses = 20; //Amount of bosses
+Boss[] boss; //Array of bosses
+float yRef = height/2; //y reference point
+float xRef = width/2; //x reference point
 
-//character movement w a s d
-//bullet shooting up down left right
-Character character = new Character();
-int bosses = 20;
-Boss[] boss;
-float yRef = height/2;
-float xRef = width/2;
+float wobbleX, wobbleY = 0;
+int wobbleTimer = 0; // Wobble timer
+Wobble wobble = new Wobble(); //New instance of "Wobble"
 
-
-float  wobbleX, wobbleY= 0;
-int wobbleTimer = 0;
-Wobble wobble = new Wobble();
-
-ArrayList<Explosion> explosion;
+ArrayList<Explosion> explosion; //ArrayList 
 
 ArrayList<HighscoreDataArraylist> data;
 
