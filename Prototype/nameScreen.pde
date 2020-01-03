@@ -15,7 +15,7 @@ class NameScreen {
     fill(255);
     textSize(40);
     text("Welcome " + chairNr, width/10, height/4);
-    
+
     textSize(width/6);
     rect(width / 6, height/2, width/6 * 1.5, width/5);
     rect(width / 6 * 3, height/2, width/6 * 1.5, width/5);
@@ -122,7 +122,7 @@ class NameScreen {
     if (entering == 1) {
       if (msql.connect()) {
         print(name + "  ");
-        //data.userName = name;
+        sql.uploadName();
         nameEntered = true;
         msql.close();
       }
