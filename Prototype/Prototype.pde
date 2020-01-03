@@ -135,8 +135,6 @@ void setup() {
 
   eBullet =new ArrayList<EnemyBullet>();
 
-  highscore.scoreSetup();
-
   healthDrop = new ArrayList<HealthDrop>();
 
   explosion = new ArrayList<Explosion>();
@@ -144,10 +142,12 @@ void setup() {
   healthDropParticles = new ArrayList<HealthDropParticle>();
 
   playerParticle = new ArrayList<PlayerDamageEffect>();
+  
+  highscore.scoreSetup();
 }
 
 void updateGame() {
-    background(0);
+  background(0);
 
   if (!nameEntered) {
     nameScreen.update();
@@ -314,8 +314,11 @@ void drawGame() {
       setting.settingScreen();
       achievement.achievementScreen();
     }
-    if ( !start.start && !end.end) {
+    if ( !start.start && !end.end && !pauze.pauze) {
       character.displayCh();
+    }
+    if (!goSettings ) {
+      highscore.displayScore();
     }
     for (HealthDropParticle hdp : healthDropParticles) {
       hdp.draw();
