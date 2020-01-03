@@ -42,6 +42,8 @@ Wobble wobble = new Wobble();
 
 ArrayList<Explosion> explosion;
 
+ArrayList<HighscoreDataArraylist> data;
+
 ArrayList<PlayerDamageEffect> playerParticle;
 
 Wave wave = new Wave();
@@ -135,6 +137,8 @@ void setup() {
   //initializes enemy array
   enemy = new ArrayList<Enemy>();
   enemy.add(new Enemy());
+
+  data = new ArrayList<HighscoreDataArraylist>();
 
   eBullet =new ArrayList<EnemyBullet>();
 

@@ -2,7 +2,8 @@
 //  te slaan tussen sessies in.
 class Highscore {
   int score;
-  int yofz = 30;
+  int yofz = 80;
+  int y = height/64*22;
   int scoreTimer;
   String getHighscores = "SELECT * FROM Highscore";
   int userCount = 5;
@@ -11,9 +12,10 @@ class Highscore {
   String[] Dates;
   int[] Scores;
   void scoreSetup() {
+    sql();
   }
   void displayScore() {
-    //sql();
+
     if (!start.start && !pauze.pauze) {
       textFont(numberFont);
       fill(250, 250, 250);
@@ -26,17 +28,25 @@ class Highscore {
       fill(250, 250, 250);
       textSize(48);
       text(score, width/2-25, height/16*12);
+      for (HighscoreDataArraylist record : data) {
+        text(record.name, width/64*26, y);
+        text(record.Highscore, width/64*33, y);
+        y = y+yofz;
+      }
+      y = height/64*21;
     }
   }
   void sql() {
     if ( msql.connect() ) {
       msql.query( getHighscores );
       while (msql.next()) {
-        String name = msql.getString("name");
-            int Highscore = msql.getInt("score");
-            text(name, width/8*3, height/2+yofz);
-            text(Highscore, width/8*4, height/2+yofz);
+        data.add(new HighscoreDataArraylist(msql.getString("name"), msql.getInt("score")));
+        //String name = msql.getString("name");
+        //int Highscore = msql.getInt("score");
+        //text(name, width/8*3, height/2+yofz);
+        //text(Highscore, width/8*4, height/2+yofz);
       }
+      msql.close();
     }
   }
 
