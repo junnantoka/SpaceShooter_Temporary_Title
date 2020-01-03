@@ -95,8 +95,8 @@ void setup() {
   sql.SettingGet();
   fullScreen(P2D);
   noCursor();
-
-  sql.construct();
+  
+  //sql.construct();
   world.construct();
 
   //Load all assets
