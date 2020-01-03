@@ -104,7 +104,9 @@ class End {
   
   void getTestdata(){
     //TODO: Get the data out of the database
-    msql.query("SELECT u.chair_nr, t.enemies_killed FROM Testdata t INNER JOIN User_has_Testdata ON t.id = User_has_Testdata.Testdata_id INNER JOIN User u ON u.Chair_nr = User_has_Testdata.User_Chair_nr WHERE u.Chair_nr = User_has_Testdata.User_Chair_nr;");
+    String userQry = "SELECT u.chair_nr FROM Testdata t INNER JOIN User_has_Testdata ON t.id = User_has_Testdata.Testdata_id INNER JOIN User u ON u.Chair_nr = User_has_Testdata.User_Chair_nr WHERE u.Chair_nr = User_has_Testdata.User_Chair_nr;"; 
+    msql.query(userQry);
+  
   }
   
   void setTestdata(){
@@ -115,6 +117,5 @@ class End {
   
   void dropTestdata(){
     //TODO: Drop data IF exists
-    msql.query("");
   }
 }
