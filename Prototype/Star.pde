@@ -12,7 +12,7 @@ class Star {
     
     //draws a circle on the random x and y
     fill(255);
-    stroke(1);
+    stroke(2);
     circle(x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY, size);
     //text(xRef, width/2, 100);
     //text(yRef, width/2, 300);

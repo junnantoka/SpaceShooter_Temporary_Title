@@ -88,7 +88,7 @@ class Pauze {
       //image(pauzeImg, pauzeX, pauzeY);
       textSize(TEXTSIZE);
       fill(TEXTCOLOR);
-      text("press any key to continue", width/18*7, height/14*11);
+      text("Press START to continue", width/18*7, height/14*11);
     }
   }
 }
