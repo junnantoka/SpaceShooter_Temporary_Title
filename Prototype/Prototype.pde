@@ -102,7 +102,7 @@ void setup() {
   sql.SettingGet();
   fullScreen(P2D);
   noCursor();
-  
+
   //sql.construct();
   world.construct();
 
@@ -150,16 +150,16 @@ void setup() {
   healthDropParticles = new ArrayList<HealthDropParticle>();
 
   playerParticle = new ArrayList<PlayerDamageEffect>();
-  
+
   highscore.scoreSetup();
 }
 
 void updateGame() {
   background(0);
 
-  if (!nameEntered) {
-    nameScreen.update();
-  }
+  if (!nameEntered) nameScreen.update();
+  if (nameEntered)  nameScreen.updateDeleteUser();
+
 
   if (nameEntered) {
     for (int i = 0; i < star.length; i++) {
@@ -243,7 +243,7 @@ void updateGame() {
       }
     }
     if (end.end ||start.start||pauze.pauze) {
-      if(!achievement.inAchievement){
+      if (!achievement.inAchievement) {
         setting.enterSettings();
         setting.settingUpdate();
       }
@@ -254,8 +254,6 @@ void updateGame() {
     for (HealthDropParticle hdp : healthDropParticles) {
       hdp.updateHealthParticle();
     }
-    
-    
   }
 }
 
@@ -316,7 +314,7 @@ void drawGame() {
         end.draw();
       }
     }
-    
+
 
 
     if (end.end ||start.start||pauze.pauze) {

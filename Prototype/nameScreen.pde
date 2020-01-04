@@ -117,21 +117,32 @@ class NameScreen {
       name = name + alphabet[letterB];
       name = name + alphabet[letterC];
     }
+    if(!pauze.pauze && keysPressed[RIGHT]){
+      print("heyooo");
+    }
+    
     if (keysPressed[RIGHT]) {
       entering++;
     } else entering = 0;
-
 
 
     if (entering == 1) {
       if (msql.connect()) {
         doesChairExist();
         print(name + "  ");
-        if (!chairExists) {
-          uploadName();
-        }
+        uploadName();
         nameEntered = true;
         msql.close();
+      }
+    }
+  }
+
+  void updateDeleteUser() {
+    int deleting = 0;
+    if (keysPressed['m'] || keysPressed['M']) {
+      deleting++;
+      if (deleting == 1) {
+        deleteUser();
       }
     }
   }
@@ -154,11 +165,27 @@ class NameScreen {
   }
 
   void uploadName() {
-    if (msql.connect()) {
-      msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
-      println("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
+    if (!chairExists) {
+      if (msql.connect()) {
+        msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
+        println("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
+      }
+    }
+    if (chairExists) {
+      if (msql.connect()) {
+        msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
+        println("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
+      }
     }
   }
+  void deleteUser() {
+    if (msql.connect()) {
+      msql.query("DELETE FROM User WHERE Chair_nr = '" + chairNr + "'");
+      println("DELETE FROM User WHERE Chair_nr = '" + chairNr + "'");
+    }
+  }
+
+
 
   void arrow(float middleX, float middleY, float size) {
     triangle(middleX, middleY - size/2, middleX + size/2, middleY + size/2, middleX - size/2, middleY + size/2);
