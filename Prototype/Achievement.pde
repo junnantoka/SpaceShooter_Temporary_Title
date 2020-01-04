@@ -1,3 +1,7 @@
+//Misschien een extra kolom maken in de tabel voor obtained
+//Dan kan een update worden uitgevoerd als de obtained op 0 staat
+//Dan kan er geinsert worden als het spel opstart en er geen achievementdata gevonden is
+//Dan is de DELETE daadwerkelijk alleen om de data te verwijderen en niet op te resetten.
 class Achievement {
 
   boolean inAchievement = false;
@@ -22,7 +26,7 @@ class Achievement {
   int firstDeathTimer;
   int powerUpObtainedTimer;
   int graveyardTimer;
-  
+
   int deleteTimer;
   int updateTimer;
 
@@ -30,9 +34,13 @@ class Achievement {
   int healthDropCounter = 0;
   int deathCounter = 0;
   int powerUpCounter = 0;
-  
-  String selectQuery = "SELECT Chair_nr, AchievementID FROM USER" +
-                       "INNER -JOIN User_Has_Achievement ON User.Chair_nr = User_Has_Achievement.Chair_nr";
+
+  int achievementNumber;
+  String selectQuery = "SELECT u.Chair_nr, a.AchievementID FROM User u " +
+    "INNER JOIN User_has_Achievement a ON u.Chair_nr = a.Chair_nr " +
+    "WHERE a.Chair_nr = '"+chairNr+"' AND a.AchievementID = "+achievementNumber;
+
+
 
   void achievementScreen() {
     if (goAchievement) {
@@ -150,10 +158,19 @@ class Achievement {
       if (msql.connect()) {
 
         //TODO: obtain achievement data
-        if(updateTimer == 0){
-          
-          
-          
+        
+        //Select alles waar de speler een achievementID heeft 
+        //While loop
+        //In die whileloop een getInt van de achievementID
+        //Dan een boel if statements die als ze true geven de gelijkwaardige counter op dat niveau zetten
+        //Dan hoef je maar 1 query te hebben om alle achievements te checken
+        if (updateTimer == 0) {
+          achievementNumber = 1;
+          msql.query(selectQuery);
+          int achievementGot = msql.getInt("AchievementID");
+          if(achievementNumber == achievementGot){
+            println("kaka");
+          }
         }
 
 
@@ -165,44 +182,45 @@ class Achievement {
           }
         }
         if (dominator) {
-          if(dominatorTimer == 0){
+          if (dominatorTimer == 0) {
             msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '6')");
             dominatorTimer++;
           }
         }
         if (firstDeath) {
-          if(firstDeathTimer == 0){
+          if (firstDeathTimer == 0) {
             msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '4')");
             firstDeathTimer++;
           }
         }
         if (graveyard) {
-          if(graveyardTimer == 0){
+          if (graveyardTimer == 0) {
             msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '5')");
             graveyardTimer++;
           }
         }
         if (getHealth) {
-          if(getHealthTimer == 0){
+          if (getHealthTimer == 0) {
             msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '3')");
             getHealthTimer++;
           }
         }
         if (powerUpObtained) {
-          if(powerUpObtainedTimer == 0){
+          if (powerUpObtainedTimer == 0) {
             msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '1')");
             powerUpObtainedTimer++;
           }
         }
       }
-    }
-    //deletion off data
-    if (keysPressed['r']||keysPressed['R']) {
-      if (msql.connect()) {
-        if (deleteTimer == 0) {
-          reset();
-          msql.query("DELETE FROM User_has_Achievement WHERE Chair_nr='" + chairNr + "'");
-          deleteTimer++;
+
+      //deletion off data
+      if (keysPressed['r']||keysPressed['R']) {
+        if (msql.connect()) {
+          if (deleteTimer == 0) {
+            reset();
+            msql.query("DELETE FROM User_has_Achievement WHERE Chair_nr='" + chairNr + "'");
+            deleteTimer++;
+          }
         }
       }
     }
@@ -227,6 +245,5 @@ class Achievement {
     firstDeathTimer = 0;
     powerUpObtainedTimer = 0;
     graveyardTimer = 0;
-  
   }
 }
