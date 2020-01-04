@@ -1,9 +1,9 @@
 class HighscoreDataArraylist{
-  public String name;
+  public String Username;
   public int Highscore;
 
-   HighscoreDataArraylist(String name, int score) {
-    this.name = name;
+   HighscoreDataArraylist(String Username, int score) {
+    this.Username = Username;
     this.Highscore = score;
   }
 }

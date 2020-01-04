@@ -5,7 +5,7 @@ class Highscore {
   int yofz = 80;
   int y = height/64*22;
   int scoreTimer;
-  String getHighscores = "SELECT * FROM Highscore";
+  String getHighscores = "SELECT * FROM User INNER JOIN Highscore ON User.Chair_nr = Highscore.Chair_nr";
   int userCount = 5;
   int highscoreTimer;
   String[] Names;
@@ -29,7 +29,7 @@ class Highscore {
       textSize(48);
       text(score, width/2-25, height/16*12);
       for (HighscoreDataArraylist record : data) {
-        text(record.name, width/64*26, y);
+        text(record.Username, width/64*26, y);
         text(record.Highscore, width/64*33, y);
         y = y+yofz;
       }
