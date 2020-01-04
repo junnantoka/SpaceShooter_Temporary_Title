@@ -5,7 +5,7 @@ class Highscore {
   int yofz = 80;
   int y = height/64*22;
   int scoreTimer;
-  String getHighscores = "SELECT * FROM User INNER JOIN Highscore ON User.Chair_nr = Highscore.Chair_nr";
+  String getHighscores = "SELECT User.Username, Highscore.score FROM User INNER JOIN Highscore ON User.Chair_nr = Highscore.Chair_nr";
   int userCount = 5;
   int highscoreTimer;
   String[] Names;
@@ -40,7 +40,7 @@ class Highscore {
     if ( msql.connect() ) {
       msql.query( getHighscores );
       while (msql.next()) {
-        data.add(new HighscoreDataArraylist(msql.getString("name"), msql.getInt("score")));
+        data.add(new HighscoreDataArraylist(msql.getString("Username"), msql.getInt("score")));
         //String name = msql.getString("name");
         //int Highscore = msql.getInt("score");
         //text(name, width/8*3, height/2+yofz);
