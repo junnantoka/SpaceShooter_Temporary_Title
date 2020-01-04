@@ -158,7 +158,7 @@ void updateGame() {
   background(0);
 
   if (!nameEntered) nameScreen.update();
-  if (nameEntered)  nameScreen.updateDeleteUser();
+  if (nameEntered)  nameScreen.check();
 
 
   if (nameEntered) {

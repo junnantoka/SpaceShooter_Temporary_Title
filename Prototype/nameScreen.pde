@@ -117,10 +117,8 @@ class NameScreen {
       name = name + alphabet[letterB];
       name = name + alphabet[letterC];
     }
-    if(!pauze.pauze && keysPressed[RIGHT]){
-      print("heyooo");
-    }
-    
+
+
     if (keysPressed[RIGHT]) {
       entering++;
     } else entering = 0;
@@ -137,13 +135,16 @@ class NameScreen {
     }
   }
 
-  void updateDeleteUser() {
+  void check() {
     int deleting = 0;
     if (keysPressed['m'] || keysPressed['M']) {
       deleting++;
       if (deleting == 1) {
         deleteUser();
       }
+    }
+    if (pauze.pauze && keysPressed[RIGHT]) {
+      print("heyooo");
     }
   }
 
@@ -152,9 +153,6 @@ class NameScreen {
       msql.query("SELECT * FROM User;");
       while (msql.next()) {
         String peop = msql.getString("Chair_nr");
-        println(msql.getString("Chair_nr"));
-        // println(chairNr);
-
         if (peop.equals(chairNr)) {
           chairExists = true;
           println("Yepdaarissie");
@@ -173,11 +171,12 @@ class NameScreen {
     }
     if (chairExists) {
       if (msql.connect()) {
-        msql.query("UPDATE User SET Username = 'BIG' WHERE Chair_nr = '" + name + "'");
-        println("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
+        msql.query("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'");
+        println("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'");
       }
     }
   }
+
   void deleteUser() {
     if (msql.connect()) {
       msql.query("DELETE FROM User WHERE Chair_nr = '" + chairNr + "'");
