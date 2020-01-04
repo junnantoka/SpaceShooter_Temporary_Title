@@ -9,27 +9,25 @@ String peoep = "7b";
 
 class NameScreen {
   boolean chairExists;
+  int enterWait;
 
   void display() {
-
-
     rectMode(3);
     fill(255);
     textSize(40);
     text("Welcome " + chairNr, width/10, height/4);
-
     textSize(width/6);
     rect(width / 6, height/2, width/6 * 1.5, width/5);
     rect(width / 6 * 3, height/2, width/6 * 1.5, width/5);
     rect(width / 6 * 5, height/2, width/6 * 1.5, width/5);
     fill(100);
-    text(alphabet[letterA], width / 6 - width/15 + 5, height / 2 + width/20 + 5);
-    text(alphabet[letterB], width / 6 * 3 - width/15 + 5, height / 2 + width/20 + 5);
-    text(alphabet[letterC], width / 6 * 5 - width/15 + 5, height / 2 + width/20 + 5);
+    text(alphabet[letterA], width / 6 - width/15 + 5, 655);
+    text(alphabet[letterB], width / 6 * 3 - width/15 + 5, 655);
+    text(alphabet[letterC], width / 6 * 5 - width/15 + 5, 655);
     fill(0);
-    text(alphabet[letterA], width / 6 - width/15, height / 2 + width/20);
-    text(alphabet[letterB], width / 6 * 3 - width/15, height / 2 + width/20);
-    text(alphabet[letterC], width / 6 * 5 - width/15, height / 2 + width/20);
+    text(alphabet[letterA], width / 6 - width/15, 650);
+    text(alphabet[letterB], width / 6 * 3 - width/15, 650);
+    text(alphabet[letterC], width / 6 * 5 - width/15, 650);
     fill(255);
     switch(letterSelected) {
     case 0:
@@ -123,28 +121,29 @@ class NameScreen {
       entering++;
     } else entering = 0;
 
-
-    if (entering == 1) {
+      if (entering == 1) {
       if (msql.connect()) {
         doesChairExist();
         print(name + "  ");
         uploadName();
         nameEntered = true;
         msql.close();
+        enterWait = 0;
       }
     }
   }
 
   void check() {
     int deleting = 0;
+    enterWait ++;
     if (keysPressed['m'] || keysPressed['M']) {
       deleting++;
       if (deleting == 1) {
         deleteUser();
       }
     }
-    if (pauze.pauze && keysPressed[RIGHT]) {
-      print("heyooo");
+    if (pauze.pauze && keysPressed[RIGHT] && nameEntered && enterWait > 60) {
+      nameEntered = false;
     }
   }
 
@@ -155,7 +154,6 @@ class NameScreen {
         String peop = msql.getString("Chair_nr");
         if (peop.equals(chairNr)) {
           chairExists = true;
-          println("Yepdaarissie");
         }
       }
     }
