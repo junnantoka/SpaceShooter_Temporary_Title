@@ -173,7 +173,7 @@ class NameScreen {
     }
     if (chairExists) {
       if (msql.connect()) {
-        msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
+        msql.query("UPDATE User SET Username = 'BIG' WHERE Chair_nr = '" + name + "'");
         println("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
       }
     }
