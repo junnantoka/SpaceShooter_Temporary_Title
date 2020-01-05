@@ -10,6 +10,8 @@ boolean chairExists;
 
 class NameScreen {
 
+  String like = "SELECT a.Chair_nr, Username, h.score FROM User a INNER JOIN Highscore h ON a.Chair_nr = h.Chair_nr WHERE Username LIKE 'A%';";
+  int likeTime;
   int enterWait;
 
   void display() {
@@ -144,6 +146,18 @@ class NameScreen {
         deleteUser();
         achievement.deleteUserAchiements();
         sql.deleteData();
+      }
+    }
+    if (keysPressed['l'] || keysPressed['L']) {
+      likeTime++;
+      if (likeTime == 1) {
+        if (msql.connect()) {
+          msql.query(like);
+          println("chair   name   score");
+          while (msql.next()) {
+            println(msql.getString("Chair_nr") + "     " + msql.getString("Username") + "     " + msql.getInt("score"));
+          }
+        }
       }
     }
   }
