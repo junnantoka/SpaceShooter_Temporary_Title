@@ -12,7 +12,7 @@ class Highscore {
   int[] Highscore = new int[userCount];
   int i;
   void scoreSetup() {
-    sql();
+    sqlSetup();
   }
   void displayScore() {
 
@@ -28,30 +28,36 @@ class Highscore {
       fill(250, 250, 250);
       textSize(48);
       text(score, width/2-25, height/16*12);
-      
-        sql();
-        for (int i = 0; i<Username.length; i++) {
-          text(Username[i], width/64*26, y);
-          text(Highscore[i], width/64*33, y);
-          y = y+yofz;
-        
+
+      sql();
+      for (int i = 0; i<Username.length; i++) {
+        text(Username[i], width/64*26, y);
+        text(Highscore[i], width/64*33, y);
+        y = y+yofz;
       }
     }
   }
 
-  void sql() {
-    if ( msql.connect() ) {
-      if (sqlTimer == 0) {
-        msql.query( getHighscores );
-        while (msql.next() && i<userCount) {
-          Username[i] = msql.getString("Username");
-          Highscore[i] = msql.getInt("score");
-          i++;
-        }
-        msql.close();
-        y = height/64*21;
-        sqlTimer++;
+  void sqlSetup(){
+    if (!chairExists) {
+      if (msql.connect()) {
+        msql.query("INSERT INTO Highscore (`Chair_nr`, `score`) VALUES ( '" +  chairNr + "',  0 )");
       }
+    }
+  }
+  
+  
+  void sql() {
+
+    if ( msql.connect() ) {
+      msql.query( getHighscores );
+      while (msql.next() && i<userCount) {
+        Username[i] = msql.getString("Username");
+        Highscore[i] = msql.getInt("score");
+        i++;
+      }
+      msql.close();
+      y = height/64*21;
     }
   }
   void highscoreSave() {
