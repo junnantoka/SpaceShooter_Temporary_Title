@@ -93,7 +93,6 @@ class Achievement {
   }
 
   void enterAchievement() {
-    print(timer);
     if (keysPressed['v']||keysPressed['V']) {     
       achievementTimer++;
       if (achievementTimer==1 && !goAchievement && !inAchievement) {
