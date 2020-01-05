@@ -142,6 +142,8 @@ class NameScreen {
       if (deleting == 1) {
         deleteUser();
         achievement.deleteUserAchiements();
+        sql.deleteData();
+        
       }
     }
     if (pauze.pauze && keysPressed[RIGHT] && nameEntered && enterWait > 60) {
