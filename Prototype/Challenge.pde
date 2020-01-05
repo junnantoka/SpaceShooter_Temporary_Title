@@ -22,7 +22,7 @@ class Challenge {
     " WHERE Challenge.userChallenged = '"+ chairNr +"'; ";
 
   String deleteQuery = 
-    " DELETE FROM userChallenged WHERE userChallenged = Chair_nr; ";
+    " DELETE FROM Challenge WHERE userChallenged  = '"+chairNr+"'; ";
 
 
   void playerChallenged() {
@@ -78,6 +78,12 @@ class Challenge {
       rect(675, 850, 200, 100);  
       text("No 'D'", 950, 950);
       rect(925, 850, 200, 100);
+      
+      if (keysPressed['k']||keysPressed['K']) {
+        if(msql.connect()){
+          msql.query(deleteQuery);
+        }
+      }
     }
   }
 
