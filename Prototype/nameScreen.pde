@@ -14,7 +14,7 @@ class NameScreen {
   int likeTime;
   int enterWait;
 
-  void display() {
+  void display() {// display for the name selection screen
     rectMode(3);
     fill(255);
     textSize(40);
@@ -118,8 +118,8 @@ class NameScreen {
       name = name + alphabet[letterB];
       name = name + alphabet[letterC];
     }
-
-
+    
+    
     if (keysPressed[RIGHT]) {
       entering++;
     } else entering = 0;
@@ -137,10 +137,10 @@ class NameScreen {
     }
   }
 
-  void check() {
+  void check() {//checks keypresses and screen displayed in the game to execute sql code
     int deleting = 0;
     enterWait ++;
-    if (keysPressed['m'] || keysPressed['M']) {
+    if (keysPressed['m'] || keysPressed['M']) {// deletes the user data.
       deleting++;
       if (deleting == 1) {
         deleteUser();
@@ -148,7 +148,8 @@ class NameScreen {
         sql.deleteData();
       }
     }
-    if (keysPressed['l'] || keysPressed['L']) {
+    
+    if (keysPressed['l'] || keysPressed['L']) { // executes the "like" query
       likeTime++;
       if (likeTime == 1) {
         if (msql.connect()) {
