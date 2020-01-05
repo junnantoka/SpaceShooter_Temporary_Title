@@ -6,9 +6,10 @@ boolean nameSelected;
 char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
 String peoep = "7b";
+boolean chairExists;
 
 class NameScreen {
-  boolean chairExists;
+  
   int enterWait;
 
   void display() {
@@ -126,6 +127,7 @@ class NameScreen {
         doesChairExist();
         print(name + "  ");
         uploadName();
+        achievement.insertData();
         nameEntered = true;
         msql.close();
         enterWait = 0;
@@ -140,6 +142,7 @@ class NameScreen {
       deleting++;
       if (deleting == 1) {
         deleteUser();
+        achievement.deleteUserAchiements();
       }
     }
     if (pauze.pauze && keysPressed[RIGHT] && nameEntered && enterWait > 60) {

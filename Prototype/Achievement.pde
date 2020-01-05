@@ -38,7 +38,8 @@ class Achievement {
   int achievementNumber;
   String selectQuery = "SELECT u.Chair_nr, a.AchievementID FROM User u " +
     "INNER JOIN User_has_Achievement a ON u.Chair_nr = a.Chair_nr " +
-    "WHERE a.Chair_nr = '"+chairNr+"' AND a.AchievementID = "+achievementNumber;
+    "WHERE a.Chair_nr = '"+chairNr+"' AND a.Obtained = 'Yes' " +
+    "ORDER BY a.AchievementID ASC";
 
 
 
@@ -93,17 +94,15 @@ class Achievement {
   }
 
   void enterAchievement() {
-    if (keysPressed['v']||keysPressed['V']) {
+    if (keysPressed['v']||keysPressed['V']) {     
       timer++;
       if (timer==1) {
-        if (!goAchievement) {
           inAchievement = true;
           goAchievement = true;
         } else if (goAchievement) {
           goAchievement =false;
           inAchievement = false;
         }
-      }
     } else {
       timer=0;
     }
@@ -113,6 +112,7 @@ class Achievement {
   void achievementUpdate() {
     achievementCounter();
     sql();
+    resetAchievements();
 
     if (enemyCounter >= 1) {
       firstKill = true;
@@ -157,8 +157,7 @@ class Achievement {
     if (keysPressed['u']||keysPressed['U']) {
       if (msql.connect()) {
 
-        //TODO: obtain achievement data
-        
+
         //Select alles waar de speler een achievementID heeft 
         //While loop
         //In die whileloop een getInt van de achievementID
@@ -167,63 +166,103 @@ class Achievement {
         if (updateTimer == 0) {
           achievementNumber = 1;
           msql.query(selectQuery);
-          int achievementGot = msql.getInt("AchievementID");
-          if(achievementNumber == achievementGot){
-            println("kaka");
+          while (msql.next()) {
+
+            int achievementGot = msql.getInt("AchievementID");
+
+            if (achievementGot == 1) {
+              enemyCounter = 1;
+            }
+            if (achievementGot == 2) {
+              enemyCounter = 50;
+            }
+            if (achievementGot == 3) {
+              deathCounter = 1;
+            }
+            if (achievementGot == 4) {
+              deathCounter = 15;
+            }
+            if (achievementGot == 5) {
+              healthDropCounter = 1;
+            }
+            if (achievementGot == 6) {
+              powerUpCounter = 1;
+            }
           }
+          
+          updateTimer++;
+          
         }
 
 
         //Upload achievement data upon updating the database if the user has said achievement
         if (firstKill) {
           if (firstKillTimer==0) {
-            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '2')");
+            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '1'");
             firstKillTimer++;
           }
         }
         if (dominator) {
           if (dominatorTimer == 0) {
-            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '6')");
+            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '2'");
             dominatorTimer++;
           }
         }
         if (firstDeath) {
           if (firstDeathTimer == 0) {
-            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '4')");
+            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '3'");
             firstDeathTimer++;
           }
         }
         if (graveyard) {
           if (graveyardTimer == 0) {
-            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '5')");
+            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '4'");
             graveyardTimer++;
           }
         }
         if (getHealth) {
           if (getHealthTimer == 0) {
-            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '3')");
+            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '5'");
             getHealthTimer++;
           }
         }
         if (powerUpObtained) {
           if (powerUpObtainedTimer == 0) {
-            msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`) VALUES ('" + chairNr + "', '1')");
+            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '6'");
             powerUpObtainedTimer++;
           }
         }
       }
-
-      //deletion off data
-      if (keysPressed['r']||keysPressed['R']) {
-        if (msql.connect()) {
-          if (deleteTimer == 0) {
-            reset();
-            msql.query("DELETE FROM User_has_Achievement WHERE Chair_nr='" + chairNr + "'");
-            deleteTimer++;
-          }
+    }
+  }
+  
+  void resetAchievements(){
+    if(keysPressed['r']||keysPressed['R']){
+      if(msql.connect()){
+        reset();
+        for(int i = 1; i < 7; i++){
+          msql.query("UPDATE User_Has_Achievement SET Obtained = 'No' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '5'");
         }
       }
     }
+  }
+
+  void insertData(){
+    if(!chairExists){
+     for(int i = 1; i < 7; i++){
+       msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`, `Obtained`) VALUES ('" + chairNr + "', '"+i+"', 'No')");
+     }
+    }
+  }
+
+  void deleteUserAchiements() {
+      if (msql.connect()) {
+        if (deleteTimer == 0) {
+          reset();
+          msql.query("DELETE FROM User_has_Achievement WHERE Chair_nr='" + chairNr + "'");
+          deleteTimer++;
+        }
+      } 
   }
 
   void reset() {
@@ -245,5 +284,8 @@ class Achievement {
     firstDeathTimer = 0;
     powerUpObtainedTimer = 0;
     graveyardTimer = 0;
+    
+    updateTimer = 0;
   }
+
 }
