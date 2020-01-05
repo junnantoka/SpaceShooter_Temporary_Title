@@ -127,6 +127,7 @@ class NameScreen {
         print(name + "  ");
         uploadName();
         achievement.insertData();
+        highscore.sql();
         sql.createUserData();
         msql.close();
         enterWait = 0;
