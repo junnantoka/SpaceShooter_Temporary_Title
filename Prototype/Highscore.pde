@@ -26,8 +26,6 @@ class Highscore {
   }
   void displayScore() {
 
-    sql();
-
     if (!start.start && !pauze.pauze) {
       textFont(numberFont);
       fill(250, 250, 250);
@@ -73,7 +71,6 @@ class Highscore {
   void sql() {
     if (!chairExists) {
       msql.query("INSERT INTO Highscore (Chair_nr, score) VALUES ( '" +  chairNr + "', 0 )");
-      println(date);
     }
   }
 
@@ -86,7 +83,7 @@ class Highscore {
           for (int i = 0; i<Username.length; i++) {
             if (score>Highscore[i]) {
               msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
-              msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
+              //msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
             }
           }
           msql.query( "DELETE FROM Highscore WHERE score = 0" );
