@@ -14,15 +14,14 @@ class Highscore {
 
   boolean canConnect;
  
-  // Dont worry about this.
-  //String day = String.valueOf(d);
-  //String month = String.valueOf(m);
-  //String year = String.valueOf(y);
-  //String date = year + "-" + month + "-" + day;
-  //int d = day();
-  //int m = month();
-  //int y = year();
-
+  //  Dont worry about this.
+  int d = day();
+  int m = month();
+  int y = year();
+  String day = String.valueOf(d);
+  String month = String.valueOf(m);
+  String year = String.valueOf(y);
+  
   void scoreSetup() {
     sqlSetup();
     //if the game can connect it will proceed to execute msql commands
@@ -94,6 +93,8 @@ class Highscore {
           for (int i = 0; i<Username.length; i++) {
             if (score>Highscore[i]) {
               msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
+              String date = year + "-" + month + "-" + day;
+              //mysql.query( "UPDATE Highscore SET dateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"');
             }
           }
           //This makes sure there is no useless data being stored.
