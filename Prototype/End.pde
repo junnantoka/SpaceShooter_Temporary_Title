@@ -58,6 +58,7 @@ class End {
         getTestdata();
         setTestdata();
         updateTestdata();
+        highscore.highscoreSave();
       }
       endTimer++;
     }else endTimer = 0;

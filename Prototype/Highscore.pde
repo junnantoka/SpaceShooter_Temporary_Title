@@ -84,24 +84,25 @@ class Highscore {
   }
 
   void highscoreSave() {
-    if (healthMax <= 0) {
+    //if (healthMax <= 0) {
       highscoreTimer++;
       //highscore part
-        if (highscoreTimer == 1) {
+      if (highscoreTimer == 1) {
         if ( msql.connect() ) {
           for (int i = 0; i<Username.length; i++) {
             if (score>Highscore[i]) {
               msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
-                //msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
+              //msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
             }
           }
           msql.query( "DELETE FROM Highscore WHERE score = 0" );
+          msql.close();
         } else {
-          println("NIET CONNECT BITCH");  
-        }
-        msql.close();
+          println("NIET CONNECT BITCH");
+        } 
         sqlUpdate();
-      }
+        
+     // }
     }
   }
   void reset() {
