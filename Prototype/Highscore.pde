@@ -96,6 +96,8 @@ class Highscore {
             }
           }
           msql.query( "DELETE FROM Highscore WHERE score = 0" );
+        } else {
+          println("NIET CONNECT BITCH");  
         }
         msql.close();
         sqlUpdate();
