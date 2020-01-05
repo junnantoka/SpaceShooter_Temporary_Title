@@ -87,7 +87,7 @@ class Highscore {
     if (healthMax <= 0) {
       highscoreTimer++;
       //highscore part
-      if (highscoreTimer == 1) {
+        if (highscoreTimer == 1) {
         if ( msql.connect() ) {
           for (int i = 0; i<Username.length; i++) {
             if (score>Highscore[i]) {
@@ -96,6 +96,8 @@ class Highscore {
             }
           }
           msql.query( "DELETE FROM Highscore WHERE score = 0" );
+        } else {
+          println("NIET CONNECT BITCH");  
         }
         msql.close();
         sqlUpdate();
