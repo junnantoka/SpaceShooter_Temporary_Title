@@ -196,7 +196,6 @@ class NameScreen {
   }
 
 
-
   void arrow(float middleX, float middleY, float size) {
     triangle(middleX, middleY - size/2, middleX + size/2, middleY + size/2, middleX - size/2, middleY + size/2);
   }
