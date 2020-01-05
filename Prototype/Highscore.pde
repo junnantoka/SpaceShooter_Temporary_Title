@@ -42,7 +42,7 @@ class Highscore {
       text(score, 1770, 130);
     }
     //Highscore list in the pauze menu
-    if (pauze.pauze && !start.start) {
+    if (pauze.pauze && !start.start && !achievement.inAchievement && !goSettings && !goChallenge) {
       fill(250, 250, 250);
       textSize(48);
       text(score, width/2-25, height/16*12);
