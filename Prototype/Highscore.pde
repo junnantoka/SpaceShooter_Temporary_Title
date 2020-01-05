@@ -5,7 +5,6 @@ class Highscore {
   int yofz = 80;
   int y = height/64*22;
   String getHighscores = "SELECT User.Username, Highscore.score FROM User INNER JOIN Highscore ON User.Chair_nr = Highscore.Chair_nr ORDER  BY score DESC";
-  String instertScores = "UPDATE Highscore SET score= " + score + " WHERE chair_nr= " + chairNr + "";
   int userCount = 5;
   int highscoreTimer;
   int sqlTimer = 0;
@@ -60,6 +59,11 @@ class Highscore {
     }
   }
 
+  void sqlUpdate() {
+    if ( msql.connect() ) {
+      msql.query( getHighscores );
+    }
+  }
 
   void sql() {
   }
@@ -72,8 +76,8 @@ class Highscore {
         if ( msql.connect() ) {
           if (score>Highscore[4]) {
 
-            msql.query( instertScores );
-
+            msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"'" );
+            sqlUpdate();
             /*} else if (score>Highscore[3]) {
              
              } else if (score>Highscore[2]) {
