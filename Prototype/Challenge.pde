@@ -102,13 +102,11 @@ class Challenge {
     }
   }
   void sql() {
-    if (keysPressed['c']||keysPressed['C']) {
       if (msql.connect()) {
         if (challengeOther) {
 
           msql.query(insertQuery);
           msql.query(updateQuery); //Hier worden de queries uitgevoerd.
-        }
       }
     }
   }

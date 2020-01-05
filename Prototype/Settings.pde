@@ -51,6 +51,7 @@ class Settings {
   }
   void settingUpdate() {
     if (goSettings ) {
+      //to update where you are with your selector
       if (keysPressed['a']||keysPressed['A']) {
         selectX = rectselectSoundGoodX;
       }
@@ -63,6 +64,7 @@ class Settings {
       if (keysPressed['s']||keysPressed['S']) {
         selectY = rectselectSoundGoodY;
       }
+      //selecting the setting you are on and setting it as your current setting
       if (keysPressed[DOWN]) {
         if (selectY == rectselectSoundGoodY) {
           if (selectX == rectselectSoundGoodX) {
@@ -88,6 +90,7 @@ class Settings {
   }
 
   void enterSettings() {
+    //to enter or exit the settings
     if (keysPressed['r']||keysPressed['R']) {
       timer++;
       if (timer==1) {
