@@ -92,7 +92,7 @@ class Highscore {
           for (int i = 0; i<Username.length; i++) {
             if (score>Highscore[i]) {
               msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
-                msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
+                //msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
             }
           }
           msql.query( "DELETE FROM Highscore WHERE score = 0" );
