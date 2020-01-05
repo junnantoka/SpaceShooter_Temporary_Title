@@ -38,15 +38,15 @@ class Highscore {
     }
   }
 
-  void sqlSetup(){
+  void sqlSetup() {
     if (!chairExists) {
       if (msql.connect()) {
         msql.query("INSERT INTO Highscore (`Chair_nr`, `score`) VALUES ( '" +  chairNr + "',  0 )");
       }
     }
   }
-  
-  
+
+
   void sql() {
 
     if ( msql.connect() ) {
@@ -61,36 +61,35 @@ class Highscore {
     }
   }
   void highscoreSave() {
-    /*if (healthMax <= 0) {
-     highscoreTimer++;
-     //highscore part
-     if (highscoreTimer == 1) {
-     if (score>numbers[0]) {
-     numbers[5] = numbers[4];
-     numbers[4] = numbers[3];
-     numbers[3] = numbers[2];
-     numbers[2] = numbers[1];
-     numbers[1] = score;
-     } else if (score>numbers[2]) {
-     numbers[5] = numbers[4];
-     numbers[4] = numbers[3];
-     numbers[3] = numbers[2];
-     numbers[2] = score;
-     } else if (score>numbers[3]) {
-     numbers[5] = numbers[4];
-     numbers[4] = numbers[3];
-     numbers[3] = score;
-     } else if (score>numbers[4]) {
-     numbers[5] = numbers[4];
-     numbers[4] = score;
-     } else if (score>numbers[5]) {
-     numbers[5] = score;
-     }*/
-
-    //saveStrings("./data/highscore.txt", numbers);
+    if (healthMax <= 0) {
+      highscoreTimer++;
+      //highscore part
+      if (highscoreTimer == 1) {
+        if (score>Highscore[0]) {
+          Highscore[5] = Highscore[4];
+          Highscore[4] = Highscore[3];
+          Highscore[3] = Highscore[2];
+          Highscore[2] = Highscore[1];
+          Highscore[1] = score;
+        } else if (score>Highscore[2]) {
+          Highscore[5] = Highscore[4];
+          Highscore[4] = Highscore[3];
+          Highscore[3] = Highscore[2];
+          Highscore[2] = score;
+        } else if (score>Highscore[3]) {
+          Highscore[5] = Highscore[4];
+          Highscore[4] = Highscore[3];
+          Highscore[3] = score;
+        } else if (score>Highscore[4]) {
+          Highscore[5] = Highscore[4];
+          Highscore[4] = score;
+        } else if (score>Highscore[5]) {
+          Highscore[5] = score;
+        }
+      }
+      //saveStrings("./data/highscore.txt", numbers);
+    }
   }
-
-  // }
   void reset() {
     highscoreTimer = 0;
     sqlTimer = 0;

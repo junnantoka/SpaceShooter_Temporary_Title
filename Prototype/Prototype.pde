@@ -157,6 +157,7 @@ void setup() {
 
 void updateGame() {
   background(0);
+  challenge.sql();
 
   if (!nameEntered) nameScreen.update();
   if (nameEntered)  nameScreen.check();
