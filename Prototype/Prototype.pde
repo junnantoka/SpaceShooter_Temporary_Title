@@ -20,6 +20,7 @@ String dbSchema = "zdorpl2";  //default database schema
 String chairNr = "8g"; 
 MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//Create new mysql instance
 Sql sql = new Sql();//New instance of "Sql" class
+boolean scoreExists;
 
 int input_per_frame; // Keeps track of player input(s) per frame
 

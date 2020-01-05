@@ -89,7 +89,7 @@ class Pauze {
       textSize(TEXTSIZE);
       fill(TEXTCOLOR);
       text("Press START to continue", width/18*7, height/14*11);
-      text("Press A to change name", width/18*7, height/14*11 + TEXTSIZE*2);
+      text("Press M to delete data", width/18*7, height/14*11 + TEXTSIZE*2);
     }
   }
 }

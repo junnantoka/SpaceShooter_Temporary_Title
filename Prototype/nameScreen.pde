@@ -118,8 +118,8 @@ class NameScreen {
       name = name + alphabet[letterB];
       name = name + alphabet[letterC];
     }
-    
-    
+
+
     if (keysPressed[RIGHT]) {
       entering++;
     } else entering = 0;
@@ -148,7 +148,7 @@ class NameScreen {
         sql.deleteData();
       }
     }
-    
+
     if (keysPressed['l'] || keysPressed['L']) { // executes the "like" query
       likeTime++;
       if (likeTime == 1) {
@@ -170,6 +170,7 @@ class NameScreen {
         String peop = msql.getString("Chair_nr");
         if (peop.equals(chairNr)) {
           chairExists = true;
+          scoreExists = true;
         }
       }
     }
