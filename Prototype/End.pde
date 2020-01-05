@@ -44,17 +44,17 @@ class End {
       goAchievement = false;
       reset();
       timer++;
-      if (random(0, 1) >=0.5) {
+      if (random(0, 1) >= 0.5) {
         clickA.play();
       } else {
         clickB.play();
       }
     }
     
-    if(end){//checks if game ended
+    if(end){//Checks if game ended
       getTestdata();
       setTestdata();
-      
+      updateTestdata();
     }
   }
 
@@ -113,10 +113,13 @@ class End {
   
   void getTestdata(){
     //Get the data out of the table Testdata
-    String userQry = "SELECT u.chair_nr FROM Testdata t INNER JOIN User ON t.id = u.Chair_nr WHERE u.Chair_nr ='" + chairNr + "'"; 
+    String userQry = "SELECT COUNT(u.Chair_nr) AS Users, a.AchievementName FROM User u INNER JOIN User_has_Achievement UA ON u.Chair_nr = UA.Chair_nr INNER JOIN Achievement a ON UA.AchievementID = a.AchievementID WHERE Obtained = 'Yes' GROUP BY a.achievementID;"; 
     if(msql.connect()){
       while(msql.next()){
         msql.query(userQry);
+        int Users = msql.getInt("Users");
+        String Achievements = msql.getString("a.achievementName");
+        print(Users + Achievements + " ");
       }
     }
   }
