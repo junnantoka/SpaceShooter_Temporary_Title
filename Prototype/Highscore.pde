@@ -15,6 +15,8 @@ class Highscore {
   int m = month();
   int y = year();
 
+  boolean canConnect;
+
   String day = String.valueOf(d);
   String month = String.valueOf(m);
   String year = String.valueOf(y);
@@ -23,6 +25,12 @@ class Highscore {
 
   void scoreSetup() {
     sqlSetup();
+
+    if (msql.connect()) {
+      canConnect = true;
+    } else {
+      canConnect = false;
+    }
   }
   void displayScore() {
 
@@ -38,13 +46,14 @@ class Highscore {
       fill(250, 250, 250);
       textSize(48);
       text(score, width/2-25, height/16*12);
-
-      for (int i = 0; i<Username.length; i++) {
-        text(Username[i], width/64*26, yloc);
-        text(Highscore[i], width/64*33, yloc);
-        yloc = yloc+yofz;
+      if (canConnect == true) {
+        for (int i = 0; i<Username.length; i++) {
+          text(Username[i], width/64*26, yloc);
+          text(Highscore[i], width/64*33, yloc);
+          yloc = yloc+yofz;
+        }
+        yloc = height/64*21;
       }
-      yloc = height/64*21;
     }
   }
   void sqlSetup() {
