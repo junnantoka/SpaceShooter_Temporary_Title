@@ -127,10 +127,10 @@ class NameScreen {
         print(name + "  ");
         uploadName();
         achievement.insertData();
-        nameEntered = true;
         msql.close();
         enterWait = 0;
-      }
+      }else print("Could not connect to database bitch");
+      nameEntered = true;
     }
   }
 
