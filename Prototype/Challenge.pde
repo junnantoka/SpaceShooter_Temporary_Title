@@ -1,6 +1,11 @@
 class Challenge {
   boolean challengeOther;
   boolean youChallenged;
+  boolean kaka;
+  int otherScore;
+  String otherUser;
+  int refreshTimer;
+
   String insertQuery = 
     " INSERT INTO User_issues_Challenge (User_Chair_nr, Challenge_userChallenging, Challenge_userChallenged) " +
     " VALUES ('"+ chairNr +"', 1, 0) ";
@@ -19,6 +24,8 @@ class Challenge {
   void playerChallenged() {
     if (keysPressed['n']||keysPressed['N']) { 
       youChallenged = true;
+      refreshTimer = 0;
+      kaka = true;
     }
   }
 
@@ -35,20 +42,16 @@ class Challenge {
       text("Press N to refresh challenges.", 600, 600);
 
       if (youChallenged) {
-        if (msql.connect()) {
-          msql.query(selectQuery);
-          int otherScore = msql.getInt("score");
-          String otherUser = msql.getString("Username");
-          text(otherUser + " challenges you! His score is: " + otherScore, 600, 700);
-
-          text("Do you accept?", 600, 800);
-            
-          text("Yes", 600, 950);
-          rect(575, 850, 150, 100);  
-          text("No", 800, 950);
-          rect(775, 850, 150, 100);
-        } else {
-          println("Connection failed");
+        if (refreshTimer == 0) {
+          if (msql.connect()) {
+            msql.query(selectQuery);
+            msql.next();
+            otherScore = msql.getInt("score");
+            otherUser = msql.getString("Username");
+          } else {
+            println("Connection failed");
+          }
+          refreshTimer++;
         }
       }
 
@@ -57,6 +60,19 @@ class Challenge {
       } else {
         challengeOther = false;
       }
+    }
+  }
+
+  void whenChallenged() {
+    if (kaka) {
+      text(otherUser + " challenges you! His score is: " + otherScore, 600, 700);
+
+      text("Do you accept?", 600, 800);
+
+      text("Yes", 600, 950);
+      rect(575, 850, 150, 100);  
+      text("No", 800, 950);
+      rect(775, 850, 150, 100);
     }
   }
 
