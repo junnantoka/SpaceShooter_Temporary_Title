@@ -45,6 +45,7 @@ class Achievement {
 
   void achievementScreen() {
     if (goAchievement) {
+      noFill();
       textSize(42);
       text("Learning the Basics", textX, 150);
       text("Dominator", textX, 300);
