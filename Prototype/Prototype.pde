@@ -248,13 +248,18 @@ void updateGame() {
       }
     }
     if (end.end ||start.start||pauze.pauze) {
-     if (!achievement.inAchievement) {
+     if (!achievement.inAchievement && !goChallenge) {
         setting.enterSettings();
         setting.settingUpdate();
       }
+      if (!goSettings && !goChallenge){
       achievement.enterAchievement();
-      challenge.enterChallengeScreen();
       achievement.achievementUpdate();
+      }
+       if (!achievement.inAchievement && !goSettings) {
+      challenge.enterChallengeScreen();
+       }
+      
      
     }
     for (HealthDropParticle hdp : healthDropParticles) {
