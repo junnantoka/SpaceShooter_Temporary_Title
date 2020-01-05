@@ -5,7 +5,7 @@ class Highscore {
   int yofz = 80;
   int y = height/64*22;
   String getHighscores = "SELECT User.Username, Highscore.score FROM User INNER JOIN Highscore ON User.Chair_nr = Highscore.Chair_nr ORDER  BY score DESC";
-  String instertScores = "UPDATE Highscore SET score= " + score + " WHERE chair_nr=chair_nr";
+  String instertScores = "UPDATE Highscore SET score= " + score + " WHERE chair_nr= " + chairNr + "";
   int userCount = 5;
   int highscoreTimer;
   int sqlTimer = 0;
@@ -84,6 +84,7 @@ class Highscore {
              */
           }
         }
+        msql.close();
       }
     }
   }
