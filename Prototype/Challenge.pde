@@ -1,27 +1,27 @@
 class Challenge {
-  boolean challengeOther;
-  boolean youChallenged;
-  boolean screenVisible;
+  boolean challengeOther; //Jij nodigt iemand anders uit.
+  boolean youChallenged; //Jij bent uitgenodigd.
+  boolean screenVisible; //Het challenge scherm is zichtbaar.
   int otherScore;
   String otherUser;
-  int refreshTimer;
+  int refreshTimer; //De timer zorgt ervoor dat alles niet altijd opnieuw wordt uitgevoerd.
 
-  String insertQuery = 
-    " INSERT INTO User_issues_Challenge (User_Chair_nr, Challenge_userChallenging, Challenge_userChallenged) " +
-    " VALUES ('"+ chairNr +"', 1, 0) ";
+  String insertQuery = //Voegt een record toe met stoelnummer. Degene die jou uitdaagt is in dit geval stoelnummer 1a. 
+    " INSERT INTO Challenge (userChallenging, userChallenged) " +
+    " VALUES ('"+chairNr+"', '1a') ";
 
-  String updateQuery = 
-    " UPDATE User_issues_Challenge" +
-    " SET Challenge_userChallenged = 1 " +
-    " WHERE User_Chair_nr = '"+ chairNr +"' AND Challenge_userChallenged = 0; ";
+  String updateQuery =  //Degene die jou uitdaagt is 2b en wordt naar 1a gezet.
+    " UPDATE Challenge " +
+    " SET userChallenged = '1a' " + //Dit is gehardcode om het simpel te houden maar in een echte situatie zou dit niet werken. Het zou de hele tijd naar dezelfde waarde worden veranderd.
+    " WHERE userChallenging = '"+ chairNr +"' AND userChallenged = '2b' "; 
 
-  String selectQuery = 
+  String selectQuery = //Je krijgt een score en naam te zien van degene die jou uitdaagt.
     " SELECT User.Username, Highscore.score FROM User " +
     " INNER JOIN Challenge ON User.Chair_nr = Challenge.userChallenging " +
     " INNER JOIN Highscore ON User.Chair_nr = Highscore.Chair_nr " +
     " WHERE Challenge.userChallenged = '"+ chairNr +"'; ";
 
-  String deleteQuery = 
+  String deleteQuery = //De uitnodiging wordt gereset. Je kan weer opnieuw uitgedaagd worden.
     " DELETE FROM Challenge WHERE userChallenged  = '"+chairNr+"'; ";
 
 
@@ -34,7 +34,7 @@ class Challenge {
   }
 
   void challengeScreen() {
-    if (goChallenge) {
+    if (goChallenge) { //Hier wordt het challenge scherm getekend.
       cursor();
       fill(255);
       textSize(50);
@@ -59,7 +59,7 @@ class Challenge {
         }
       }
 
-      if (keysPressed['w']||keysPressed['W']) {
+      if (keysPressed['w']||keysPressed['W']) { //W nodigt anderen uit.
         challengeOther = true;
         println("hey");
       } else {
@@ -81,14 +81,14 @@ class Challenge {
       
       if (keysPressed['k']||keysPressed['K']) {
         if(msql.connect()){
-          msql.query(deleteQuery);
+          msql.query(deleteQuery); //De uitnodiging wordt verwijderd.
         }
       }
     }
   }
 
   void enterChallengeScreen() {
-    if ((keysPressed['c'] || keysPressed['C']) && (pauze.pauze && !start.start)) {
+    if ((keysPressed['c'] || keysPressed['C']) && (pauze.pauze && !start.start)) { //Het challenge scherm werkt alleen op het pauze scherm.
       timer++;
       if (timer==1) {
         if (!goChallenge) {
@@ -102,14 +102,11 @@ class Challenge {
     }
   }
   void sql() {
-    if (keysPressed['c']||keysPressed['C']) {
       if (msql.connect()) {
         if (challengeOther) {
 
           msql.query(insertQuery);
-          msql.query(updateQuery);
-          println("shit");
-        }
+          msql.query(updateQuery); //Hier worden de queries uitgevoerd.
       }
     }
   }

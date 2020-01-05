@@ -72,8 +72,6 @@ PowerUp powerUp = new PowerUp();
 
 SnailPowerUp snailPowerUp = new SnailPowerUp();
 
-
-// jeroens deel
 Highscore highscore = new Highscore();
 Minimap minimap = new Minimap();
 
@@ -83,7 +81,6 @@ Pauze pauze = new Pauze();
 
 ArrayList<Enemy> enemy;
 int enemies = 40;
-//jeroens deel
 ArrayList<EnemyBullet> eBullet;
 
 Health health = new Health();
