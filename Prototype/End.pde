@@ -58,6 +58,7 @@ class End {
         getTestdata();
         setTestdata();
         updateTestdata();
+        dropTestdata();
       }
       endTimer++;
     }else endTimer = 0;
@@ -152,7 +153,7 @@ class End {
     }
   }
 
-  void stop() {
+  void dropTestdata() {
     //Drop data on close of application
     testdataID = msql.getInt("id");
     String dropQuery = "DELETE FROM Testdata WHERE id = '" + testdataID + "' AND Chair_nr = '" + chairNr + "';";
