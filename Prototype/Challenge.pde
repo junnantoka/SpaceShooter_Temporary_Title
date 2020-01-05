@@ -1,7 +1,7 @@
 class Challenge {
   boolean challengeOther;
   boolean youChallenged;
-  boolean kaka;
+  boolean screenVisible;
   int otherScore;
   String otherUser;
   int refreshTimer;
@@ -21,11 +21,15 @@ class Challenge {
     " INNER JOIN Highscore ON User.Chair_nr = Highscore.Chair_nr " +
     " WHERE Challenge.userChallenged = '"+ chairNr +"'; ";
 
+  String deleteQuery = 
+    " DELETE FROM userChallenged WHERE userChallenged = Chair_nr; ";
+
+
   void playerChallenged() {
     if (keysPressed['n']||keysPressed['N']) { 
       youChallenged = true;
       refreshTimer = 0;
-      kaka = true;
+      screenVisible = true;
     }
   }
 
@@ -55,8 +59,9 @@ class Challenge {
         }
       }
 
-      if (mouseX > 600 && mouseX < 1100 && mouseY > 400 && mouseY > 500 && mousePressed) {
+      if (keysPressed['w']||keysPressed['W']) {
         challengeOther = true;
+        println("hey");
       } else {
         challengeOther = false;
       }
@@ -64,15 +69,15 @@ class Challenge {
   }
 
   void whenChallenged() {
-    if (kaka) {
+    if (screenVisible) {
       text(otherUser + " challenges you! His score is: " + otherScore, 600, 700);
 
-      text("Do you accept?", 600, 800);
-
-      text("Yes", 600, 950);
-      rect(575, 850, 150, 100);  
-      text("No", 800, 950);
-      rect(775, 850, 150, 100);
+      text("Do you accept?", 700, 800);
+      noFill();
+      text("Yes 'A'", 700, 950);
+      rect(675, 850, 200, 100);  
+      text("No 'D'", 950, 950);
+      rect(925, 850, 200, 100);
     }
   }
 
@@ -95,7 +100,8 @@ class Challenge {
       if (msql.connect()) {
         if (challengeOther) {
 
-          msql.query(selectQuery);
+          msql.query(insertQuery);
+          msql.query(updateQuery);
           println("shit");
         }
       }
