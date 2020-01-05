@@ -5,6 +5,7 @@ class Highscore {
   int yofz = 80;
   int y = height/64*22;
   String getHighscores = "SELECT User.Username, Highscore.score FROM User INNER JOIN Highscore ON User.Chair_nr = Highscore.Chair_nr ORDER  BY score DESC";
+  String instertScores = "UPDATE Highscore SET score= " + score + " WHERE chair_nr=chair_nr";
   int userCount = 5;
   int highscoreTimer;
   int sqlTimer = 0;
@@ -68,28 +69,22 @@ class Highscore {
       highscoreTimer++;
       //highscore part
       if (highscoreTimer == 1) {
-        if (score>Highscore[0]) {
-          Highscore[4] = Highscore[3];
-          Highscore[3] = Highscore[2];
-          Highscore[2] = Highscore[1];
-          Highscore[1] = score;
-        } else if (score>Highscore[2]) {
-          Highscore[5] = Highscore[4];
-          Highscore[4] = Highscore[3];
-          Highscore[3] = Highscore[2];
-          Highscore[2] = score;
-        } else if (score>Highscore[3]) {
-          Highscore[5] = Highscore[4];
-          Highscore[4] = Highscore[3];
-          Highscore[3] = score;
-        } else if (score>Highscore[4]) {
-          Highscore[5] = Highscore[4];
-          Highscore[4] = score;
-        } else if (score>Highscore[5]) {
-          Highscore[5] = score;
+        if ( msql.connect() ) {
+          if (score>Highscore[4]) {
+
+            msql.query( instertScores );
+
+            /*} else if (score>Highscore[3]) {
+             
+             } else if (score>Highscore[2]) {
+             
+             } else if (score>Highscore[1]) {
+             
+             } else if (score> Highscore[0]){
+             */
+          }
         }
       }
-      //saveStrings("./data/highscore.txt", numbers);
     }
   }
   void reset() {
