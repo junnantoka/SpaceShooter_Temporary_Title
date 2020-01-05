@@ -1,11 +1,8 @@
-//Misschien een extra kolom maken in de tabel voor obtained
-//Dan kan een update worden uitgevoerd als de obtained op 0 staat
-//Dan kan er geinsert worden als het spel opstart en er geen achievementdata gevonden is
-//Dan is de DELETE daadwerkelijk alleen om de data te verwijderen en niet op te resetten.
 class Achievement {
- int achievementTimer = 0;
+  int achievementTimer = 0;
   boolean inAchievement = false;
-
+  
+  //Text and visual variables
   int textX = 300;
   int descriptionAdd = 35;
   int checkBoxSize = 40;
@@ -20,6 +17,7 @@ class Achievement {
   boolean powerUpObtained;
   boolean graveyard;
 
+  //Timers so achievement queries cannot be run more then nessecary, saving resources and thus prefenting lag
   int firstKillTimer = 1;
   int dominatorTimer = 1;
   int getHealthTimer = 1;
@@ -29,12 +27,14 @@ class Achievement {
 
   int deleteTimer;
   int updateTimer;
-
+  
+  //Counters for achievements
   int enemyCounter = 0;
   int healthDropCounter = 0;
   int deathCounter = 0;
   int powerUpCounter = 0;
-
+  
+  //Achievement SELECT query variables
   int achievementNumber;
   String selectQuery = "SELECT u.Chair_nr, a.AchievementID FROM User u " +
     "INNER JOIN User_has_Achievement a ON u.Chair_nr = a.Chair_nr " +
@@ -92,6 +92,7 @@ class Achievement {
     }
   }
 
+  //Used for entering the achievement screen
   void enterAchievement() {
     if (keysPressed['v']||keysPressed['V']) {     
       achievementTimer++;
@@ -113,7 +114,8 @@ class Achievement {
     achievementCounter();
     sql();
     resetAchievements();
-
+    
+    //"Obtains" achievements if the gets them whilst playing
     if (enemyCounter >= 1) {
       firstKill = true;
       deleteTimer = 0;
@@ -157,20 +159,16 @@ class Achievement {
     if (goAchievement) {
       if (keysPressed['u']||keysPressed['U']) {
         if (msql.connect()) {
-
-
-          //Select alles waar de speler een achievementID heeft 
-          //While loop
-          //In die whileloop een getInt van de achievementID
-          //Dan een boel if statements die als ze true geven de gelijkwaardige counter op dat niveau zetten
-          //Dan hoef je maar 1 query te hebben om alle achievements te checken
-          if (updateTimer == 0) {
+          
+          //Checks the database for if the user already has an achievement
+          if (updateTimer == 0) {                    
             achievementNumber = 1;
             msql.query(selectQuery);
             while (msql.next()) {
 
               int achievementGot = msql.getInt("AchievementID");
-
+              
+              //If the achievement data obtained from the database matches an achievement locally it updated the achievement to be true
               if (achievementGot == 1) {
                 enemyCounter = 1;
               }
@@ -237,7 +235,8 @@ class Achievement {
       }
     }
   }
-
+  
+  //If the user wants they have the option to delete all achievement data to start over
   void resetAchievements() {
     if (goAchievement) {
       if (keysPressed['r']||keysPressed['R']) {
@@ -252,6 +251,7 @@ class Achievement {
     }
   }
 
+  //If the user doesn't exist adds achievement data with value No
   void insertData() {
     if (!chairExists) {
       for (int i = 1; i < 7; i++) {
@@ -260,6 +260,7 @@ class Achievement {
     }
   }
 
+  //Deletes the userdata when all userdata gets deleted
   void deleteUserAchiements() {
     if (msql.connect()) {
       if (deleteTimer == 0) {
@@ -271,6 +272,7 @@ class Achievement {
     msql.close();
   }
 
+  //Resets all data
   void reset() {
     dominator = false;
     firstKill = false;
