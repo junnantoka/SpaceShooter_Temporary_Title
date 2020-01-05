@@ -56,16 +56,13 @@ class End {
     if (end) {//Checks if game ended
       if ( endTimer == 1) {
         getTestdata();
-        setTestdata();
-        updateTestdata();
-
+        //setTestdata();
+        //updateTestdata();
         highscore.highscoreSave();
-
         dropTestdata();
-
       }
       endTimer++;
-    }else endTimer = 0;
+    } else endTimer = 0;
   }
 
   void reset() {
@@ -129,19 +126,19 @@ class End {
 
   void getTestdata() {
     //Get the data out of the table Testdata
-    String userQry = "SELECT COUNT(u.Chair_nr) AS Users, a.AchievementID, a.AchievementName FROM User u INNER JOIN User_has_Achievement UA ON u.Chair_nr = UA.Chair_nr INNER JOIN Achievement a ON UA.AchievementID = a.AchievementID WHERE Obtained = 'Yes' GROUP BY a.achievementID;";
-    String userChair = "SELECT id, User.Chair_nr FROM User INNER JOIN Testdata ON User.Chair_nr = Testdata.Chair_nr WHERE Testdata.Chair_nr = '" + chairNr + "';";
+    String userQry = "SELECT COUNT(u.Chair_nr) AS Users, a.AchievementID, a.AchievementName FROM User u INNER JOIN User_has_Achievement UA ON u.Chair_nr = UA.Chair_nr INNER JOIN Achievement a ON UA.AchievementID = a.AchievementID WHERE Obtained = 'Yes' GROUP BY a.achievementID";
+
     if (msql.connect()) {
+      msql.query(userQry);
       while (msql.next()) {
-        msql.query(userQry);
-        msql.query(userChair);
         int users = msql.getInt("Users");
         int achievementID = msql.getInt("a.AchievementID");
         String achievement = msql.getString("a.AchievementName");
         print(users + " "  + achievementID + " " + achievement);
-      }
+      } 
     }
   }
+
 
   void setTestdata() {
     //Insert data IF the player hasn't played the game yet
@@ -159,9 +156,13 @@ class End {
 
   void dropTestdata() {
     //Drop data on close of application
-    testdataID = msql.getInt("id");
-    String dropQuery = "DELETE FROM Testdata WHERE id = '" + testdataID + "' AND Chair_nr = '" + chairNr + "';";
     if (msql.connect()) {
+      String userChair = "SELECT id, User.Chair_nr FROM User INNER JOIN Testdata ON User.Chair_nr = Testdata.Chair_nr WHERE Testdata.Chair_nr = '" + chairNr + "';";
+      msql.query(userChair);
+      msql.next();
+
+      testdataID = msql.getInt("id");
+      String dropQuery = "DELETE FROM Testdata WHERE id = '" + testdataID + "' AND Chair_nr = '" + chairNr + "';";
       while (msql.next()) {
         String users = msql.getString("Chair_nr");
         if (users.equals(chairNr)) {
