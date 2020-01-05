@@ -105,9 +105,8 @@ class End {
   
   void updateTestdata(){
     //Update total enemies killed in the database IF user exists
-    String user_chair = msql.getString("Chair_nr");
     String updateQry = "UPDATE Testdata SET enemies_killed = " + achievement.enemyCounter + " WHERE chair_nr = '" + chairNr + "'";
-    if(user_chair.equals(chairNr)){
+    if(chairExists){
       msql.query(updateQry);
     }
   }
@@ -124,9 +123,8 @@ class End {
   
   void setTestdata(){
     //Insert data IF the player hasn't played the game yet
-    String user_chair = msql.getString("Chair_nr");
     String insertQry = "INSERT INTO Testdata (`inputs_per_frame`, `enemies_killed`, `time_played`, `Chair_nr`) VALUES('" + input_per_frame + "','" + achievement.enemyCounter + "','" + timerEnd + "','" + chairNr + "');";
-    if(!user_chair.equals(chairNr)){
+    if(chairExists){
       msql.query(insertQry);
     }
   }
