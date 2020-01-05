@@ -17,7 +17,7 @@ String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as
 String dbUsername = "dorpl2";  //username
 String dbUserPass = "kjWD660lD6ZRA0+7";  //password
 String dbSchema = "zdorpl2";  //default database schema
-String chairNr = "3b"; 
+String chairNr = "8g"; 
 MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//Create new mysql instance
 Sql sql = new Sql();//New instance of "Sql" class
 
@@ -100,6 +100,10 @@ void setup() {
   sql.SettingGet();
   fullScreen(P2D);
   noCursor();
+  
+  //checks if the chair exists in the database
+  nameScreen.doesChairExist();
+
 
   //sql.construct();
   world.construct();

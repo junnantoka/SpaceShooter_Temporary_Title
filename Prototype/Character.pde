@@ -54,15 +54,6 @@ class Character {
       particle[i].display();
     }
     
-    //Sound effect(s)
-    if(xSpeed == 0 & ySpeed == 0){
-      engineB.loop();
-    }if(xSpeed > 0 || xSpeed < 0 || ySpeed > 0 || ySpeed < 0){//Detects movement
-      engineA.loop();
-    }else{
-      engineA.stop();
-    }
-    
     //wobble effect
     controlX = xLocation + wobbleX +bulletWobbleX;
     controlY = yLocation + wobbleY +bulletWobbleY;
