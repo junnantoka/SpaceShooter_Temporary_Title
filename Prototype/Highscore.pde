@@ -27,78 +27,77 @@ class Highscore {
   void displayScore() {
 
     sql();
-    if (!dontLoad) {
-      if (!start.start && !pauze.pauze) {
-        textFont(numberFont);
-        fill(250, 250, 250);
-        textSize(36);
-        image(yourScore, 1790, 80, 250, 150);
-        text(score, 1770, 130);
-      }
 
-      if (pauze.pauze && !start.start) {
-        fill(250, 250, 250);
-        textSize(48);
-        text(score, width/2-25, height/16*12);
+    if (!start.start && !pauze.pauze) {
+      textFont(numberFont);
+      fill(250, 250, 250);
+      textSize(36);
+      image(yourScore, 1790, 80, 250, 150);
+      text(score, 1770, 130);
+    }
 
-        for (int i = 0; i<Username.length; i++) {
-          text(Username[i], width/64*26, yloc);
-          text(Highscore[i], width/64*33, yloc);
-          yloc = yloc+yofz;
-        }
-        yloc = height/64*21;
+    if (pauze.pauze && !start.start) {
+      fill(250, 250, 250);
+      textSize(48);
+      text(score, width/2-25, height/16*12);
+
+      for (int i = 0; i<Username.length; i++) {
+        text(Username[i], width/64*26, yloc);
+        text(Highscore[i], width/64*33, yloc);
+        yloc = yloc+yofz;
       }
+      yloc = height/64*21;
     }
   }
-    void sqlSetup() {
-      if ( msql.connect() ) {
-        msql.query( getHighscores );
-        while (msql.next() && i<userCount) {
-          Username[i] = msql.getString("Username");
-          Highscore[i] = msql.getInt("score");
-          i++;
-        }
-      } else {
-        println("NIET CONNECT BITCH");
+  void sqlSetup() {
+    if ( msql.connect() ) {
+      msql.query( getHighscores );
+      while (msql.next() && i<userCount) {
+        Username[i] = msql.getString("Username");
+        Highscore[i] = msql.getInt("score");
+        i++;
       }
+    } else {
+      println("NIET CONNECT BITCH");
     }
+  }
 
-    void sqlUpdate() {
-      if ( msql.connect() ) {
-        msql.query( getHighscores );
-      } else {
-        dontLoad = true;
-      }
+  void sqlUpdate() {
+    if ( msql.connect() ) {
+      msql.query( getHighscores );
+    } else {
+      println("NIET CONNECT BITCH");
     }
+  }
 
-    void sql() {
-      if (!chairExists) {
-        msql.query("INSERT INTO Highscore (Chair_nr, score) VALUES ( '" +  chairNr + "', 0 )");
-        println(date);
-      }
+  void sql() {
+    if (!chairExists) {
+      msql.query("INSERT INTO Highscore (Chair_nr, score) VALUES ( '" +  chairNr + "', 0 )");
+      println(date);
     }
+  }
 
-    void highscoreSave() {
-      if (healthMax <= 0) {
-        highscoreTimer++;
-        //highscore part
-        if (highscoreTimer == 1) {
-          if ( msql.connect() ) {
-            for (int i = 0; i<Username.length; i++) {
-              if (score>Highscore[i]) {
-                msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
-                msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
-              }
+  void highscoreSave() {
+    if (healthMax <= 0) {
+      highscoreTimer++;
+      //highscore part
+      if (highscoreTimer == 1) {
+        if ( msql.connect() ) {
+          for (int i = 0; i<Username.length; i++) {
+            if (score>Highscore[i]) {
+              msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
+              msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
             }
-            msql.query( "DELETE FROM Highscore WHERE score = 0" );
           }
-          msql.close();
-          sqlUpdate();
+          msql.query( "DELETE FROM Highscore WHERE score = 0" );
         }
+        msql.close();
+        sqlUpdate();
       }
     }
-    void reset() {
-      highscoreTimer = 0;
-      sqlTimer = 0;
-    }
   }
+  void reset() {
+    highscoreTimer = 0;
+    sqlTimer = 0;
+  }
+}
