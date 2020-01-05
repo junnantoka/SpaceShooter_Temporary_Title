@@ -9,7 +9,7 @@ String peoep = "7b";
 boolean chairExists;
 
 class NameScreen {
-  
+
   int enterWait;
 
   void display() {
@@ -122,16 +122,15 @@ class NameScreen {
       entering++;
     } else entering = 0;
 
-      if (entering == 1) {
+    if (entering == 1) {
       if (msql.connect()) {
-        doesChairExist();
         print(name + "  ");
         uploadName();
         achievement.insertData();
-        nameEntered = true;
         msql.close();
         enterWait = 0;
-      }
+      }else print("Could not connect to database bitch");
+      nameEntered = true;
     }
   }
 
@@ -160,7 +159,6 @@ class NameScreen {
         }
       }
     }
-    println("is hij er? " + chairExists);
   }
 
   void uploadName() {

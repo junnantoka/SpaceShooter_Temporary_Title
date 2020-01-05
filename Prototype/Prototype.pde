@@ -42,8 +42,6 @@ Wobble wobble = new Wobble(); //New instance of "Wobble"
 
 ArrayList<Explosion> explosion; //ArrayList 
 
-ArrayList<HighscoreDataArraylist> data;
-
 ArrayList<PlayerDamageEffect> playerParticle;
 
 Wave wave = new Wave();
@@ -102,6 +100,10 @@ void setup() {
   sql.SettingGet();
   fullScreen(P2D);
   noCursor();
+  
+  //checks if the chair exists in the database
+  nameScreen.doesChairExist();
+
 
   //sql.construct();
   world.construct();
@@ -138,8 +140,6 @@ void setup() {
   //initializes enemy array
   enemy = new ArrayList<Enemy>();
   enemy.add(new Enemy());
-
-  data = new ArrayList<HighscoreDataArraylist>();
 
   eBullet =new ArrayList<EnemyBullet>();
 
@@ -254,6 +254,8 @@ void updateGame() {
     for (HealthDropParticle hdp : healthDropParticles) {
       hdp.updateHealthParticle();
     }
+    
+    highscore.highscoreSave();
   }
 }
 
