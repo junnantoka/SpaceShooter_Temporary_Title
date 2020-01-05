@@ -78,8 +78,9 @@ class Highscore {
   }
 
   void sql() {
-    if (!chairExists) {
+    if (!scoreExists) {
       msql.query("INSERT INTO Highscore (Chair_nr, score) VALUES ( '" +  chairNr + "', 0 )");
+      scoreExists = true;
     }
   }
 

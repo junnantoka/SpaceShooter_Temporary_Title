@@ -77,7 +77,7 @@ class Challenge {
   }
 
   void enterChallengeScreen() {
-    if (keysPressed['c']||keysPressed['C']) {
+    if ((keysPressed['c'] || keysPressed['C']) && (pauze.pauze && !start.start)) {
       timer++;
       if (timer==1) {
         if (!goChallenge) {
