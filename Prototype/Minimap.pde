@@ -69,7 +69,7 @@ class Minimap {
       }
     }
 
-    for (int i = eBullet.size() -1; i>0; i--) {
+    /*for (int i = eBullet.size() -1; i>0; i--) {
       EnemyBullet e =eBullet.get(i);
       if ((e.bulletX)/minimapSize + minimapX >= minimapXLocMax || (e.bulletY)/minimapSize + minimapY >= minimapYLocMax) {
         eBullet.remove(i);
