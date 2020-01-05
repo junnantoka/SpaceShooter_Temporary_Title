@@ -4,13 +4,13 @@ class Highscore {
   int score;
   int yofz = 80;
   int y = height/64*22;
-  int scoreTimer;
-  String getHighscores = "SELECT User.Username, Highscore.score FROM User INNER JOIN Highscore ON User.Chair_nr = Highscore.Chair_nr";
+  String getHighscores = "SELECT User.Username, Highscore.score FROM User INNER JOIN Highscore ON User.Chair_nr = Highscore.Chair_nr ORDER  BY score DESC";
   int userCount = 5;
   int highscoreTimer;
-  String[] Names;
-  String[] Dates;
-  int[] Scores;
+  int sqlTimer = 0;
+  String[] Username = new  String[userCount];
+  int[] Highscore = new int[userCount];
+  int i;
   void scoreSetup() {
     sql();
   }
@@ -28,64 +28,65 @@ class Highscore {
       fill(250, 250, 250);
       textSize(48);
       text(score, width/2-25, height/16*12);
-      for (HighscoreDataArraylist record : data) {
-        text(record.Username, width/64*26, y);
-        text(record.Highscore, width/64*33, y);
-        y = y+yofz;
+      
+        sql();
+        for (int i = 0; i<Username.length; i++) {
+          text(Username[i], width/64*26, y);
+          text(Highscore[i], width/64*33, y);
+          y = y+yofz;
+        
       }
-      y = height/64*21;
-    }
-  }
-  void sql() {
-    if ( msql.connect() ) {
-      msql.query( getHighscores );
-      while (msql.next()) {
-        data.add(new HighscoreDataArraylist(msql.getString("Username"), msql.getInt("score")));
-        //String name = msql.getString("name");
-        //int Highscore = msql.getInt("score");
-        //text(name, width/8*3, height/2+yofz);
-        //text(Highscore, width/8*4, height/2+yofz);
-      }
-      msql.close();
     }
   }
 
+  void sql() {
+    if ( msql.connect() ) {
+      if (sqlTimer == 0) {
+        msql.query( getHighscores );
+        while (msql.next() && i<userCount) {
+          Username[i] = msql.getString("Username");
+          Highscore[i] = msql.getInt("score");
+          i++;
+        }
+        msql.close();
+        y = height/64*21;
+        sqlTimer++;
+      }
+    }
+  }
   void highscoreSave() {
     /*if (healthMax <= 0) {
      highscoreTimer++;
      //highscore part
      if (highscoreTimer == 1) {
-     if (score>numbers1) {
-     numbers5 = numbers4;
-     numbers4 = numbers3;
-     numbers3 = numbers2;
-     numbers2 = numbers1;
-     numbers1 = score;
-     } else if (score>numbers2) {
-     numbers5 = numbers4;
-     numbers4 = numbers3;
-     numbers3 = numbers2;
-     numbers2 = score;
-     } else if (score>numbers3) {
-     numbers5 = numbers4;
-     numbers4 = numbers3;
-     numbers3 = score;
-     } else if (score>numbers4) {
-     numbers5 = numbers4;
-     numbers4 = score;
-     } else if (score>numbers5) {
-     numbers5 = score;
-     }
-     numbers[0] = str(numbers1);
-     numbers[1] = str(numbers2);
-     numbers[2] = str(numbers3);
-     numbers[3] = str(numbers4);
-     numbers[4] = str(numbers5);
-     saveStrings("./data/highscore.txt", numbers);
-     }
+     if (score>numbers[0]) {
+     numbers[5] = numbers[4];
+     numbers[4] = numbers[3];
+     numbers[3] = numbers[2];
+     numbers[2] = numbers[1];
+     numbers[1] = score;
+     } else if (score>numbers[2]) {
+     numbers[5] = numbers[4];
+     numbers[4] = numbers[3];
+     numbers[3] = numbers[2];
+     numbers[2] = score;
+     } else if (score>numbers[3]) {
+     numbers[5] = numbers[4];
+     numbers[4] = numbers[3];
+     numbers[3] = score;
+     } else if (score>numbers[4]) {
+     numbers[5] = numbers[4];
+     numbers[4] = score;
+     } else if (score>numbers[5]) {
+     numbers[5] = score;
      }*/
+
+    //saveStrings("./data/highscore.txt", numbers);
   }
+
+  // }
   void reset() {
     highscoreTimer = 0;
+    sqlTimer = 0;
   }
 }

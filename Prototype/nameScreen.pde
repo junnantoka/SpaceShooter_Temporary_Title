@@ -8,7 +8,7 @@ char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'I', 'K', 'L', '
 String peoep = "7b";
 
 class NameScreen {
-  boolean chairExists;
+  public boolean chairExists;
 
   void display() {
 
