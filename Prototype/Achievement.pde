@@ -63,12 +63,10 @@ class Achievement {
       text("Pick up a powerup", textX, 900 + descriptionAdd);
 
       noFill();
-      stroke(255);
-      strokeWeight(5);
       for (int i = 0; i < 6; i++) {
         rect(checkBoxX, (i + 1) * achievementDistance, checkBoxSize, checkBoxSize);
       }
-      noStroke();
+      
 
       if (firstKill) {
         image(checkmark, checkBoxX, 150);

@@ -245,19 +245,21 @@ void updateGame() {
       }
     }
     if (end.end ||start.start||pauze.pauze) {
-      if (!achievement.inAchievement) {
+     if (!achievement.inAchievement) {
         setting.enterSettings();
         setting.settingUpdate();
       }
       achievement.enterAchievement();
-      challenge.enterChallenge();
       achievement.achievementUpdate();
+      challenge.enterChallenge();
+     
     }
     for (HealthDropParticle hdp : healthDropParticles) {
       hdp.updateHealthParticle();
     }
     
     highscore.highscoreSave();
+     
   }
 }
 
