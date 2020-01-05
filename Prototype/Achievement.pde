@@ -198,37 +198,37 @@ class Achievement {
         //Upload achievement data upon updating the database if the user has said achievement
         if (firstKill) {
           if (firstKillTimer==0) {
-            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '1'");
+            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '1'");
             firstKillTimer++;
           }
         }
         if (dominator) {
           if (dominatorTimer == 0) {
-            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '2'");
+            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '2'");
             dominatorTimer++;
           }
         }
         if (firstDeath) {
           if (firstDeathTimer == 0) {
-            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '3'");
+            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '3'");
             firstDeathTimer++;
           }
         }
         if (graveyard) {
           if (graveyardTimer == 0) {
-            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '4'");
+            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '4'");
             graveyardTimer++;
           }
         }
         if (getHealth) {
           if (getHealthTimer == 0) {
-            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '5'");
+            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '5'");
             getHealthTimer++;
           }
         }
         if (powerUpObtained) {
           if (powerUpObtainedTimer == 0) {
-            msql.query("UPDATE User_Has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '6'");
+            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '6'");
             powerUpObtainedTimer++;
           }
         }
@@ -241,7 +241,7 @@ class Achievement {
       if(msql.connect()){
         reset();
         for(int i = 1; i < 7; i++){
-          msql.query("UPDATE User_Has_Achievement SET Obtained = 'No' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '5'");
+          msql.query("UPDATE User_has_Achievement SET Obtained = 'No' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '5'");
         }
       }
     }
