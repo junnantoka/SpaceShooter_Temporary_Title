@@ -202,7 +202,6 @@ public class Enemy {
             highscore.score++;
             enemyCounter++;
             healthDrop.add(new HealthDrop(x, y));
-
             for (int in = 0; in < particles; in++) {
               explosion.add(new Explosion(x, y, 10, 7));
             }

@@ -197,7 +197,7 @@ class Achievement {
 
         //Upload achievement data upon updating the database if the user has said achievement
         if (firstKill) {
-          if (firstKillTimer==0) {
+          if (firstKillTimer==1) {
             msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '1'");
             firstKillTimer++;
           }
@@ -232,7 +232,7 @@ class Achievement {
             powerUpObtainedTimer++;
           }
         }
-      }
+      }else print("COULD NOT CONNECT TO DATABASE");
     }
   }
   
