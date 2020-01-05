@@ -130,7 +130,7 @@ class NameScreen {
         sql.createUserData();
         msql.close();
         enterWait = 0;
-      }else print("Could not connect to database bitch");
+      } else print("Could not connect to database bitch");
       nameEntered = true;
     }
   }
@@ -144,11 +144,7 @@ class NameScreen {
         deleteUser();
         achievement.deleteUserAchiements();
         sql.deleteData();
-        
       }
-    }
-    if (pauze.pauze && keysPressed[RIGHT] && nameEntered && enterWait > 60) {
-      nameEntered = false;
     }
   }
 
