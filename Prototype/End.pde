@@ -109,9 +109,15 @@ class End {
 
   void updateTestdata() {
     //Update total enemies killed in the database IF user exists
-    String updateQry = "UPDATE Testdata SET enemies_killed = " + achievement.enemyCounter + " WHERE chair_nr = '" + chairNr + "'";
-    if (chairExists) {
-      msql.query(updateQry);
+    String updateQry = "UPDATE Testdata SET enemies_killed = " + achievement.enemyCounter + " WHERE Chair_nr = '" + chairNr + "'";
+    if (msql.connect()) {
+      msql.query("SELECT Chair_nr FROM Testdata;");
+      while (msql.next()) {
+        String users = msql.getString("Chair_nr");
+        if (users.equals(chairNr)) {
+          msql.query(updateQry);
+        }
+      }
     }
   }
 
@@ -124,7 +130,7 @@ class End {
         int users = msql.getInt("Users");
         int achievementID = msql.getInt("a.achievementID");
         String achievement = msql.getString("a.achievementName");
-        print(users + " "  + achievementID + " "+ achievement);
+        print(users + " "  + achievementID + " " + achievement);
       }
     }
   }
@@ -132,14 +138,20 @@ class End {
   void setTestdata() {
     //Insert data IF the player hasn't played the game yet
     String insertQry = "INSERT INTO Testdata (`inputs_per_frame`, `enemies_killed`, `time_played`, `Chair_nr`) VALUES('" + input_per_frame + "','" + achievement.enemyCounter + "','" + timerEnd + "','" + chairNr + "');";
-    if (chairExists) {
-      msql.query(insertQry);
+    if (msql.connect()) {
+      msql.query("SELECT Chair_nr FROM Testdata;");
+      while (msql.next()) {
+        String users = msql.getString("Chair_nr");
+        if (!users.equals(chairNr)) {
+          msql.query(insertQry);
+        }
+      }
     }
   }
 
   void stop() {
     //Drop data on close of application
-    String dropQuery = "DELETE FROM Testdata;";
+    String dropQuery = "DELETE FROM Testdata WHERE Chair_nr = '" + chairNr + "';";
     msql.query(dropQuery);
   }
 }

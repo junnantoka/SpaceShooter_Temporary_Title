@@ -124,14 +124,13 @@ class NameScreen {
 
     if (entering == 1) {
       if (msql.connect()) {
-        print(name + "  ");
         uploadName();
         achievement.insertData();
         highscore.sql();
         sql.createUserData();
         msql.close();
         enterWait = 0;
-      }else print("Could not connect to database bitch");
+      } else print("Could not connect to database bitch");
       nameEntered = true;
     }
   }
@@ -145,11 +144,7 @@ class NameScreen {
         deleteUser();
         achievement.deleteUserAchiements();
         sql.deleteData();
-        
       }
-    }
-    if (pauze.pauze && keysPressed[RIGHT] && nameEntered && enterWait > 60) {
-      nameEntered = false;
     }
   }
 
@@ -169,13 +164,11 @@ class NameScreen {
     if (!chairExists) {
       if (msql.connect()) {
         msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
-        println("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
       }
     }
     if (chairExists) {
       if (msql.connect()) {
         msql.query("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'");
-        println("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'");
       }
     }
   }
@@ -183,7 +176,6 @@ class NameScreen {
   void deleteUser() {
     if (msql.connect()) {
       msql.query("DELETE FROM User WHERE Chair_nr = '" + chairNr + "'");
-      println("DELETE FROM User WHERE Chair_nr = '" + chairNr + "'");
     }
   }
 

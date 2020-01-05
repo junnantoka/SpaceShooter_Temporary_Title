@@ -27,20 +27,19 @@ class Highscore {
   void displayScore() {
 
     sql();
+    if (!dontLoad) {
+      if (!start.start && !pauze.pauze) {
+        textFont(numberFont);
+        fill(250, 250, 250);
+        textSize(36);
+        image(yourScore, 1790, 80, 250, 150);
+        text(score, 1770, 130);
+      }
 
-    if (!start.start && !pauze.pauze) {
-      textFont(numberFont);
-      fill(250, 250, 250);
-      textSize(36);
-      image(yourScore, 1790, 80, 250, 150);
-      text(score, 1770, 130);
-    }
-
-    if (pauze.pauze && !start.start) {
-      fill(250, 250, 250);
-      textSize(48);
-      text(score, width/2-25, height/16*12);
-
+      if (pauze.pauze && !start.start) {
+        fill(250, 250, 250);
+        textSize(48);
+        text(score, width/2-25, height/16*12);
 
       for (int i = 0; i<Username.length; i++) {
         text(Username[i], width/64*26, yloc);
@@ -67,6 +66,8 @@ class Highscore {
   void sqlUpdate() {
     if ( msql.connect() ) {
       msql.query( getHighscores );
+    } else {
+      dontLoad = true;
     }
   }
 

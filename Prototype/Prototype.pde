@@ -157,7 +157,9 @@ void setup() {
 
 void updateGame() {
   background(0);
+  challenge.playerChallenged();
   challenge.sql();
+  challenge.whenChallenged();
 
   if (!nameEntered) nameScreen.update();
   if (nameEntered)  nameScreen.check();
@@ -245,19 +247,21 @@ void updateGame() {
       }
     }
     if (end.end ||start.start||pauze.pauze) {
-      if (!achievement.inAchievement) {
+     if (!achievement.inAchievement) {
         setting.enterSettings();
         setting.settingUpdate();
       }
       achievement.enterAchievement();
-      challenge.enterChallenge();
+      challenge.enterChallengeScreen();
       achievement.achievementUpdate();
+     
     }
     for (HealthDropParticle hdp : healthDropParticles) {
       hdp.updateHealthParticle();
     }
     
     highscore.highscoreSave();
+     
   }
 }
 
