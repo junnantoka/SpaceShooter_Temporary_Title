@@ -156,6 +156,7 @@ void setup() {
 
 void updateGame() {
   background(0);
+  challenge.playerChallenged();
   challenge.sql();
 
   if (!nameEntered) nameScreen.update();
@@ -249,7 +250,7 @@ void updateGame() {
         setting.settingUpdate();
       }
       achievement.enterAchievement();
-      challenge.enterChallenge();
+      challenge.enterChallengeScreen();
       achievement.achievementUpdate();
     }
     for (HealthDropParticle hdp : healthDropParticles) {
