@@ -102,6 +102,10 @@ void setup() {
   sql.SettingGet();
   fullScreen(P2D);
   noCursor();
+  
+  //checks if the chair exists in the database
+  nameScreen.doesChairExist();
+
 
   //sql.construct();
   world.construct();
