@@ -11,21 +11,21 @@ class Highscore {
   String[] Username = new  String[userCount];
   int[] Highscore = new int[userCount];
   int i;
-  int d = day();
-  int m = month();
-  int y = year();
 
   boolean canConnect;
-
-  String day = String.valueOf(d);
-  String month = String.valueOf(m);
-  String year = String.valueOf(y);
-
-  String date = year + "-" + month + "-" + day;
+ 
+  // Dont worry about this.
+  //String day = String.valueOf(d);
+  //String month = String.valueOf(m);
+  //String year = String.valueOf(y);
+  //String date = year + "-" + month + "-" + day;
+  //int d = day();
+  //int m = month();
+  //int y = year();
 
   void scoreSetup() {
     sqlSetup();
-
+    //if the game can connect it will proceed to execute msql commands
     if (msql.connect()) {
       canConnect = true;
     } else {
@@ -33,7 +33,7 @@ class Highscore {
     }
   }
   void displayScore() {
-
+    //"Your Score" in the top right.
     if (!start.start && !pauze.pauze) {
       textFont(numberFont);
       fill(250, 250, 250);
@@ -41,8 +41,8 @@ class Highscore {
       image(yourScore, 1790, 80, 250, 150);
       text(score, 1770, 130);
     }
-
-    if (pauze.pauze && !start.start) {
+    //Highscore list in the pauze menu
+    if (pauze.pauze && !start.start && !achievement.inAchievement && !goSettings && !goChallenge) {
       fill(250, 250, 250);
       textSize(48);
       text(score, width/2-25, height/16*12);
@@ -56,6 +56,7 @@ class Highscore {
       }
     }
   }
+  // This fetches the Username and Highscore data from the database so it can be used and displayed in the game.
   void sqlSetup() {
     if ( msql.connect() ) {
       msql.query( getHighscores );
@@ -65,25 +66,25 @@ class Highscore {
         i++;
       }
     } else {
-      println("NIET CONNECT BITCH");
+      println("Cant connect, stop trying");
     }
   }
-
+  // Updates the top 5 Highscores that are currently loaded in the game.
   void sqlUpdate() {
     if ( msql.connect() ) {
       msql.query( getHighscores );
     } else {
-      println("NIET CONNECT BITCH");
+      println("Cant connect, stop trying");
     }
   }
-
+  // If chair that the game is currently using does not exist then make it exist.
   void sql() {
     if (!scoreExists) {
       msql.query("INSERT INTO Highscore (Chair_nr, score) VALUES ( '" +  chairNr + "', 0 )");
       scoreExists = true;
     }
   }
-
+  // Saves the Highscores upon end of the game if the highscore is higher than any of the top 5.
   void highscoreSave() {
     //if (healthMax <= 0) {
       highscoreTimer++;
@@ -93,19 +94,21 @@ class Highscore {
           for (int i = 0; i<Username.length; i++) {
             if (score>Highscore[i]) {
               msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
-              //msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
             }
           }
+          //This makes sure there is no useless data being stored.
           msql.query( "DELETE FROM Highscore WHERE score = 0" );
+          reset();
           msql.close();
         } else {
-          println("NIET CONNECT BITCH");
+          println("Cant connect, stop trying");
         } 
         sqlUpdate();
         
      // }
     }
   }
+  //reset... lol.
   void reset() {
     highscoreTimer = 0;
     sqlTimer = 0;
