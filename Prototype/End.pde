@@ -4,6 +4,7 @@ class End {
   int timerEnd= 0;
   int opacityGameOver, opacityTitleCard, opacityStarting, opacitycontrols=0;
   int endTimer = 0;
+  int testdataID;
   void setup() {
   }
 
@@ -123,10 +124,12 @@ class End {
 
   void getTestdata() {
     //Get the data out of the table Testdata
-    String userQry = "SELECT COUNT(u.Chair_nr) AS Users, a.achievementID, a.AchievementName FROM User u INNER JOIN User_has_Achievement UA ON u.Chair_nr = UA.Chair_nr INNER JOIN Achievement a ON UA.AchievementID = a.AchievementID WHERE Obtained = 'Yes' GROUP BY a.achievementID;"; 
+    String userQry = "SELECT COUNT(u.Chair_nr) AS Users, a.achievementID, a.AchievementName FROM User u INNER JOIN User_has_Achievement UA ON u.Chair_nr = UA.Chair_nr INNER JOIN Achievement a ON UA.AchievementID = a.AchievementID WHERE Obtained = 'Yes' GROUP BY a.achievementID;";
+    String userChair = "SELECT id, User.Chair_nr FROM User INNER JOIN Testdata ON User.Chair_nr = Testdata.Chair_nr WHERE Testdata.Chair_nr = '" + chairNr + "';";
     if (msql.connect()) {
       while (msql.next()) {
         msql.query(userQry);
+        msql.query(userChair);
         int users = msql.getInt("Users");
         int achievementID = msql.getInt("a.achievementID");
         String achievement = msql.getString("a.achievementName");
@@ -151,7 +154,15 @@ class End {
 
   void stop() {
     //Drop data on close of application
-    String dropQuery = "DELETE FROM Testdata WHERE Chair_nr = '" + chairNr + "';";
-    msql.query(dropQuery);
+    testdataID = msql.getInt("id");
+    String dropQuery = "DELETE FROM Testdata WHERE id = '" + testdataID + "' AND Chair_nr = '" + chairNr + "';";
+    if (msql.connect()) {
+      while (msql.next()) {
+        String users = msql.getString("Chair_nr");
+        if (users.equals(chairNr)) {
+          msql.query(dropQuery);
+        }
+      }
+    }
   }
 }
