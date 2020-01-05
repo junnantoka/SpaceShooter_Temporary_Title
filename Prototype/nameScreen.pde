@@ -127,6 +127,7 @@ class NameScreen {
         print(name + "  ");
         uploadName();
         achievement.insertData();
+        sql.createUserData();
         msql.close();
         enterWait = 0;
       }else print("Could not connect to database bitch");
@@ -142,6 +143,8 @@ class NameScreen {
       if (deleting == 1) {
         deleteUser();
         achievement.deleteUserAchiements();
+        sql.deleteData();
+        
       }
     }
     if (pauze.pauze && keysPressed[RIGHT] && nameEntered && enterWait > 60) {

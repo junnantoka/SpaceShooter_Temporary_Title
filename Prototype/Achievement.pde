@@ -20,12 +20,12 @@ class Achievement {
   boolean powerUpObtained;
   boolean graveyard;
 
-  int firstKillTimer;
-  int dominatorTimer;
-  int getHealthTimer;
-  int firstDeathTimer;
-  int powerUpObtainedTimer;
-  int graveyardTimer;
+  int firstKillTimer = 1;
+  int dominatorTimer = 1;
+  int getHealthTimer = 1;
+  int firstDeathTimer = 1;
+  int powerUpObtainedTimer = 1;
+  int graveyardTimer = 1;
 
   int deleteTimer;
   int updateTimer;
@@ -197,37 +197,37 @@ class Achievement {
 
         //Upload achievement data upon updating the database if the user has said achievement
         if (firstKill) {
-          if (firstKillTimer == 1) {
+          if (firstKillTimer == 0) {
             msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '1'");
             firstKillTimer++;
           }
         }
         if (dominator) {
-          if (dominatorTimer == 1) {
+          if (dominatorTimer == 0) {
             msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '2'");
             dominatorTimer++;
           }
         }
         if (firstDeath) {
-          if (firstDeathTimer == 1) {
+          if (firstDeathTimer == 0) {
             msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '3'");
             firstDeathTimer++;
           }
         }
         if (graveyard) {
-          if (graveyardTimer == 1) {
+          if (graveyardTimer == 0) {
             msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '4'");
             graveyardTimer++;
           }
         }
         if (getHealth) {
-          if (getHealthTimer == 1) {
+          if (getHealthTimer == 0) {
             msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '5'");
             getHealthTimer++;
           }
         }
         if (powerUpObtained) {
-          if (powerUpObtainedTimer == 1) {
+          if (powerUpObtainedTimer == 0) {
             msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '6'");
             powerUpObtainedTimer++;
           }
