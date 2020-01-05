@@ -15,6 +15,8 @@ class Highscore {
   int m = month();
   int y = year();
 
+  boolean canConnect;
+
   String day = String.valueOf(d);
   String month = String.valueOf(m);
   String year = String.valueOf(y);
@@ -23,10 +25,14 @@ class Highscore {
 
   void scoreSetup() {
     sqlSetup();
+
+    if (msql.connect()) {
+      canConnect = true;
+    } else {
+      canConnect = false;
+    }
   }
   void displayScore() {
-
-    sql();
 
     if (!start.start && !pauze.pauze) {
       textFont(numberFont);
@@ -40,13 +46,14 @@ class Highscore {
       fill(250, 250, 250);
       textSize(48);
       text(score, width/2-25, height/16*12);
-
-      for (int i = 0; i<Username.length; i++) {
-        text(Username[i], width/64*26, yloc);
-        text(Highscore[i], width/64*33, yloc);
-        yloc = yloc+yofz;
+      if (canConnect == true) {
+        for (int i = 0; i<Username.length; i++) {
+          text(Username[i], width/64*26, yloc);
+          text(Highscore[i], width/64*33, yloc);
+          yloc = yloc+yofz;
+        }
+        yloc = height/64*21;
       }
-      yloc = height/64*21;
     }
   }
   void sqlSetup() {
@@ -73,7 +80,6 @@ class Highscore {
   void sql() {
     if (!chairExists) {
       msql.query("INSERT INTO Highscore (Chair_nr, score) VALUES ( '" +  chairNr + "', 0 )");
-      println(date);
     }
   }
 
@@ -81,12 +87,12 @@ class Highscore {
     if (healthMax <= 0) {
       highscoreTimer++;
       //highscore part
-      if (highscoreTimer == 1) {
+        if (highscoreTimer == 1) {
         if ( msql.connect() ) {
           for (int i = 0; i<Username.length; i++) {
             if (score>Highscore[i]) {
               msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
-              msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
+                //msql.query( "UPDATE Highscore SET DateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
             }
           }
           msql.query( "DELETE FROM Highscore WHERE score = 0" );
