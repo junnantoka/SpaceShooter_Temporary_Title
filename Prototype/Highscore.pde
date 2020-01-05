@@ -16,6 +16,8 @@ class Highscore {
   }
   void displayScore() {
 
+    sql();
+
     if (!start.start && !pauze.pauze) {
       textFont(numberFont);
       fill(250, 250, 250);
@@ -29,12 +31,13 @@ class Highscore {
       textSize(48);
       text(score, width/2-25, height/16*12);
 
-      sql();
+
       for (int i = 0; i<Username.length; i++) {
         text(Username[i], width/64*26, y);
         text(Highscore[i], width/64*33, y);
         y = y+yofz;
       }
+      y = height/64*21;
     }
   }
 
@@ -44,10 +47,6 @@ class Highscore {
         msql.query("INSERT INTO Highscore (`Chair_nr`, `score`) VALUES ( '" +  chairNr + "',  0 )");
       }
     }
-  }
-
-
-  void sql() {
 
     if ( msql.connect() ) {
       msql.query( getHighscores );
@@ -57,37 +56,40 @@ class Highscore {
         i++;
       }
       msql.close();
-      y = height/64*21;
     }
   }
+
+  void sqlUpdate() {
+    if ( msql.connect() ) {
+      msql.query( getHighscores );
+    }
+  }
+
+  void sql() {
+  }
+
   void highscoreSave() {
     if (healthMax <= 0) {
       highscoreTimer++;
       //highscore part
       if (highscoreTimer == 1) {
-        if (score>Highscore[0]) {
-          Highscore[5] = Highscore[4];
-          Highscore[4] = Highscore[3];
-          Highscore[3] = Highscore[2];
-          Highscore[2] = Highscore[1];
-          Highscore[1] = score;
-        } else if (score>Highscore[2]) {
-          Highscore[5] = Highscore[4];
-          Highscore[4] = Highscore[3];
-          Highscore[3] = Highscore[2];
-          Highscore[2] = score;
-        } else if (score>Highscore[3]) {
-          Highscore[5] = Highscore[4];
-          Highscore[4] = Highscore[3];
-          Highscore[3] = score;
-        } else if (score>Highscore[4]) {
-          Highscore[5] = Highscore[4];
-          Highscore[4] = score;
-        } else if (score>Highscore[5]) {
-          Highscore[5] = score;
+        if ( msql.connect() ) {
+          if (score>Highscore[4]) {
+
+            msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"'" );
+            sqlUpdate();
+            /*} else if (score>Highscore[3]) {
+             
+             } else if (score>Highscore[2]) {
+             
+             } else if (score>Highscore[1]) {
+             
+             } else if (score> Highscore[0]){
+             */
+          }
         }
+        msql.close();
       }
-      //saveStrings("./data/highscore.txt", numbers);
     }
   }
   void reset() {

@@ -3,6 +3,7 @@ class End {
   boolean end, button = false;
   int timerEnd= 0;
   int opacityGameOver, opacityTitleCard, opacityStarting, opacitycontrols=0;
+  int endTimer = 0;
   void setup() {
   }
 
@@ -50,12 +51,15 @@ class End {
         clickB.play();
       }
     }
-    
-    if(end){//Checks if game ended
-      getTestdata();
-      setTestdata();
-      updateTestdata();
-    }
+
+    if (end) {//Checks if game ended
+      if ( endTimer == 1) {
+        getTestdata();
+        setTestdata();
+        updateTestdata();
+      }
+      endTimer++;
+    }else endTimer = 0;
   }
 
   void reset() {
@@ -102,38 +106,50 @@ class End {
       star[i].construct();
     }
   }
-  
-  void updateTestdata(){
+
+  void updateTestdata() {
     //Update total enemies killed in the database IF user exists
-    String updateQry = "UPDATE Testdata SET enemies_killed = " + achievement.enemyCounter + " WHERE chair_nr = '" + chairNr + "'";
-    if(chairExists){
-      msql.query(updateQry);
+    String updateQry = "UPDATE Testdata SET enemies_killed = " + achievement.enemyCounter + " WHERE Chair_nr = '" + chairNr + "'";
+    if (msql.connect()) {
+      msql.query("SELECT Chair_nr FROM Testdata;");
+      while (msql.next()) {
+        String users = msql.getString("Chair_nr");
+        if (users.equals(chairNr)) {
+          msql.query(updateQry);
+        }
+      }
     }
   }
-  
-  void getTestdata(){
+
+  void getTestdata() {
     //Get the data out of the table Testdata
     String userQry = "SELECT COUNT(u.Chair_nr) AS Users, a.achievementID, a.AchievementName FROM User u INNER JOIN User_has_Achievement UA ON u.Chair_nr = UA.Chair_nr INNER JOIN Achievement a ON UA.AchievementID = a.AchievementID WHERE Obtained = 'Yes' GROUP BY a.achievementID;"; 
-    if(msql.connect()){
-      while(msql.next()){
+    if (msql.connect()) {
+      while (msql.next()) {
         msql.query(userQry);
         int users = msql.getInt("Users");
         int achievementID = msql.getInt("a.achievementID");
         String achievement = msql.getString("a.achievementName");
-        print(users + " "  + achievementID + " "+ achievement);
+        print(users + " "  + achievementID + " " + achievement);
       }
     }
   }
-  
-  void setTestdata(){
+
+  void setTestdata() {
     //Insert data IF the player hasn't played the game yet
     String insertQry = "INSERT INTO Testdata (`inputs_per_frame`, `enemies_killed`, `time_played`, `Chair_nr`) VALUES('" + input_per_frame + "','" + achievement.enemyCounter + "','" + timerEnd + "','" + chairNr + "');";
-    if(chairExists){
-      msql.query(insertQry);
+    if (msql.connect()) {
+      msql.query("SELECT Chair_nr FROM Testdata;");
+      while (msql.next()) {
+        String users = msql.getString("Chair_nr");
+        if (!users.equals(chairNr)) {
+          msql.query(insertQry);
+        }
+      }
     }
   }
-  
-  void stop(){
+
+  void stop() {
     //Drop data on close of application
     String dropQuery = "DELETE FROM Testdata;";
     msql.query(dropQuery);

@@ -96,8 +96,7 @@ int beweging = 0;
 PlayerBullet[] bulletP = new PlayerBullet[bullets];
 int pBTimer = 0; 
 
-void setup() {
-  sql.SettingGet();
+void setup() {  
   fullScreen(P2D);
   noCursor();
   
@@ -152,6 +151,8 @@ void setup() {
   playerParticle = new ArrayList<PlayerDamageEffect>();
 
   highscore.scoreSetup();
+  
+  sql.SettingGet();
 }
 
 void updateGame() {

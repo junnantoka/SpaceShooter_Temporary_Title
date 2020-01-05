@@ -1,4 +1,4 @@
-int soundSetting, artSetting, enemiesKilled;
+int soundSetting, artSetting, enemiesKilled, deleteTimer;
 
 class Sql {
 
@@ -38,6 +38,21 @@ class Sql {
 
       //Update total enemies killed in the database
       //msql.query("UPDATE Testdata SET enemies_killed = " + enemiesKilled + " WHERE chair_nr = '" + chairNr + "'");
+    }
+  }
+  
+  void deleteData(){
+   if (msql.connect()) {
+        if (deleteTimer == 0) {
+          msql.query("DELETE FROM Setting WHERE Chair_nr='" + chairNr + "'");
+          deleteTimer++;
+        }
+      }  
+  }
+  
+  void createUserData(){
+    if(!chairExists){
+       msql.query("INSERT INTO `zdorpl2`.`Setting` (`Chair_nr`, `sound`, `art`) VALUES ('" + chairNr + "', '1', '1')");
     }
   }
 }
