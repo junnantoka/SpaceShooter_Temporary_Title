@@ -87,7 +87,7 @@ class Achievement {
       if (powerUpObtained) {
         image(checkmark, checkBoxX, 900);
       }
-
+      text("Press u to update data", 1400, 800);
       text("Press r to delete data", 1400, 900);
     }
   }
