@@ -109,7 +109,7 @@ class End {
 
   void updateTestdata() {
     //Update total enemies killed in the database IF user exists
-    String updateQry = "UPDATE Testdata SET enemies_killed = " + achievement.enemyCounter + " WHERE chair_nr = '" + chairNr + "'";
+    String updateQry = "UPDATE Testdata SET enemies_killed = " + achievement.enemyCounter + " WHERE Chair_nr = '" + chairNr + "'";
     if (chairExists) {
       msql.query(updateQry);
     }
@@ -124,7 +124,7 @@ class End {
         int users = msql.getInt("Users");
         int achievementID = msql.getInt("a.achievementID");
         String achievement = msql.getString("a.achievementName");
-        print(users + " "  + achievementID + " "+ achievement);
+        print(users + " "  + achievementID + " " + achievement);
       }
     }
   }
