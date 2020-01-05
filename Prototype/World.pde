@@ -1,8 +1,7 @@
 class World {
-  //class variables
+
   float worldWidth, worldHeight, widthMult, heightMult, bounceMult;
 
-  //constructor
   void construct() {
     widthMult = 2;
     heightMult = 2;
@@ -11,27 +10,31 @@ class World {
     bounceMult = 1;
   }
 
-  void update() {//update
-    updateBorder();//call to method
+  void update() {
+    updateBorder();
   }
 
   void display() {
-    displayBorder();//call to method
+    displayBorder();
   }
 
   void updateBorder() {
-    if (yRef - character.radius - startY > worldHeight/heightMult) {//top border
-      yRef = -worldHeight + yRef - character.size;
+    if (yRef + character.size/2 - startY > worldHeight/2 ) {
+      yRef = (worldHeight/2) - (character.size/2) + startY;
+      character.ySpeed = 0;
     }
-    if (yRef + character.radius - startY < -worldHeight/heightMult ) {//bottom border
-      yRef = worldHeight + yRef + character.size;
+    if (yRef - character.size/2 - startY < -worldHeight/2 ) {
+      yRef = -(worldHeight/2) + (character.size/2) + startY;
+      character.ySpeed = 0;
     }
     
-    if (xRef - character.radius - startX > worldWidth/widthMult ) {//right border
-      xRef = -worldWidth + xRef - character.size;
+    if (xRef + character.size/2 - startX > worldWidth/2 ) {
+      xRef = (worldWidth/2) - (character.size/2) + startX;
+      character.xSpeed = 0;
     }
-    if (xRef + character.radius - startX < -worldWidth/widthMult ) {//left border
-      xRef = worldWidth + xRef + character.size;
+    if (xRef - character.size/2 - startX < -worldWidth/2 ) {
+      xRef = -(worldWidth/2) + (character.size/2) + startX;
+      character.xSpeed = 0;
     }
   }
 
