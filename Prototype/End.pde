@@ -151,7 +151,7 @@ class End {
 
   void stop() {
     //Drop data on close of application
-    String dropQuery = "DELETE FROM Testdata;";
+    String dropQuery = "DELETE FROM Testdata WHERE Chair_nr = '" + chairNr + "';";
     msql.query(dropQuery);
   }
 }
