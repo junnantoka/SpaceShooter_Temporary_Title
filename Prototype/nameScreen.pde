@@ -132,7 +132,7 @@ class NameScreen {
         sql.createUserData();
         msql.close();
         enterWait = 0;
-      } else print("Could not connect to database bitch");
+      } else print("Could not connect to database");
       nameEntered = true;
     }
   }
@@ -163,7 +163,7 @@ class NameScreen {
     }
   }
 
-  void doesChairExist() {
+  void doesChairExist() {//checks if the chair exists already
     if (msql.connect()) {
       msql.query("SELECT * FROM User;");
       while (msql.next()) {
@@ -175,22 +175,22 @@ class NameScreen {
     }
   }
 
-  void uploadName() {
+  void uploadName() {//uploads chair number and username to the database
     if (!chairExists) {
       if (msql.connect()) {
-        msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");
+        msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");//adds new chair and username to the database
       }
     }
     if (chairExists) {
       if (msql.connect()) {
-        msql.query("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'");
+        msql.query("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'"); //adds new username to a existing chair
       }
     }
   }
 
   void deleteUser() {
     if (msql.connect()) {
-      msql.query("DELETE FROM User WHERE Chair_nr = '" + chairNr + "'");
+      msql.query("DELETE FROM User WHERE Chair_nr = '" + chairNr + "'");//deletes User data from the current user
     }
   }
 
