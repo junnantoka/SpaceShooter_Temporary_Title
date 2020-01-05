@@ -127,6 +127,7 @@ class NameScreen {
         print(name + "  ");
         uploadName();
         achievement.insertData();
+        sql.createUserData();
         msql.close();
         enterWait = 0;
       }else print("Could not connect to database bitch");
