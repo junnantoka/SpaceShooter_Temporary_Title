@@ -11,33 +11,36 @@ class Highscore {
   String[] Username = new  String[userCount];
   int[] Highscore = new int[userCount];
   int i;
+  boolean dontLoad = false;
+
   void scoreSetup() {
     sqlSetup();
   }
   void displayScore() {
 
     sql();
-
-    if (!start.start && !pauze.pauze) {
-      textFont(numberFont);
-      fill(250, 250, 250);
-      textSize(36);
-      image(yourScore, 1790, 80, 250, 150);
-      text(score, 1770, 130);
-    }
-
-    if (pauze.pauze && !start.start) {
-      fill(250, 250, 250);
-      textSize(48);
-      text(score, width/2-25, height/16*12);
-
-
-      for (int i = 0; i<Username.length; i++) {
-        text(Username[i], width/64*26, y);
-        text(Highscore[i], width/64*33, y);
-        y = y+yofz;
+    if (!dontLoad) {
+      if (!start.start && !pauze.pauze) {
+        textFont(numberFont);
+        fill(250, 250, 250);
+        textSize(36);
+        image(yourScore, 1790, 80, 250, 150);
+        text(score, 1770, 130);
       }
-      y = height/64*21;
+
+      if (pauze.pauze && !start.start) {
+        fill(250, 250, 250);
+        textSize(48);
+        text(score, width/2-25, height/16*12);
+
+
+        for (int i = 0; i<Username.length; i++) {
+          text(Username[i], width/64*26, y);
+          text(Highscore[i], width/64*33, y);
+          y = y+yofz;
+        }
+        y = height/64*21;
+      }
     }
   }
 
@@ -62,6 +65,8 @@ class Highscore {
   void sqlUpdate() {
     if ( msql.connect() ) {
       msql.query( getHighscores );
+    } else {
+      dontLoad = true;
     }
   }
 
