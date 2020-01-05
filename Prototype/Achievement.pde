@@ -97,12 +97,12 @@ class Achievement {
     if (keysPressed['v']||keysPressed['V']) {     
       timer++;
       if (timer==1) {
-          inAchievement = true;
-          goAchievement = true;
-        } else if (goAchievement) {
-          goAchievement =false;
-          inAchievement = false;
-        }
+        inAchievement = true;
+        goAchievement = true;
+      } else if (goAchievement) {
+        goAchievement =false;
+        inAchievement = false;
+      }
     } else {
       timer=0;
     }
@@ -154,115 +154,121 @@ class Achievement {
   }
 
   void sql() {
-    if (keysPressed['u']||keysPressed['U']) {
-      if (msql.connect()) {
+    if (goAchievement) {
+      if (keysPressed['u']||keysPressed['U']) {
+        if (msql.connect()) {
 
 
-        //Select alles waar de speler een achievementID heeft 
-        //While loop
-        //In die whileloop een getInt van de achievementID
-        //Dan een boel if statements die als ze true geven de gelijkwaardige counter op dat niveau zetten
-        //Dan hoef je maar 1 query te hebben om alle achievements te checken
-        if (updateTimer == 0) {
-          achievementNumber = 1;
-          msql.query(selectQuery);
-          while (msql.next()) {
+          //Select alles waar de speler een achievementID heeft 
+          //While loop
+          //In die whileloop een getInt van de achievementID
+          //Dan een boel if statements die als ze true geven de gelijkwaardige counter op dat niveau zetten
+          //Dan hoef je maar 1 query te hebben om alle achievements te checken
+          if (updateTimer == 0) {
+            achievementNumber = 1;
+            msql.query(selectQuery);
+            while (msql.next()) {
 
-            int achievementGot = msql.getInt("AchievementID");
+              int achievementGot = msql.getInt("AchievementID");
 
-            if (achievementGot == 1) {
-              enemyCounter = 1;
+              if (achievementGot == 1) {
+                enemyCounter = 1;
+              }
+              if (achievementGot == 2) {
+                enemyCounter = 50;
+              }
+              if (achievementGot == 3) {
+                deathCounter = 1;
+              }
+              if (achievementGot == 4) {
+                deathCounter = 15;
+              }
+              if (achievementGot == 5) {
+                healthDropCounter = 1;
+              }
+              if (achievementGot == 6) {
+                powerUpCounter = 1;
+              }
             }
-            if (achievementGot == 2) {
-              enemyCounter = 50;
-            }
-            if (achievementGot == 3) {
-              deathCounter = 1;
-            }
-            if (achievementGot == 4) {
-              deathCounter = 15;
-            }
-            if (achievementGot == 5) {
-              healthDropCounter = 1;
-            }
-            if (achievementGot == 6) {
-              powerUpCounter = 1;
-            }
+            
+            updateTimer++;
           }
-          
-          updateTimer++;
-          
-        }
 
 
-        //Upload achievement data upon updating the database if the user has said achievement
-        if (firstKill) {
-          if (firstKillTimer == 0) {
-            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '1'");
-            firstKillTimer++;
+          //Upload achievement data upon updating the database if the user has said achievement
+          if (firstKill) {
+            if (firstKillTimer == 0) {
+              msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '1'");
+              firstKillTimer++;
+            }
           }
-        }
-        if (dominator) {
-          if (dominatorTimer == 0) {
-            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '2'");
-            dominatorTimer++;
+          if (dominator) {
+            if (dominatorTimer == 0) {
+              msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '2'");
+              dominatorTimer++;
+            }
           }
-        }
-        if (firstDeath) {
-          if (firstDeathTimer == 0) {
-            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '3'");
-            firstDeathTimer++;
+          if (firstDeath) {
+            if (firstDeathTimer == 0) {
+              msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '3'");
+              firstDeathTimer++;
+            }
           }
-        }
-        if (graveyard) {
-          if (graveyardTimer == 0) {
-            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '4'");
-            graveyardTimer++;
+          if (graveyard) {
+            if (graveyardTimer == 0) {
+              msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '4'");
+              graveyardTimer++;
+            }
           }
-        }
-        if (getHealth) {
-          if (getHealthTimer == 0) {
-            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '5'");
-            getHealthTimer++;
+          if (getHealth) {
+            if (getHealthTimer == 0) {
+              msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '5'");
+              getHealthTimer++;
+            }
           }
-        }
-        if (powerUpObtained) {
-          if (powerUpObtainedTimer == 0) {
-            msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '6'");
-            powerUpObtainedTimer++;
+          if (powerUpObtained) {
+            if (powerUpObtainedTimer == 0) {
+              msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '6'");
+              powerUpObtainedTimer++;
+            }
           }
-        }
-      }else print("COULD NOT CONNECT TO DATABASE");
-    }
-  }
-  
-  void resetAchievements(){
-    if(keysPressed['r']||keysPressed['R']){
-      if(msql.connect()){
-        reset();
-        for(int i = 1; i < 7; i++){
-          msql.query("UPDATE User_has_Achievement SET Obtained = 'No' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '5'");
-        }
+        } else print("COULD NOT CONNECT TO DATABASE");
+          msql.close();
       }
     }
   }
 
-  void insertData(){
-    if(!chairExists){
-     for(int i = 1; i < 7; i++){
-       msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`, `Obtained`) VALUES ('" + chairNr + "', '"+i+"', 'No')");
-     }
+  void resetAchievements() {
+    if (goAchievement) {
+      if (keysPressed['r']||keysPressed['R']) {
+        if (msql.connect()) {
+          reset();
+          for (int i = 1; i < 7; i++) {
+            msql.query("UPDATE User_has_Achievement SET Obtained = 'No' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '"+i+"'");
+          }
+        }
+        msql.close();
+      }
+    }
+  }
+
+  void insertData() {
+    if (!chairExists) {
+      for (int i = 1; i < 7; i++) {
+        msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`, `Obtained`) VALUES ('" + chairNr + "', '"+i+"', 'No')");
+      }
     }
   }
 
   void deleteUserAchiements() {
-      if (msql.connect()) {
-        if (deleteTimer == 0) {
-          reset();
-          msql.query("DELETE FROM User_has_Achievement WHERE Chair_nr='" + chairNr + "'");
-          deleteTimer++;
-        }
-      } 
+    if (msql.connect()) {
+      if (deleteTimer == 0) {
+        reset();
+        msql.query("DELETE FROM User_has_Achievement WHERE Chair_nr='" + chairNr + "'");
+        deleteTimer++;
+      }
+    }
+    msql.close();
   }
 
   void reset() {
@@ -284,8 +290,7 @@ class Achievement {
     firstDeathTimer = 0;
     powerUpObtainedTimer = 0;
     graveyardTimer = 0;
-    
+
     updateTimer = 0;
   }
-
 }
