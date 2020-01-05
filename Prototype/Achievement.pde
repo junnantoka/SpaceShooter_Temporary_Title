@@ -3,7 +3,7 @@
 //Dan kan er geinsert worden als het spel opstart en er geen achievementdata gevonden is
 //Dan is de DELETE daadwerkelijk alleen om de data te verwijderen en niet op te resetten.
 class Achievement {
-
+ int achievementTimer = 0;
   boolean inAchievement = false;
 
   int textX = 300;
@@ -93,17 +93,19 @@ class Achievement {
   }
 
   void enterAchievement() {
+    print(timer);
     if (keysPressed['v']||keysPressed['V']) {     
-      timer++;
-      if (timer==1) {
+      achievementTimer++;
+      if (achievementTimer==1 && !goAchievement && !inAchievement) {
         inAchievement = true;
         goAchievement = true;
-      } else if (goAchievement) {
+      } else if (achievementTimer==1 && goAchievement && inAchievement) {
         goAchievement =false;
         inAchievement = false;
+        
       }
     } else {
-      timer=0;
+      achievementTimer=0;
     }
   }
 
