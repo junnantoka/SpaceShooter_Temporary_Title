@@ -162,13 +162,16 @@ void updateGame() {
   if (!nameEntered) nameScreen.update();
   if (nameEntered)  nameScreen.check();
 
-
   if (nameEntered) {
     for (int i = 0; i < star.length; i++) {
       star[i].disp();
     }
     health.healthWarning();
     health.gameOver();
+    
+    for (HealthDropParticle hdp : healthDropParticles) {
+      hdp.updateHealthParticle();
+    }
 
     world.update();
 
@@ -257,18 +260,18 @@ void updateGame() {
       challenge.enterChallengeScreen();
        }
       
-     
+    
     }
-    for (HealthDropParticle hdp : healthDropParticles) {
-      hdp.updateHealthParticle();
-    }
-     
   }
 }
 
 
 void drawGame() {
 
+  for (HealthDropParticle hdp : healthDropParticles) {
+      hdp.draw();
+    }
+  
   if (!nameEntered) {
     nameScreen.display();
   }
@@ -336,9 +339,6 @@ void drawGame() {
     }
     if (!goSettings ) {
       highscore.displayScore();
-    }
-    for (HealthDropParticle hdp : healthDropParticles) {
-      hdp.draw();
     }
   }
 }
