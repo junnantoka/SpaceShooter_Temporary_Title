@@ -5,6 +5,7 @@ class End {
   int opacityGameOver, opacityTitleCard, opacityStarting, opacitycontrols=0;
   int endTimer = 0;
   int testdataID;
+  String users;
   void setup() {
   }
 
@@ -116,10 +117,10 @@ class End {
     if (msql.connect()) {
       msql.query("SELECT User_Chair_nr FROM Testdata;");
       while (msql.next()) {
-        String users = msql.getString("User_Chair_nr");
-        if (users.equals(chairNr)) {
-          msql.query(updateQry);
-        }
+        users = msql.getString("User_Chair_nr");
+      }endTimer++;
+      if (users.equals(chairNr)== true && endTimer == 1) {
+        msql.query(updateQry);
       }
     }
   }
@@ -146,10 +147,10 @@ class End {
     if (msql.connect()) {
       msql.query("SELECT User_Chair_nr FROM Testdata;");
       while (msql.next()) {
-        String users = msql.getString("User_Chair_nr");
-        if (!users.equals(chairNr)) {
-          msql.query(insertQry);
-        }
+        users = msql.getString("User_Chair_nr");
+      }
+      if (users.equals(chairNr) == false) {
+        msql.query(insertQry);
       }
     }
   }
@@ -164,10 +165,10 @@ class End {
       testdataID = msql.getInt("id");
       String dropQuery = "DELETE FROM Testdata WHERE id = '" + testdataID + "' AND User_Chair_nr = '" + chairNr + "';";
       while (msql.next()) {
-        String users = msql.getString("User_Chair_nr");
-        if (users.equals(chairNr)) {
-          msql.query(dropQuery);
-        }
+        users = msql.getString("User_Chair_nr");
+      }
+      if (users.equals(chairNr)) {
+        msql.query(dropQuery);
       }
     }
   }
