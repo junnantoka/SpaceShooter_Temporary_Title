@@ -5,7 +5,7 @@ PImage laserPowerUp, snailgun;
 //health related images
 PImage healthup, healthParticle, healthWarning, healthBar, healthIcon, healthDropIMG;
 //enemy related images
-PImage crusher, shooter, bossone, enemyBullet;
+PImage crusher, shooter, enemyBullet, donker, rainbow;
 //menu related images
 PImage pauzeImg, shooting, movement, startImg, yourScore, highscoreTab, titleCard, checkmark;
 
@@ -32,7 +32,7 @@ public void loadAssets() {
   shooter = loadImage("./data/img/shooter.png");
   snailgun = loadImage("./data/img/snailgun.png");
   startImg = loadImage("./data/img/startImg.png");
-  bossone = loadImage("./data/img/boss.png");
+  rainbow = loadImage("./data/img/boss.png");
   titleCard =loadImage("./data/img/titlecard.png");
   healthIcon = loadImage("./data/img/healthIcon.png");
   highscoreTab = loadImage("./data/img/highscoreTab.png"); 
@@ -42,6 +42,7 @@ public void loadAssets() {
   healthParticle = loadImage("./data/img/healthdropParticle.png");
   healthWarning = loadImage("./data/img/healthwarning.png");
   checkmark = loadImage("./data/img/checkmark.png");
+  donker = loadImage("./data/img/donker.png");
 
   //Load fonts
   numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);

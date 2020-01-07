@@ -45,7 +45,7 @@ public class Enemy {
     noStroke();
     if (type == 0) {
       fill(0, 255, 0);
-      circle(x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY, 50);
+      image(rainbow, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
       //image(snailgun, x + xRef + wobbleX, y + yRef + wobbleY);
     }
     if (type == 1) {

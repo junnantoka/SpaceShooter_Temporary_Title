@@ -57,7 +57,7 @@ class Boss {
     if (!ded ) {
       fill(#8F1BF0);
       if (fullHealth) {
-        image(bossone, x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY, size, size);
+        image(donker, x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY, size, size);
       }
     }
   }
