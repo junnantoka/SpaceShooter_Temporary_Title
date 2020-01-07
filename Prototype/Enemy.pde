@@ -106,7 +106,7 @@ public class Enemy {
       ded = true;
     }
     if (down) {
-      xSpd = 0;
+      xSpd = -xSpd;
       y += direction * ySpd;
     }
   }

@@ -112,11 +112,11 @@ class End {
 
   void updateTestdata() {
     //Update total enemies killed in the database IF user exists
-    String updateQry = "UPDATE Testdata SET enemies_killed = " + achievement.enemyCounter + " WHERE Chair_nr = '" + chairNr + "'";
+    String updateQry = "UPDATE Testdata SET enemies_killed = " + achievement.enemyCounter + " WHERE User_Chair_nr = '" + chairNr + "'";
     if (msql.connect()) {
-      msql.query("SELECT Chair_nr FROM Testdata;");
+      msql.query("SELECT User_Chair_nr FROM Testdata;");
       while (msql.next()) {
-        String users = msql.getString("Chair_nr");
+        String users = msql.getString("User_Chair_nr");
         if (users.equals(chairNr)) {
           msql.query(updateQry);
         }
@@ -142,11 +142,11 @@ class End {
 
   void setTestdata() {
     //Insert data IF the player hasn't played the game yet
-    String insertQry = "INSERT INTO Testdata (`inputs_per_frame`, `enemies_killed`, `time_played`, `Chair_nr`) VALUES('" + input_per_frame + "','" + achievement.enemyCounter + "','" + timerEnd + "','" + chairNr + "');";
+    String insertQry = "INSERT INTO Testdata (`inputs_per_frame`, `enemies_killed`, `time_played`, `User_Chair_nr`) VALUES('" + input_per_frame + "','" + achievement.enemyCounter + "','" + timerEnd + "','" + chairNr + "');";
     if (msql.connect()) {
-      msql.query("SELECT Chair_nr FROM Testdata;");
+      msql.query("SELECT User_Chair_nr FROM Testdata;");
       while (msql.next()) {
-        String users = msql.getString("Chair_nr");
+        String users = msql.getString("User_Chair_nr");
         if (!users.equals(chairNr)) {
           msql.query(insertQry);
         }
@@ -157,14 +157,14 @@ class End {
   void dropTestdata() {
     //Drop data on close of application
     if (msql.connect()) {
-      String userChair = "SELECT id, User.Chair_nr FROM User INNER JOIN Testdata ON User.Chair_nr = Testdata.Chair_nr WHERE Testdata.Chair_nr = '" + chairNr + "';";
+      String userChair = "SELECT id, User.Chair_nr FROM User INNER JOIN Testdata ON User.Chair_nr = Testdata.User_Chair_nr WHERE Testdata.User_Chair_nr = '" + chairNr + "';";
       msql.query(userChair);
       msql.next();
 
       testdataID = msql.getInt("id");
-      String dropQuery = "DELETE FROM Testdata WHERE id = '" + testdataID + "' AND Chair_nr = '" + chairNr + "';";
+      String dropQuery = "DELETE FROM Testdata WHERE id = '" + testdataID + "' AND User_Chair_nr = '" + chairNr + "';";
       while (msql.next()) {
-        String users = msql.getString("Chair_nr");
+        String users = msql.getString("User_Chair_nr");
         if (users.equals(chairNr)) {
           msql.query(dropQuery);
         }
