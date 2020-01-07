@@ -86,9 +86,10 @@ class Highscore {
   }
   // Saves the Highscores upon end of the game if the highscore is higher than any of the top 5.
   void highscoreSave() {
-    //if (healthMax <= 0) {
+    if (healthMax <= 0) {
       highscoreTimer++;
       //highscore part
+      if(canConnect){
       if (highscoreTimer == 1) {
         if ( msql.connect() ) {
           for (int i = 0; i<Username.length; i++) {
@@ -108,7 +109,8 @@ class Highscore {
         } 
         sqlUpdate();
         
-     // }
+     }
+    }
     }
   }
   //reset... lol.

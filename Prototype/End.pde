@@ -56,8 +56,8 @@ class End {
     if (end) {//Checks if game ended
       if ( endTimer == 1) {
         getTestdata();
-        //setTestdata();
-        //updateTestdata();
+        setTestdata();
+        updateTestdata();
         highscore.highscoreSave();
         dropTestdata();
       }
