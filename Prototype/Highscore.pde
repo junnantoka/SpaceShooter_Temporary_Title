@@ -13,7 +13,7 @@ class Highscore {
   int i;
 
   boolean canConnect;
- 
+
   //  Dont worry about this.
   int d = day();
   int m = month();
@@ -21,7 +21,7 @@ class Highscore {
   String day = String.valueOf(d);
   String month = String.valueOf(m);
   String year = String.valueOf(y);
-  
+
   void scoreSetup() {
     sqlSetup();
     //if the game can connect it will proceed to execute msql commands
@@ -89,28 +89,27 @@ class Highscore {
     if (healthMax <= 0) {
       highscoreTimer++;
       //highscore part
-      if(canConnect){
-      if (highscoreTimer == 1) {
-        if ( msql.connect() ) {
-          for (int i = 0; i<Username.length; i++) {
-            if (score>Highscore[i]) {
-              msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
-              String date = year + "-" + month + "-" + day;
-              //mysql.query( "UPDATE Highscore SET dateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"');
+      if (canConnect) {
+        if (highscoreTimer == 1) {
+          if ( msql.connect() ) {
+            for (int i = 0; i<Username.length; i++) {
+              if (score>Highscore[i]) {
+                msql.query( "UPDATE Highscore SET score = '"+score+"' WHERE Chair_nr = '"+chairNr+"' AND '" + score + "' > score" );
+                String date = year + "-" + month + "-" + day;
+                //mysql.query( "UPDATE Highscore SET dateGot = '"+date+"' WHERE Chair_nr = '"+chairNr+"');
+              }
             }
-          }
-          //This makes sure there is no useless data being stored.
-          println("kaka");
-          msql.query( "DELETE FROM Highscore WHERE score = 0" );
-          reset();
-          msql.close();
-        } else {
-          println("Cant connect, stop trying");
-        } 
-        sqlUpdate();
-        
-     }
-    }
+            //This makes sure there is no useless data being stored.
+            println("kaka");
+            msql.query( "DELETE FROM Highscore WHERE score = 0" );
+            reset();
+            msql.close();
+          } else {
+            println("Cant connect, stop trying");
+          } 
+          sqlUpdate();
+        }
+      }
     }
   }
   //reset... lol.

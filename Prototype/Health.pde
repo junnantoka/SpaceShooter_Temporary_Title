@@ -66,7 +66,7 @@ class Health {
       if(deathCounterTimer == 1){
         achievement.deathCounter++;
       }
-      highscore.highscoreSave();
+      //highscore.highscoreSave();
       if (keyPressed) {
         end.button = true;
       }

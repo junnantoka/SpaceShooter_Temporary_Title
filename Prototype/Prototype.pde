@@ -262,8 +262,6 @@ void updateGame() {
     for (HealthDropParticle hdp : healthDropParticles) {
       hdp.updateHealthParticle();
     }
-    
-    highscore.highscoreSave();
      
   }
 }
