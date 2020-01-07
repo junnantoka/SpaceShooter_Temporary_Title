@@ -1,5 +1,5 @@
 class Challenge {
-  boolean challengeOther; //Jij nodigt iemand anders uit.
+  boolean challengeOther = false; //Jij nodigt iemand anders uit.
   boolean youChallenged; //Jij bent uitgenodigd.
   boolean screenVisible; //Het challenge scherm is zichtbaar.
   int otherScore;
@@ -78,9 +78,9 @@ class Challenge {
       rect(675, 850, 200, 100);  
       text("No 'D'", 950, 950);
       rect(925, 850, 200, 100);
-      
+
       if (keysPressed['k']||keysPressed['K']) {
-        if(msql.connect()){
+        if (msql.connect()) {
           msql.query(deleteQuery); //De uitnodiging wordt verwijderd.
         }
       }
@@ -102,11 +102,10 @@ class Challenge {
     }
   }
   void sql() {
+    if (challengeOther) {
       if (msql.connect()) {
-        if (challengeOther) {
-
-          msql.query(insertQuery);
-          msql.query(updateQuery); //Hier worden de queries uitgevoerd.
+        msql.query(insertQuery);
+        msql.query(updateQuery); //Hier worden de queries uitgevoerd.
       }
     }
   }

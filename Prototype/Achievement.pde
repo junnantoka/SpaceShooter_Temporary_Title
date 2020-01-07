@@ -164,9 +164,11 @@ class Achievement {
           if (updateTimer == 0) {                    
             achievementNumber = 1;
             msql.query(selectQuery);
+            
             while (msql.next()) {
 
               int achievementGot = msql.getInt("AchievementID");
+              
               
               //If the achievement data obtained from the database matches an achievement locally it updated the achievement to be true
               if (achievementGot == 1) {

@@ -72,6 +72,7 @@ class Highscore {
   void sqlUpdate() {
     if ( msql.connect() ) {
       msql.query( getHighscores );
+      println("urine");
     } else {
       println("Cant connect, stop trying");
     }
@@ -98,6 +99,7 @@ class Highscore {
             }
           }
           //This makes sure there is no useless data being stored.
+          println("kaka");
           msql.query( "DELETE FROM Highscore WHERE score = 0" );
           reset();
           msql.close();
