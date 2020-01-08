@@ -11,6 +11,10 @@ class End {
 
   void draw() {
     timerEnd++;
+    if (timerEnd == 1 && soundSetting == 2){
+      //titlescreen.stop();
+      doodSound.play();
+    }
     if ( timerEnd <=50) {
       fill(255, 0, 0, opacityGameOver);
       textSize(100);

@@ -11,7 +11,7 @@ PImage pauzeImg, shooting, movement, startImg, yourScore, highscoreTab, titleCar
 
 
 //Soundfile(s)
-SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew, altSong;
+SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew, altSong, doodSound;
 
 //Font(s)
 PFont numberFont;
@@ -57,4 +57,16 @@ public void loadAssets() {
   titlescreen = new SoundFile(this, "./data/audio/soundtrack.wav");
   pew = new SoundFile(this, "./data/audio/pewA.mp3");
   altSong = new SoundFile(this, "./data/audio/altSong.wav");
+  doodSound = new SoundFile(this, "./data/audio/dood.mp3");
+  
+  
+  
+  
+  
+  
+
+
+
+
+
 }
