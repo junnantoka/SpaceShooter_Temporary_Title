@@ -21,7 +21,7 @@ final int minimapPlayerBulletColor = color(0, 0, 200);
 final int minimapEnemyBulletColor = color(200, 0, 0);
 final int minimapEnemyColor = color(160, 10, 230);
 final int minimapHealthdropColor = color(255);
-final int minimapBossColor = color(0, 255, 0);
+final int minimapBossColor = color(255, 0, 0);
 
 
 class Minimap {
