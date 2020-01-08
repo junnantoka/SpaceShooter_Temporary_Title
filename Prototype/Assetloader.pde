@@ -16,9 +16,7 @@ SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew, altS
 //Font(s)
 PFont numberFont;
 
-
 public void loadAssets() {
-
   //Load assets
   pauzeImg = loadImage("./data/img/pauzescreen.png");
   enemyBullet = loadImage("./data/img/enemybullet.png");
@@ -57,16 +55,5 @@ public void loadAssets() {
   titlescreen = new SoundFile(this, "./data/audio/soundtrack.wav");
   pew = new SoundFile(this, "./data/audio/pewA.mp3");
   altSong = new SoundFile(this, "./data/audio/altSong.wav");
-  doodSound = new SoundFile(this, "./data/audio/dood.mp3");
-  
-  
-  
-  
-  
-  
-
-
-
-
-
+  doodSound = new SoundFile(this, "./data/audio/dood.wav");
 }
