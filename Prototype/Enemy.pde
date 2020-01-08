@@ -250,7 +250,7 @@ public class Enemy {
     speed = random(500.0f, 100.0f);
   }
   void invisibleSpawn() {
-    while (x < xRef + height/2 && x > xRef - height/2) {
+    while (dist(x,y,xRef,yRef)>width/3*2) {
       x = random(xMin, xMax);
     }
     while (y < yRef + height/2 && y > yRef - height/2) {
