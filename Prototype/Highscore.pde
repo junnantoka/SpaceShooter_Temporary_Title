@@ -79,7 +79,7 @@ class Highscore {
   }
   // If chair that the game is currently using does not exist then make it exist.
   void sql() {
-    if (!scoreExists) {
+    if(!chairExists){
       msql.query("INSERT INTO Highscore (Chair_nr, score) VALUES ( '" +  chairNr + "', 0 )");
       scoreExists = true;
     }

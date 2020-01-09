@@ -129,7 +129,10 @@ class NameScreen {
         uploadName();
         achievement.insertData();
         highscore.sql();
-        sql.createUserData();
+        
+        if(!chairExists){
+          sql.createUserData();
+        }
         msql.close();
         enterWait = 0;
       } else print("Could not connect to database");
