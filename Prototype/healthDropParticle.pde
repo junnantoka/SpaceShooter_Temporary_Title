@@ -2,10 +2,10 @@ float healthParticleX, healthParticleY, Yspeed, healthParticleSize;
 class HealthDropParticle {
   
   HealthDropParticle() {
-    healthParticleX = character.xLocation+xRef+(random(-character.size, character.size));
-    healthParticleY = character.yLocation+yRef+(random(-character.size, character.size));
+    healthParticleX = width/2+(random(-character.size, character.size));
+    healthParticleY = height/2+(random(-character.size/2, character.size/2));
     healthParticleSize = 35;
-    Yspeed = random(-7, -3);
+    Yspeed = random(-2, -1);
   }
   
   void draw(){

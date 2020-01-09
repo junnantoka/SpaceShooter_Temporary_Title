@@ -69,8 +69,8 @@ class HealthDrop {
     }
     //checks if the player collides with the healthdrop
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize/2 && healthChance == 4) {
-      
-      for (int in = 0; in < 2; in++) {
+      //Spawns a healthdrop particles when healthdrop is picked up.
+      for (int in = 0; in < 25; in++) {
         healthDropParticles.add(new HealthDropParticle());
       }
             
