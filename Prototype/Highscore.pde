@@ -1,5 +1,3 @@
-// Jeroen Officier Acda. hier in komt het score systeem en een manier om een Highscore op
-//  te slaan tussen sessies in.
 class Highscore {
   int score;
   int yofz = 80;
@@ -11,7 +9,7 @@ class Highscore {
   String[] Username = new  String[userCount];
   int[] Highscore = new int[userCount];
   String[] Date = new String[userCount];
-  int i;
+  int amountOfUsersDisplayable;
 
   boolean canConnect;
 
@@ -47,7 +45,7 @@ class Highscore {
       textSize(38);
       text(score, width/2-25, height/16*12);
       if (canConnect == true) {
-        for (int i = 0; i<Username.length; i++) {
+        for (int i = 0; i<amountOfUsersDisplayable; i++) {
           text(Username[i], width/64*25, yloc);
           text(Highscore[i], width/64*30, yloc);
           text(Date[i], width/64*35, yloc);
@@ -61,11 +59,11 @@ class Highscore {
   void sqlSetup() {
     if ( msql.connect() ) {
       msql.query( getHighscores );
-      while (msql.next() && i<userCount) {
-        Username[i] = msql.getString("Username");
-        Highscore[i] = msql.getInt("score");
-        Date[i] = msql.getString("DateGot");
-        i++;
+      while (msql.next() && amountOfUsersDisplayable<userCount) {
+        Username[amountOfUsersDisplayable] = msql.getString("Username");
+        Highscore[amountOfUsersDisplayable] = msql.getInt("score");
+        Date[amountOfUsersDisplayable] = msql.getString("DateGot");
+        amountOfUsersDisplayable++;
       }
     } else {
       println("Cant connect, stop trying");
