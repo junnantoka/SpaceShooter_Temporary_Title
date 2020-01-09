@@ -107,7 +107,7 @@ void setup() {
 
   //Load all assets
   loadAssets();
-  titlescreen.loop();
+  
   //altSong.loop();
   imageMode(CENTER);
 
@@ -151,6 +151,12 @@ void setup() {
   highscore.scoreSetup();
   
   sql.SettingGet();
+  if(soundSetting== 1){
+  titlescreen.loop();
+  }
+  if(soundSetting == 2){
+    badsong.loop();
+  }
 }
 
 void updateGame() {

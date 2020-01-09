@@ -69,10 +69,14 @@ class Settings {
         if (selectY == rectselectSoundGoodY) {
           if (selectX == rectselectSoundGoodX) {
             soundSetting = 1;
+            badsong.stop();
+            titlescreen.loop();
             sql.updateData();
           }
           if (selectX == rectselectSoundBadX) {
             soundSetting = 2;
+            titlescreen.stop();
+            badsong.loop();
             sql.updateData();
           }
         } else if (selectY == rectselectArtGoodY) {
@@ -82,7 +86,7 @@ class Settings {
           }
           if (selectX == rectselectSoundBadX) {
             artSetting = 2;
-           sql.updateData();
+            sql.updateData();
           }
         }
       }
