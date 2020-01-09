@@ -192,6 +192,7 @@ class NameScreen {
   void deleteUser() {
     if (msql.connect()) {
       msql.query("DELETE FROM User WHERE Chair_nr = '" + chairNr + "'");//deletes User data from the current user
+      msql.query("DELETE FROM Highscore WHERE Chair_nr = '" + chairNr + "'");//deletes Highscore data from the current  at the same time as user date gets deleted.
     }
   }
 
