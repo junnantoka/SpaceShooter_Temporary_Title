@@ -55,5 +55,5 @@ public void loadAssets() {
   titlescreen = new SoundFile(this, "./data/audio/soundtrack.wav");
   pew = new SoundFile(this, "./data/audio/pewA.mp3");
   altSong = new SoundFile(this, "./data/audio/altSong.wav");
-  doodSound = new SoundFile(this, "./data/audio/doodsound.mp3");
+  doodSound = new SoundFile(this, "./data/audio/0477.wav");
 }
