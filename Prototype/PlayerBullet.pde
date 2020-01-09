@@ -56,7 +56,7 @@ class PlayerBullet {
         bPXRef = xRef;
         bPYRef = yRef;
         bPLocationX = width/2;
-    bPLocationY = height/2; 
+        bPLocationY = height/2; 
         chSpeedX = character.xSpeed/2;
         chSpeedY = character.ySpeed/2;
         wobbleShotTimer = 1;
