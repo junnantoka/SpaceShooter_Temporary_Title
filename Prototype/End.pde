@@ -153,7 +153,7 @@ class End {
       while (msql.next()) {
         users = msql.getString("User_Chair_nr");
       }
-      if (users.equals(chairNr) == false) {
+      if (!users.equals(chairNr)) {
         msql.query(insertQry);
       }
     }
