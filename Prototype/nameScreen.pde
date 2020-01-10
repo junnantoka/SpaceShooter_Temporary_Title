@@ -126,13 +126,7 @@ class NameScreen {
 
     if (entering == 1) {
       if (msql.connect()) {
-        
-        achievement.insertData();
-        highscore.sql();
-        challenge.chairCheck();
-        end.chairCheck();
-        uploadName();
-        if(!chairExists){
+        if (!chairExists) {
           sql.createUserData();
         }
         msql.close();
@@ -175,6 +169,13 @@ class NameScreen {
         String peop = msql.getString("Chair_nr");
         if (peop.equals(chairNr)) {
           chairExists = true;
+        } else {
+          achievement.insertData();
+          highscore.sql();
+          challenge.chairCheck();
+          end.chairCheck();
+          uploadName();
+          chairExists = true;
         }
       }
     }
@@ -191,7 +192,6 @@ class NameScreen {
         msql.query("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'"); //adds new username to a existing chair
       }
     }
-    chairExists = true;
   }
 
   void deleteUser() {

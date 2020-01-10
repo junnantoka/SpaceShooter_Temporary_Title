@@ -254,10 +254,8 @@ class Achievement {
 
   //If the user doesn't exist adds achievement data with value No
   void insertData() {
-    if (!chairExists) {
       for (int i = 1; i < 7; i++) {
         msql.query("INSERT INTO `zdorpl2`.`User_has_Achievement` (`Chair_nr`, `AchievementID`, `Obtained`) VALUES ('" + chairNr + "', '"+i+"', 'No')");
-      }
     }
   }
 
