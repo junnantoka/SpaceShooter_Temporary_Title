@@ -142,7 +142,11 @@ class End {
       } 
     }
   }
-
+  void chairCheck(){
+    if(!chairExists){
+      msql.query("INSERT INTO Testdata User_Chair_nr VALUES('" + chairNr + "'"); //add new record in Testdata
+    }
+  }
 
   void setTestdata() {
     //Insert data IF the player hasn't played the game yet
