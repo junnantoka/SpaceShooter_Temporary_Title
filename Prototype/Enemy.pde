@@ -90,24 +90,33 @@ public class Enemy {
   }
 
   void check0() {//enemy type 1 (suicide bomber)
-    //movement
-    x += xSpd;
-    if (xSpd > 0) {//goes right
-      xSpd -= 0.05;
-    }
-    if (xSpd < 0) {//goes left
-      xSpd += 0.05;
-    }
-    if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
-      down = true;
-      xSpd = -xSpd;
-    }
-    if (y + radius >= yMax || y - radius <= yMin) {//if movement stops or hits the wall(s)
-      ded = true;
+    if(!down){
+      ySpd = -ySpd;
+      x += direction * xSpd;
+      if (xSpd > 0) {//goes right
+        xSpd -= 0.05;
+      }
+      if (xSpd < 0) {//goes left
+        xSpd += 0.05;
+      }
+      if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
+        xSpd = -xSpd;
+        down = true;
+      }
     }
     if (down) {
       xSpd = -xSpd;
       y += direction * ySpd;
+      if (xSpd > 0) {//goes down
+        ySpd -= 0.05;
+      }
+      if (xSpd < 0) {//goes up
+        ySpd += 0.05;
+      }
+      if (y + radius >= yMax || y - radius <= yMin) {//if it hits the top or bottom border(s)
+        ySpd = -ySpd;
+        down = false;
+      }
     }
   }
 
