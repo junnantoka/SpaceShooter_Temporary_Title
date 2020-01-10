@@ -13,8 +13,6 @@ int amount = 0;
         amount++;
       } 
       if (amount == 0){
-      soundSetting = 1;
-      artSetting = 1;
         createUserData();
         println("kaas 2");
       }
@@ -49,6 +47,11 @@ int amount = 0;
     
       //creates settings if they don't exist yet in the database
        msql.query("INSERT INTO `zdorpl2`.`Setting` (`Chair_nr`, `sound`, `art`) VALUES ('" + chairNr + "', '1', '1')");
-    
+    msql.query( "SELECT User.Chair_nr, Setting.sound, Setting.art FROM User INNER JOIN Setting ON User.Chair_nr = Setting.Chair_nr WHERE User.Chair_nr = '" + chairNr + "'");
+      while ( msql.next() ) {        
+        soundSetting = msql.getInt("Setting.sound");
+        artSetting = msql.getInt("Setting.art");
+        
+      } 
   }
 }
