@@ -130,8 +130,10 @@ class NameScreen {
         achievement.insertData();
         highscore.sql();
         challenge.chairCheck();
-        sql.createUserData();
         uploadName();
+        if(!chairExists){
+          sql.createUserData();
+        }
         msql.close();
         enterWait = 0;
       } else print("Could not connect to database");
@@ -186,6 +188,7 @@ class NameScreen {
     if (chairExists) {
       if (msql.connect()) {
         msql.query("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'"); //adds new username to a existing chair
+        msql.query("INSERT INTO Testdata User_Chair_nr VALUES('" + chairNr + "'"); //add new record in Testdata
       }
     }
     chairExists = true;

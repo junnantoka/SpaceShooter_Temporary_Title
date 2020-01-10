@@ -64,7 +64,6 @@ class End {
         setTestdata();
         updateTestdata();
         highscore.highscoreSave();
-        dropTestdata();
       }
       endTimer++;
     } else endTimer = 0;
@@ -123,7 +122,7 @@ class End {
       while (msql.next()) {
         users = msql.getString("User_Chair_nr");
       }endTimer++;
-      if (users.equals(chairNr)== true && endTimer == 1) {
+      if (chairNr == users && endTimer == 1) {
         msql.query(updateQry);
       }
     }
@@ -153,13 +152,13 @@ class End {
       while (msql.next()) {
         users = msql.getString("User_Chair_nr");
       }
-      if (users.equals(chairNr) == false) {
+      if (chairNr == users) {
         msql.query(insertQry);
       }
     }
   }
 
-  void dropTestdata() {
+  void stop() {
     //Drop data on close of application
     if (msql.connect()) {
       String userChair = "SELECT id, User.Chair_nr FROM User INNER JOIN Testdata ON User.Chair_nr = Testdata.User_Chair_nr WHERE Testdata.User_Chair_nr = '" + chairNr + "';";
