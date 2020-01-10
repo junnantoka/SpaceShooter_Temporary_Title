@@ -20,13 +20,11 @@ class PowerUp {
   float x, y, size, radius;
   int red, green, blue, colorTimer, frames, seconds;
   boolean laserPickUp;
-  int chance = (int) random(0, 999);
+  int chance = 1;
   final int LASERSIZE = 50;
   final int SEC = 60;
   
   PowerUp(){
-    x = xRef;
-    y = yRef;
     size = random(25, 100);
     radius = size / 2;
     laserPickUp = false;
@@ -102,7 +100,7 @@ class PowerUp {
   
   void drawPickUp(){
     fill(255, 0, 0, 150);//fill for the pick up
-    circle(x, y, size);//draw the actual pick up
+    circle(powerUpX + xRef, powerUpY + yRef, size);//draw the actual pick up
   }
   
   void beamUpdate(){
@@ -114,7 +112,9 @@ class PowerUp {
       drawBeam();
     }else{
       laserPickUp = false;//reset laserPickUp
-      drawPickUp();//redraw the pickup
+      if(chance == 1){
+        drawPickUp();//redraw the pickup
+      }
       reset();//reset method
     }
   }
