@@ -126,7 +126,7 @@ class NameScreen {
 
     if (entering == 1) {
       if (msql.connect()) {
-        
+
         msql.close();
         enterWait = 0;
       } else print("Could not connect to database");
@@ -170,14 +170,14 @@ class NameScreen {
           chairExists = true;
         } else {
           chairExists= false;
-          achievement.insertData();
-          highscore.sql();
-          challenge.chairCheck();
-          end.chairCheck();
-          uploadName();
-          chairExists = true;
         }
       }
+      achievement.insertData();
+      highscore.sql();
+      challenge.chairCheck();
+      end.chairCheck();
+      uploadName();
+      chairExists = true;
     }
   }
 
