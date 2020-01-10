@@ -4,7 +4,7 @@ public class Enemy {
   float x, y, radius, xSpd, ySpd, direction, t, speed, circle;
   int type, amount;
   boolean ded, down;
-  final float xMin, xMax, yMin, yMax, cMin, cMax, size;
+  public final float xMin, xMax, yMin, yMax, cMin, cMax, size;
   float xSpeed, ySpeed, chargeDist;
   int spawnLocation, frame, roamTime, chargeWait, chargeFrame, chargeTime, chargeSpeed;
   boolean aggro = false;

@@ -49,7 +49,7 @@ Wave wave = new Wave();
 Star[] star;
 Start start = new Start();
 End end = new End();
-int stars = 300;
+int stars = 500;
 int timer, enemyCounter = 0;
 int timerBullet;
 int bossTotal = 1;
