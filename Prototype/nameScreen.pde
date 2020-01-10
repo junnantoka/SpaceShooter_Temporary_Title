@@ -126,7 +126,7 @@ class NameScreen {
 
     if (entering == 1) {
       if (msql.connect()) {
-
+        uploadName();
         msql.close();
         enterWait = 0;
       } else print("Could not connect to database");
@@ -151,7 +151,7 @@ class NameScreen {
       if (likeTime == 1) {
         if (msql.connect()) {
           msql.query(like);
-          uploadName();
+
           println("chair   name   score");
           while (msql.next()) {
             println(msql.getString("Chair_nr") + "     " + msql.getString("Username") + "     " + msql.getInt("score"));
@@ -172,12 +172,16 @@ class NameScreen {
           chairExists= false;
         }
       }
-      achievement.insertData();
-      highscore.sql();
-      challenge.chairCheck();
-      end.chairCheck();
-      uploadName();
-      chairExists = true;
+      if (!chairExists) {
+        if (msql.connect()) {
+          msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', 'ABC')");//adds new chair and username to the database
+        }
+        achievement.insertData();
+        highscore.sql();
+        challenge.chairCheck();
+        end.chairCheck();
+        chairExists = true;
+      }
     }
   }
 

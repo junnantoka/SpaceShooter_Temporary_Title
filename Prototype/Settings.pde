@@ -1,4 +1,4 @@
-class Settings {
+  class Settings {
   float artX = 800;
   float artY = 250;
   float soundX = 650;
