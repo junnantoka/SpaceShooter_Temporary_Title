@@ -15,6 +15,20 @@ class PowerUp {
 
   float bulletSizeMod = 1.2;
   float bulletMaxSize = 170;
+  
+  //variables for laserbeam
+  float x, y, size, radius;
+  int red, green, blue, colorTimer, frames, seconds;
+  boolean laserPickUp;
+  int chance = 1;
+  final int LASERSIZE = 50;
+  final int SEC = 60;
+  
+  PowerUp(){
+    size = random(25, 100);
+    radius = size / 2;
+    laserPickUp = false;
+  }
 
   void powerUpInfo(float x, float y) {
     powerUpX = x;
@@ -82,5 +96,68 @@ class PowerUp {
   }
 
   void effect() {
+  }
+  
+  void drawPickUp(){
+    fill(255, 0, 0, 150);//fill for the pick up
+    circle(powerUpX + xRef, powerUpY + yRef, size);//draw the actual pick up
+  }
+  
+  void beamUpdate(){
+    colorTimer++; //timer for the color
+    frames++;//keep track of the frames
+    seconds = frames / SEC; //convert frames to seconds
+    beamCollision();
+    if(laserPickUp && seconds < 5){//only draw the beam if the player picked it up and seconds < 5
+      drawBeam();
+    }else{
+      laserPickUp = false;//reset laserPickUp
+      if(chance == 1){
+        drawPickUp();//redraw the pickup
+      }
+      reset();//reset method
+    }
+  }
+  
+  void rngColor(){
+    //generate random color(s) every 2 frames
+    if(colorTimer < 2){
+      red = (int)random(1, 256);
+      green = (int)random(1, 256);
+      blue = (int)random(1, 256);
+    }if(colorTimer > 5){
+      colorTimer = 0;
+    }
+  }
+  
+  void beamCollision(){//checks if the player picks up the beam
+    float distance = dist(character.xLocation, character.yLocation, x, y);
+    
+    if(distance <= character.size/2 + radius){
+      laserPickUp = true;
+    }
+  }
+  
+  void drawBeam(){//draw the actual laser
+    rngColor();//call to method(s)
+    fill(color(red, green, blue));
+    if(keysPressed[RIGHT]){
+      triangle(character.xLocation + character.size/2, character.yLocation, character.xLocation + 40, character.yLocation - 25, character.xLocation + 40, character.yLocation + 25);
+      rect(character.xLocation + character.size, character.yLocation - character.size/2 - 5, width, LASERSIZE);
+    }else if(keysPressed[LEFT]){
+      triangle(character.xLocation - character.size/2, character.yLocation, character.xLocation - 40, character.yLocation - 25, character.xLocation - 40, character.yLocation + 25);
+      rect(character.xLocation - character.size, character.yLocation - character.size/2 - 5, -width, LASERSIZE);
+    }else if(keysPressed[UP]){
+      triangle(character.xLocation, character.yLocation - character.size/2, character.xLocation - 25, character.yLocation - 40, character.xLocation + 25, character.yLocation - 40);
+      rect(character.xLocation - character.size/2 - 5, character.yLocation - character.size, LASERSIZE, -height);
+    }else if(keysPressed[DOWN]){
+      triangle(character.xLocation, character.yLocation + character.size/2, character.xLocation - 25, character.yLocation + 40, character.xLocation + 25, character.yLocation + 40);
+      rect(character.xLocation - character.size/2 - 5, character.yLocation + character.size, LASERSIZE, height);
+    }
+  }
+  
+  void reset(){
+    frames = 0;
+    seconds = 0;
   }
 }

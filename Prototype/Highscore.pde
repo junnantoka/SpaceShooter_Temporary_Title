@@ -79,7 +79,7 @@ class Highscore {
   }
   // If chair that the game is currently using does not exist then make it exist.
   void sql() {
-      msql.query("INSERT INTO Highscore (Chair_nr, score) VALUES ( '" +  chairNr + "', 0 )");
+      msql.query("INSERT INTO Highscore (Chair_nr, score, DateGot) VALUES ( '" +  chairNr + "', '0' , '2001-11-1')");
   }
   // Saves the Highscores upon end of the game if the highscore is higher than any of the top 5.
   void highscoreSave() {
@@ -97,7 +97,7 @@ class Highscore {
               }
             }
             //This makes sure there is no useless data being stored.
-            msql.query( "DELETE FROM Highscore WHERE score = 0" );
+            //msql.query( "DELETE FROM Highscore WHERE score = 0" );
             reset();
             msql.close();
           } else {
