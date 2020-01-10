@@ -109,6 +109,11 @@ class Challenge {
       }
     }
   }
+  void chairCheck(){
+    if(!chairExists){
+      msql.query(insertQuery);
+    }
+  }
   void reset() {
     challengeOther = false;
   }

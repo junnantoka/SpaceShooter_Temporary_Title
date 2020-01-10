@@ -6,7 +6,7 @@ boolean nameSelected;
 char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
 String peoep = "7b";
-boolean chairExists;
+boolean chairExists = false;
 
 class NameScreen {
 
@@ -126,10 +126,12 @@ class NameScreen {
 
     if (entering == 1) {
       if (msql.connect()) {
-        uploadName();
+        
         achievement.insertData();
         highscore.sql();
+        challenge.chairCheck();
         sql.createUserData();
+        uploadName();
         msql.close();
         enterWait = 0;
       } else print("Could not connect to database");
@@ -170,7 +172,6 @@ class NameScreen {
         String peop = msql.getString("Chair_nr");
         if (peop.equals(chairNr)) {
           chairExists = true;
-          scoreExists = true;
         }
       }
     }
@@ -187,6 +188,7 @@ class NameScreen {
         msql.query("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'"); //adds new username to a existing chair
       }
     }
+    chairExists = true;
   }
 
   void deleteUser() {

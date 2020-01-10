@@ -17,10 +17,9 @@ String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as
 String dbUsername = "dorpl2";  //username
 String dbUserPass = "kjWD660lD6ZRA0+7";  //password
 String dbSchema = "zdorpl2";  //default database schema
-String chairNr = "2e"; 
+String chairNr = "1a"; 
 MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//Create new mysql instance
 Sql sql = new Sql();//New instance of "Sql" class
-boolean scoreExists;
 
 int input_per_frame; // Keeps track of player input(s) per frame
 
