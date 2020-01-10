@@ -7,8 +7,8 @@ class Challenge {
   int refreshTimer; //De timer zorgt ervoor dat alles niet altijd opnieuw wordt uitgevoerd.
 
   String insertQuery = //Voegt een record toe met stoelnummer. Degene die jou uitdaagt is in dit geval stoelnummer 1a. 
-    " INSERT INTO Challenge (userChallenging, userChallenged) " +
-    " VALUES ('"+chairNr+"', '1a') ";
+    " INSERT INTO Challenge (userChallenging, userChallenged, User_Chair_Nr) " +
+    " VALUES ('"+chairNr+"', '1a','"+chairNr+"') ";
 
   String updateQuery =  //Degene die jou uitdaagt is 2b en wordt naar 1a gezet.
     " UPDATE Challenge " +
