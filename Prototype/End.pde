@@ -143,7 +143,7 @@ class End {
     }
   }
   void chairCheck(){
-      msql.query("INSERT INTO Testdata User_Chair_nr VALUES('" + chairNr + "')"); //add new record in Testdata
+      msql.query("INSERT INTO Testdata (User_Chair_nr) VALUES('" + chairNr + "')"); //add new record in Testdata
   }
 
   void setTestdata() {
