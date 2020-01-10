@@ -11,12 +11,12 @@ class Wave {
   }
   void update() {
     if (!start.start && !pauze.pauze) {
-      if (waveFrame == newEnemyTimer) {
+      if (waveFrame >= newEnemyTimer) {
         switch(waveNR) {
         case 0:
           waveAmount = 1;
           waveNR++;
-          newEnemyTimer = 250;
+          newEnemyTimer = 1;
           break;
         case 1:
           waveAmount = 5;
