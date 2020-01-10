@@ -168,45 +168,43 @@ class NameScreen {
         String peop = msql.getString("Chair_nr");
         if (peop.equals(chairNr)) {
           chairExists = true;
-        } else {
-          chairExists= false;
         }
-      }
-      if (!chairExists) {
-        if (msql.connect()) {
-          msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', 'ABC')");//adds new chair and username to the database
-        }
-        achievement.insertData();
-        highscore.sql();
-        challenge.chairCheck();
-        end.chairCheck();
-        chairExists = true;
       }
     }
-  }
-
-  void uploadName() {//uploads chair number and username to the database
     if (!chairExists) {
       if (msql.connect()) {
-        msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");//adds new chair and username to the database
+        msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', 'ABC')");//adds new chair and username to the database
       }
-    }
-    if (chairExists) {
-      if (msql.connect()) {
-        msql.query("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'"); //adds new username to a existing chair
-      }
+      achievement.insertData();
+      highscore.sql();
+      challenge.chairCheck();
+      end.chairCheck();
+      chairExists = true;
     }
   }
+}
 
-  void deleteUser() {
+void uploadName() {//uploads chair number and username to the database
+  if (!chairExists) {
     if (msql.connect()) {
-      msql.query("DELETE FROM User WHERE Chair_nr = '" + chairNr + "'");//deletes User data from the current user
-      msql.query("DELETE FROM Highscore WHERE Chair_nr = '" + chairNr + "'");//deletes Highscore data from the current  at the same time as user date gets deleted.
+      msql.query("INSERT INTO User (`Chair_nr`, `Username`) VALUES ( '" +  chairNr + "', '" +  name + "')");//adds new chair and username to the database
     }
   }
-
-
-  void arrow(float middleX, float middleY, float size) {
-    triangle(middleX, middleY - size/2, middleX + size/2, middleY + size/2, middleX - size/2, middleY + size/2);
+  if (chairExists) {
+    if (msql.connect()) {
+      msql.query("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'"); //adds new username to a existing chair
+    }
   }
+}
+
+void deleteUser() {
+  if (msql.connect()) {
+    msql.query("DELETE FROM User WHERE Chair_nr = '" + chairNr + "'");//deletes User data from the current user
+    msql.query("DELETE FROM Highscore WHERE Chair_nr = '" + chairNr + "'");//deletes Highscore data from the current  at the same time as user date gets deleted.
+  }
+}
+
+
+void arrow(float middleX, float middleY, float size) {
+  triangle(middleX, middleY - size/2, middleX + size/2, middleY + size/2, middleX - size/2, middleY + size/2);
 }
