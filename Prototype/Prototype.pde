@@ -151,7 +151,7 @@ void setup() {
   
   sql.SettingGet();
   if(soundSetting== 1){
-  titlescreen.loop();
+    firstScreen.loop();
   }
   if(soundSetting == 2){
     badsong.loop();
