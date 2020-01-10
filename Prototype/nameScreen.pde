@@ -188,6 +188,7 @@ class NameScreen {
     if (chairExists) {
       if (msql.connect()) {
         msql.query("UPDATE User SET Username = '"+ name +"' WHERE Chair_nr = '" + chairNr + "'"); //adds new username to a existing chair
+        msql.query("INSERT INTO Testdata User_Chair_nr VALUES('" + chairNr + "'"); //add new record in Testdata
       }
     }
   }

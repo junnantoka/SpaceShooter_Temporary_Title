@@ -42,7 +42,6 @@ class Achievement {
     "ORDER BY a.AchievementID ASC";
 
 
-
   void achievementScreen() {
     if (goAchievement) {
       noFill();

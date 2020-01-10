@@ -60,8 +60,8 @@ class End {
 
     if (end) {//Checks if game ended
       if ( endTimer == 1) {
-        setTestdata();
         getTestdata();
+        setTestdata();
         updateTestdata();
         highscore.highscoreSave();
       }
