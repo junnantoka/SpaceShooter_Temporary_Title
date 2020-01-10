@@ -126,9 +126,7 @@ class NameScreen {
 
     if (entering == 1) {
       if (msql.connect()) {
-        if (!chairExists) {
-          sql.createUserData();
-        }
+        
         msql.close();
         enterWait = 0;
       } else print("Could not connect to database");
@@ -153,6 +151,7 @@ class NameScreen {
       if (likeTime == 1) {
         if (msql.connect()) {
           msql.query(like);
+          uploadName();
           println("chair   name   score");
           while (msql.next()) {
             println(msql.getString("Chair_nr") + "     " + msql.getString("Username") + "     " + msql.getInt("score"));
@@ -170,6 +169,7 @@ class NameScreen {
         if (peop.equals(chairNr)) {
           chairExists = true;
         } else {
+          chairExists= false;
           achievement.insertData();
           highscore.sql();
           challenge.chairCheck();
