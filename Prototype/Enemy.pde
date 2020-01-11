@@ -45,17 +45,25 @@ public class Enemy {
     noStroke();
     if (type == 0) {
       fill(0, 255, 0);
-      image(rainbow, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
-      //image(snailgun, x + xRef + wobbleX, y + yRef + wobbleY);
+      if (x > -xRef - size && x < -xRef + width + size && y > -yRef - size && y < -yRef + height + size) {
+        image(rainbow, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
+        //image(snailgun, x + xRef + wobbleX, y + yRef + wobbleY);
+      }
     }
     if (type == 1) {
-      image(shooter, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
+      if (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
+        image(shooter, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
+      }
     }
     if (type == 2) {
-      image(shooter, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
+      if (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
+        image(shooter, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
+      }
     }
     if (type == 3) {
-      image(crusher, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
+      if (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
+        image(crusher, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
+      }
     }
     if (type ==4) {
       //print("a");
@@ -90,7 +98,7 @@ public class Enemy {
   }
 
   void check0() {//enemy type 1 (suicide bomber)
-    if(!down){
+    if (!down) {
       ySpd = -ySpd;
       x += direction * xSpd;
       if (xSpd > 0) {//goes right
@@ -259,10 +267,10 @@ public class Enemy {
     speed = random(500.0f, 100.0f);
   }
   void invisibleSpawn() {
-    while (dist(x,y,xRef,yRef)>width/3*2) {
+    while (x > -xRef && x < -xRef + width) {
       x = random(xMin, xMax);
     }
-    while (y < yRef + height/2 && y > yRef - height/2) {
+    while (y > -yRef && y < -yRef + height) {
       y = random(yMin, yMax);
     }
   }
