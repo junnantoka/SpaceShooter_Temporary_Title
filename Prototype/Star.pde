@@ -4,7 +4,7 @@ class Star {
   void construct() {
     xMin = (-world.worldWidth / 2) - width/2;
     xMax = (world.worldWidth / 2) + width/2;
-    yMin = (-world.worldHeight / 2) - height;
+    yMin = (-world.worldHeight / 2) - height/2;
     yMax = (world.worldHeight / 2) + height/2;
     //chooses a random x, y and size
     x = random(xMin - width/2, xMax + width/2);
