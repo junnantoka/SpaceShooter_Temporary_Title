@@ -19,6 +19,7 @@ class NameScreen {
     fill(255);
     textSize(40);
     text("Welcome " + chairNr, width/10, height/4);
+    text("Enter your username by using the arrow keys", width/10, height/8);
     textSize(width/6);
     rect(width / 6, height/2, width/6 * 1.5, width/5);
     rect(width / 6 * 3, height/2, width/6 * 1.5, width/5);

@@ -4,7 +4,7 @@ public class Enemy {
   float x, y, radius, xSpd, ySpd, direction, t, speed, circle;
   int type, amount;
   boolean ded, down;
-  final float xMin, xMax, yMin, yMax, cMin, cMax, size;
+  public final float xMin, xMax, yMin, yMax, cMin, cMax, size;
   float xSpeed, ySpeed, chargeDist;
   int spawnLocation, frame, roamTime, chargeWait, chargeFrame, chargeTime, chargeSpeed;
   boolean aggro = false;
@@ -90,24 +90,33 @@ public class Enemy {
   }
 
   void check0() {//enemy type 1 (suicide bomber)
-    //movement
-    x += xSpd;
-    if (xSpd > 0) {//goes right
-      xSpd -= 0.05;
-    }
-    if (xSpd < 0) {//goes left
-      xSpd += 0.05;
-    }
-    if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
-      down = true;
-      xSpd = -xSpd;
-    }
-    if (y + radius >= yMax || y - radius <= yMin) {//if movement stops or hits the wall(s)
-      ded = true;
+    if(!down){
+      ySpd = -ySpd;
+      x += direction * xSpd;
+      if (xSpd > 0) {//goes right
+        xSpd -= 0.05;
+      }
+      if (xSpd < 0) {//goes left
+        xSpd += 0.05;
+      }
+      if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
+        xSpd = -xSpd;
+        down = true;
+      }
     }
     if (down) {
       xSpd = -xSpd;
       y += direction * ySpd;
+      if (xSpd > 0) {//goes down
+        ySpd -= 0.05;
+      }
+      if (xSpd < 0) {//goes up
+        ySpd += 0.05;
+      }
+      if (y + radius >= yMax || y - radius <= yMin) {//if it hits the top or bottom border(s)
+        ySpd = -ySpd;
+        down = false;
+      }
     }
   }
 

@@ -49,7 +49,7 @@ Wave wave = new Wave();
 Star[] star;
 Start start = new Start();
 End end = new End();
-int stars = 300;
+int stars = 500;
 int timer, enemyCounter = 0;
 int timerBullet;
 int bossTotal = 1;
@@ -151,7 +151,7 @@ void setup() {
   
   sql.SettingGet();
   if(soundSetting== 1){
-  titlescreen.loop();
+    firstScreen.loop();
   }
   if(soundSetting == 2){
     badsong.loop();
@@ -317,6 +317,7 @@ void drawGame() {
         HealthDrop h = healthDrop.get(i);
         h.spawnHealth(i);
       }
+      powerUp.drawPickUp();
       if (!end.end) {
         minimap.draw();
       }

@@ -26,13 +26,12 @@ class PlayerBullet {
     
     if (shoot  ) {
       if (visibilityTimer <3){
-      visibilityTimer++;
-    }
-    if(visibilityTimer ==3){
-      fill(#2DFA46);
-
-      image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
-    }
+        visibilityTimer++;
+      }
+      if(visibilityTimer ==3){
+        fill(#2DFA46);
+        image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
+      }
     }
   }
 
@@ -63,17 +62,21 @@ class PlayerBullet {
         wobbleShot = true;
 
         if (keysPressed[UP]) {
+          pew.play();
           sideVariationY = random(-10, 10);
 
           pBOmhoog = true;
         } else if (keysPressed[DOWN]) {
+          pew.play();
           sideVariationY = random(-10, 10);
           pBNaarbeneden = true;
         }
         if (keysPressed[LEFT]) {
+          pew.play();
           sideVariationX = random(-10, 10);
           pBLinks = true;
         } else if (keysPressed[RIGHT]) {
+          pew.play();
           sideVariationX = random(-10, 10);
           pBRechts = true;
         } 
@@ -87,6 +90,7 @@ class PlayerBullet {
     }  
     if ((!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed[LEFT] && !keysPressed[RIGHT])|| pBTimer== interval) {
       pBTimer = reset;
+      pew.stop();
     } else if (pBTimer> 0) {
       pBTimer++;
     }
@@ -98,7 +102,6 @@ class PlayerBullet {
   void move() {
     //moves bullet and returns to begining
     if (shoot) {
-
       bPLocationY += chSpeedY;
       bPLocationX += chSpeedX;
 

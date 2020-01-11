@@ -32,6 +32,8 @@ class Pauze {
 
     if (timerPauze == 0) {
       if ((keysPressed['p']||keysPressed['P']) && pauze == true) {
+        titlescreen.loop();
+        altSong.stop();
         pauze= false;
         goSettings =false;
         goAchievement = false;
@@ -43,6 +45,8 @@ class Pauze {
           clickB.play();
         }
       } else if ((keysPressed['p']||keysPressed['P']) && pauze == false) {
+        altSong.loop();
+        titlescreen.stop();
         pauze= true;
         timerPauze++;
         timer++;
