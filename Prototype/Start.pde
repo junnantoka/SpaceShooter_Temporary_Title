@@ -1,5 +1,8 @@
 class Start {
   boolean start = true;
+  int frames;
+  final int SEC = 60;
+  int seconds = frames / SEC;
 
   void setup() {
   }
@@ -26,7 +29,13 @@ class Start {
     //detect of het spel verder mag van de speler
     if (keysPressed['P']||keysPressed['p']) {
       firstScreen.stop();
-      titlescreen.loop();
+      if(seconds < 6){
+        frames++;
+        titlescreen.loop();
+      }if(seconds >= 6){
+        titlescreen.stop();
+        frames = 0;
+      }
       start = false;
       goSettings =false;
       goAchievement = false;

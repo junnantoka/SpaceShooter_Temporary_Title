@@ -108,21 +108,21 @@ public class Enemy {
         xSpd += 0.05;
       }
       if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
-        xSpd = -xSpd;
+        xSpd = random(5, 15);
         down = true;
       }
     }
     if (down) {
       xSpd = -xSpd;
       y += direction * ySpd;
-      if (xSpd > 0) {//goes down
+      if (ySpd > 0) {//goes down
         ySpd -= 0.05;
       }
-      if (xSpd < 0) {//goes up
+      if (ySpd < 0) {//goes up
         ySpd += 0.05;
       }
-      if (y + radius >= yMax || y - radius <= yMin) {//if it hits the top or bottom border(s)
-        ySpd = -ySpd;
+      if ((y + radius >= yMax || y - radius <= xMin) || (ySpd <= 0.05 && ySpd >= -0.05)) {//if it hits the top or bottom border(s)
+        ySpd = random(5, 15);
         down = false;
       }
     }
