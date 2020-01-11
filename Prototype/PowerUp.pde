@@ -100,9 +100,4 @@ boolean active = false;
 
   void effect() {
   }
-  
-  void drawPickUp(){
-    fill(255, 0, 0, 150);//fill for the pick up
-    circle(powerUpX + xRef, powerUpY + yRef, size);//draw the actual pick up
-  }
 }
