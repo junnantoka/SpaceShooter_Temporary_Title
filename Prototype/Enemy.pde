@@ -22,8 +22,8 @@ public class Enemy {
     size = 50;
     radius = size/2;
     invisibleSpawn();
-    xSpd = random(5, 15);
-    ySpd = random(5, 15);
+    xSpd = random(-15, 15);
+    ySpd = random(-15, 15);
     direction = random(-2, 2);
     down = false;
     ded = false;
@@ -108,7 +108,7 @@ public class Enemy {
         xSpd += 0.05;
       }
       if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
-        xSpd = random(5, 15);
+        xSpd = random(-15, 15);
         down = true;
       }
     }
@@ -122,7 +122,7 @@ public class Enemy {
         ySpd += 0.05;
       }
       if ((y + radius >= yMax || y - radius <= xMin) || (ySpd <= 0.05 && ySpd >= -0.05)) {//if it hits the top or bottom border(s)
-        ySpd = random(5, 15);
+        ySpd = random(-15, 15);
         down = false;
       }
     }
