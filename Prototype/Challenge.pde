@@ -39,7 +39,7 @@ class Challenge {
       fill(255);
       textSize(50);
       text("Challenge others to beat your score.", 600, 400);
-      text("CHALLENGE!", 650, 500);
+      text("CHALLENGE! 'W'", 650, 500);
       noFill();
       rect(600, 400, 500, 100);  
 
@@ -61,7 +61,7 @@ class Challenge {
 
       if (keysPressed['w']||keysPressed['W']) { //W nodigt anderen uit.
         challengeOther = true;
-        println("hey");
+        text("Challenge sent!",600,300);
       } else {
         challengeOther = false;
       }
@@ -78,8 +78,11 @@ class Challenge {
       rect(675, 850, 200, 100);  
       text("No 'D'", 950, 950);
       rect(925, 850, 200, 100);
-
-      if (keysPressed['k']||keysPressed['K']) {
+      if (keysPressed['a']||keysPressed['A']) {
+      text("Challenge accepted!",600,300);
+      }
+      if (keysPressed['d']||keysPressed['D']) {
+      text("Challenge denied!",600,300);
         if (msql.connect()) {
           msql.query(deleteQuery); //De uitnodiging wordt verwijderd.
         }
