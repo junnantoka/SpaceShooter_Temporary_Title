@@ -53,11 +53,11 @@ class Minimap {
       }
     }*/
 
-    for (int i = 0; i < boss.length; i++) {
+    for (int i = 0; i < boss.size(); i++) {
       fill(minimapBossColor);
-      if (!boss[i].ded) {
-        circle(((boss[i].x)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((boss[i].y)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapBossSize);
-      }
+      Boss a = boss.get(i);
+        circle(((a.x)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((a.y)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapBossSize);
+     
     }
 
     //Enemy bullet on the minimap
@@ -86,10 +86,12 @@ class Minimap {
 
 
       if ((e.x)/minimapSize + minimapX <= minimapXLoc || (e.y)/minimapSize + minimapY <= minimapYLoc) {
-        enemy.remove(i);
+        e.xSpd = -e.xSpd;
+        e.ySpd = -e.ySpd;
       }
-      if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
-        enemy.remove(i);
+      else if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
+        e.xSpd = -e.xSpd;
+        e.ySpd = -e.ySpd;
       } 
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
       //Dit despawnt enemies als ze buiten de playable area gaan, maar gecombineerd met hoe spawning nu werkt wordt het buggy.

@@ -1,6 +1,6 @@
 
 class SnailPowerUp {
-
+boolean active = false;
   float snailPowerUpTimer = 0;
   int snailPowerUpNumber;
   float snailPowerUpXSize = 80;
@@ -22,6 +22,7 @@ class SnailPowerUp {
   void SnailPowerUpInfo(float x, float y) {
     snailPowerUpX = x;
     snailPowerUpY = y;
+    active = true;
   }
 
   void snailPowerUpDate() {
@@ -33,8 +34,8 @@ class SnailPowerUp {
     }
       
     
-    for (int i = 0; i < boss.length; i++) {
-      if (boss[i].down) {
+    for (int i = 0; i < boss.size(); i++) {
+      if (active) {
         if (snailPowerUpTimer < 60) {
           snailPowerUpTimer++;
           snailPowerUpXSize += 0.5;
@@ -54,8 +55,8 @@ class SnailPowerUp {
 
   void display() {
     collision();
-    for (int i = 0; i < boss.length; i++) {
-      if (boss[i].down) {
+    for (int i = 0; i < boss.size(); i++) {
+      if (active) {
         switch(snailPowerUpNumber) {
         case 0:
           if (laserAvailable) {

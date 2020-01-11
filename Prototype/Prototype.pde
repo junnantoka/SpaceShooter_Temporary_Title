@@ -31,7 +31,7 @@ boolean goChallenge = false;
 
 Character character = new Character(); //New instance of "Character" 
 int bosses = 20; //Amount of bosses
-Boss[] boss; //Array of bosses
+ArrayList<Boss> boss; //Array of bosses
 float yRef = height/2; //y reference point
 float xRef = width/2; //x reference point
 
@@ -121,10 +121,8 @@ void setup() {
     star[i].construct();
   }
 
-  boss= new Boss[bosses];
-  for (int i = 0; i < boss.length; i++) {
-    boss[i] = new Boss();
-  }
+  boss= new ArrayList<Boss>();
+  
 
   //initializes playerBullets array and sets starting values
   for (int i = 0; i < bullets; i++) {
@@ -189,10 +187,11 @@ void updateGame() {
     //pauze
 
     if (!pauze.pauze&& !start.start && !end.end) {
-      for (int i = 0; i < boss.length; i++) {
-        boss[i].collision();
-        boss[i].move();
-        boss[i].damageWear();
+      for (int i = boss.size()-1; i >=0; i--) {
+       Boss a = boss.get(i);
+        a.move();
+        a.damageWear();
+        a.collision(i);
       }
       wave.update();
       wobble.wobbleMovement();
@@ -294,8 +293,9 @@ void drawGame() {
     powerUp.display(); 
     snailPowerUp.display(); 
 
-    for (int i = 0; i < boss.length; i++) {
-      boss[i].draw();
+    for (int i = boss.size()-1; i >=0; i--) {
+      Boss a = boss.get(i);
+      a.draw();
     }
 
     if (!start.start) {
@@ -315,7 +315,6 @@ void drawGame() {
         HealthDrop h = healthDrop.get(i);
         h.spawnHealth(i);
       }
-      powerUp.drawPickUp();
       if (!end.end) {
         minimap.draw();
       }
@@ -377,7 +376,7 @@ void spawnBoss() {
   }
   if (bossSpawn == true) {
     for (int i = 0; i<bossTotal; i++) {
-      boss[i].ded = false;
+      boss.add(new Boss());
     }
     bossSpawn = false;
   }

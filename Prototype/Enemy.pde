@@ -22,8 +22,8 @@ public class Enemy {
     size = 50;
     radius = size/2;
     invisibleSpawn();
-    xSpd = random(5, 15);
-    ySpd = random(5, 15);
+    xSpd = random(-15, 15);
+    ySpd = random(-15, 15);
     direction = random(-2, 2);
     down = false;
     ded = false;
@@ -108,21 +108,21 @@ public class Enemy {
         xSpd += 0.05;
       }
       if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
-        xSpd = -xSpd;
+        xSpd = random(-15, 15);
         down = true;
       }
     }
     if (down) {
       xSpd = -xSpd;
       y += direction * ySpd;
-      if (xSpd > 0) {//goes down
+      if (ySpd > 0) {//goes down
         ySpd -= 0.05;
       }
-      if (xSpd < 0) {//goes up
+      if (ySpd < 0) {//goes up
         ySpd += 0.05;
       }
-      if (y + radius >= yMax || y - radius <= yMin) {//if it hits the top or bottom border(s)
-        ySpd = -ySpd;
+      if ((y + radius >= yMax || y - radius <= xMin) || (ySpd <= 0.05 && ySpd >= -0.05)) {//if it hits the top or bottom border(s)
+        ySpd = random(-15, 15);
         down = false;
       }
     }
@@ -213,7 +213,7 @@ public class Enemy {
       for (int i = 0; i < bulletP.length; i++) {
         if ( bulletP[i].shoot && bulletP[i].visibilityTimer ==3) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
-            ded = true;
+            
             //print("Auchiewauchie ");
             achievement.enemyCounter++;
             highscore.score++;
@@ -230,7 +230,11 @@ public class Enemy {
               bulletP[i].reset();
             }
             boemA.play();
+            if (!ded){
             enemy.remove(e);
+            }
+            ded = true;
+            
           }
         }
       }
