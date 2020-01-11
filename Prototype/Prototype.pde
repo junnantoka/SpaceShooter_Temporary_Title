@@ -315,7 +315,6 @@ void drawGame() {
         HealthDrop h = healthDrop.get(i);
         h.spawnHealth(i);
       }
-      powerUp.drawPickUp();
       if (!end.end) {
         minimap.draw();
       }
