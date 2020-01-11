@@ -5,7 +5,7 @@ class HealthDrop {
   boolean spawnHealth;
   int counter;
   boolean healthPickedUp = false;
-
+  int Hparticles = 15;
   HealthDrop(float x, float y) {
     healthX = x;
     healthY = y;
@@ -69,8 +69,8 @@ class HealthDrop {
     //checks if the player collides with the healthdrop
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize/2 && healthChance == 4) {
       //Spawns a healthdrop particles when healthdrop is picked up.
-      for (int in = 0; in < 3; in++) {
-        healthDropParticles.add(new HealthDropParticle());
+      for (int in = 0; in < Hparticles; in++) {
+        healthDropParticles.add(new HealthDropParticle(character.xLocation+random(-character.size/2,character.size/2), character.yLocation+random(-character.size/2,character.size/2), 10, 7));
       }
 
       if (healthMax < startingHealth) {
