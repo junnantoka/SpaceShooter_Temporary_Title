@@ -1,4 +1,4 @@
-  class Settings {
+class Settings {
   float artX = 800;
   float artY = 250;
   float soundX = 650;
@@ -21,10 +21,11 @@
 
   void settingScreen() {
     if (goSettings) {
+
       rectMode(CENTER);
       textFont(numberFont);
       textSize(150);
-      noFill();
+      fill(255);
       text("art", artX, artY);
       text("Sound", soundX, soundY);
       textSize(75);
@@ -32,7 +33,7 @@
       text("bad", textBadX, underArtY);
       text("'good'", textGoodX, underSoundY);
       text("bad", textBadX, underSoundY);
-
+      noFill();
       if (soundSetting == 1) {
         rect(rectselectSoundGoodX, rectselectSoundGoodY, 300, 150);
       }

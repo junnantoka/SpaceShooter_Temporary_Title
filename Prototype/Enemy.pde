@@ -213,7 +213,7 @@ public class Enemy {
       for (int i = 0; i < bulletP.length; i++) {
         if ( bulletP[i].shoot && bulletP[i].visibilityTimer ==3) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
-            ded = true;
+            
             //print("Auchiewauchie ");
             achievement.enemyCounter++;
             highscore.score++;
@@ -230,7 +230,11 @@ public class Enemy {
               bulletP[i].reset();
             }
             boemA.play();
+            if (!ded){
             enemy.remove(e);
+            }
+            ded = true;
+            
           }
         }
       }
