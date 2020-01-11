@@ -88,7 +88,7 @@ class Minimap {
       if ((e.x)/minimapSize + minimapX <= minimapXLoc || (e.y)/minimapSize + minimapY <= minimapYLoc) {
         enemy.remove(i);
       }
-      if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
+      else if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
         enemy.remove(i);
       } 
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 

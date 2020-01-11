@@ -187,7 +187,7 @@ void updateGame() {
     //pauze
 
     if (!pauze.pauze&& !start.start && !end.end) {
-      for (int i = boss.size()-1; i > 0; i--) {
+      for (int i = boss.size()-1; i >=0; i--) {
        Boss a = boss.get(i);
         a.move();
         a.damageWear();
@@ -293,7 +293,7 @@ void drawGame() {
     powerUp.display(); 
     snailPowerUp.display(); 
 
-    for (int i = boss.size()-1; i >0; i--) {
+    for (int i = boss.size()-1; i >=0; i--) {
       Boss a = boss.get(i);
       a.draw();
     }
