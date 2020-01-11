@@ -7,7 +7,7 @@ SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
  Darren de Vré, 500831291
  Jun Phung, 500829487
  */
-
+ int bep = 0;
 import processing.sound.*; //importing the Sound library
 
 NameScreen nameScreen = new NameScreen();
@@ -272,9 +272,10 @@ void updateGame() {
 
 
 void drawGame() {
-
   for (HealthDropParticle hdp : healthDropParticles) {
-      hdp.draw();
+    bep++;
+    println(bep);
+      hdp.Display();
     }
   
   if (!nameEntered) {
