@@ -1,6 +1,6 @@
 //de powerups die de speler kan kopen
 class PowerUp {
-
+boolean active = false;
   float powerUpTimer = 0;
   int powerUpNumber;
   float powerUpSize = 80;
@@ -35,11 +35,13 @@ class PowerUp {
   void powerUpInfo(float x, float y) {
     powerUpX = x;
     powerUpY = y;
+    active = true;
   }
 
   void powerUpDate() {
-    for (int i = 0; i < boss.length; i++) {
-      if (boss[i].down) {
+    for (int i = 0; i < boss.size(); i++) {
+      Boss a = boss.get(i);
+      if (active) {
         if (powerUpTimer < 60) {
           powerUpTimer++;
           powerUpSize += 0.5;
@@ -57,8 +59,9 @@ class PowerUp {
 
   void display() {
     collision();
-    for (int i = 0; i < boss.length; i++) {
-      if (boss[i].down) {
+    for (int i = 0; i < boss.size(); i++) {
+      Boss a = boss.get(i);
+      if (active) {
         switch(powerUpNumber) {
         case 0:
           if (laserAvailable) {

@@ -53,11 +53,11 @@ class Minimap {
       }
     }*/
 
-    for (int i = 0; i < boss.length; i++) {
+    for (int i = 0; i < boss.size(); i++) {
       fill(minimapBossColor);
-      if (!boss[i].ded) {
-        circle(((boss[i].x)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((boss[i].y)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapBossSize);
-      }
+      Boss a = boss.get(i);
+        circle(((a.x)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((a.y)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapBossSize);
+     
     }
 
     //Enemy bullet on the minimap
