@@ -5,45 +5,44 @@ class HealthDrop {
   boolean spawnHealth;
   int counter;
   boolean healthPickedUp = false;
-
-  HealthDrop(float x, float y){
+  int Hparticles = 15;
+  HealthDrop(float x, float y) {
     healthX = x;
     healthY = y;
   }
   void healthSetup() {
     healthSize = 100;
     counter = 0;
-    healthChance = int(random(1,7));
+    healthChance = int(random(1, 7));
   }
 
   void spawnHealth(int i) {
 
     //Checks if health can spawn
 
-      //if the correct number is selected it spawns health
-      if (healthChance == 4) {
-        image(healthDropIMG, (healthX + xRef)+wobbleX+bulletWobbleX, (healthY + yRef)+wobbleY+bulletWobbleY, healthSize,healthSize);
-        
-      } else {
-        healthDrop.remove(i);
-      }
+    //if the correct number is selected it spawns health
+    if (healthChance == 4) {
+      image(healthDropIMG, (healthX + xRef)+wobbleX+bulletWobbleX, (healthY + yRef)+wobbleY+bulletWobbleY, healthSize, healthSize);
+    } else {
+      healthDrop.remove(i);
     }
-  
+  }
+
 
   void updateHealth() {
     //spawns health if the enemy dies
     /*if (i < enemy.size()) {
-      if (e.ded) {
-        spawnHealth = true;
-      }
-
-      if (!spawnHealth) { 
-        //sets the health x and y to the killed enemies' x and y
-        healthX = e.x;
-        healthY = e.y;
-      }
-    }
-    healthCollision();*/
+     if (e.ded) {
+     spawnHealth = true;
+     }
+     
+     if (!spawnHealth) { 
+     //sets the health x and y to the killed enemies' x and y
+     healthX = e.x;
+     healthY = e.y;
+     }
+     }
+     healthCollision();*/
   }
 
   void healthCollision(int i) {
@@ -57,7 +56,7 @@ class HealthDrop {
       //  print("2");
       //  spawnHealth = false;
       //}
-      
+
       //if (xRef + healthX  + healthSize/2> world.worldWidth/2 ) {
       //  print("3");
       //  spawnHealth = false;
@@ -70,10 +69,10 @@ class HealthDrop {
     //checks if the player collides with the healthdrop
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize/2 && healthChance == 4) {
       //Spawns a healthdrop particles when healthdrop is picked up.
-      for (int in = 0; in < 25; in++) {
-        healthDropParticles.add(new HealthDropParticle());
+      for (int in = 0; in < Hparticles; in++) {
+        healthDropParticles.add(new HealthDropParticle(character.xLocation+random(-character.size/2,character.size/2), character.yLocation+random(-character.size/2,character.size/2), 10, 7));
       }
-            
+
       if (healthMax < startingHealth) {
         //gives health when the player collides
         // health += healthGet; 
@@ -89,9 +88,9 @@ class HealthDrop {
     }
   }
   void reset() {
-  //  for(HealthDrop i : healthDrop){
-  //    //i.remove();
-  //  }
-  //  spawnHealth = false;
+    //  for(HealthDrop i : healthDrop){
+    //    //i.remove();
+    //  }
+    //  spawnHealth = false;
   }
 }

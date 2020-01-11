@@ -11,12 +11,13 @@ class Wave {
   }
   void update() {
     if (!start.start && !pauze.pauze) {
-      if (waveFrame >= newEnemyTimer) {
+
+      if (waveFrame >= newEnemyTimer || (enemy.size()<1)) {
         switch(waveNR) {
         case 0:
           waveAmount = 1;
           waveNR++;
-          newEnemyTimer = 1;
+          newEnemyTimer = 250;
           break;
         case 1:
           waveAmount = 5;
@@ -37,7 +38,10 @@ class Wave {
         waveFrame = 0;
       }
     }
-    waveFrame++;
+    if (waveNR > 0) {
+      waveFrame++;
+      text(waveNR, width/2, 100);
+    }
   }
 
   void newWave(int waveAmount) {
@@ -45,8 +49,8 @@ class Wave {
       enemy.add(new Enemy());
     }
   }
-  
-  
+
+
   void reset() {
     construct();
   }

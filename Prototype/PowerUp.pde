@@ -20,13 +20,11 @@ boolean active = false;
   float x, y, size, radius;
   int red, green, blue, colorTimer, frames, seconds;
   boolean laserPickUp;
-  int chance = (int) random(0, 999);
+  int chance = 1;
   final int LASERSIZE = 50;
   final int SEC = 60;
   
   PowerUp(){
-    x = xRef;
-    y = yRef;
     size = random(25, 100);
     radius = size / 2;
     laserPickUp = false;
@@ -105,7 +103,7 @@ boolean active = false;
   
   void drawPickUp(){
     fill(255, 0, 0, 150);//fill for the pick up
-    circle(x, y, size);//draw the actual pick up
+    circle(powerUpX + xRef, powerUpY + yRef, size);//draw the actual pick up
   }
   
   void beamUpdate(){
@@ -117,7 +115,9 @@ boolean active = false;
       drawBeam();
     }else{
       laserPickUp = false;//reset laserPickUp
-      drawPickUp();//redraw the pickup
+      if(chance == 1){
+        drawPickUp();//redraw the pickup
+      }
       reset();//reset method
     }
   }
@@ -134,7 +134,7 @@ boolean active = false;
   }
   
   void beamCollision(){//checks if the player picks up the beam
-    float distance = dist(character.xLocation, character.yLocation, x, y);
+    float distance = dist(character.xLocation, character.yLocation, x + xRef, y + yRef);
     
     if(distance <= character.size/2 + radius){
       laserPickUp = true;
@@ -144,18 +144,19 @@ boolean active = false;
   void drawBeam(){//draw the actual laser
     rngColor();//call to method(s)
     fill(color(red, green, blue));
+    noStroke();
     if(keysPressed[RIGHT]){
-      triangle(character.xLocation + character.size/2, character.yLocation, character.xLocation + 40, character.yLocation - 25, character.xLocation + 40, character.yLocation + 25);
-      rect(character.xLocation + character.size, character.yLocation - character.size/2 - 5, width, LASERSIZE);
+      triangle(character.controlX + character.size/2, character.controlY, character.controlX + 40, character.controlY - 25, character.controlX + 40, character.controlY + 25);
+      rect(character.controlX + character.size, character.controlY - character.size/2 - 5, width, LASERSIZE);
     }else if(keysPressed[LEFT]){
-      triangle(character.xLocation - character.size/2, character.yLocation, character.xLocation - 40, character.yLocation - 25, character.xLocation - 40, character.yLocation + 25);
-      rect(character.xLocation - character.size, character.yLocation - character.size/2 - 5, -width, LASERSIZE);
+      triangle(character.controlX - character.size/2, character.controlY, character.controlX - 40, character.controlY - 25, character.controlX - 40, character.controlY + 25);
+      rect(character.controlX - character.size, character.controlY - character.size/2 - 5, -width, LASERSIZE);
     }else if(keysPressed[UP]){
-      triangle(character.xLocation, character.yLocation - character.size/2, character.xLocation - 25, character.yLocation - 40, character.xLocation + 25, character.yLocation - 40);
-      rect(character.xLocation - character.size/2 - 5, character.yLocation - character.size, LASERSIZE, -height);
+      triangle(character.controlX, character.controlY - character.size/2, character.controlX - 25, character.controlY - 40, character.controlX + 25, character.controlY - 40);
+      rect(character.controlX - character.size/2 - 5, character.controlY - character.size, LASERSIZE, -height);
     }else if(keysPressed[DOWN]){
-      triangle(character.xLocation, character.yLocation + character.size/2, character.xLocation - 25, character.yLocation + 40, character.xLocation + 25, character.yLocation + 40);
-      rect(character.xLocation - character.size/2 - 5, character.yLocation + character.size, LASERSIZE, height);
+      triangle(character.controlX, character.controlY + character.size/2, character.controlX - 25, character.controlY + 40, character.controlX + 25, character.controlY + 40);
+      rect(character.controlX, character.yLocation - character.controlY + 40, LASERSIZE, height/2);
     }
   }
   

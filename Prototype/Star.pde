@@ -1,39 +1,26 @@
 class Star {
   float x, y, size;
-
+  float xMin, xMax, yMin, yMax;
   void construct() {
+    xMin = (-world.worldWidth / 2) - width/2;
+    xMax = (world.worldWidth / 2) + width/2;
+    yMin = (-world.worldHeight / 2) - height/2;
+    yMax = (world.worldHeight / 2) + height/2;
     //chooses a random x, y and size
-    x = random(-width, 2*width);
+    x = random(xMin - width/2, xMax + width/2);
     y = random(-height, 2 * height);
     size = random(3, 6);
   }
-  
+
   void disp() {
-    
+
     //draws a circle on the random x and y
     fill(255);
     stroke(2);
-    circle(x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY, size);
+    if (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
+      circle(x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY, size);
+    }
     //text(xRef, width/2, 100);
     //text(yRef, width/2, 300);
-    respawn();
-  }
-  void respawn() {
-    //checks if the stars spawn outside the playarea and if they do ranspawn them back in
-    if (x + xRef < -width) {
-      x = random(-xRef + width, -xRef + 2 * width);
-    }
-
-    if (x + xRef > 2*width) {
-      x = random(-xRef - width, -xRef);
-    }
-
-    if (y + yRef < -height) {
-      y = random(-yRef + height, -yRef + 2 * height);
-    }
-
-    if (y + yRef > 2*height) {
-      y = random(-yRef - height, -yRef);
-    }
   }
 }

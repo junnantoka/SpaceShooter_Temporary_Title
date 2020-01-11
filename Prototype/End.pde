@@ -51,6 +51,7 @@ class End {
       goAchievement = false;
       reset();
       timer++;
+      titlescreen.loop();
       if (random(0, 1) >= 0.5) {
         clickA.play();
       } else {
@@ -59,6 +60,7 @@ class End {
     }
 
     if (end) {//Checks if game ended
+      titlescreen.stop();
       if ( endTimer == 1) {
         getTestdata();
         setTestdata();

@@ -7,7 +7,6 @@ SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
  Darren de Vré, 500831291
  Jun Phung, 500829487
  */
-
 import processing.sound.*; //importing the Sound library
 
 NameScreen nameScreen = new NameScreen();
@@ -49,7 +48,7 @@ Wave wave = new Wave();
 Star[] star;
 Start start = new Start();
 End end = new End();
-int stars = 300;
+int stars = 500;
 int timer, enemyCounter = 0;
 int timerBullet;
 int bossTotal = 1;
@@ -96,7 +95,7 @@ int pBTimer = 0;
 void setup() {  
   fullScreen(P2D);
   noCursor();
-  
+
   //checks if the chair exists in the database
   nameScreen.doesChairExist();
 
@@ -106,7 +105,7 @@ void setup() {
 
   //Load all assets
   loadAssets();
-  
+
   //altSong.loop();
   imageMode(CENTER);
 
@@ -146,12 +145,12 @@ void setup() {
   playerParticle = new ArrayList<PlayerDamageEffect>();
 
   highscore.scoreSetup();
-  
+
   sql.SettingGet();
-  if(soundSetting== 1){
-  titlescreen.loop();
+  if (soundSetting== 1) {
+    firstScreen.loop();
   }
-  if(soundSetting == 2){
+  if (soundSetting == 2) {
     badsong.loop();
   }
 }
@@ -171,10 +170,6 @@ void updateGame() {
     }
     health.healthWarning();
     health.gameOver();
-    
-    for (HealthDropParticle hdp : healthDropParticles) {
-      hdp.updateHealthParticle();
-    }
 
     world.update();
 
@@ -233,6 +228,13 @@ void updateGame() {
       powerUp.powerUpDate();
       snailPowerUp.snailPowerUpDate();
 
+      for (HealthDropParticle hdp : healthDropParticles) {
+        hdp.move();
+      }
+      for (int i = 0; i < healthDropParticles.size(); i++) {
+        HealthDropParticle hdp = healthDropParticles.get(i);
+        hdp.reset(i);
+      }
 
       //explosion van Lennart wanneer enemies sterven
       for (Explosion ex : explosion) {
@@ -252,36 +254,33 @@ void updateGame() {
       }
     }
     if (end.end ||start.start||pauze.pauze) {
-     if (!achievement.inAchievement && !goChallenge) {
+      if (!achievement.inAchievement && !goChallenge) {
         setting.enterSettings();
         setting.settingUpdate();
       }
-      if (!goSettings && !goChallenge){
-      achievement.enterAchievement();
-      achievement.achievementUpdate();
+      if (!goSettings && !goChallenge) {
+        achievement.enterAchievement();
+        achievement.achievementUpdate();
       }
-       if (!achievement.inAchievement && !goSettings) {
-      challenge.enterChallengeScreen();
-       }
-      
-    
+      if (!achievement.inAchievement && !goSettings) {
+        challenge.enterChallengeScreen();
+      }
     }
   }
 }
 
 
 void drawGame() {
-
-  for (HealthDropParticle hdp : healthDropParticles) {
-      hdp.draw();
-    }
-  
   if (!nameEntered) {
     nameScreen.display();
   }
   if (nameEntered) {
     //draws stars
     world.display();
+
+    for (HealthDropParticle hdp : healthDropParticles) {
+      hdp.display();
+    }
 
     for (Explosion ex : explosion) {
       ex.display();
@@ -316,6 +315,7 @@ void drawGame() {
         HealthDrop h = healthDrop.get(i);
         h.spawnHealth(i);
       }
+      powerUp.drawPickUp();
       if (!end.end) {
         minimap.draw();
       }

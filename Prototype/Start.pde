@@ -25,6 +25,8 @@ class Start {
   void update() {
     //detect of het spel verder mag van de speler
     if (keysPressed['P']||keysPressed['p']) {
+      firstScreen.stop();
+      titlescreen.loop();
       start = false;
       goSettings =false;
       goAchievement = false;

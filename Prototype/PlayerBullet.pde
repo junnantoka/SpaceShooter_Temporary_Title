@@ -90,6 +90,7 @@ class PlayerBullet {
     }  
     if ((!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed[LEFT] && !keysPressed[RIGHT])|| pBTimer== interval) {
       pBTimer = reset;
+      pew.stop();
     } else if (pBTimer> 0) {
       pBTimer++;
     }
@@ -101,7 +102,6 @@ class PlayerBullet {
   void move() {
     //moves bullet and returns to begining
     if (shoot) {
-
       bPLocationY += chSpeedY;
       bPLocationX += chSpeedX;
 

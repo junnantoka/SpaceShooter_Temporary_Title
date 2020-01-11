@@ -1,18 +1,34 @@
-float healthParticleX, healthParticleY, Yspeed, healthParticleSize;
 class HealthDropParticle {
+  float healthParticleX, healthParticleY, xSpeed, ySpeed, slowdown, speedVariation, speedLimit,fade;
+  float density, fadeSpeed;
   
-  HealthDropParticle() {
-    healthParticleX = width/2+(random(-character.size, character.size));
-    healthParticleY = height/2+(random(-character.size/2, character.size/2));
-    healthParticleSize = 35;
-    Yspeed = random(-2, -1);
+  HealthDropParticle(float spawnX, float spawnY, float speed, float diss) {
+    healthParticleX = spawnX;
+    healthParticleY = spawnY;
+    speedVariation = speed;
+    ySpeed = random(-speedVariation, speedVariation);
+    fadeSpeed = random(diss-3,diss+3);
+    density = 255;
+    slowdown = 0.1;
+    speedLimit = 1;
+    fade = 255;
   }
-  
-  void draw(){
-    image(healthParticle, healthParticleX, healthParticleY, healthParticleSize, healthParticleSize);
+
+  void reset(int inst) {
+    if(density<1 || ((xSpeed < speedLimit && xSpeed >-speedLimit) && (ySpeed < speedLimit && ySpeed >-speedLimit) )){
+      healthDropParticles.remove(inst);
+    }
   }
-  
-  void updateHealthParticle(){
-    healthParticleY= healthParticleY+Yspeed;
+
+  void move() {
+    healthParticleX+=xSpeed;
+    healthParticleY+=ySpeed;
+    fade = fade - fadeSpeed;
+  }
+
+  void display() {
+    image(healthParticle,healthParticleX + xRef + wobbleX+bulletWobbleX, healthParticleY + yRef + wobbleY+bulletWobbleY);
+    tint(density, fade);
+    tint(255);
   }
 }
