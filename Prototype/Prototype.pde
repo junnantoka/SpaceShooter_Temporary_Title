@@ -41,7 +41,6 @@ Wobble wobble = new Wobble(); //New instance of "Wobble"
 
 ArrayList<Explosion> explosion; //ArrayList explosion
 
-
 Wave wave = new Wave(); //New instance of "Wave"
 
 Star[] star; //Array of stars
@@ -114,7 +113,7 @@ void setup() {
   }
 
   boss = new ArrayList<Boss>();
-  
+
   //initializes playerBullets array and sets starting values
   for (int i = 0; i < bullets; i++) {
     bulletP[i] = new PlayerBullet();
@@ -132,7 +131,6 @@ void setup() {
   explosion = new ArrayList<Explosion>();
 
   healthDropParticles = new ArrayList<HealthDropParticle>();
-
 
   highscore.scoreSetup();
 
@@ -160,7 +158,6 @@ void updateGame() {
     }
     health.healthWarning();
     health.gameOver();
-    println(powerUp.powerUpNumber);
     world.update();
 
     if (start.start && timer == 0) {
@@ -178,7 +175,7 @@ void updateGame() {
 
     if (!pauze.pauze&& !start.start && !end.end) {
       for (int i = boss.size()-1; i >=0; i--) {
-       Boss a = boss.get(i);
+        Boss a = boss.get(i);
         a.move();
         a.damageWear();
         a.collision(i);

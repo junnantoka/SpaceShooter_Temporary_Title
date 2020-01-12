@@ -40,7 +40,7 @@ class Minimap {
     circle(((character.xLocation - xRef)/minimapSize + minimapX) + wobbleX+bulletWobbleX, ((character.yLocation - yRef)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapPlayerSize);
 
     //Player bullet on the minimap
-    /*fill(minimapPlayerBulletColor);
+    fill(minimapPlayerBulletColor);
     for (int i = 0; i <bullets; i++) {
       if (bulletP[i].shoot) {
         circle((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX, (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY, minimapBulletSize);
@@ -51,32 +51,31 @@ class Minimap {
       if ((bulletP[i].bPLocationXEnd - xRef)/minimapSize + minimapX >= minimapXLocMax || (bulletP[i].bPLocationYEnd - yRef)/minimapSize + minimapY >= minimapYLocMax) {
         bulletP[i].reset();
       }
-    }*/
+    }
 
     for (int i = 0; i < boss.size(); i++) {
       fill(minimapBossColor);
       Boss a = boss.get(i);
-        circle(((a.x)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((a.y)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapBossSize);
-     
+      circle(((a.x)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((a.y)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapBossSize);
     }
 
     //Enemy bullet on the minimap
     /*fill(minimapEnemyBulletColor);
-    for (int i =0; i<eBullet.size(); i++) {
-      EnemyBullet e =eBullet.get(i);
-      if (e.shot) {
-      circle((e.bulletX)/minimapSize + minimapX, (e.bulletY)/minimapSize + minimapY, minimapBulletSize);
-      }
-    }
-
+     for (int i =0; i<eBullet.size(); i++) {
+     EnemyBullet e =eBullet.get(i);
+     if (e.shot) {
+     circle((e.bulletX)/minimapSize + minimapX, (e.bulletY)/minimapSize + minimapY, minimapBulletSize);
+     }
+     }
+     
     /*for (int i = eBullet.size() -1; i>0; i--) {
-      EnemyBullet e =eBullet.get(i);
-      if ((e.bulletX)/minimapSize + minimapX >= minimapXLocMax || (e.bulletY)/minimapSize + minimapY >= minimapYLocMax) {
-        eBullet.remove(i);
-      } else if ((e.bulletX)/minimapSize + minimapX <= minimapXLoc || (e.bulletY)/minimapSize + minimapY <= minimapYLoc) {
-        eBullet.remove(i);
-      } 
-    }*/
+     EnemyBullet e =eBullet.get(i);
+     if ((e.bulletX)/minimapSize + minimapX >= minimapXLocMax || (e.bulletY)/minimapSize + minimapY >= minimapYLocMax) {
+     eBullet.remove(i);
+     } else if ((e.bulletX)/minimapSize + minimapX <= minimapXLoc || (e.bulletY)/minimapSize + minimapY <= minimapYLoc) {
+     eBullet.remove(i);
+     } 
+     }*/
 
     //Enemy on the minimap
     fill(minimapEnemyColor);
@@ -88,6 +87,9 @@ class Minimap {
       if ((e.x)/minimapSize + minimapX <= minimapXLoc || (e.y)/minimapSize + minimapY <= minimapYLoc) {
         e.xSpd = -e.xSpd;
         e.ySpd = -e.ySpd;
+      } else if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
+        e.xSpd = -e.xSpd;
+        e.ySpd = -e.ySpd;
       }
       else if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
         enemy.remove(i);
@@ -95,13 +97,13 @@ class Minimap {
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
       //Dit despawnt enemies als ze buiten de playable area gaan, maar gecombineerd met hoe spawning nu werkt wordt het buggy.
     }
-
+    if(snailPowerUp.active) {
+    image(snailIcon, ((snailPowerUp.snailPowerUpX)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((snailPowerUp.snailPowerUpY)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapHealthdropSize, minimapHealthdropSize);
+    } 
     //Healthdrop on the minimap
     fill(minimapHealthdropColor);
     for (HealthDrop i : healthDrop) {
-      
-        image(healthIcon,((i.healthX)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((i.healthY)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapHealthdropSize, minimapHealthdropSize);
-      
+      image(healthIcon, ((i.healthX)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((i.healthY)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapHealthdropSize, minimapHealthdropSize);
     }
   }
 }

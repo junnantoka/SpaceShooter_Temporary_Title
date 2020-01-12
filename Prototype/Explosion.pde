@@ -25,9 +25,9 @@ class Explosion {
     }
   }
 
-  void move() {
-    x+=xSpeed;
-    y+=ySpeed;
+  void move() {//Actual movement
+    x += xSpeed;
+    y += ySpeed;
     if (ySpeed > 0) {
       ySpeed-=slowdown;
     }

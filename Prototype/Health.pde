@@ -1,4 +1,6 @@
-float startingHealth = 10; //health which the player starts with
+
+float startingHealth = 10000; //Deze integer geeft aan hoeveel health je aan het begin hebt.
+
 
 float healthMax; 
 boolean getsHit = false; //Deze boolean is false, omdat je niet geraakt wordt door een enemy.
@@ -10,15 +12,13 @@ int healthBarHeight = 30;
 
 float healthBarXLighting = 500; //Lighting.
 float healthBarYLighting = 27;
-int enemyWobbleDuration = 10;
-int enemyIntensity = 15;
 final int healthBarGone = 49; //Dit voorkomt dat de healthbar een - getal wordt.
-
-float healthWarningStart = (startingHealth / 100) * 30;
-int healthWarningTimer;
-
-
 class Health {
+  int enemyWobbleDuration = 10;
+  int enemyIntensity = 15;
+
+  float healthWarningStart = (startingHealth / 100) * 30;
+  int healthWarningTimer;
 
   void setup() {
     healthMax = startingHealth; //Starting health can't be higher than the maximum.
@@ -63,15 +63,15 @@ class Health {
     if (healthMax <= 0) {
       end.end = true;
       deathCounterTimer++;
-      if(deathCounterTimer == 1){
+      if (deathCounterTimer == 1) {
         achievement.deathCounter++;
       }
       //highscore.highscoreSave();
       if (keyPressed) {
         end.button = true;
       }
-    } else{
-     deathCounterTimer = 0; 
+    } else {
+      deathCounterTimer = 0;
     }
   }
   void reset() {
