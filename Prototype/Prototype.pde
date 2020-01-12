@@ -18,7 +18,7 @@ String dbUserPass = "kjWD660lD6ZRA0+7";  //password
 String dbSchema = "zdorpl2";  //default database schema
 String chairNr = "1a"; //hardcoded chairnr
 MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//Create new mysql instance
-Sql sql = new Sql();//New instance of "Sql" class
+Sql sql = new Sql();
 
 int input_per_frame; // Keeps track of player input(s) per frame
 
@@ -30,13 +30,13 @@ boolean goAchievement = false;
 boolean goChallenge = false;
 
 Character character = new Character(); //New instance of "Character" 
-int bosses = 20; //Amount of bosses
-ArrayList<Boss> boss; //Array of bosses
+int bosses = 20; 
+ArrayList<Boss> boss; 
 float yRef = height/2; //y reference point
 float xRef = width/2; //x reference point
 
-float wobbleX, wobbleY = 0;//initialize wobble x & y
-int wobbleTimer = 0; // Wobble timer
+float wobbleX, wobbleY = 0;
+int wobbleTimer = 0; 
 Wobble wobble = new Wobble(); //New instance of "Wobble"
 
 ArrayList<Explosion> explosion; //ArrayList explosion
@@ -47,12 +47,12 @@ Wave wave = new Wave(); //New instance of "Wave"
 Star[] star; //Array of stars
 Start start = new Start(); //New instance of "Start"
 End end = new End();  //New instance of "End"
-int stars = 500; //hardcoded stars
-int timer, enemyCounter = 0;//timer, enemy counter
-int timerBullet; //timer for the bullets
+int stars = 500; 
+int timer, enemyCounter = 0;
+int timerBullet; 
 int bossTotal = 1; //hardcoded bossTotal
 int enemiesRequiredStart = 10;  //enemies required for a boss to spawn
-int enemiesRequired = enemiesRequiredStart; //convert to another variable
+int enemiesRequired = enemiesRequiredStart; 
 boolean bossSpawn = false; //boolean for boss spawn
 
 //Healthdrops
