@@ -56,34 +56,18 @@ boolean active = false;
   
 
   void display() {
-    
-    
-     
-      if (active) {
-        switch(powerUpNumber) {
-        case 0:
-          if (laserAvailable) {
-            lasercollision = true;
-            image(laserPowerUp, powerUpX + xRef + wobbleX+bulletWobbleX, powerUpY + yRef + wobbleY+bulletWobbleY, powerUpSize, powerUpSize);
-          }
-          break;
-        case 1:
-          image(healthup, powerUpX + xRef + wobbleX, powerUpY + yRef + wobbleY, powerUpSize, powerUpSize);
+    if (active) {
+      switch(powerUpNumber) {
+      case 0:
+        if (laserAvailable) {
+          lasercollision = true;
+          image(laserPowerUp, powerUpX + xRef + wobbleX+bulletWobbleX, powerUpY + yRef + wobbleY+bulletWobbleY, powerUpSize, powerUpSize);
         }
-
-
-
-        ////meer max health
-        //    startingHealth+= healthExtra;
-        //    healthLost = healthBarWidth/startingHealth;
-
-
-        ////bigger bullet   
-        //    for(int i = 0; i < bullets; i++){ 
-        //      bulletP[i].bPSize *= bulletSizeMod;
-        //      if(bulletP[i].bPSize >= bulletMaxSize){
-        //        bulletP[i].bPSize = bulletMaxSize;
-        }
+        break;
+      case 1:
+        image(healthup, powerUpX + xRef + wobbleX, powerUpY + yRef + wobbleY, powerUpSize, powerUpSize);
+      }
+    }
   }
 
   void collision() {
@@ -96,8 +80,5 @@ boolean active = false;
         powerUpNumber++;   
       }
     }
-  }
-
-  void effect() {
   }
 }
