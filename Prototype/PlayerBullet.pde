@@ -2,6 +2,7 @@
 boolean wobbleShot = false;
 int wobbleShotTimer = 0;
 int bulletWobbleX, bulletWobbleY = 0;
+int visibilitybullet =3;
 class PlayerBullet {
   float bPLocationX, bPLocationY, bPSize, chSpeedX, chSpeedY, bPXRef, bPYRef, bPXRefEnd, bPYRefEnd, bPLocationXEnd, bPLocationYEnd, sideVariationX, sideVariationY;
   boolean pBLinks, pBRechts, pBOmhoog, pBNaarbeneden, shoot;
@@ -25,10 +26,10 @@ class PlayerBullet {
 
 
     if (shoot  ) {
-      if (visibilityTimer <1) {
+      if (visibilityTimer <visibilitybullet) {
         visibilityTimer++;
       }
-      if (visibilityTimer ==1) {
+      if (visibilityTimer ==visibilitybullet) {
         fill(#2DFA46);
         image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
       }
@@ -45,7 +46,9 @@ class PlayerBullet {
       pBTimer++;
       if (pBTimer == 1) {
         reset();
-
+if(!(bPLocationX == width/2)){
+  print("aaaaaaaaa");
+}
         bPXRef = xRef;
         bPYRef = yRef;
         chSpeedX = character.xSpeed/2;
