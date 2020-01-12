@@ -30,8 +30,10 @@ class PlayerBullet {
         visibilityTimer++;
       }
       if (visibilityTimer ==visibilitybullet) {
-        fill(#2DFA46);
+        
+        
         image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
+        
       }
     }
   }
@@ -41,7 +43,7 @@ class PlayerBullet {
 
 
 
-    //checks if a key is pressed and gives direction to the balls movement
+    //checks if a key is pressed and gives direction to the bullets movement
     if (keysPressed[UP] || keysPressed[DOWN] || keysPressed[LEFT] || keysPressed[RIGHT]) {
       pBTimer++;
       if (pBTimer == 1) {
@@ -152,6 +154,7 @@ if(!(bPLocationX == width/2)){
     makingSound = 0;
   }
   void wobble () {
+    //makes the screen shake
     if (wobbleShotTimer ==0) {
       bulletWobbleX = 0;
       bulletWobbleY = 0;
