@@ -33,10 +33,6 @@ class PlayerBullet {
   }
 
   void detectie() {
-
-
-
-
     //checks if a key is pressed and gives direction to the bullets movement
     if (keysPressed[UP] || keysPressed[DOWN] || keysPressed[LEFT] || keysPressed[RIGHT]) {
       pBTimer++;
@@ -92,6 +88,7 @@ class PlayerBullet {
     }
     wobble ();
   }
+
   void move() {
     //moves bullet and returns to begining after having travelled a certain distance
     if (shoot) {
@@ -127,8 +124,9 @@ class PlayerBullet {
       }
     }
   }
+
   void reset() {
- //sets all values back to original values
+    //sets all values back to original values
     bPLocationX = width/2;
     bPLocationY = height/2;
     pBNaarbeneden = false;
@@ -145,6 +143,7 @@ class PlayerBullet {
     visibilityTimer=0;
     makingSound = 0;
   }
+  
   void wobble () {
     //makes the screen shake
     if (wobbleShotTimer ==0) {

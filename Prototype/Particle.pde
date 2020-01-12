@@ -2,9 +2,9 @@ class Particle {
   float x, y, xSpeed, ySpeed, slowdown, size, avgStartSpeed, startSpeedVariation, dissapearSpeed, density, fadeSpeed, sideVariation;
   boolean visible;
   int r, g, b;
-  boolean xSpawn, ySpawn;// wether it spawns because the player moves vertically or horizontally
+  boolean xSpawn, ySpawn;// whether it spawns because the player moves vertically or horizontally
 
-  void construct() {
+  void construct() {//constructor
     avgStartSpeed = 15;
     startSpeedVariation = 4;
     dissapearSpeed = 4;
@@ -23,7 +23,7 @@ class Particle {
     density = 150;
 
 
-    switch(character.xDir) {
+    switch(character.xDir) {//check for player input
     case 1:
       if (keysPressed['a'] || keysPressed['A']) {
         xSpeed = random(avgStartSpeed - startSpeedVariation, avgStartSpeed + startSpeedVariation);
@@ -60,7 +60,7 @@ class Particle {
       break;
     }
   }
-  void display() {
+  void display() {//draw the object(s)
     noStroke();
     fill(r, g, b, density);
     if (visible) {
@@ -68,7 +68,7 @@ class Particle {
     }
   }
 
-  void move() {
+  void move() {//actual movement
     if (visible) {
       x += xSpeed;
       y += ySpeed;

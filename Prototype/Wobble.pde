@@ -1,9 +1,11 @@
 class Wobble {
-  float wobbleIntensity;  
+  float wobbleIntensity;
+  
   void wobble(int wobbleDuration, float wobbleIntensity2) {
     wobbleTimer = wobbleDuration;
     wobbleIntensity = wobbleIntensity2;
   }
+  
   void wobbleMovement() {
     if (wobbleTimer >19) {
       wobbleTimer =19;
