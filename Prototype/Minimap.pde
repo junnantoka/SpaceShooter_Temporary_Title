@@ -90,8 +90,7 @@ class Minimap {
         e.ySpd = -e.ySpd;
       }
       else if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
-        e.xSpd = -e.xSpd;
-        e.ySpd = -e.ySpd;
+        enemy.remove(i);
       } 
       //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
       //Dit despawnt enemies als ze buiten de playable area gaan, maar gecombineerd met hoe spawning nu werkt wordt het buggy.

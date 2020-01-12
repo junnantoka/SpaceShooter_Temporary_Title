@@ -1,14 +1,16 @@
+
 float startingHealth = 10000; //Deze integer geeft aan hoeveel health je aan het begin hebt.
+
 
 float healthMax; 
 boolean getsHit = false; //Deze boolean is false, omdat je niet geraakt wordt door een enemy.
-int healthBarX = 50; //Coordinaten van de healthbar.
+int healthBarX = 50; //coordination of healthbar
 int healthBarY = 25;
 float healthBarWidth = 500;
 float healthLost;
 int healthBarHeight = 30;
 
-float healthBarXLighting = 500; //Een extra lichtje zodat het er mooi uitziet.
+float healthBarXLighting = 500; //Lighting.
 float healthBarYLighting = 27;
 int enemyWobbleDuration = 10;
 int enemyIntensity = 15;
@@ -21,7 +23,7 @@ int healthWarningTimer;
 class Health {
 
   void setup() {
-    healthMax = startingHealth; //De health kan niet hoger dan de starting health die is ingesteld.
+    healthMax = startingHealth; //Starting health can't be higher than the maximum.
     healthLost = healthBarWidth / startingHealth;
   }
 
