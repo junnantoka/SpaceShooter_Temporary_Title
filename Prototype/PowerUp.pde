@@ -1,4 +1,3 @@
-//de powerups die de speler kan kopen
 class PowerUp {
 
   //overall powerup variables

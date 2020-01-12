@@ -1,20 +1,7 @@
 class Start {
   boolean start = true;
 
-  void setup() {
-  }
   void draw() {
-    /*rectMode(0);
-
-     fill(255);
-     rect(width / 2 - 100, height/ 2 - 50, 200,100);
-     fill(0);
-     textSize(20);
-     text("press p to start", width / 2 - 80, height/ 2 );*/
-    
-    /*fill(255);
-    rect(width / 2 - 100, height/ 2 - 50, 200,100);
-    fill(0);*/
     textSize(150);
     image(titleCard,width / 2, height/4);
     image(startImg, width / 2, height/ 2 +200, 500,300);
