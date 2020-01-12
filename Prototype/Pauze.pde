@@ -89,7 +89,6 @@ class Pauze {
       image(highscoreTab, width/2, height/2, 721, 750);
       image(movement, width/6, height/2, 350, 350);
       image(shooting, width/6*5, height/2, 350, 350);
-      //image(pauzeImg, pauzeX, pauzeY);
       textSize(TEXTSIZE);
       fill(TEXTCOLOR);
       text("Press START to continue", width/18*7, height/14*11);
