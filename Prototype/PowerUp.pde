@@ -1,5 +1,7 @@
 //de powerups die de speler kan kopen
 class PowerUp {
+
+  //overall powerup variables
   boolean active = false;
   float powerUpTimer = 0;
   int powerUpNumber;
@@ -7,21 +9,23 @@ class PowerUp {
   float powerUpX;
   float powerUpY;
 
-  float healthExtra = 2;
-
+  //laser variables
   boolean laser;
   boolean laserAvailable = true;
   boolean lasercollision;
-
+  
+  //health variables
+  float healthExtra = 2;
   boolean healthAvailable;
   boolean healthCollision;
-
+  
+  //bulletsize variables
   boolean bulletUpAvailable;
   boolean bulletUpCollision;
   float bulletSizeMod = 1.3;
   float bulletMaxSize = 170;
 
-
+  //activates the powerup class and sets the x and y to the boss' x and y
   void powerUpInfo(float x, float y) {
     powerUpX = x;
     powerUpY = y;
@@ -29,6 +33,7 @@ class PowerUp {
   }
 
   void powerUpDate() {
+    //hover effect for the powerups
     if (active) {
       if (powerUpTimer < 60) {
         powerUpTimer++;
@@ -48,6 +53,7 @@ class PowerUp {
 
   void display() {
     if (active) {
+      //switch for powerups to show
       switch(powerUpNumber) {
 
       case 0:
@@ -56,7 +62,6 @@ class PowerUp {
           image(laserPowerUp, powerUpX + xRef + wobbleX+bulletWobbleX, powerUpY + yRef + wobbleY+bulletWobbleY, powerUpSize, powerUpSize);
         }
         break;
-
 
       case 1:
         if (healthAvailable) {
@@ -72,18 +77,11 @@ class PowerUp {
           bulletUpCollision = true;
         }
       }
-
-
-      ////bigger bullet   
-      //    for(int i = 0; i < bullets; i++){ 
-      //      bulletP[i].bPSize *= bulletSizeMod;
-      //      if(bulletP[i].bPSize >= bulletMaxSize){
-      //        bulletP[i].bPSize = bulletMaxSize;
     }
   }
 
   void collision() {
-
+    //collision detection for powerups and runs the appropriate code
     if (dist(powerUpX + xRef, powerUpY + yRef, character.xLocation, character.yLocation) <= character.size/2 + powerUpSize/2) {
       if (lasercollision) {
         laser = true;
@@ -94,7 +92,7 @@ class PowerUp {
       }
       if (healthCollision) {
         healthMax++;
-        startingHealth++;
+        startingHealth += healthExtra;
         healthAvailable = false;
         healthCollision = false;
 
@@ -112,8 +110,9 @@ class PowerUp {
           bulletUpCollision = false;
         }
       }
-
-      active= false;
+      
+      //resets powerup so it'll be activated again when the next boss dies
+      active = false;
       achievement.powerUpCounter++;
       powerUpNumber++;
     }
