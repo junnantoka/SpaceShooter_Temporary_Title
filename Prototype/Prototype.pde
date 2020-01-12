@@ -56,9 +56,6 @@ int enemiesRequiredStart = 10;  //enemies required for a boss to spawn
 int enemiesRequired = enemiesRequiredStart; //convert to another variable
 boolean bossSpawn = false; //boolean for boss spawn
 
-//WorldBorder
-World world = new World();
-
 //Healthdrops
 ArrayList<HealthDrop> healthDrop;
 
@@ -66,22 +63,20 @@ ArrayList<HealthDropParticle> healthDropParticles;
 
 int healthBalls = 10;
 
+//New instances
 PowerUp powerUp = new PowerUp();
-
 SnailPowerUp snailPowerUp = new SnailPowerUp();
-
 Highscore highscore = new Highscore();
 Minimap minimap = new Minimap();
-
 Achievement achievement = new Achievement();
 Challenge challenge = new Challenge();
 Pauze pauze = new Pauze();
+World world = new World();
+Health health = new Health();
 
 ArrayList<Enemy> enemy;
 int enemies = 40;
 ArrayList<EnemyBullet> eBullet;
-
-Health health = new Health();
 
 // key detection
 final int KEY_LIMIT = 1024;
