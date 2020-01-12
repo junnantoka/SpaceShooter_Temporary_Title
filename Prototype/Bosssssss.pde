@@ -88,7 +88,7 @@ class Boss {
 
 
     void collision(int e) {
-      //check if the boss makes contact with the player bullet
+      //check if the boss makes contact with a player bullet
       for (int i = 0; i < bulletP.length; i++) {
         if ( bulletP[i].shoot && bulletP[i].visibilityTimer ==visibilitybullet) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/2) {
