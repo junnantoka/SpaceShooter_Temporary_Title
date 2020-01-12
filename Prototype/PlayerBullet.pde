@@ -30,8 +30,10 @@ class PlayerBullet {
         visibilityTimer++;
       }
       if (visibilityTimer ==visibilitybullet) {
-        fill(#2DFA46);
+        
+        
         image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
+        
       }
     }
   }
