@@ -10,7 +10,7 @@ class EnemyBullet {
   int bulletWobbleDuration= 19;
   int bulletIntensity = 14;
 
-  EnemyBullet(float x, float y) {
+  EnemyBullet(float x, float y) {//Constructor
     if (!snailPowerUp.snailActivate) {
       enemyBulletSpeed = 6;
     }

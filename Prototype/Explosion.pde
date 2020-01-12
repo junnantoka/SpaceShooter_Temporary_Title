@@ -42,7 +42,7 @@ class Explosion {
     }
   }
 
-  void display() {
+  void display() {//Draw
     fill(r, g, b, density);
     noStroke();
     density -= fadeSpeed;
