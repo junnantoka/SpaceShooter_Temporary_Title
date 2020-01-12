@@ -141,7 +141,6 @@ class PlayerBullet {
     pBLinks = false;
     afstand = reset;
     shoot = false;
-    bPSize = 75;
     snelheid = 30;
     bPXRefEnd = 0; 
     bPXRef = 0;

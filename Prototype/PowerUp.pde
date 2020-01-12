@@ -18,7 +18,7 @@ class PowerUp {
 
   boolean bulletUpAvailable;
   boolean bulletUpCollision;
-  float bulletSizeMod = 2;
+  float bulletSizeMod = 1.3;
   float bulletMaxSize = 170;
 
 
@@ -79,7 +79,6 @@ class PowerUp {
       //      bulletP[i].bPSize *= bulletSizeMod;
       //      if(bulletP[i].bPSize >= bulletMaxSize){
       //        bulletP[i].bPSize = bulletMaxSize;
-
     }
   }
 
@@ -114,9 +113,9 @@ class PowerUp {
         }
       }
 
-        active= false;
-        achievement.powerUpCounter++;
-        powerUpNumber++;
-      }
+      active= false;
+      achievement.powerUpCounter++;
+      powerUpNumber++;
     }
   }
+}
