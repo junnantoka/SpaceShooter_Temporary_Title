@@ -1,13 +1,14 @@
 int currentEnemyAmount = 3;
 int newEnemyTimer = 250;
 class Wave {
-  int waveNR, waveFrame, waveAmount;
+  int waveNR, waveFrame, waveAmount, timerMult;
 
 
   void construct() {
     waveNR = 0;
     waveFrame = 0;
     waveAmount = 1;
+    timerMult = 40;
   }
   void update() {
     if (!start.start && !pauze.pauze) {
@@ -17,7 +18,7 @@ class Wave {
         case 0:
           waveAmount = 1;
           waveNR++;
-          newEnemyTimer = 250;
+          newEnemyTimer = 300;
           break;
         case 1:
           waveAmount = 5;
@@ -31,7 +32,10 @@ class Wave {
           break;
         case 3:
           waveAmount = 8;
-          newEnemyTimer = enemy.size() * 40;
+          newEnemyTimer = enemy.size() * timerMult;
+          if(timerMult > 20){
+            timerMult--;
+          }
           break;
         }
         newWave(waveAmount);

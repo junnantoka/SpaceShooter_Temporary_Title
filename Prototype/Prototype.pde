@@ -105,6 +105,7 @@ void setup() {
   minimap.setup();
   pauze.setup();
   character.construct();
+  wave.construct();
 
   //construct  stars
   star = new Star[stars]; 
