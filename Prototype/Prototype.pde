@@ -215,6 +215,7 @@ void updateGame() {
         HealthDrop e = healthDrop.get(i);
         e.healthCollision(i);
       }
+      //call to method(s)
       spawnBoss();
       character.moveCh();
       powerUp.powerUpDate();
@@ -235,14 +236,6 @@ void updateGame() {
       for (int i = 0; i < explosion.size(); i++) {
         Explosion ex = explosion.get(i);
         ex.reset(i);
-      }
-
-      for (PlayerDamageEffect ef : playerParticle) {
-        //ef.move();
-      }
-      for (int i = 0; i < playerParticle.size(); i++) {
-        PlayerDamageEffect ef = playerParticle.get(i);
-        //ef.reset(i);
       }
     }
     if (end.end ||start.start||pauze.pauze) {
