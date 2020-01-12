@@ -41,8 +41,6 @@ Wobble wobble = new Wobble(); //New instance of "Wobble"
 
 ArrayList<Explosion> explosion; //ArrayList explosion
 
-ArrayList<PlayerDamageEffect> playerParticle; //arraylist playerParticle
-
 Wave wave = new Wave(); //New instance of "Wave"
 
 Star[] star; //Array of stars
@@ -133,8 +131,6 @@ void setup() {
   explosion = new ArrayList<Explosion>();
 
   healthDropParticles = new ArrayList<HealthDropParticle>();
-
-  playerParticle = new ArrayList<PlayerDamageEffect>();
 
   highscore.scoreSetup();
 

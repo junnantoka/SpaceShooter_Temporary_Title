@@ -46,7 +46,6 @@ public class Enemy {
       fill(0, 255, 0);
       if (x > -xRef - size && x < -xRef + width + size && y > -yRef - size && y < -yRef + height + size) {
         image(rainbow, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
-        //image(snailgun, x + xRef + wobbleX, y + yRef + wobbleY);
       }
     }
     if (type == 1) {
@@ -63,9 +62,6 @@ public class Enemy {
       if (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
         image(crusher, x + xRef + wobbleX+bulletWobbleX, y + yRef + wobbleY+bulletWobbleY);
       }
-    }
-    if (type ==4) {
-      //print("a");
     }
   }
 
@@ -173,15 +169,13 @@ public class Enemy {
       }
     }
   }
-  
+
   void charge() {
     if (dist(x + xRef, y + yRef, character.xLocation, character.yLocation) < chargeDist) {
       aggro = true;
     }
     if (aggro) {
       chargeFrame++;
-      //if(){}
-      //text(chargeFrame, width/2, 200);
     }
     if (chargeFrame == 1) {//preparing the charge
       xSpeed = 0;
@@ -211,12 +205,11 @@ public class Enemy {
       for (int i = 0; i < bulletP.length; i++) {
         if ( bulletP[i].shoot && bulletP[i].visibilityTimer ==3) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
-            
-            //print("Auchiewauchie ");
+
             achievement.enemyCounter++;
             highscore.score++;
-            if(boss.size()==0){
-            enemyCounter++;
+            if (boss.size()==0) {
+              enemyCounter++;
             }
             healthDrop.add(new HealthDrop(x, y));
             for (int in = 0; in < particles; in++) {
@@ -230,11 +223,10 @@ public class Enemy {
               bulletP[i].reset();
             }
             boemA.play();
-            if (!ded){
-            enemy.remove(e);
+            if (!ded) {
+              enemy.remove(e);
             }
             ded = true;
-            
           }
         }
       }
@@ -251,7 +243,7 @@ public class Enemy {
     ded = false;
     speed = random(500.0f, 100.0f);
   }
-  
+
   void invisibleSpawn() {
     while (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
       x = random(xMin, xMax);
