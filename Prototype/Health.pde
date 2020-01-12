@@ -1,5 +1,5 @@
 
-float startingHealth = 10000; //Deze integer geeft aan hoeveel health je aan het begin hebt.
+float startingHealth = 10; //Deze integer geeft aan hoeveel health je aan het begin hebt.
 
 
 float healthMax; 
@@ -85,6 +85,7 @@ class Health {
   }
 
   void healthWarning() {
+    //warns the player when health is too low
     if ((healthMax <= healthWarningStart) && !end.end) {
 
       if (healthWarningTimer < 80) {
