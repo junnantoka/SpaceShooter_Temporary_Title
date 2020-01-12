@@ -37,8 +37,6 @@ boolean active = false;
   }
 
   void powerUpDate() {
-    for (int i = 0; i < boss.size(); i++) {
-      Boss a = boss.get(i);
       if (active) {
         if (powerUpTimer < 60) {
           powerUpTimer++;
@@ -53,12 +51,12 @@ boolean active = false;
         }
       }
     }
-  }
+  
 
   void display() {
     collision();
-    for (int i = 0; i < boss.size(); i++) {
-      Boss a = boss.get(i);
+    
+     
       if (active) {
         switch(powerUpNumber) {
         case 0:
@@ -83,8 +81,7 @@ boolean active = false;
         //      bulletP[i].bPSize *= bulletSizeMod;
         //      if(bulletP[i].bPSize >= bulletMaxSize){
         //        bulletP[i].bPSize = bulletMaxSize;
-      }
-    }
+        }
   }
 
   void collision() {
