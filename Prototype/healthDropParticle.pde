@@ -6,7 +6,7 @@ class HealthDropParticle {
     healthParticleX = spawnX;
     healthParticleY = spawnY;
     speedVariation = speed;
-    ySpeed = random(-speedVariation, speedVariation);
+    ySpeed = random(-speedVariation, -4);
     fadeSpeed = random(diss-3,diss+3);
     density = 255;
     slowdown = 0.1;
@@ -27,8 +27,8 @@ class HealthDropParticle {
   }
 
   void display() {
-    image(healthParticle,healthParticleX + xRef + wobbleX+bulletWobbleX, healthParticleY + yRef + wobbleY+bulletWobbleY);
     tint(density, fade);
+    image(healthParticle,healthParticleX + xRef + wobbleX+bulletWobbleX, healthParticleY + yRef + wobbleY+bulletWobbleY);
     tint(255);
   }
 }

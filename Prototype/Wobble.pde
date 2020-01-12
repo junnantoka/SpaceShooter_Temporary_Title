@@ -1,6 +1,5 @@
-float wobbleIntensity;
 class Wobble{
-  
+  float wobbleIntensity;  
   void wobble(int wobbleDuration, float wobbleIntensity2){
     wobbleTimer = wobbleDuration;
     wobbleIntensity = wobbleIntensity2;

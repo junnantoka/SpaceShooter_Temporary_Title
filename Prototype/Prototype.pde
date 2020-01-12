@@ -9,14 +9,14 @@ SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
  */
 import processing.sound.*; //importing the Sound library
 
-NameScreen nameScreen = new NameScreen();
+NameScreen nameScreen = new NameScreen(); //New instance of nameScreen
 
 import de.bezier.data.sql.*;//importing the Sql library
 String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as localhost
 String dbUsername = "dorpl2";  //username
 String dbUserPass = "kjWD660lD6ZRA0+7";  //password
 String dbSchema = "zdorpl2";  //default database schema
-String chairNr = "1a"; 
+String chairNr = "1a"; //hardcoded chairnr
 MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//Create new mysql instance
 Sql sql = new Sql();//New instance of "Sql" class
 
@@ -35,29 +35,26 @@ ArrayList<Boss> boss; //Array of bosses
 float yRef = height/2; //y reference point
 float xRef = width/2; //x reference point
 
-float wobbleX, wobbleY = 0;
+float wobbleX, wobbleY = 0;//initialize wobble x & y
 int wobbleTimer = 0; // Wobble timer
 Wobble wobble = new Wobble(); //New instance of "Wobble"
 
-ArrayList<Explosion> explosion; //ArrayList 
+ArrayList<Explosion> explosion; //ArrayList explosion
 
-ArrayList<PlayerDamageEffect> playerParticle;
+ArrayList<PlayerDamageEffect> playerParticle; //arraylist playerParticle
 
-Wave wave = new Wave();
+Wave wave = new Wave(); //New instance of "Wave"
 
-Star[] star;
-Start start = new Start();
-End end = new End();
-int stars = 500;
-int timer, enemyCounter = 0;
-int timerBullet;
-int bossTotal = 1;
-int enemiesRequiredStart = 10;
-int enemiesRequired = enemiesRequiredStart;
-boolean bossSpawn = false;
-
-//WorldBorder
-World world = new World();
+Star[] star; //Array of stars
+Start start = new Start(); //New instance of "Start"
+End end = new End();  //New instance of "End"
+int stars = 500; //hardcoded stars
+int timer, enemyCounter = 0;//timer, enemy counter
+int timerBullet; //timer for the bullets
+int bossTotal = 1; //hardcoded bossTotal
+int enemiesRequiredStart = 10;  //enemies required for a boss to spawn
+int enemiesRequired = enemiesRequiredStart; //convert to another variable
+boolean bossSpawn = false; //boolean for boss spawn
 
 //Healthdrops
 ArrayList<HealthDrop> healthDrop;
@@ -66,22 +63,20 @@ ArrayList<HealthDropParticle> healthDropParticles;
 
 int healthBalls = 10;
 
+//New instances
 PowerUp powerUp = new PowerUp();
-
 SnailPowerUp snailPowerUp = new SnailPowerUp();
-
 Highscore highscore = new Highscore();
 Minimap minimap = new Minimap();
-
 Achievement achievement = new Achievement();
 Challenge challenge = new Challenge();
 Pauze pauze = new Pauze();
+World world = new World();
+Health health = new Health();
 
 ArrayList<Enemy> enemy;
 int enemies = 40;
 ArrayList<EnemyBullet> eBullet;
-
-Health health = new Health();
 
 // key detection
 final int KEY_LIMIT = 1024;
@@ -92,13 +87,12 @@ int beweging = 0;
 PlayerBullet[] bulletP = new PlayerBullet[bullets];
 int pBTimer = 0; 
 
-void setup() {  
+void setup() {
   fullScreen(P2D);
   noCursor();
 
   //checks if the chair exists in the database
   nameScreen.doesChairExist();
-
 
   //sql.construct();
   world.construct();
@@ -106,7 +100,6 @@ void setup() {
   //Load all assets
   loadAssets();
 
-  //altSong.loop();
   imageMode(CENTER);
 
   health.setup();
@@ -121,9 +114,8 @@ void setup() {
     star[i].construct();
   }
 
-  boss= new ArrayList<Boss>();
+  boss = new ArrayList<Boss>();
   
-
   //initializes playerBullets array and sets starting values
   for (int i = 0; i < bullets; i++) {
     bulletP[i] = new PlayerBullet();
@@ -134,7 +126,7 @@ void setup() {
   enemy = new ArrayList<Enemy>();
   enemy.add(new Enemy());
 
-  eBullet =new ArrayList<EnemyBullet>();
+  eBullet = new ArrayList<EnemyBullet>();
 
   healthDrop = new ArrayList<HealthDrop>();
 
@@ -170,7 +162,7 @@ void updateGame() {
     }
     health.healthWarning();
     health.gameOver();
-
+  
     world.update();
 
     if (start.start && timer == 0) {
@@ -223,6 +215,7 @@ void updateGame() {
         HealthDrop e = healthDrop.get(i);
         e.healthCollision(i);
       }
+      //call to method(s)
       spawnBoss();
       character.moveCh();
       powerUp.powerUpDate();
@@ -243,14 +236,6 @@ void updateGame() {
       for (int i = 0; i < explosion.size(); i++) {
         Explosion ex = explosion.get(i);
         ex.reset(i);
-      }
-
-      for (PlayerDamageEffect ef : playerParticle) {
-        //ef.move();
-      }
-      for (int i = 0; i < playerParticle.size(); i++) {
-        PlayerDamageEffect ef = playerParticle.get(i);
-        //ef.reset(i);
       }
     }
     if (end.end ||start.start||pauze.pauze) {
@@ -306,9 +291,7 @@ void drawGame() {
       for (Enemy i : enemy) {
         if (!i.ded) {
           i.draw();
-        } /*else {
-         i = new Enemy();
-         }*/
+        }
       }
       health.draw();
       for (int i = 0; i< healthDrop.size(); i++) {
@@ -331,8 +314,6 @@ void drawGame() {
       }
     }
 
-
-
     if (end.end ||start.start||pauze.pauze) {
       setting.settingScreen();
       achievement.achievementScreen();
@@ -351,6 +332,7 @@ void draw() {
   updateGame();
   drawGame();
 }
+
 // Keyboard handling...
 void keyPressed() {  
   if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit methhod ('return').
@@ -367,7 +349,7 @@ void keyReleased() {
 //Kan dit niet in de boss class??3
 void spawnBoss() {
   if (enemyCounter == enemiesRequired) {
-    if (bossTotal < bosses-1 && enemiesRequired> enemiesRequiredStart) {
+    if ( enemiesRequired> enemiesRequiredStart) {
       bossTotal++;
     } 
     enemyCounter = 0;
@@ -375,7 +357,7 @@ void spawnBoss() {
     enemiesRequired *= 2;
   }
   if (bossSpawn == true) {
-    for (int i = 0; i<bossTotal; i++) {
+    for (int i = 0; i<=bossTotal; i++) {
       boss.add(new Boss());
     }
     bossSpawn = false;

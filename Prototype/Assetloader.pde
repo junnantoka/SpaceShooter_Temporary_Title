@@ -1,9 +1,9 @@
 //Player related images
 PImage playerBullet, playerShip;
 //Powerup related images
-PImage laserPowerUp, snailgun, snailIcon;
+PImage laserPowerUp, snailgun, healthup, snailIcon, bulletSizeUp;
 //health related images
-PImage healthup, healthParticle, healthWarning, healthBar, healthIcon, healthDropIMG;
+PImage healthParticle, healthWarning, healthBar, healthIcon, healthDropIMG;
 //enemy related images
 PImage crusher, shooter, enemyBullet, donker, rainbow;
 //menu related images
@@ -17,7 +17,7 @@ SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew, altS
 PFont numberFont;
 
 public void loadAssets() {
-  //Load assets
+  //Load images
   pauzeImg = loadImage("./data/img/pauzescreen.png");
   enemyBullet = loadImage("./data/img/enemybullet.png");
   healthDropIMG = loadImage("./data/img/healthdrop.png");
@@ -42,6 +42,7 @@ public void loadAssets() {
   checkmark = loadImage("./data/img/checkmark.png");
   donker = loadImage("./data/img/donker.png");
   snailIcon = loadImage("./data/img/snailIcon.png");
+  bulletSizeUp = loadImage(".data/img/bulletsizeup.png");
 
   //Load fonts
   numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);
