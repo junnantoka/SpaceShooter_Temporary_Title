@@ -17,7 +17,7 @@ SoundFile engineA, engineB, clickA, clickB, boemA, boemB, titlescreen, pew, altS
 PFont numberFont;
 
 public void loadAssets() {
-  //Load assets
+  //Load images
   pauzeImg = loadImage("./data/img/pauzescreen.png");
   enemyBullet = loadImage("./data/img/enemybullet.png");
   healthDropIMG = loadImage("./data/img/healthdrop.png");

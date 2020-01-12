@@ -1,4 +1,3 @@
-//©Jun Phung 500829487
 public class Enemy {
   //enemy settings
   float x, y, radius, xSpd, ySpd, direction, t, speed, circle;
@@ -161,7 +160,6 @@ public class Enemy {
   }
 
   void roam() {
-
     if (frame == 1) {
       roamTime = int(random(20, 200));
       xSpeed = random(-5, 5);
@@ -175,8 +173,8 @@ public class Enemy {
       }
     }
   }
+  
   void charge() {
-
     if (dist(x + xRef, y + yRef, character.xLocation, character.yLocation) < chargeDist) {
       aggro = true;
     }
@@ -241,25 +239,6 @@ public class Enemy {
     }
   }
 
-  void respawn() {
-    //checks if the stars spawn outside the playarea and if they do ranspawn them back in
-    if (x + xRef < -xMin) {
-      x = random(-xRef + width, -xRef + 2 * width);
-    }
-
-    if (x + xRef > xMax) {
-      x = random(-xRef - width, -xRef);
-    }
-
-    if (y + yRef < -height) {
-      y = random(-yRef + height, -yRef + 2 * height);
-    }
-
-    if (y + yRef > xMax) {
-      y = random(-yRef - height, -yRef);
-    }
-  }
-
   void reset() {
     x = random(xMin, xMax) + xRef;
     y = random(yMin, yMax) + yRef;
@@ -270,6 +249,7 @@ public class Enemy {
     ded = false;
     speed = random(500.0f, 100.0f);
   }
+  
   void invisibleSpawn() {
     while (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
       x = random(xMin, xMax);
