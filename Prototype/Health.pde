@@ -17,7 +17,7 @@ class Health {
   int enemyWobbleDuration = 10;
   int enemyIntensity = 15;
 
-  float healthWarningStart = (startingHealth / 100) * 30;
+  float healthWarningStart = 3;
   int healthWarningTimer;
 
   void setup() {
@@ -86,8 +86,7 @@ class Health {
 
   void healthWarning() {
     //warns the player when health is too low
-    if ((healthMax <= healthWarningStart) && !end.end) {
-
+    if (healthMax <= healthWarningStart) {
       if (healthWarningTimer < 80) {
         image(enemyBullet, 75 + wobbleX + bulletWobbleX, 120 + wobbleY + bulletWobbleY, 120, 120);
         image(healthWarning, 75 + wobbleX + bulletWobbleX, 120 + wobbleY + bulletWobbleY, 70, 70);
