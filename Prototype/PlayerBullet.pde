@@ -1,4 +1,4 @@
-//stijns deel
+
 boolean wobbleShot = false;
 int wobbleShotTimer = 0;
 int bulletWobbleX, bulletWobbleY = 0;
@@ -49,7 +49,7 @@ class PlayerBullet {
       if (pBTimer == 1) {
         reset();
 if(!(bPLocationX == width/2)){
-  print("aaaaaaaaa");
+  
 }
         bPXRef = xRef;
         bPYRef = yRef;
@@ -175,4 +175,3 @@ if(!(bPLocationX == width/2)){
     }
   }
 }
-//eind stijns deel

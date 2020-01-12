@@ -4,7 +4,7 @@ int minimapSize = 7; //Standard is 7. The size of the minimap is the same size a
 int minimapXLocMax = 623;
 int minimapYLocMax = 1028; //1028
 
-int minimapX = 350; //@@@@@@@@@@@@@@@Kijk even wat dit is
+int minimapX = 350; 
 int minimapY = 875; //Height of the minimap
 int minimapPlayerSize = 20;
 int minimapBulletSize = 5;
@@ -94,8 +94,7 @@ class Minimap {
       else if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
         enemy.remove(i);
       } 
-      //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
-      //Dit despawnt enemies als ze buiten de playable area gaan, maar gecombineerd met hoe spawning nu werkt wordt het buggy.
+     
     }
     if(snailPowerUp.active) {
     image(snailIcon, ((snailPowerUp.snailPowerUpX)/minimapSize + minimapX)+wobbleX+bulletWobbleX, ((snailPowerUp.snailPowerUpY)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapHealthdropSize, minimapHealthdropSize);

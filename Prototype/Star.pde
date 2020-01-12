@@ -1,6 +1,8 @@
 class Star {
+  //variables
   float x, y, size;
   float xMin, xMax, yMin, yMax;
+  
   void construct() {
     xMin = (-world.worldWidth / 2) - width/2;
     xMax = (world.worldWidth / 2) + width/2;
@@ -13,14 +15,11 @@ class Star {
   }
 
   void disp() {
-
     //draws a circle on the random x and y
     fill(255);
     stroke(2);
     if (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
       circle(x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY, size);
     }
-    //text(xRef, width/2, 100);
-    //text(yRef, width/2, 300);
   }
 }

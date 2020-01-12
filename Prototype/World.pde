@@ -27,7 +27,7 @@ class World {
       yRef = -(worldHeight/2) + (character.size/2) + startY;
       character.ySpeed = 0;
     }
-    
+
     if (xRef + character.size/2 - startX > worldWidth/2 ) {
       xRef = (worldWidth/2) - (character.size/2) + startX;
       character.xSpeed = 0;
