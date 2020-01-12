@@ -15,7 +15,7 @@ int minimapEnemySize = 15;
 int minimapHealthdropSize = 30;
 int minimapBossSize = 25;
 
-//These final ints give the minimap its colors
+//These final ints give the minimap its colors.
 
 final int minimapBackgroundColor = color(50);
 final int minimapStrokeColor = color(255);
@@ -30,16 +30,16 @@ final int minimapBossColor = color(255, 0, 0);
 class Minimap {
 
   void draw() {
-    //The minimap outline
+    //The minimap outline.
     fill(minimapBackgroundColor);
     stroke(minimapStrokeColor);
     rect(minimapXLoc+wobbleX+bulletWobbleX, minimapYLoc+wobbleY+bulletWobbleY, world.worldWidth/minimapSize, world.worldHeight/minimapSize);
 
-    //The player on the minimap
+    //The player on the minimap.
     fill(minimapPlayerColor);
     circle(((character.xLocation - xRef)/minimapSize + minimapX) + wobbleX+bulletWobbleX, ((character.yLocation - yRef)/minimapSize + minimapY)+wobbleY+bulletWobbleY, minimapPlayerSize);
 
-    //Player bullet on the minimap
+    //Player bullet on the minimap.
     for (int i = 0; i <bullets; i++) {      
       //The bullets themselves are not actually visible on the minimap for balancing reasons.
 
@@ -52,7 +52,7 @@ class Minimap {
       }
     }
 
-    //Boss on the minimap
+    //Boss on the minimap.
     for (int i = 0; i < boss.size(); i++) {
       fill(minimapBossColor);
       Boss a = boss.get(i);

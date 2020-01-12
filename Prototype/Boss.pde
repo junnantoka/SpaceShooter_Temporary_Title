@@ -33,9 +33,7 @@ class Boss {
     direction = random(-2, 2);
     down = false;
     dead = true;
-    //type = (int)random(1, 3);
     type = 2;
-    //speed = random(5000.0f, 1000.0f);
     xG = random(-10, 10);
     yG = random(-10, 10);
     startTime= 60;
