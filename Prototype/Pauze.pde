@@ -1,10 +1,9 @@
 class Pauze {
   int pauzedTime = 0;
   boolean pauze = false;
-  float pauzeX, pauzeY;
-  int speedX, speedY;
+
   int timerPauze = 0;
-  int BLACK = 0;
+  final int BLACK = 0;
   final int SPEED = 10;
   final int MINX = 10;
   final int MAXX = 1590;
@@ -13,20 +12,7 @@ class Pauze {
   final int TEXTSIZE = 26;
   final int TEXTCOLOR = 250;
 
-  void setup() {
-    pauzeX = random(MINX, MAXX);
-    pauzeY = random(MINY, MAXY);
-    if (random(1, 2) >= 1.5) {
-      speedX = SPEED;
-    } else {
-      speedX = -SPEED;
-    }
-    if (random(1, 2) >= 1.5) {
-      speedY = SPEED;
-    } else {
-      speedY = -SPEED;
-    }
-  }
+  
 
   void pauzeGame() {
 // when p is pressed the game will stop and the pauze menu will be visible 

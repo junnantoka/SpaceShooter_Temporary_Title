@@ -103,7 +103,6 @@ void setup() {
 
   health.setup();
   minimap.setup();
-  pauze.setup();
   character.construct();
   wave.construct();
 
