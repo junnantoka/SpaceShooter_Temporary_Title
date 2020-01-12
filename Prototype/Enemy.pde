@@ -246,7 +246,7 @@ public class Enemy {
   void invisibleSpawn() {
     x = random(xMin, xMax);
     y = random(yMin, yMax);
-    while (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
+    while (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height || x > xMax || x < xMin || y > yMax || y < yMin) {
       x = random(xMin, xMax);
       y = random(yMin, yMax);
     }
