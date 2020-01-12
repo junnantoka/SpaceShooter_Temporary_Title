@@ -163,7 +163,7 @@ void updateGame() {
     }
     health.healthWarning();
     health.gameOver();
-
+  
     world.update();
 
     if (start.start && timer == 0) {
