@@ -70,7 +70,7 @@ class HealthDrop {
     if (dist(healthX + xRef, healthY + yRef, character.xLocation, character.yLocation) <= character.size/2 + healthSize/2 && healthChance == 4) {
       //Spawns a healthdrop particles when healthdrop is picked up.
       for (int in = 0; in < Hparticles; in++) {
-        healthDropParticles.add(new HealthDropParticle(character.xLocation+random(-character.size/2,character.size/2), character.yLocation+random(-character.size/2,character.size/2), 10, 7));
+        healthDropParticles.add(new HealthDropParticle(healthX/*+random(-character.size/2,character.size/2)*/, healthY/*+random(-character.size/2,character.size/2)*/, 10, 7));
       }
 
       if (healthMax < startingHealth) {
