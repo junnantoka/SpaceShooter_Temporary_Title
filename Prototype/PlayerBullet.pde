@@ -25,10 +25,10 @@ class PlayerBullet {
 
 
     if (shoot  ) {
-      if (visibilityTimer <3) {
+      if (visibilityTimer <1) {
         visibilityTimer++;
       }
-      if (visibilityTimer ==3) {
+      if (visibilityTimer ==1) {
         fill(#2DFA46);
         image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
       }
@@ -48,8 +48,6 @@ class PlayerBullet {
 
         bPXRef = xRef;
         bPYRef = yRef;
-        bPLocationX = width/2;
-        bPLocationY = height/2; 
         chSpeedX = character.xSpeed/2;
         chSpeedY = character.ySpeed/2;
         wobbleShotTimer = 1;
@@ -133,6 +131,7 @@ class PlayerBullet {
     }
   }
   void reset() {
+       
     bPLocationX = width/2;
     bPLocationY = height/2;
     pBNaarbeneden = false;
