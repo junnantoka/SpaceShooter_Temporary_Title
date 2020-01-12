@@ -63,6 +63,9 @@ class Boss {
   void move() {
     if (snailPowerUp.snailActivate) {
       speed = 1;
+    }
+    if (!snailPowerUp.snailActivate) {
+      speed = 8;
     } 
     
       //boss follows the player
