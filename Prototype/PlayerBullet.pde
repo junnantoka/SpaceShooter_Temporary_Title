@@ -1,4 +1,3 @@
-
 boolean wobbleShot = false;
 int wobbleShotTimer = 0;
 int bulletWobbleX, bulletWobbleY = 0;
@@ -46,17 +45,16 @@ class PlayerBullet {
       pBTimer++;
       if (pBTimer == 1) {
         reset();
-if(!(bPLocationX == width/2)){
-  
-}
+        if (!(bPLocationX == width/2)) {
+        }
         bPXRef = xRef;
         bPYRef = yRef;
         chSpeedX = character.xSpeed/2;
         chSpeedY = character.ySpeed/2;
         wobbleShotTimer = 1;
         wobbleShot = true;
-        if(!pew.isPlaying()){
-        pew.loop();
+        if (!pew.isPlaying()) {
+          pew.loop();
         }
         if (keysPressed[UP]) {
 
@@ -84,7 +82,7 @@ if(!(bPLocationX == width/2)){
       if (beweging == bullets-1) {
         beweging = reset;
       }
-    }  else {
+    } else {
       pew.stop();
     }
     if ((!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed[LEFT] && !keysPressed[RIGHT])|| pBTimer== interval) {
@@ -134,7 +132,7 @@ if(!(bPLocationX == width/2)){
     }
   }
   void reset() {
-       
+
     bPLocationX = width/2;
     bPLocationY = height/2;
     pBNaarbeneden = false;
