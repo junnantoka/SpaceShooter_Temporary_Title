@@ -1,9 +1,9 @@
 //Player related images
 PImage playerBullet, playerShip;
 //Powerup related images
-PImage laserPowerUp, snailgun;
+PImage laserPowerUp, snailgun, healthup, bulletSizeUp;
 //health related images
-PImage healthup, healthParticle, healthWarning, healthBar, healthIcon, healthDropIMG;
+PImage healthParticle, healthWarning, healthBar, healthIcon, healthDropIMG;
 //enemy related images
 PImage crusher, shooter, enemyBullet, donker, rainbow;
 //menu related images
@@ -41,6 +41,7 @@ public void loadAssets() {
   healthWarning = loadImage("./data/img/healthwarning.png");
   checkmark = loadImage("./data/img/checkmark.png");
   donker = loadImage("./data/img/donker.png");
+  bulletSizeUp = loadImage(".data/img/bulletsizeup.png");
 
   //Load fonts
   numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);
