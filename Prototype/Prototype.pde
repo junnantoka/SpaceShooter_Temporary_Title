@@ -100,7 +100,6 @@ void setup() {
   //Load all assets
   loadAssets();
 
-  //altSong.loop();
   imageMode(CENTER);
 
   health.setup();
