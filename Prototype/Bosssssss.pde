@@ -193,7 +193,9 @@ class Boss {
             reset();
             //print("Auchiewauchie ");
             highscore.score += bossScore;
+            if (!down){
             boss.remove(e);
+            }
           }
           //als de powerup aan staat worden de bullets niet gereset
           //if (!powerUp.laser) {
