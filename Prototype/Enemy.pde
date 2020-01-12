@@ -215,7 +215,9 @@ public class Enemy {
             //print("Auchiewauchie ");
             achievement.enemyCounter++;
             highscore.score++;
+            if(boss.size()==0){
             enemyCounter++;
+            }
             healthDrop.add(new HealthDrop(x, y));
             for (int in = 0; in < particles; in++) {
               explosion.add(new Explosion(x, y, 10, 7));
