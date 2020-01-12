@@ -1,5 +1,5 @@
-int newEnemyTimer = 250;
 class Wave {
+  int newEnemyTimer = 250;
   int waveNR, waveFrame, waveAmount, timerMult, minTimerMult, maxEnemiesSpawned;
   float maxEnemiesSpawnedFloat, moreEnemiesSpeed;
 
@@ -15,8 +15,8 @@ class Wave {
   void update() {
     if (!start.start && !pauze.pauze) {
       maxEnemiesSpawned = int(maxEnemiesSpawnedFloat);
-      if (waveFrame >= newEnemyTimer || (enemy.size()<1)) {
-        switch(waveNR) {//
+      if (waveFrame >= newEnemyTimer || (enemy.size()<1)) {//creates new waves when the timer runs out or there are no enemies left. 
+        switch(waveNR) {
         case 0:
           waveAmount = 1;
           waveNR++;
@@ -32,7 +32,7 @@ class Wave {
           newEnemyTimer = 500;
           waveNR++;
           break;
-        case 3:
+        case 3://adds new enemies until the player dies. The difficulty increases. 
           waveAmount = maxEnemiesSpawned - enemy.size()/2;
           newEnemyTimer = enemy.size() * timerMult;
           if (timerMult > minTimerMult) {
