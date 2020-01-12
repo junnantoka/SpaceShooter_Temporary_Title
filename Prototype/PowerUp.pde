@@ -57,6 +57,7 @@ class PowerUp {
         }
         break;
 
+
       case 1:
         if (healthAvailable) {
           image(healthup, powerUpX + xRef + wobbleX, powerUpY + yRef + wobbleY, powerUpSize, powerUpSize);
@@ -78,6 +79,7 @@ class PowerUp {
       //      bulletP[i].bPSize *= bulletSizeMod;
       //      if(bulletP[i].bPSize >= bulletMaxSize){
       //        bulletP[i].bPSize = bulletMaxSize;
+
     }
   }
 

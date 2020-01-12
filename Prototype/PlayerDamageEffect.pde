@@ -1,7 +1,0 @@
-
-class PlayerDamageEffect {
-  
-  void reset() {
-    
-  }
-}
