@@ -149,14 +149,16 @@ public class Enemy {
   }
 
   void check3() {
+    //call to method(s)
     roam();
     charge();
+    //actual movement
     x += xSpeed;
     y += ySpeed;
   }
 
   void roam() {
-    if (frame == 1) {
+    if (frame == 1) {//behaviour of the crusher
       roamTime = int(random(20, 200));
       xSpeed = random(-5, 5);
       ySpeed = random(-5, 5);
@@ -164,14 +166,14 @@ public class Enemy {
 
     if (!aggro) {
       frame++;
-      if (frame>roamTime) {
+      if (frame > roamTime) {
         frame = 0;
       }
     }
   }
 
   void charge() {
-    if (dist(x + xRef, y + yRef, character.xLocation, character.yLocation) < chargeDist) {
+    if (dist(x + xRef, y + yRef, character.xLocation, character.yLocation) < chargeDist) {//checks if enemy is close to the player
       aggro = true;
     }
     if (aggro) {
@@ -185,16 +187,15 @@ public class Enemy {
       xSpeed = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * chargeSpeed;
       ySpeed = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * chargeSpeed;
     }
-    if (chargeFrame > chargeWait+chargeTime) {
+    if (chargeFrame > chargeWait + chargeTime) {
       aggro = false;
       chargeFrame = 0;
     }
-
-    if (y + radius > world.worldHeight/2 || y - radius< -world.worldHeight/2) {
+    if (y + radius > world.worldHeight/2 || y - radius< -world.worldHeight/2) {//collision with top/bottomborder
       ySpeed = -ySpeed;
     }
 
-    if (x + radius > world.worldWidth/2 || x - radius < -world.worldWidth/2) {
+    if (x + radius > world.worldWidth/2 || x - radius < -world.worldWidth/2) {//collision with left/rightborder
       xSpeed = -xSpeed;
     }
   }
@@ -203,7 +204,7 @@ public class Enemy {
     //check if the enemy makes contact with the player
     if (!dead) {
       for (int i = 0; i < bulletP.length; i++) {
-        if ( bulletP[i].shoot && bulletP[i].visibilityTimer ==visibilitybullet) {
+        if ( bulletP[i].shoot && bulletP[i].visibilityTimer == visibilitybullet) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
             achievement.enemyCounter++;
             highscore.score++;
@@ -232,7 +233,7 @@ public class Enemy {
     }
   }
 
-  void reset() {
+  void reset() {//reset enemy(ies)
     x = random(xMin, xMax) + xRef;
     y = random(yMin, yMax) + yRef;
     xSpd = random(-25, 25);

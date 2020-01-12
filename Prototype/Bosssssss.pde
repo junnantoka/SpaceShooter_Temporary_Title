@@ -53,8 +53,10 @@ class Boss {
   void draw() {
 
     fill(#8F1BF0);
+    if (x > -xRef - size && x < -xRef + width + size && y > -yRef - size && y < -yRef + height + size) {
     if (fullHealth) {
       image(donker, x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY);
+    }
     }
   }
 
@@ -62,14 +64,7 @@ class Boss {
     if (snailPowerUp.snailActivate) {
       speed = 1;
     } 
-    //werkt niet goed hoort de player te volgen
-
-    if (type ==2) {
-      /*   ySpd = (character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
-       xSpd = (character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
-       direction =(character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2+(character.xLocation-x)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
-       ySpd= (speed /direction)*((character.yLocation-y+yRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);
-       xSpd= (speed /direction)*((character.xLocation-x+xRef)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2);*/
+    
       //boss follows the player
 
       if (!reverse) {
@@ -88,7 +83,7 @@ class Boss {
 
       x+=xSpd;
       y+=ySpd;
-    }
+    
   }
 
 
