@@ -43,6 +43,7 @@ class Achievement {
 
 
   void achievementScreen() {
+    //displays general text and if the user has an achievement a checkmark to indicate
     if (goAchievement) {
       noFill();
       textSize(42);
