@@ -180,7 +180,6 @@ void updateGame() {
       for (int i = boss.size()-1; i >=0; i--) {
         Boss a = boss.get(i);
         a.move();
-        a.damageWear();
         a.collision(i);
       }
       wave.update();
