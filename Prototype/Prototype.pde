@@ -102,7 +102,6 @@ void setup() {
   imageMode(CENTER);
 
   health.setup();
-  minimap.setup();
   character.construct();
   wave.construct();
 
