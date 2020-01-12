@@ -14,12 +14,12 @@ int amount = 0;
       } 
       if (amount == 0){
         createUserData();
-        println("kaas 2");
+        
       }
     } else {
       soundSetting = 1;
       artSetting = 1;
-      println("kaas");
+
     }
   }
   

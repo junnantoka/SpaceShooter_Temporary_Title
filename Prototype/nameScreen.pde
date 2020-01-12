@@ -154,7 +154,7 @@ class NameScreen {
         if (msql.connect()) {
           msql.query(like);
 
-          println("chair   name   score");
+          
           while (msql.next()) {
             println(msql.getString("Chair_nr") + "     " + msql.getString("Username") + "     " + msql.getInt("score"));
           }

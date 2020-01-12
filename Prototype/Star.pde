@@ -20,7 +20,5 @@ class Star {
     if (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
       circle(x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY, size);
     }
-    //text(xRef, width/2, 100);
-    //text(yRef, width/2, 300);
   }
 }
