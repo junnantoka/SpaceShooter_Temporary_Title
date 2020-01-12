@@ -48,7 +48,6 @@ class Wave {
     }
     if (waveNR > 0) {
       waveFrame++;
-      text(waveNR, width/2, 100);
     }
   }
 
