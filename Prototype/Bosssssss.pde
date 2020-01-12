@@ -1,4 +1,5 @@
 class Boss {
+  //Boss variables
   float x, y, size, radius, xSpd, ySpd, direction, t, speed, xG, yG, time, startTime;
   int type, cMin, cMax;
   boolean ded, down;
@@ -37,7 +38,6 @@ class Boss {
     direction = random(-2, 2);
     down = false;
     ded = true;
-    //type = (int)random(1, 3);
     type = 2;
     speed = random(5000.0f, 1000.0f);
     xG = random(-10, 10);
@@ -62,7 +62,7 @@ class Boss {
   }
 
   void move() {
-    //werkt niet goed hoort de player te volgen
+    //Boss movement
 
     if (type ==2) {
       /*   ySpd = (character.yLocation-y)/dist(character.xLocation, character.yLocation, x+xRef, y+yRef)*2;
@@ -82,8 +82,6 @@ class Boss {
         reverse=false;
         reverseTimer = 0;
       }
-      // println(xSpd);
-      //println(ySpd);
       x+=xSpd;
       y+=ySpd;
     }
@@ -191,24 +189,19 @@ class Boss {
             powerUp.powerUpInfo(x, y);
             snailPowerUp.SnailPowerUpInfo(x,y);
             reset();
-            //print("Auchiewauchie ");
             highscore.score += bossScore;
             if (!down){
             boss.remove(e);
             }
             down = true;
           }
-          //als de powerup aan staat worden de bullets niet gereset
-          //if (!powerUp.laser) {
-
-          //}
         }
       }
     }
 
-    if (dist(x +xRef, y +yRef, character.xLocation, character.yLocation) < size/2-70+ character.size) {
+    if (dist(x +xRef, y +yRef, character.xLocation, character.yLocation) < size/2-70+ character.size) {//collision
       healthMax = healthMax - 1;
-      healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
+      healthBarWidth = healthBarWidth-healthLost; //health loss if collision is true
       healthBarXLighting = healthBarXLighting-healthLost;
       xSpd = -((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
       ySpd = -((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
@@ -227,24 +220,21 @@ class Boss {
 
   void damageWear() {
     if ((currentHealth <= ((maxHealth / 100) * 50)) && (currentHealth >= ((maxHealth / 100) * 25))  ) {
-      //println("iudaghjwk");
       halfHealth = true;
-      //fullHealth = false;
     }
     if (currentHealth <= ((maxHealth / 100) * 25)) {
-      //println("ajhgtf");
       halfHealth = false;
       quarterHealth = true;
     }
   }
 
   void reset() {
-    //reset alle stats die terug gezet moeten worden
+    //reset stats where needed
     x = random(xMin, xMax) + xRef;
     y = random(yMin, yMax) + yRef;
     currentHealth = bossTotal*30;
     reverse = false;
-    ded= true;
+    ded = true;
     reverseTimer = 0;
   }
 }
