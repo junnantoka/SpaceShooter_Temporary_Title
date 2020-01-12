@@ -23,7 +23,7 @@ class Start {
   }
 
   void update() {
-    //detect of het spel verder mag van de speler
+    //Detect if the game can start
     if (keysPressed['P']||keysPressed['p']) {
       firstScreen.stop();
       titlescreen.loop();

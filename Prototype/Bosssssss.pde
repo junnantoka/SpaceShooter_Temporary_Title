@@ -1,4 +1,5 @@
 class Boss {
+  //Boss variables
   float x, y, size, radius, xSpd, ySpd, direction, t, speed, xG, yG, time, startTime;
   int type, cMin, cMax;
   boolean ded, down;
@@ -37,6 +38,7 @@ class Boss {
     direction = random(-2, 2);
     down = false;
     ded = true;
+
     speed = random(5000.0f, 1000.0f);
     xG = random(-10, 10);
     yG = random(-10, 10);
@@ -62,8 +64,6 @@ class Boss {
   void move() {
     //boss follows the player
 
-    
-
       if (!reverse) {
         xSpd = (( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
         ySpd = (( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed;
@@ -76,6 +76,7 @@ class Boss {
         reverse=false;
         reverseTimer = 0;
       }
+
 
       x+=xSpd;
       y+=ySpd;
@@ -119,9 +120,9 @@ class Boss {
       }
     }
 
-    if (dist(x +xRef, y +yRef, character.xLocation, character.yLocation) < size/2-70+ character.size) {
+    if (dist(x +xRef, y +yRef, character.xLocation, character.yLocation) < size/2-70+ character.size) {//collision
       healthMax = healthMax - 1;
-      healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
+      healthBarWidth = healthBarWidth-healthLost; //health loss if collision is true
       healthBarXLighting = healthBarXLighting-healthLost;
       xSpd = -((( character.xLocation - (x + xRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
       ySpd = -((( character.yLocation - (y + yRef)) / dist(character.xLocation, character.yLocation, x + xRef, y + yRef)) * speed)*2;
@@ -141,10 +142,12 @@ class Boss {
   void damageWear() {
     if ((currentHealth <= ((maxHealth / 100) * 50)) && (currentHealth >= ((maxHealth / 100) * 25))  ) {
 
+
       halfHealth = true;
 
     }
     if (currentHealth <= ((maxHealth / 100) * 25)) {
+
 
       halfHealth = false;
       quarterHealth = true;
@@ -152,12 +155,12 @@ class Boss {
   }
 
   void reset() {
-    //reset alle stats die terug gezet moeten worden
+    //reset stats where needed
     x = random(xMin, xMax) + xRef;
     y = random(yMin, yMax) + yRef;
     currentHealth = bossTotal*30;
     reverse = false;
-    ded= true;
+    ded = true;
     reverseTimer = 0;
   }
 }

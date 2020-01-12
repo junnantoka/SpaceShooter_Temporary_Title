@@ -75,7 +75,7 @@ class HealthDrop {
 
       if (healthMax < startingHealth) {
         //gives health when the player collides
-        // health += healthGet; 
+        // health += healthGet;
         healthMax = healthMax + 1;
         healthBarWidth = healthBarWidth + healthLost;
         healthBarXLighting = healthBarXLighting + healthLost;
