@@ -41,7 +41,7 @@ public void loadAssets() {
   healthWarning = loadImage("./data/img/healthwarning.png");
   checkmark = loadImage("./data/img/checkmark.png");
   donker = loadImage("./data/img/donker.png");
-  bulletSizeUp = loadImage(".data/img/bulletsizeup.png");
+  bulletSizeUp = loadImage("./data/img/bulletsizeup.png");
 
   //Load fonts
   numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);

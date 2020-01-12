@@ -18,7 +18,7 @@ class PowerUp {
 
   boolean bulletUpAvailable;
   boolean bulletUpCollision;
-  float bulletSizeMod = 1.2;
+  float bulletSizeMod = 2;
   float bulletMaxSize = 170;
 
 
@@ -68,7 +68,7 @@ class PowerUp {
 
       case 2:
         if (bulletUpAvailable) {
-          image(bulletSizeUp, powerUpX + xRef + wobbleX, powerUpY + yRef + wobbleY, powerUpSize, powerUpSize);
+          image(bulletSizeUp, powerUpX + xRef + wobbleX, powerUpY + yRef + wobbleY);
           bulletUpCollision = true;
         }
       }
@@ -112,6 +112,7 @@ class PowerUp {
           bulletUpAvailable = false;
           bulletUpCollision = false;
         }
+      }
 
         active= false;
         achievement.powerUpCounter++;
@@ -119,4 +120,3 @@ class PowerUp {
       }
     }
   }
-}
