@@ -1,7 +1,7 @@
 //Player related images
 PImage playerBullet, playerShip;
 //Powerup related images
-PImage laserPowerUp, snailgun;
+PImage laserPowerUp, snailgun, snailIcon;
 //health related images
 PImage healthup, healthParticle, healthWarning, healthBar, healthIcon, healthDropIMG;
 //enemy related images
@@ -41,6 +41,7 @@ public void loadAssets() {
   healthWarning = loadImage("./data/img/healthwarning.png");
   checkmark = loadImage("./data/img/checkmark.png");
   donker = loadImage("./data/img/donker.png");
+  snailIcon = loadImage("./data/img/snailIcon.png");
 
   //Load fonts
   numberFont = createFont("./data/font/Minecraftia-Regular.ttf", 32);

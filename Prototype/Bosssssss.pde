@@ -20,7 +20,7 @@ class Boss {
   boolean halfHealth = false;
   boolean quarterHealth = false;
 
-  Boss() {
+  Boss() {   
     //basic values
     xMin = (-world.worldWidth / 2) + radius;
     xMax = (world.worldWidth / 2) - radius;
@@ -32,25 +32,21 @@ class Boss {
     radius = size/2;
     x = random(xMin, xMax) + xRef;
     y = random(yMin, yMax) + yRef;
-    xSpd = random(-10, 10);
-    ySpd = random(-10, 10);
     direction = random(-2, 2);
     down = false;
     ded = true;
     //type = (int)random(1, 3);
     type = 2;
-    speed = random(5000.0f, 1000.0f);
+    //speed = random(5000.0f, 1000.0f);
     xG = random(-10, 10);
     yG = random(-10, 10);
     startTime= 60;
     time = startTime;
-    speed = 8;
-
     deathParticles = 150;
     hitParticles = 5;
-
     maxHealth = 30;
     currentHealth = maxHealth;
+    speed = 8;
   }
 
   void draw() {
@@ -62,6 +58,9 @@ class Boss {
   }
 
   void move() {
+    if(snailPowerUp.snailActivate) {
+    speed = 1;
+    } 
     //werkt niet goed hoort de player te volgen
 
     if (type ==2) {
