@@ -18,7 +18,7 @@ class World {
     displayBorder();
   }
 
-  void updateBorder() {
+    void updateBorder() {//collision of player with the border
     if (yRef + character.size/2 - startY > worldHeight/2 ) {
       yRef = (worldHeight/2) - (character.size/2) + startY;
       character.ySpeed = 0;

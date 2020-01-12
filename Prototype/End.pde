@@ -142,6 +142,7 @@ class End {
         int achievementID = msql.getInt("a.AchievementID");
         String achievement = msql.getString("a.AchievementName");
        
+        print(users + " "  + achievementID + " " + achievement + " ");
       } 
     }
   }

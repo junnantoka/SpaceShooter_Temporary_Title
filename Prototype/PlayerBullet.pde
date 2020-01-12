@@ -1,4 +1,3 @@
-
 boolean wobbleShot = false;
 int wobbleShotTimer = 0;
 int bulletWobbleX, bulletWobbleY = 0;
@@ -23,25 +22,17 @@ class PlayerBullet {
 
   void draw() {
     //draws bullets
-
-
-    if (shoot  ) {
+    if (shoot) {
       if (visibilityTimer <visibilitybullet) {
         visibilityTimer++;
       }
       if (visibilityTimer ==visibilitybullet) {
-
-
         image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
       }
     }
   }
 
   void detectie() {
-
-
-
-
     //checks if a key is pressed and gives direction to the bullets movement
     if (keysPressed[UP] || keysPressed[DOWN] || keysPressed[LEFT] || keysPressed[RIGHT]) {
       pBTimer++;
@@ -89,7 +80,6 @@ class PlayerBullet {
     }
     if ((!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed[LEFT] && !keysPressed[RIGHT])|| pBTimer== interval) {
       pBTimer = reset;
-      pew.stop();
     } else if (pBTimer> 0) {
       pBTimer++;
     }
@@ -98,8 +88,9 @@ class PlayerBullet {
     }
     wobble ();
   }
+
   void move() {
-    //moves bullet and returns to begining
+    //moves bullet and returns to begining after having travelled a certain distance
     if (shoot) {
       bPLocationY += chSpeedY;
       bPLocationX += chSpeedX;
@@ -133,8 +124,9 @@ class PlayerBullet {
       }
     }
   }
-  void reset() {
 
+  void reset() {
+    //sets all values back to original values
     bPLocationX = width/2;
     bPLocationY = height/2;
     pBNaarbeneden = false;
@@ -151,6 +143,7 @@ class PlayerBullet {
     visibilityTimer=0;
     makingSound = 0;
   }
+  
   void wobble () {
     //makes the screen shake
     if (wobbleShotTimer ==0) {

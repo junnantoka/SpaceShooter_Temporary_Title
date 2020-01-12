@@ -89,7 +89,7 @@ class Character {
     yRef -= ySpeed;
     xRef -= xSpeed;
     
-    //keypress checks
+    //changes speed according to keypresses
     if (keysPressed['w']||keysPressed['W']) {
       input_per_frame += 1;//keep track of input
       moving = true;
@@ -157,7 +157,7 @@ class Character {
       newP = false;
     }
 
-    if (newP) {
+    if (newP) {//creates new particles when the player is moving. 
       frame++;
       if (frame > pInterval) {
         particle[pCount].construct();
@@ -170,7 +170,6 @@ class Character {
     }
   }
   
-  //reset method
   void reset() {
     ySpeed = 0;
     xSpeed = 0;

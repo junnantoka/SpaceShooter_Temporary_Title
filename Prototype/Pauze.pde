@@ -1,10 +1,9 @@
 class Pauze {
   int pauzedTime = 0;
   boolean pauze = false;
-  float pauzeX, pauzeY;
-  int speedX, speedY;
+
   int timerPauze = 0;
-  int BLACK = 0;
+  final int BLACK = 0;
   final int SPEED = 10;
   final int MINX = 10;
   final int MAXX = 1590;
@@ -13,23 +12,11 @@ class Pauze {
   final int TEXTSIZE = 26;
   final int TEXTCOLOR = 250;
 
-  void setup() {
-    pauzeX = random(MINX, MAXX);
-    pauzeY = random(MINY, MAXY);
-    if (random(1, 2) >= 1.5) {
-      speedX = SPEED;
-    } else {
-      speedX = -SPEED;
-    }
-    if (random(1, 2) >= 1.5) {
-      speedY = SPEED;
-    } else {
-      speedY = -SPEED;
-    }
-  }
+  
 
   void pauzeGame() {
-
+// when p is pressed the game will stop and the pauze menu will be visible 
+// or the game will continue and the pauze menu wil be invisible
     if (timerPauze == 0) {
       if ((keysPressed['p']||keysPressed['P']) && pauze == true) {
         titlescreen.loop();
@@ -63,23 +50,7 @@ class Pauze {
     if (timerPauze>0) {
       timerPauze++;
     }
-    if (pauze ==true) {
-      pauzedTime++;
-      pauzeX += speedX;
-      pauzeY += speedY;
-      if (pauzeX -125 <=0 ) {
-        speedX = SPEED;
-      }
-      if (pauzeX + 125 >= width ) {
-        speedX = -SPEED;
-      }
-      if (pauzeY - 25<=0 ) {
-        speedY = SPEED;
-      }
-      if (pauzeY + 25 >= height ) {
-        speedY = -SPEED;
-      }
-    }
+   
   }
 
   void draw() {
@@ -89,7 +60,6 @@ class Pauze {
       image(highscoreTab, width/2, height/2, 721, 750);
       image(movement, width/6, height/2, 350, 350);
       image(shooting, width/6*5, height/2, 350, 350);
-      //image(pauzeImg, pauzeX, pauzeY);
       textSize(TEXTSIZE);
       fill(TEXTCOLOR);
       text("Press START to continue", width/18*7, height/14*11);

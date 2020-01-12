@@ -103,7 +103,6 @@ void setup() {
 
   health.setup();
   minimap.setup();
-  pauze.setup();
   character.construct();
   wave.construct();
 
@@ -155,7 +154,7 @@ void updateGame() {
   if (!nameEntered) nameScreen.update();
   if (nameEntered)  nameScreen.check();
 
-  if (nameEntered) {
+  if (nameEntered) {//Only plays everything after the name is entered. 
     for (int i = 0; i < star.length; i++) {
       star[i].disp();
     }
@@ -180,7 +179,6 @@ void updateGame() {
       for (int i = boss.size()-1; i >=0; i--) {
         Boss a = boss.get(i);
         a.move();
-        a.damageWear();
         a.collision(i);
       }
       wave.update();
@@ -209,7 +207,6 @@ void updateGame() {
       }
 
       for (int i = healthDrop.size() -1; i >= 0; i--) {
-        //i.updateHealth();
         HealthDrop e = healthDrop.get(i);
         e.healthCollision(i);
       }
@@ -227,7 +224,7 @@ void updateGame() {
         hdp.reset(i);
       }
 
-      //explosion van Lennart wanneer enemies sterven
+      //Explosion when enemies die
       for (Explosion ex : explosion) {
         ex.move();
       }
@@ -287,7 +284,7 @@ void drawGame() {
       }
 
       for (Enemy i : enemy) {
-        if (!i.ded) {
+        if (!i.dead) {
           i.draw();
         }
       }
@@ -344,7 +341,6 @@ void keyReleased() {
 }
 
 
-//Kan dit niet in de boss class??3
 void spawnBoss() {
   if (enemyCounter == enemiesRequired) {
     if ( enemiesRequired> enemiesRequiredStart) {

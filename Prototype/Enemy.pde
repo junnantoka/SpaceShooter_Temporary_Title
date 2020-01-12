@@ -2,7 +2,7 @@ public class Enemy {
   //enemy settings
   float x, y, radius, xSpd, ySpd, direction, t, speed, circle;
   int type, amount;
-  boolean ded, down;
+  boolean dead, down;
   public final float xMin, xMax, yMin, yMax, cMin, cMax, size;
   float xSpeed, ySpeed, chargeDist;
   int spawnLocation, frame, roamTime, chargeWait, chargeFrame, chargeTime, chargeSpeed;
@@ -25,7 +25,7 @@ public class Enemy {
     ySpd = random(-15, 15);
     direction = random(-2, 2);
     down = false;
-    ded = false;
+    dead = false;
     type = (int)random(0, 4);
     speed = random(500.0f, 100.0f);
     circle = random(cMin, cMax);
@@ -202,7 +202,7 @@ public class Enemy {
 
   void collision(int e) {
     //check if the enemy makes contact with the player
-    if (!ded) {
+    if (!dead) {
       for (int i = 0; i < bulletP.length; i++) {
         if ( bulletP[i].shoot && bulletP[i].visibilityTimer == visibilitybullet) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
@@ -223,10 +223,10 @@ public class Enemy {
               bulletP[i].reset();
             }
             boemA.play();
-            if (!ded) {
+            if (!dead) {
               enemy.remove(e);
             }
-            ded = true;
+            dead = true;
           }
         }
       }
@@ -240,17 +240,17 @@ public class Enemy {
     ySpd = random(-25, 25);
     direction = random(-2, 2);
     down = false;
-    ded = false;
+    dead = false;
     speed = random(500.0f, 100.0f);
   }
 
   void invisibleSpawn() {
-    //x = random(xMin, xMax);
-    //y = random(yMin, yMax);
-    //while (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height || x > xMax || x < xMin || y > yMax || y < yMin) {
+    x = random(xMin, xMax);
+    y = random(yMin, yMax);
+    while (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height || x > xMax || x < xMin || y > yMax || y < yMin) {
       x = random(xMin, xMax);
       y = random(yMin, yMax);
-    //}
+    }
   }
 
   void shot() {

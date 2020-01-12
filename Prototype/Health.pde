@@ -1,5 +1,5 @@
 
-float startingHealth = 10000; //Deze integer geeft aan hoeveel health je aan het begin hebt.
+float startingHealth = 10; //Deze integer geeft aan hoeveel health je aan het begin hebt.
 
 
 float healthMax; 
@@ -44,7 +44,7 @@ class Health {
     for (int i = 0; i< enemy.size(); i++) {
       Enemy e = enemy.get(i);
       if (dist(e.x + xRef, e.y + yRef, character.xLocation, character.yLocation) <= character.size/2 + e.radius) {
-        e.ded = true;
+        e.dead = true;
         enemy.remove(e);
         healthMax = healthMax - 1;
         healthBarWidth = healthBarWidth-healthLost; //Als de player geraakt wordt zal de health omlaag gaan.
@@ -85,6 +85,7 @@ class Health {
   }
 
   void healthWarning() {
+    //warns the player when health is too low
     if ((healthMax <= healthWarningStart) && !end.end) {
 
       if (healthWarningTimer < 80) {
