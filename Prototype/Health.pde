@@ -1,4 +1,6 @@
-float startingHealth = 10; //health which the player starts with
+
+float startingHealth = 10000; //Deze integer geeft aan hoeveel health je aan het begin hebt.
+
 
 float healthMax; 
 boolean getsHit = false; //Deze boolean is false, omdat je niet geraakt wordt door een enemy.

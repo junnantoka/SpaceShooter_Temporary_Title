@@ -113,7 +113,7 @@ void setup() {
   }
 
   boss = new ArrayList<Boss>();
-  
+
   //initializes playerBullets array and sets starting values
   for (int i = 0; i < bullets; i++) {
     bulletP[i] = new PlayerBullet();
@@ -176,7 +176,7 @@ void updateGame() {
 
     if (!pauze.pauze&& !start.start && !end.end) {
       for (int i = boss.size()-1; i >=0; i--) {
-       Boss a = boss.get(i);
+        Boss a = boss.get(i);
         a.move();
         a.damageWear();
         a.collision(i);

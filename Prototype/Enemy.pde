@@ -205,7 +205,6 @@ public class Enemy {
       for (int i = 0; i < bulletP.length; i++) {
         if ( bulletP[i].shoot && bulletP[i].visibilityTimer ==3) {
           if (sqrt(((x + xRef - bulletP[i].bPLocationXEnd) * (x + xRef - bulletP[i].bPLocationXEnd)) + ((y + yRef - bulletP[i].bPLocationYEnd) * (y + yRef - bulletP[i].bPLocationYEnd))) <= radius + bulletP[i].bPSize/4) {
-
             achievement.enemyCounter++;
             highscore.score++;
             if (boss.size()==0) {
@@ -245,6 +244,8 @@ public class Enemy {
   }
 
   void invisibleSpawn() {
+    x = random(xMin, xMax);
+    y = random(yMin, yMax);
     while (x > -xRef && x < -xRef + width && y > -yRef && y < -yRef + height) {
       x = random(xMin, xMax);
       y = random(yMin, yMax);
