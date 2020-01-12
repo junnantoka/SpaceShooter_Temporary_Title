@@ -108,7 +108,7 @@ class Highscore {
       }
     }
   }
-  //reset... lol.
+ 
   void reset() {
     highscoreTimer = 0;
     sqlTimer = 0;

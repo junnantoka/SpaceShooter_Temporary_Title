@@ -5,7 +5,6 @@ boolean selecting = true;
 boolean nameSelected;
 char[] alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
-String peoep = "7b";
 boolean chairExists = false;
 
 class NameScreen {
@@ -46,7 +45,6 @@ class NameScreen {
       break;
     }
   }
-
 
   void update() {
     if (selecting) {
@@ -121,7 +119,6 @@ class NameScreen {
       name = name + alphabet[letterC];
     }
 
-
     if (keysPressed[RIGHT]) {
       entering++;
     } else entering = 0;
@@ -154,7 +151,7 @@ class NameScreen {
         if (msql.connect()) {
           msql.query(like);
 
-          println("chair   name   score");
+          
           while (msql.next()) {
             println(msql.getString("Chair_nr") + "     " + msql.getString("Username") + "     " + msql.getInt("score"));
           }
@@ -205,7 +202,6 @@ void deleteUser() {
     msql.query("DELETE FROM Highscore WHERE Chair_nr = '" + chairNr + "'");//deletes Highscore data from the current  at the same time as user date gets deleted.
   }
 }
-
 
 void arrow(float middleX, float middleY, float size) {
   triangle(middleX, middleY - size/2, middleX + size/2, middleY + size/2, middleX - size/2, middleY + size/2);

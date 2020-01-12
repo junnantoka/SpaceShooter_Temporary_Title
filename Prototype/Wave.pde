@@ -1,4 +1,3 @@
-int currentEnemyAmount = 3;
 int newEnemyTimer = 250;
 class Wave {
   int waveNR, waveFrame, waveAmount, timerMult, minTimerMult, maxEnemiesSpawned;
@@ -36,7 +35,7 @@ class Wave {
         case 3:
           waveAmount = maxEnemiesSpawned - enemy.size()/2;
           newEnemyTimer = enemy.size() * timerMult;
-          if(timerMult > minTimerMult){
+          if (timerMult > minTimerMult) {
             timerMult--;
           }
           break;
@@ -57,7 +56,6 @@ class Wave {
       enemy.add(new Enemy());
     }
   }
-
 
   void reset() {
     construct();

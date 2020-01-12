@@ -1,4 +1,4 @@
-//stijns deel
+
 boolean wobbleShot = false;
 int wobbleShotTimer = 0;
 int bulletWobbleX, bulletWobbleY = 0;
@@ -30,7 +30,8 @@ class PlayerBullet {
         visibilityTimer++;
       }
       if (visibilityTimer ==visibilitybullet) {
-        fill(#2DFA46);
+
+
         image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
       }
     }
@@ -41,22 +42,21 @@ class PlayerBullet {
 
 
 
-    //checks if a key is pressed and gives direction to the balls movement
+    //checks if a key is pressed and gives direction to the bullets movement
     if (keysPressed[UP] || keysPressed[DOWN] || keysPressed[LEFT] || keysPressed[RIGHT]) {
       pBTimer++;
       if (pBTimer == 1) {
         reset();
-if(!(bPLocationX == width/2)){
-  print("aaaaaaaaa");
-}
+        if (!(bPLocationX == width/2)) {
+        }
         bPXRef = xRef;
         bPYRef = yRef;
         chSpeedX = character.xSpeed/2;
         chSpeedY = character.ySpeed/2;
         wobbleShotTimer = 1;
         wobbleShot = true;
-        if(!pew.isPlaying()){
-        pew.loop();
+        if (!pew.isPlaying()) {
+          pew.loop();
         }
         if (keysPressed[UP]) {
 
@@ -84,7 +84,7 @@ if(!(bPLocationX == width/2)){
       if (beweging == bullets-1) {
         beweging = reset;
       }
-    }  else {
+    } else {
       pew.stop();
     }
     if ((!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed[LEFT] && !keysPressed[RIGHT])|| pBTimer== interval) {
@@ -134,7 +134,7 @@ if(!(bPLocationX == width/2)){
     }
   }
   void reset() {
-       
+
     bPLocationX = width/2;
     bPLocationY = height/2;
     pBNaarbeneden = false;
@@ -152,6 +152,7 @@ if(!(bPLocationX == width/2)){
     makingSound = 0;
   }
   void wobble () {
+    //makes the screen shake
     if (wobbleShotTimer ==0) {
       bulletWobbleX = 0;
       bulletWobbleY = 0;
@@ -173,4 +174,3 @@ if(!(bPLocationX == width/2)){
     }
   }
 }
-//eind stijns deel
