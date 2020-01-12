@@ -87,13 +87,12 @@ int beweging = 0;
 PlayerBullet[] bulletP = new PlayerBullet[bullets];
 int pBTimer = 0; 
 
-void setup() {  
+void setup() {
   fullScreen(P2D);
   noCursor();
 
   //checks if the chair exists in the database
   nameScreen.doesChairExist();
-
 
   //sql.construct();
   world.construct();
@@ -116,9 +115,8 @@ void setup() {
     star[i].construct();
   }
 
-  boss= new ArrayList<Boss>();
+  boss = new ArrayList<Boss>();
   
-
   //initializes playerBullets array and sets starting values
   for (int i = 0; i < bullets; i++) {
     bulletP[i] = new PlayerBullet();
@@ -129,7 +127,7 @@ void setup() {
   enemy = new ArrayList<Enemy>();
   enemy.add(new Enemy());
 
-  eBullet =new ArrayList<EnemyBullet>();
+  eBullet = new ArrayList<EnemyBullet>();
 
   healthDrop = new ArrayList<HealthDrop>();
 
@@ -301,9 +299,7 @@ void drawGame() {
       for (Enemy i : enemy) {
         if (!i.ded) {
           i.draw();
-        } /*else {
-         i = new Enemy();
-         }*/
+        }
       }
       health.draw();
       for (int i = 0; i< healthDrop.size(); i++) {
@@ -326,8 +322,6 @@ void drawGame() {
       }
     }
 
-
-
     if (end.end ||start.start||pauze.pauze) {
       setting.settingScreen();
       achievement.achievementScreen();
@@ -346,6 +340,7 @@ void draw() {
   updateGame();
   drawGame();
 }
+
 // Keyboard handling...
 void keyPressed() {  
   if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit methhod ('return').
