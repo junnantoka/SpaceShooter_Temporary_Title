@@ -9,14 +9,14 @@ SpaceShooter Temporary Title - HBO-ICT IG102-1 - ©IDIL
  */
 import processing.sound.*; //importing the Sound library
 
-NameScreen nameScreen = new NameScreen();
+NameScreen nameScreen = new NameScreen(); //New instance of nameScreen
 
 import de.bezier.data.sql.*;//importing the Sql library
 String dbHostID = "oege.ie.hva.nl";    // ip address, domain or hostname such as localhost
 String dbUsername = "dorpl2";  //username
 String dbUserPass = "kjWD660lD6ZRA0+7";  //password
 String dbSchema = "zdorpl2";  //default database schema
-String chairNr = "1a"; 
+String chairNr = "1a"; //hardcoded chairnr
 MySQL msql = new MySQL( this, dbHostID, dbSchema, dbUsername, dbUserPass );//Create new mysql instance
 Sql sql = new Sql();//New instance of "Sql" class
 
@@ -35,26 +35,26 @@ ArrayList<Boss> boss; //Array of bosses
 float yRef = height/2; //y reference point
 float xRef = width/2; //x reference point
 
-float wobbleX, wobbleY = 0;
+float wobbleX, wobbleY = 0;//initialize wobble x & y
 int wobbleTimer = 0; // Wobble timer
 Wobble wobble = new Wobble(); //New instance of "Wobble"
 
-ArrayList<Explosion> explosion; //ArrayList 
+ArrayList<Explosion> explosion; //ArrayList explosion
 
-ArrayList<PlayerDamageEffect> playerParticle;
+ArrayList<PlayerDamageEffect> playerParticle; //arraylist playerParticle
 
-Wave wave = new Wave();
+Wave wave = new Wave(); //New instance of "Wave"
 
-Star[] star;
-Start start = new Start();
-End end = new End();
-int stars = 500;
-int timer, enemyCounter = 0;
-int timerBullet;
-int bossTotal = 1;
-int enemiesRequiredStart = 10;
-int enemiesRequired = enemiesRequiredStart;
-boolean bossSpawn = false;
+Star[] star; //Array of stars
+Start start = new Start(); //New instance of "Start"
+End end = new End();  //New instance of "End"
+int stars = 500; //hardcoded stars
+int timer, enemyCounter = 0;//timer, enemy counter
+int timerBullet; //timer for the bullets
+int bossTotal = 1; //hardcoded bossTotal
+int enemiesRequiredStart = 10;  //enemies required for a boss to spawn
+int enemiesRequired = enemiesRequiredStart; //convert to another variable
+boolean bossSpawn = false; //boolean for boss spawn
 
 //WorldBorder
 World world = new World();
