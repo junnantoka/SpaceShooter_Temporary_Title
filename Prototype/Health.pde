@@ -16,7 +16,7 @@ class Health {
   int enemyWobbleDuration = 10;
   int enemyIntensity = 15;
 
-  float healthWarningStart = (startingHealth / 100) * 30;
+  float healthWarningStart = 3;
   int healthWarningTimer;
 
   void setup() {
@@ -60,7 +60,7 @@ class Health {
     }
   }
 
-  //A health achievement
+  //A health achievement.
   int deathCounterTimer = 0;
   void gameOver() {
     if (healthMax <= 0) {
@@ -69,7 +69,6 @@ class Health {
       if (deathCounterTimer == 1) {
         achievement.deathCounter++;
       }
-      //highscore.highscoreSave();
       if (keyPressed) {
         end.button = true;
       }
@@ -77,7 +76,7 @@ class Health {
       deathCounterTimer = 0;
     }
   }
-  //If the game resets, so does the healthbar
+  //If the game resets, so does the healthbar.
   void reset() {
     healthMax = startingHealth; //De health wordt hier gereset als de "play again" knop wordt ingedrukt.
 
@@ -89,9 +88,9 @@ class Health {
   }
 
   void healthWarning() {
-    //Warns the player when health is too low
-    if ((healthMax <= healthWarningStart) && !end.end) {
 
+    //Warns the player when health is too low.
+    if (healthMax <= healthWarningStart) {
       if (healthWarningTimer < 80) {
         image(enemyBullet, 75 + wobbleX + bulletWobbleX, 120 + wobbleY + bulletWobbleY, 120, 120);
         image(healthWarning, 75 + wobbleX + bulletWobbleX, 120 + wobbleY + bulletWobbleY, 70, 70);

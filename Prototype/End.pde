@@ -87,6 +87,9 @@ class End {
     for (int i = eBullet.size()-1; i >= 0; i--) {
       eBullet.remove(i);
     }
+    for (int i = boss.size()-1; i >= 0; i--) {
+      boss.remove(i);
+    }
 
     health.reset();
     highscore.score = 0;
