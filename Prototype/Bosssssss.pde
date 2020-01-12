@@ -182,7 +182,7 @@ class Boss {
 
           if (currentHealth == 0) {
             boemB.play();
-            down = true;
+            
 
             for (int in = 0; in < deathParticles; in++) {
               explosion.add(new Explosion(x, y, 30, 5));
@@ -196,6 +196,7 @@ class Boss {
             if (!down){
             boss.remove(e);
             }
+            down = true;
           }
           //als de powerup aan staat worden de bullets niet gereset
           //if (!powerUp.laser) {
