@@ -1,11 +1,11 @@
-int minimapXLoc = 75; //The X value of the location of the minimap
-int minimapYLoc = 720; //The Y value of the location of the minimap
+int minimapXLoc = 1; //The X value of the location of the minimap
+int minimapYLoc = 770; //The Y value of the location of the minimap
 int minimapSize = 7; //Standard is 7. The size of the minimap is the same size as the playable area, divided by seven.
 int minimapXLocMax = 623;
 int minimapYLocMax = 1028; //1028
 
-int minimapX = 350; 
-int minimapY = 875; //Height of the minimap
+int minimapX = 276;
+int minimapY = 925; //Height of the minimap 
 int minimapPlayerSize = 20;
 int minimapBulletSize = 5;
 int minimapEnemySize = 15;
