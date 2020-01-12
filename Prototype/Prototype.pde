@@ -357,7 +357,7 @@ void keyReleased() {
 //Kan dit niet in de boss class??3
 void spawnBoss() {
   if (enemyCounter == enemiesRequired) {
-    if (bossTotal < bosses-1 && enemiesRequired> enemiesRequiredStart) {
+    if ( enemiesRequired> enemiesRequiredStart) {
       bossTotal++;
     } 
     enemyCounter = 0;
@@ -365,7 +365,7 @@ void spawnBoss() {
     enemiesRequired *= 2;
   }
   if (bossSpawn == true) {
-    for (int i = 0; i<bossTotal; i++) {
+    for (int i = 0; i<=bossTotal; i++) {
       boss.add(new Boss());
     }
     bossSpawn = false;
