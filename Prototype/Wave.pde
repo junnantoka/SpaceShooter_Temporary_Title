@@ -1,29 +1,32 @@
 int currentEnemyAmount = 3;
 int newEnemyTimer = 250;
 class Wave {
-  int waveNR, waveFrame, waveAmount, timerMult;
-
+  int waveNR, waveFrame, waveAmount, timerMult, minTimerMult, maxEnemiesSpawned;
+  float maxEnemiesSpawnedFloat, moreEnemiesSpeed;
 
   void construct() {
     waveNR = 0;
     waveFrame = 0;
     waveAmount = 1;
-    timerMult = 40;
+    timerMult = 50;
+    minTimerMult = 30;
+    maxEnemiesSpawnedFloat = 8;
+    moreEnemiesSpeed = 0.1;
   }
   void update() {
     if (!start.start && !pauze.pauze) {
-
+      maxEnemiesSpawned = int(maxEnemiesSpawnedFloat);
       if (waveFrame >= newEnemyTimer || (enemy.size()<1)) {
-        switch(waveNR) {
+        switch(waveNR) {//
         case 0:
           waveAmount = 1;
           waveNR++;
-          newEnemyTimer = 300;
+          newEnemyTimer = 500;
           break;
         case 1:
           waveAmount = 5;
           waveNR++;
-          newEnemyTimer = 300;
+          newEnemyTimer = 400;
           break;
         case 2:
           waveAmount = 6;
@@ -31,13 +34,14 @@ class Wave {
           waveNR++;
           break;
         case 3:
-          waveAmount = 8;
+          waveAmount = maxEnemiesSpawned - enemy.size()/2;
           newEnemyTimer = enemy.size() * timerMult;
-          if(timerMult > 20){
+          if(timerMult > minTimerMult){
             timerMult--;
           }
           break;
         }
+        maxEnemiesSpawnedFloat += moreEnemiesSpeed;
         newWave(waveAmount);
         waveFrame = 0;
       }
