@@ -1,7 +1,7 @@
 //stijns deel
-  boolean wobbleShot = false;
-  int wobbleShotTimer = 0;
-  int bulletWobbleX, bulletWobbleY = 0;
+boolean wobbleShot = false;
+int wobbleShotTimer = 0;
+int bulletWobbleX, bulletWobbleY = 0;
 class PlayerBullet {
   float bPLocationX, bPLocationY, bPSize, chSpeedX, chSpeedY, bPXRef, bPYRef, bPXRefEnd, bPYRefEnd, bPLocationXEnd, bPLocationYEnd, sideVariationX, sideVariationY;
   boolean pBLinks, pBRechts, pBOmhoog, pBNaarbeneden, shoot;
@@ -22,13 +22,13 @@ class PlayerBullet {
 
   void draw() {
     //draws bullets
-    
-    
+
+
     if (shoot  ) {
-      if (visibilityTimer <3){
+      if (visibilityTimer <3) {
         visibilityTimer++;
       }
-      if(visibilityTimer ==3){
+      if (visibilityTimer ==3) {
         fill(#2DFA46);
         image(playerBullet, bPLocationXEnd+wobbleX+bulletWobbleX, bPLocationYEnd+wobbleY+bulletWobbleY, bPSize, bPSize);
       }
@@ -36,22 +36,16 @@ class PlayerBullet {
   }
 
   void detectie() {
-    
-   /* //plays sounds
-    if(makingSound < 2){
-      makingSound++;
-    }
-    if(makingSound == 1){
-      pew.play();
-    }*/
-    
+
+
+
 
     //checks if a key is pressed and gives direction to the balls movement
     if (keysPressed[UP] || keysPressed[DOWN] || keysPressed[LEFT] || keysPressed[RIGHT]) {
       pBTimer++;
       if (pBTimer == 1) {
         reset();
-        
+
         bPXRef = xRef;
         bPYRef = yRef;
         bPLocationX = width/2;
@@ -60,23 +54,25 @@ class PlayerBullet {
         chSpeedY = character.ySpeed/2;
         wobbleShotTimer = 1;
         wobbleShot = true;
-
+        if(!pew.isPlaying()){
+        pew.loop();
+        }
         if (keysPressed[UP]) {
-          pew.play();
+
           sideVariationY = random(-10, 10);
 
           pBOmhoog = true;
         } else if (keysPressed[DOWN]) {
-          pew.play();
+
           sideVariationY = random(-10, 10);
           pBNaarbeneden = true;
         }
         if (keysPressed[LEFT]) {
-          pew.play();
+
           sideVariationX = random(-10, 10);
           pBLinks = true;
         } else if (keysPressed[RIGHT]) {
-          pew.play();
+
           sideVariationX = random(-10, 10);
           pBRechts = true;
         } 
@@ -87,7 +83,9 @@ class PlayerBullet {
       if (beweging == bullets-1) {
         beweging = reset;
       }
-    }  
+    }  else {
+      pew.stop();
+    }
     if ((!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed[LEFT] && !keysPressed[RIGHT])|| pBTimer== interval) {
       pBTimer = reset;
       pew.stop();
@@ -152,32 +150,26 @@ class PlayerBullet {
     visibilityTimer=0;
     makingSound = 0;
   }
-  void wobble (){
-    if(wobbleShotTimer ==0){
-    bulletWobbleX = 0;
-    bulletWobbleY = 0; 
+  void wobble () {
+    if (wobbleShotTimer ==0) {
+      bulletWobbleX = 0;
+      bulletWobbleY = 0;
     }
-    if (wobbleShotTimer == 1){ 
-      if (keysPressed[UP]){
-   
-    bulletWobbleY = 10;
-      }
-     else if (keysPressed[DOWN]){
-    
-    bulletWobbleY = -10;
-      }
-      if ( keysPressed[LEFT]){
-    bulletWobbleX = 10;
-    
-      }
-      else if ( keysPressed[RIGHT]){
-    bulletWobbleX = -10;
+    if (wobbleShotTimer == 1) { 
+      if (keysPressed[UP]) {
 
+        bulletWobbleY = 10;
+      } else if (keysPressed[DOWN]) {
+
+        bulletWobbleY = -10;
+      }
+      if ( keysPressed[LEFT]) {
+        bulletWobbleX = 10;
+      } else if ( keysPressed[RIGHT]) {
+        bulletWobbleX = -10;
       }
       wobbleShotTimer--;
     }
-    
-    
   }
 }
 //eind stijns deel
