@@ -49,12 +49,14 @@ boolean active = false;
         if (powerUpTimer == 120) {
           powerUpTimer = 0;
         }
+        collision();
       }
+      
     }
   
 
   void display() {
-    collision();
+    
     
      
       if (active) {
@@ -89,6 +91,7 @@ boolean active = false;
       if (dist(powerUpX + xRef, powerUpY + yRef, character.xLocation, character.yLocation) <= character.size/2 + powerUpSize/2) {
         laser = true;
         laserAvailable = false;
+        active= false;
         achievement.powerUpCounter++;
         powerUpNumber++;   
       }
