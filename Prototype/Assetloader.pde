@@ -1,7 +1,7 @@
 //Player related images
 PImage playerBullet, playerShip;
 //Powerup related images
-PImage laserPowerUp, snailgun, healthup, bulletSizeUp;
+PImage laserPowerUp, snailgun, healthup, snailIcon, bulletSizeUp;
 //health related images
 PImage healthParticle, healthWarning, healthBar, healthIcon, healthDropIMG;
 //enemy related images
@@ -41,6 +41,7 @@ public void loadAssets() {
   healthWarning = loadImage("./data/img/healthwarning.png");
   checkmark = loadImage("./data/img/checkmark.png");
   donker = loadImage("./data/img/donker.png");
+  snailIcon = loadImage("./data/img/snailIcon.png");
   bulletSizeUp = loadImage(".data/img/bulletsizeup.png");
 
   //Load fonts

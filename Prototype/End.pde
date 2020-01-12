@@ -108,7 +108,7 @@ class End {
     wobbleTimer = 0;
     for (int i =boss.size(); i > 0; i--) {
       
-      boss.remove(i);
+
     }
     wave.reset();
 

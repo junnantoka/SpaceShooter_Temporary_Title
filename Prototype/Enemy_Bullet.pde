@@ -27,10 +27,12 @@ class EnemyBullet {
 
 
   void draw() {
+    //draw image
     image(enemyBullet, (xRef + bulletX+wobbleX+bulletWobbleX), (yRef+ bulletY+wobbleY+bulletWobbleY), bulletSize, bulletSize);
   }
 
   void move(int i) {
+    //Actual movement
     bulletX+= bulletXSpeed;
     bulletY+= bulletYSpeed;
     collision(i);
@@ -38,14 +40,12 @@ class EnemyBullet {
       timer++;
     }
     if (timer == 500) {
-
       eBullet.remove(i);
     }
   }
 
-
   void collision(int i) {
-    if (dist(bulletX + xRef, bulletY + yRef, character.xLocation, character.yLocation)< bulletSize/2+character.size/2) {
+    if (dist(bulletX + xRef, bulletY + yRef, character.xLocation, character.yLocation)< bulletSize/2+character.size/2) {//collision
       healthMax = healthMax - 1;
       healthBarWidth = healthBarWidth-healthLost;
       healthBarXLighting = healthBarXLighting-healthLost;
