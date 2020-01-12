@@ -29,7 +29,8 @@ class Pauze {
   }
 
   void pauzeGame() {
-
+// when p is pressed the game will stop and the pauze menu will be visible 
+// or the game will continue and the pauze menu wil be invisible
     if (timerPauze == 0) {
       if ((keysPressed['p']||keysPressed['P']) && pauze == true) {
         titlescreen.loop();
@@ -63,23 +64,7 @@ class Pauze {
     if (timerPauze>0) {
       timerPauze++;
     }
-    if (pauze ==true) {
-      pauzedTime++;
-      pauzeX += speedX;
-      pauzeY += speedY;
-      if (pauzeX -125 <=0 ) {
-        speedX = SPEED;
-      }
-      if (pauzeX + 125 >= width ) {
-        speedX = -SPEED;
-      }
-      if (pauzeY - 25<=0 ) {
-        speedY = SPEED;
-      }
-      if (pauzeY + 25 >= height ) {
-        speedY = -SPEED;
-      }
-    }
+   
   }
 
   void draw() {
