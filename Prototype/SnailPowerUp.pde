@@ -1,4 +1,3 @@
-
 class SnailPowerUp {
 boolean active = false;
   float snailPowerUpTimer = 0;

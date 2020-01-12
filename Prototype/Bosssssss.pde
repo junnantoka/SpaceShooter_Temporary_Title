@@ -17,9 +17,6 @@ class Boss {
 
   float currentHealth;
   float maxHealth;
-  boolean fullHealth = true;
-  boolean halfHealth = false;
-  boolean quarterHealth = false;
 
   Boss() {   
     //basic values
@@ -54,9 +51,9 @@ class Boss {
 
     fill(#8F1BF0);
     if (x > -xRef - size && x < -xRef + width + size && y > -yRef - size && y < -yRef + height + size) {
-      if (fullHealth) {
+
         image(donker, x + xRef+wobbleX+bulletWobbleX, y + yRef+wobbleY+bulletWobbleY);
-      }
+
     }
   }
 
@@ -139,19 +136,6 @@ class Boss {
     }
   }
 
-  void damageWear() {
-    if ((currentHealth <= ((maxHealth / 100) * 50)) && (currentHealth >= ((maxHealth / 100) * 25))  ) {
-
-
-      halfHealth = true;
-    }
-    if (currentHealth <= ((maxHealth / 100) * 25)) {
-
-
-      halfHealth = false;
-      quarterHealth = true;
-    }
-  }
 
   void reset() {
     //reset stats where needed

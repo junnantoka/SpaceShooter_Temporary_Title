@@ -97,7 +97,6 @@ class Highscore {
               }
             }
             //This makes sure there is no useless data being stored.
-            //msql.query( "DELETE FROM Highscore WHERE score = 0" );
             reset();
             msql.close();
           } else {

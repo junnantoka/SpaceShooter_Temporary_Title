@@ -12,6 +12,7 @@ class Wave {
     maxEnemiesSpawnedFloat = 8;
     moreEnemiesSpeed = 0.1;
   }
+  
   void update() {
     if (!start.start && !pauze.pauze) {
       maxEnemiesSpawned = int(maxEnemiesSpawnedFloat);

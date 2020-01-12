@@ -1,10 +1,12 @@
 class Wobble {
-  float wobbleIntensity;  
+  float wobbleIntensity;
+  
   void wobble(int wobbleDuration, float wobbleIntensity2) {
     //sets the intensity and duration of the screen shake
     wobbleTimer = wobbleDuration;
     wobbleIntensity = wobbleIntensity2;
   }
+  
   void wobbleMovement() {
     //makes the screen shake  according to the timer and the intensity
     if (wobbleTimer >19) {
