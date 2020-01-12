@@ -14,7 +14,7 @@ class SnailPowerUp {
 
   void SnailPowerUpInfo(float x, float y) { //This function is initiated in the boss class. 
     snailPowerUpX = x + random(-300, 300);
-    snailPowerUpY = y + random(-300, 300); //When the boss dies, the snail will spawn with 700 coordinates of the death location.
+    snailPowerUpY = y + random(-300, 300); //When the boss dies, the snail will spawn with 300 coordinates of the death location.
     snailVisible = true;
   }
 
