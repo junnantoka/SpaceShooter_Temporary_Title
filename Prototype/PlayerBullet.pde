@@ -1,4 +1,3 @@
-
 boolean wobbleShot = false;
 int wobbleShotTimer = 0;
 int bulletWobbleX, bulletWobbleY = 0;

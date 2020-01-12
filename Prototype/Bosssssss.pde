@@ -2,7 +2,7 @@ class Boss {
   //Boss variables
   float x, y, size, radius, xSpd, ySpd, direction, t, speed, xG, yG, time, startTime;
   int type, cMin, cMax;
-  boolean ded, down;
+  boolean dead, down;
   final float xMin, xMax, yMin, yMax;
   float oddsX, oddsY, randomX, randomY;
   int prvsDirectionX, prvsDirectionY;
@@ -35,7 +35,7 @@ class Boss {
     y = random(yMin, yMax) + yRef;
     direction = random(-2, 2);
     down = false;
-    ded = true;
+    dead = true;
     //type = (int)random(1, 3);
     type = 2;
     //speed = random(5000.0f, 1000.0f);
@@ -160,7 +160,7 @@ class Boss {
       y = random(yMin, yMax) + yRef;
       currentHealth = bossTotal*30;
       reverse = false;
-      ded = true;
+      dead = true;
       reverseTimer = 0;
     }
   }

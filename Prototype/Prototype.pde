@@ -286,7 +286,7 @@ void drawGame() {
       }
 
       for (Enemy i : enemy) {
-        if (!i.ded) {
+        if (!i.dead) {
           i.draw();
         }
       }
@@ -343,7 +343,6 @@ void keyReleased() {
 }
 
 
-//Kan dit niet in de boss class??3
 void spawnBoss() {
   if (enemyCounter == enemiesRequired) {
     if ( enemiesRequired> enemiesRequiredStart) {
