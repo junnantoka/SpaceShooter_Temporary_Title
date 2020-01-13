@@ -32,6 +32,8 @@ class NameScreen {
     text(alphabet[letterA], width / 6 - width/15, 650);
     text(alphabet[letterB], width / 6 * 3 - width/15, 650);
     text(alphabet[letterC], width / 6 * 5 - width/15, 650);
+    image(movement, width-320, height-160, 160,160);
+    image(shooting, width-160, height-160, 160,160);
     fill(255);
     switch(letterSelected) {
     case 0:
