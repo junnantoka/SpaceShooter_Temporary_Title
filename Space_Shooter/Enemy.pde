@@ -212,7 +212,9 @@ public class Enemy {
             if (boss.size()==0) {
               enemyCounter++;
             }
+            if(healthDrop.size() == 30){
             healthDrop.add(new HealthDrop(x, y));
+            }
             for (int in = 0; in < particles; in++) {
               explosion.add(new Explosion(x, y, 10, 7));
             }
