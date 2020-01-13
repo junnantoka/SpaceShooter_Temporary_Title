@@ -44,6 +44,7 @@ class End {
   }
 
   void update() {
+    firstScreen.loop();
     //detect of het spel verder mag van de speler
     if (keysPressed['p']||keysPressed['P']) {
       end = false;
@@ -60,6 +61,7 @@ class End {
     }
 
     if (end) {//Checks if game ended
+      firstScreen.loop();
       titlescreen.stop();
       if ( endTimer == 1) {
         getTestdata();
@@ -100,6 +102,7 @@ class End {
     for (int i = 0; i < bulletP.length; i++) {
       bulletP[i].reset();
     }
+    snailPowerUp.snailVisible = false;
     wave.construct();
     character.reset();
     bossTotal = 1;

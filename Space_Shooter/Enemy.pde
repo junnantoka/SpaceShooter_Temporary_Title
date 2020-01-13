@@ -102,8 +102,8 @@ public class Enemy {
       if (xSpd < 0) {//goes left
         xSpd += 0.05;
       }
-      if ((x + radius >= xMax || x - radius <= xMin) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
-        xSpd = random(-15, 15);
+      if ((x + radius > world.worldWidth/2 || x - radius < -world.worldWidth/2) || (xSpd <= 0.05 && xSpd >= -0.05)) {//if movement stops or hits the wall(s), go down
+        xSpd = -xSpd;
         down = true;
       }
     }
@@ -116,8 +116,8 @@ public class Enemy {
       if (ySpd < 0) {//goes up
         ySpd += 0.05;
       }
-      if ((y + radius >= yMax || y - radius <= xMin) || (ySpd <= 0.05 && ySpd >= -0.05)) {//if it hits the top or bottom border(s)
-        ySpd = random(-15, 15);
+      if ((y + radius > world.worldHeight/2 || y - radius< -world.worldHeight/2) || (ySpd <= 0.05 && ySpd >= -0.05)) {//if it hits the top or bottom border(s)
+        ySpd = -ySpd;
         down = false;
       }
     }
@@ -129,10 +129,11 @@ public class Enemy {
     y += direction * ySpd;
 
     //collision with boundary
-    if (y + radius >= yMax || y - radius <= yMin) {
+    if (y + radius > world.worldHeight/2 || y - radius< -world.worldHeight/2) {//collision with top/bottomborder
       ySpd = -ySpd;
     }
-    if (x + radius >= xMax || x - radius <= xMin) {
+
+    if (x + radius > world.worldWidth/2 || x - radius < -world.worldWidth/2) {//collision with left/rightborder
       xSpd = -xSpd;
     }
   }

@@ -78,13 +78,11 @@ class Minimap {
 
       //These lines ensure that the enemy does not go beyond the playable area. If an enemy hits the edge of the minimap, it will turn the other way around.
       if ((e.x)/minimapSize + minimapX <= minimapXLoc || (e.y)/minimapSize + minimapY <= minimapYLoc) {
-        e.xSpd = -e.xSpd;
-        e.ySpd = -e.ySpd;
+        e.x = minimapXLocMax - e.radius;
+        e.y = minimapXLocMax - e.radius;
       } else if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
-        e.xSpd = -e.xSpd;
-        e.ySpd = -e.ySpd;
-      } else if ((e.x)/minimapSize + minimapX >= minimapXLocMax || (e.y)/minimapSize + minimapY >= minimapYLocMax) {
-        enemy.remove(i);
+        e.x = minimapXLocMax - e.radius;
+        e.y = minimapXLocMax - e.radius;
       }
     }
 
