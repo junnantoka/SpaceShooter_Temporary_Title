@@ -212,15 +212,17 @@ public class Enemy {
             if (boss.size()==0) {
               enemyCounter++;
             }
-            if(healthDrop.size() == 30){
+            if(healthDrop.size() >= 30){
             healthDrop.add(new HealthDrop(x, y));
+            HealthDrop h = healthDrop.get(healthDrop.size()-1);
+            h.healthSetup();
             }
             for (int in = 0; in < particles; in++) {
               explosion.add(new Explosion(x, y, 10, 7));
             }
 
-            HealthDrop h = healthDrop.get(healthDrop.size()-1);
-            h.healthSetup();
+            
+            
             //als de powerup aan staat worden de bullets niet gereset
             if (!powerUp.laser) {
               bulletP[i].reset();
