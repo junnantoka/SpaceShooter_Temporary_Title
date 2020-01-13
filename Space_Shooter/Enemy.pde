@@ -212,7 +212,7 @@ public class Enemy {
             if (boss.size()==0) {
               enemyCounter++;
             }
-            if(healthDrop.size() >= 30){
+            if(healthDrop.size() <= 30){
             healthDrop.add(new HealthDrop(x, y));
             HealthDrop h = healthDrop.get(healthDrop.size()-1);
             h.healthSetup();
