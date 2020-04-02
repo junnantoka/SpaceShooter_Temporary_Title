@@ -1,35 +1,37 @@
-int minimapXLoc = 1; //The X and Y values of the location of the minimap.
-int minimapYLoc = 770;
-
-int minimapXLocMax = 550; //The minimap width and height sizes. The minimap player/bullets can't go beyond these points.
-int minimapYLocMax = 1080;
-
-int minimapX = 276; //The player starting X and Y locations on the minimap. These coordinates start at the centre of the minimap.
-int minimapY = 925;
-
-int minimapSize = 7; //Standard is 7. The visual size of the minimap is the same size as the playable area, divided by seven.
-
-int minimapPlayerSize = 20; //Sizes of stuff on the minimap.
-int minimapBulletSize = 5;
-int minimapEnemySize = 15;
-int minimapHealthdropSize = 30;
-int minimapBossSize = 25;
-
-//These final ints give the minimap its colors.
-
-final int minimapBackgroundColor = color(50);
-final int minimapStrokeColor = color(255);
-final int minimapPlayerColor = color(255, 200, 30);
-final int minimapPlayerBulletColor = color(0, 0, 200);
-final int minimapEnemyBulletColor = color(200, 0, 0);
-final int minimapEnemyColor = color(160, 10, 230);
-final int minimapHealthdropColor = color(255);
-final int minimapBossColor = color(255, 0, 0);
-
-
 class Minimap {
+  //The X and Y values of the location of the minimap.
+  int minimapXLoc; 
+  int minimapYLoc = 770;
 
-  void draw() {
+  //The minimap width and height sizes. The minimap player/bullets can't go beyond these points.
+  int minimapXLocMax = 550; 
+  int minimapYLocMax = 1080;
+
+  //The player starting X and Y locations on the minimap. These coordinates start at the centre of the minimap.
+  int minimapX = 275; 
+  int minimapY = 925;
+
+  //Standard is 7. The visual size of the minimap is the same size as the playable area, divided by seven.
+  int minimapSize = 7; 
+
+  //Sizes of stuff on the minimap.
+  int minimapPlayerSize = 20; 
+  int minimapBulletSize = 5;
+  int minimapEnemySize = 15;
+  int minimapHealthdropSize = 30;
+  int minimapBossSize = 25;
+
+  //These ints give the minimap its colors.
+  int minimapBackgroundColor = color(50);
+  int minimapStrokeColor = color(255);
+  int minimapPlayerColor = color(255, 200, 30);
+  int minimapPlayerBulletColor = color(0, 0, 200);
+  int minimapEnemyBulletColor = color(200, 0, 0);
+  int minimapEnemyColor = color(160, 10, 230);
+  int minimapHealthdropColor = color(255);
+  int minimapBossColor = color(255, 0, 0);
+
+  void miniMap() {
     //The minimap outline.
     fill(minimapBackgroundColor);
     stroke(minimapStrokeColor);

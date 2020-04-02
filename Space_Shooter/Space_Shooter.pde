@@ -293,7 +293,7 @@ void drawGame() {
         h.spawnHealth(i);
       }
       if (!end.end) {
-        minimap.draw();
+        minimap.miniMap();
       }
     }
 
