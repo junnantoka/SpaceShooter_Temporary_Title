@@ -1,22 +1,33 @@
-float startingHealth = 10; //This is your health in total.
+//These floats are outside the class because they are used in other classes.
 
-float healthMax; 
-boolean getsHit = false; //This boolean turns true if you get hit by an enemy.
-int healthBarX = 50; //The X and Y locations of the healthbar.
+//This is your health in total.
+int startingHealth = 10; 
+int healthMax; 
+
+//The X and Y locations of the healthbar.
+int healthBarX = 50; 
 int healthBarY = 25;
-float healthBarWidth = 500; //The width and hight of the healthbar.
-int healthBarHeight = 30;
-float healthLost;
 
-float healthBarXLighting = 500; //White edge around the healthbar for better visuals.
-float healthBarYLighting = 27;
-final int healthBarGone = 49; //The healthbar will get deleted if it reaches this point.
+//The width and hight of the healthbar.
+int healthBarWidth = 500; 
+int healthBarHeight = 30;
+int healthLost;
+
+//White edge around the healthbar for better visuals.
+int healthBarXLighting = 500; 
+int healthBarYLighting = 27;
+
+//The healthbar will get deleted if it reaches this point.
+int healthBarGone = 49; 
 
 class Health {
+  //This boolean turns true if you get hit by an enemy.
+  boolean getsHit = false; 
+
   int enemyWobbleDuration = 10;
   int enemyIntensity = 15;
 
-  float healthWarningStart = 3;
+  int healthWarningStart = 3;
   int healthWarningTimer;
 
   void setup() {
