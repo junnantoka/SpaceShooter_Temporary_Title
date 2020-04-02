@@ -18,12 +18,12 @@ class Achievement {
   boolean graveyard;
 
   //Timers so achievement queries cannot be run more then nessecary, saving resources and thus prefenting lag
-  int firstKillTimer = 1;
-  int dominatorTimer = 1;
-  int getHealthTimer = 1;
-  int firstDeathTimer = 1;
-  int powerUpObtainedTimer = 1;
-  int graveyardTimer = 1;
+  int firstKillTimer = 0;
+  int dominatorTimer = 0;
+  int getHealthTimer = 0;
+  int firstDeathTimer = 0;
+  int powerUpObtainedTimer = 0;
+  int graveyardTimer = 0;
 
   int deleteTimer;
   int updateTimer;
@@ -68,7 +68,6 @@ class Achievement {
         rect(checkBoxX, (i + 1) * achievementDistance, checkBoxSize, checkBoxSize);
       }
       
-
       if (firstKill) {
         image(checkmark, checkBoxX, 150);
       }
@@ -165,6 +164,7 @@ class Achievement {
             achievementNumber = 1;
             msql.query(selectQuery);
             
+            
             while (msql.next()) {
 
               int achievementGot = msql.getInt("AchievementID");
@@ -197,7 +197,9 @@ class Achievement {
 
           //Upload achievement data upon updating the database if the user has said achievement
           if (firstKill) {
+            println("kaka");
             if (firstKillTimer == 0) {
+              println("peope");
               msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '1'");
               firstKillTimer++;
             }
