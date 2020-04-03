@@ -197,9 +197,7 @@ class Achievement {
 
           //Upload achievement data upon updating the database if the user has said achievement
           if (firstKill) {
-            println("kaka");
             if (firstKillTimer == 0) {
-              println("peope");
               msql.query("UPDATE User_has_Achievement SET Obtained = 'Yes' WHERE Chair_nr = '"+chairNr+"' AND AchievementID = '1'");
               firstKillTimer++;
             }
